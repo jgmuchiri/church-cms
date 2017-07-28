@@ -1,0 +1,6 @@
+Name=Default Theme
+Description=Default theme
+Author= John Muchiri
+Url= http://amdtllc.com
+Version= 1.0
+Version date= 24-JULY-2017

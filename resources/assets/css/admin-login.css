@@ -1,0 +1,41 @@
+#login{
+    background: #fff;
+}
+#logo, #loginbox {width: 32%;margin-left: auto;margin-right: auto;position: relative;margin-top:5%;}
+#logo img {  margin: 0 auto;    display: block;}
+#loginbox { overflow: hidden !important;    text-align: left;    position: relative; }
+#loginbox form{width: auto;/* background:#2E363F; */position:relative;top:0;left:0;/* border-radius: 0 0 5px 5px; */border: solid 1px #ccc;}
+#loginbox .form-actions {padding: 14px 20px 10px;}
+#loginbox .form-actions .pull-left { margin-top:0px;}
+#loginbox form#loginform { z-index: 200; display:block;}
+#loginbox form#recoverform { z-index: 100;     display:none;}
+#loginbox form#registerform { z-index: 100;     display:none;}
+#loginbox form#recoverform .form-actions {    margin-top: 10px;}
+#loginbox .main_input_box { margin:0 auto; text-align:center; font-size:13px;}
+#loginbox .main_input_box .add-on{  padding:9px 9px; *line-height:31px; vertical-align:top; color:#fff;  width:30px; display:inline-block;}
+#loginbox .main_input_box input{height:30px;vertical-align:top;border:0px;display:inline-block;width:75%;line-height:22px;margin-bottom:3px;border-bottom: solid 1px #ffb848;margin: -1px 0 0 -4px;}
+#loginbox .main_input_box input[type=password]{
+    border-color:#ffb848;
+}
+#loginbox .main_input_box input[type=email]{
+    border-color:#28b779;
+}
+#loginbox .controls{ padding:0 20px;}
+#loginbox .control-group{ padding:20px 0; margin-bottom:0px;}
+.form-vertical, .form-actions {margin-bottom: 0;background:none;border-top: 1px solid #cccccc;}
+#loginbox .normal_text{padding:15px 10px;text-align:center;font-size:14px;line-height:20px;background:#2E363F;color:#fff;/* border-radius: 5px 5px 0 0; */}
+@media (max-width:800px){
+    #loginbox #logo { width: 60%; }
+    #loginbox{ width:80%}
+}
+@media (max-width: 480px){
+    #loginbox #logo { width: 40%; }
+    #loginbox{ width:90%}
+    #loginbox .control-group{ padding:8px 0; margin-bottom:0px;}
+}
+#loginbox .title {
+    padding: 20px 5px;
+    background-color: #f0f0f0 !important;
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 20px;
+}

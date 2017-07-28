@@ -1,0 +1,136 @@
+@extends('layouts.template')
+@section('title')
+    Sermons
+@endsection
+@section('crumbs')
+    <a href="/sermons/admin">Sermons</a>
+    <a href="#">Edit sermon</a>
+@endsection
+
+@section('content')
+    <div class="widget-box">
+        <div class="widget-title bg_lg"><span class="icon"><i class="icon-list"></i></span>
+            <h5>New sermon</h5>
+
+            <div class="buttons">
+                <a href="/sermons/admin" class="btn btn-primary btn-mini">
+                    <i class="icon-list-alt"></i> Sermons
+                </a>
+                <a href="/sermons/admin/drafts" class="btn btn-primary btn-mini">
+                    <i class="icon-list-alt"></i> Drafts
+                </a>
+                <a href="/sermons/create" class="btn btn-inverse btn-mini">
+                    <i class="icon-plus"></i> New Ministry
+                </a>
+            </div>
+        </div>
+        <div class="widget-content">
+            {{Form::model($sermon,['url'=>'sermons/'.$sermon->id.'/edit','files'=>'true'])}}
+            <table class="table">
+                <tr>
+                    <td>Title:</td>
+                    <td>{{Form::text('title',null,['required'=>'required','placeholder'=>'Title','class'=>'span12'])}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="row-fluid">
+                            <div class="form-inline">
+                                <div class="span4">
+                                    <div class="form-group">
+                                        <label>Topic:</label><br/>
+                                        {{Form::text('topic')}}
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="form-group">
+                                        <label>Sub Topic</label><br/>
+                                        {{Form::text('sub_topic',null,['required'=>'required','placeholder'=>'Sub Topic'])}}
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="form-group">
+                                        <label>Date</label><br/>
+                                        {{Form::input('date','created_at',date('Y-m-d',strtotime($sermon->created_at)),['required'=>'required'])}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Desc:</td>
+                    <td> {{Form::textarea('desc',null,['placeholder'=>'Short Description','rows'=>3,'class'=>'span12'])}}</td>
+                </tr>
+                <tr>
+                    <td>Message:</td>
+                    <td>{{Form::textarea('message',null,['placeholder'=>'Message','class'=>'editor'])}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Upload Audio</label>
+                                {{Form::file('audio',['class'=>'btn btn-default'])}}
+                                @if($sermon->audio !==null)
+                                    <span>{{$sermon->audio}}</span>
+                                @endif
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Cover Image</label>
+                                {{Form::file('cover',['class'=>'btn btn-default'])}}
+                                @if($sermon->cover !==null)
+                                    <img src="/uploads/sermons/cover/{{$sermon->cover}}"
+                                         style="width:100px"/>
+                                @endif
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Video:</td>
+                    <td>{{Form::text('video',null,['placeholder'=>'Video URL (Youtube or Vimeo)'])}}</td>
+                </tr>
+                <tr>
+                    <td>Speaker:</td>
+                    <td>
+                        <div class="form-inline">
+                            <label></label>
+                            {{Form::text('speaker',null,['placeholder'=>'Speaker'])}}
+
+                            <label>Scripture: </label>
+                            {{Form::text('scripture',null,['placeholder'=>'Scripture'])}}
+
+                            <label>Status: </label>
+                            {{Form::select('status',['published'=>'Published','draft'=>'Draft'])}}
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-default">Publish</button>
+                    </td>
+                </tr>
+            </table>
+            {{Form::close()}}
+        </div>
+    </div>
+@endsection
+@include('partials.tinymce')
+@push('scripts')
+<script>
+    $('input[name=title]').blur(function () {
+        var title = $(this).val();
+        var slug = title.split(' ').join('_');
+        $('input[name=slug]').val(slug)
+    });
+    $('input[name=video]').blur(function () {
+        var video = $(this).val();
+        $(this).val(yoube(video))
+    })
+</script>
+@endpush
