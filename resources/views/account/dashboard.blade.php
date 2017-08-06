@@ -116,34 +116,43 @@
 
             </div>
 
-            {!! Form::open(['url'=>'/giving/manual-giving','id'=>'payment-form']) !!}
+            {!! Form::open(['url'=>'/giving/give','id'=>'payment-form']) !!}
             <div class="modal-body">
-                <table>
+                <table class="table">
                     <tr>
                         <td class="text-right">Amount:</td>
-                        <td> {!! Form::text('amount',null,['placeholder'=>'Amount','required'=>'required']) !!}</td>
+                        <td> {!! Form::text('amount',null,['placeholder'=>'Amount','class'=>'controls','required'=>'required']) !!}</td>
                     </tr>
                     <tr>
                         <td class="text-right">Designation:</td>
-                        <td> {{Form::select('desc',DB::table('gift_options')->whereActive(1)->pluck('name','name'))}}</td>
+                        <td> {{Form::select('gift_options_id',\App\Models\Giving\GiftOptions::whereActive(1)->pluck('name','id'))}}</td>
                     </tr>
                     <tr>
-                        <td class="text-right"> Recurrence:</td>
-                        <td>{!! Form::select('interval',['once'=>'One time','week'=>'Weekly','month'=>'Monthly','year'=>'Yearly']) !!}</td>
+                        <td class="text-right">Recurrence:</td>
+                        <td> <br/>
+                            {!! Form::select('interval',['once'=>'One time','week'=>'Weekly','month'=>'Monthly','year'=>'Yearly']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Debit/Credit Card<br/>
+                            <div id="card-element" class="field"></div></td>
                     </tr>
                 </table>
+
+                <div class="outcome">
+                    <div class="error" role="alert"></div>
+                    <div class="success">
+                       <span class="token"></span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success btn-xlg charge"
-                    data-key="{{(env('APP_ENV')=='local')? env('STRIPE_TEST_PUBLIC') : env('STRIPE_PUBLIC')}}"
-                    data-image="/img/checkout.png"
-                    data-email="{{Auth::user()->email}}"
-                    data-currency="{{env('CURRENCY')}}"
-                    data-name="Online Contribution"
-                    data-description="Online Contribution"
-                    data-label="Give online"><i class="icon-credit-card"></i> Process Payment
+            <button class="btn btn-success btn-xlg charge">
+                <i class="icon-credit-card"></i> Process Payment
             </button>
+
         </div>
         {!! Form::close() !!}
     </div>
@@ -157,34 +166,80 @@
         $('#giveForm').modal('show');
     });
 </script>
-<script src="/plugins/numeral/numeral.min.js"></script>
-<script src="https://checkout.stripe.com/v2/checkout.js"></script>
+<script src="/plugins/numeraljs/numeral.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <script>
     $(document).ready(function () {
-        $('.charge').on('click', function (event) {
+        $('input[name=amount]').on('blur', function () {
+            var cur = $(this).val();
+            var am = numeral(cur).format('0.00');
+            $(this).val(am);
+        });
+
+        var stripe = Stripe('{{env('APP_ENV')=="local"?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}');
+        var elements = stripe.elements();
+
+        var style = {
+            base: {
+                color: '#53cc8e',
+                lineHeight: '24px',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                },
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        // Create an instance of the card Element
+        var card = elements.create('card', {style: style});
+
+        // Add an instance of the card Element into the `card-element` <div>
+        card.mount('#card-element');
+
+        card.addEventListener('change', function (event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            if (!validCurrency()) return;
-
-            var $button = $(this),
-                $form = $button.parents('form');
-            var opts = $.extend({}, $button.data(), {
-                token: function (result) {
-                    $form.append($('<input>').attr({
-                        type: 'hidden',
-                        name: 'stripeToken',
-                        value: result.id
-                    }));
-                    $form.append($('<input>').attr({
-                        type: 'hidden',
-                        name: 'user_id',
-                        value: '{{Auth::user()->id}}'
-                    }));
-                    $form.submit();
+            stripe.createToken(card).then(function (result) {
+                if (result.error) {
+                    // Inform the user if there was an error
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Send the token to your server
+                    stripeTokenHandler(result.token);
                 }
             });
-            StripeCheckout.open(opts);
         });
+
+        function stripeTokenHandler(token) {
+            // Insert the token ID into the form so it gets submitted to the server
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+
+            form.submit();
+        }
     });
+
+
 </script>
 @endpush

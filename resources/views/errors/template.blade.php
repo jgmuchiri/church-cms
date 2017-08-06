@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <img src="/img/logo.png" style="width:200px"/>
+                <img src="/images/logo.png" style="width:200px"/>
                 <div class="title">@yield('title')</div>
                 <div class="">@yield('content')</div>
             </div>

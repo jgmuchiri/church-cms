@@ -5,19 +5,22 @@
 
 @section('content')
     <div class="row-fluid">
-        <div class="span2 btn-icon-pg">
-            @include('admin.settings-menu')
-        </div>
+        @include('admin.settings-menu')
 
         <div class="span10">
             <div class="widget-box no-top">
                 <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
                     <h5>Giving options</h5>
                     <div class="buttons">
-                        <a class="btn btn-inverse btn-mini" href="/giving/gift-options"><i class="icon-plus"></i> New gift option</a>
+                        <a class="btn btn-inverse btn-mini" href="/giving/gift-options"><i class="icon-plus"></i> New
+                            gift option</a>
                     </div>
                 </div>
                 <div class="widget-content">
+                    <div class="alert alert-info">
+                        These are the options available to members to choose from when giving online. e.g. Building
+                        fund, overseas missions, etc
+                    </div>
                     <div class="row-fluid">
                         <div class="span6">
                             <table class="table table-responsive table-striped">
@@ -44,8 +47,10 @@
                             @endif
                             <label>Name</label>
                             {{Form::text('name',null,['required'=>'required'])}}
+                            <label>Amount <i class="small">(optional)</i></label>
+                            {!! Form::text('amount') !!}
                             <label>Description</label>
-                            {{Form::text('desc',null,['required'=>'required'])}}
+                            {{Form::textarea('desc',null,['required'=>'required','rows'=>3,'class'=>'span12 editor'])}}
                             <label>Active?</label>
                             {{Form::select('active',[1=>'Yes',0=>'No'])}}
                             <br/>
@@ -59,3 +64,4 @@
     </div>
 
 @endsection
+@include('partials.summer',['editor'=>'.editor'])

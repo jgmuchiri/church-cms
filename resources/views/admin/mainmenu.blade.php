@@ -8,16 +8,14 @@
 
 @section('content')
     <div class="row-fluid">
-        <div class="span2 btn-icon-pg">
-            @include('admin.settings-menu')
-        </div>
+        @include('admin.settings-menu')
 
         <div class="span10">
             <div class="widget-box no-top">
                 <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
                     <h5>Main menu</h5>
                     <div class="buttons">
-                        <a href="/settings/menu" class="btn btn-inverse btn-mini right">
+                        <a href="/menu" class="btn btn-inverse btn-mini right">
                             <i class="icon-plus"></i>
                             New menu item
                         </a>
@@ -29,13 +27,23 @@
                             <div class="alert alert-info">
                                 If you add sub-menu items and would like them to hide them from front-end, add <code>no-submenu</code>
                                 parameter in your template navigation
+                                <br/>
+                                Default menu
+                                <code>/home</code>
+                                <code>/sermons</code>
+                                <code>/events</code>
+                                <code>/ministries</code>
+                                <code>/account</code>
+                                <code>/login</code>
                             </div>
                             <table class="table table-responsive">
                                 <thead>
                                 <tr>
                                     <th>Menu</th>
                                     <th>Order</th>
+                                    <th>Icon</th>
                                     <th>Status</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody class="sortable-rows">
@@ -45,7 +53,11 @@
                                             <a href="?m={{$m->id}}">{{$m->title}}</a>
                                         </td>
                                         <td>{{$m->order}}</td>
+                                        <td><i class="icon-{{$m->icon}}"></i> </td>
                                         <td>{!!($m->active==1)?'<span class="label label-success">active</span>':'<span class="label label-danger">disabled</span>'!!}</td>
+                                        <td>
+                                            <a href="/menu/delete/{{$m->id}}"></a>
+                                        </td>
                                     </tr>
                                     @foreach($subMenu as $s)
 
@@ -55,7 +67,11 @@
                                                     <a href="?m={{$s->id}}">{{$s->title}}</a>
                                                 </td>
                                                 <td>{{$s->order}}</td>
-                                                <td>{!!($s->active==1)?'<span class="label label-success">active</span>':'<span class="label label-danger">disabled</span>'!!}</td>
+                                                <td><i class="icon-{{$s->icon}}"></i> </td>
+                                                    <td>{!!($s->active==1)?'<span class="label label-success">active</span>':'<span class="label label-danger">disabled</span>'!!}</td>
+                                                <td>
+                                                    <a href="/menu/delete/{{$s->id}}"></a>
+                                                </td>
                                             </tr>
                                         @endif
 
@@ -68,7 +84,7 @@
 
                             @if(count($menuItem))
                                 <h4>Edit Menu Item</h4>
-                                {{Form::model($menuItem,['url'=>'settings/menu/','method'=>'patch'])}}
+                                {{Form::model($menuItem,['url'=>'menu/','method'=>'patch'])}}
                                 {{Form::hidden('id',$menuItem->id)}}
                                 <label>Title</label>
                                 {{Form::text('title',null,['required'=>'required'])}}
@@ -99,14 +115,14 @@
                                 <br/>
 
                                 <button class="btn btn-default"><i class="icon-save"></i> Save</button>
-                                <a href="/settings/menu" class="btn btn-danger right"><i class="icon-eye-close"></i>
+                                <a href="/menu" class="btn btn-danger right"><i class="icon-eye-close"></i>
                                     Close</a>
 
                                 {{Form::close()}}
 
                             @else
                                 <h4>New Menu Item</h4>
-                                {{Form::open(['url'=>'settings/menu'])}}
+                                {{Form::open(['url'=>'menu'])}}
                                 <label>Title</label>
                                 {{Form::text('title',null,['required'=>'required'])}}
                                 <label>Path</label>
@@ -183,7 +199,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/settings/menu/sort",
+            url: "/menu/sort",
             data: dataString,
             cache: false,
             success: function (data) {

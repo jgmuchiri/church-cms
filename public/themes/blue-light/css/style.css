@@ -175,3 +175,9 @@ header .rel {
 #footer .socials .fa.fa-pinterest {
   font-size: 30px;
 }
+.navbar-collapse {
+  padding:0 !important;
+}
+.navbar .nav>li>a:first-child{
+  padding-left:0 !important;
+}

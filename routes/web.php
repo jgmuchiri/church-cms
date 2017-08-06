@@ -113,24 +113,21 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('dashboard', 'AdminController@index');
     //ADMIN
 
-    //roles
+    //Roles
     Route::group(['prefix' => 'roles', 'middleware' => ['role:admin']], function () {
         Route::get('/', 'Auth\AuthController@roles');
-        Route::post('/', 'Auth\AuthController@newRole');
         Route::get('/getRoles', 'Auth\AuthController@rolesJson');
+        Route::post('/', 'Auth\AuthController@newRole');
     });
+    Route::post('role','Auth\AuthController@showRole');
+    Route::post('update-role/{id}','Auth\AuthController@updateRole');
 
-    //permissions
-    Route::group(['prefix' => 'permissions', 'middleware' => ['role:admin']], function () {
-        Route::get('/', 'Auth\AuthController@permissions');
-        Route::post('/', 'Auth\AuthController@storePermission');
-        Route::patch('/', 'Auth\AuthController@updatePermission');
-        Route::get('delete/{id}', 'Auth\AuthController@deletePermission');
-        Route::get('search/{key}', 'Auth\AuthController@permissions');
-        Route::get('search', 'Auth\AuthController@permissions');
-        Route::post('search/{key}', 'Auth\AuthController@permissions');
-        Route::post('search', 'Auth\AuthController@permissions');
-    });
+    //modules
+    Route::resource('modules','ModulesController');
+    Route::post('update-module/{id}','ModulesController@update');
+    Route::get('module-permissions/{role_id}/{module_id}','Auth\AuthController@permissions');
+    Route::post('role-permissions','Auth\AuthController@updateRolePermissions');
+    Route::get('perms','ModulesController@perms');
 
     //settings
     Route::group(['prefix' => 'settings', 'middleware' => ['role:admin']], function () {
@@ -139,37 +136,44 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('backup', 'AdminController@backupEnv');
         Route::get('/', 'AdminController@settings');
         Route::post('/logo', 'AdminController@uploadLogo');
+    });
+    Route::get('debug-log','AdminController@debug')->name('debug');
+    Route::post('debug-log','AdminController@emptyDebugLog')->name('empty-debug-log');
 
-        Route::group(['prefix' => 'menu'], function () {
-            Route::get('/', 'AdminController@mainMenu');
-            Route::post('/', 'AdminController@storeMainMenu');
-            Route::patch('/', 'AdminController@updateMainMenu');
-            Route::post('/sort','AdminController@sortMenu');
-        });
-
-        Route::group(['prefix' => 'themes','middleware'=>'auth'], function () {
-            Route::get('/', 'ThemesController@index');
-            Route::post('/', 'ThemesController@upload');
-            Route::get('{id}/delete', 'ThemesController@deleteTheme');
-            Route::get('{id}/select', 'ThemesController@selectTheme');
-        });
+    //themes
+    Route::group(['prefix' => 'theme','middleware'=>'auth'], function () {
+        Route::get('/', 'ThemesController@index');
+        Route::post('/', 'ThemesController@upload');
+        Route::get('{id}/delete', 'ThemesController@deleteTheme');
+        Route::get('{id}/select', 'ThemesController@selectTheme');
+        Route::get('/browse', 'ThemesController@browse');
     });
 
 
-    Route::group(['prefix' => 'giving','middleware'=>'auth'], function () {
-        Route::get('gift-options', 'TransactionsController@giftOptions');
-        Route::post('gift-options', 'TransactionsController@storeGiftOption');
-        Route::put('gift-options/{id}', 'TransactionsController@updateGiftOption');
-        Route::get('gifts', 'TransactionsController@gifts');
-        Route::get('gift/{id}', 'TransactionsController@showGift');
-        Route::post('manual-giving', 'TransactionsController@manualGift');
-        Route::post('guest-giving', 'TransactionsController@manualGift');
-
-        Route::get('/history', 'TransactionsController@givingHistory');
-        Route::get('recurring', 'TransactionsController@recurringGifts');
-        Route::get('plan/{id}/{action}', 'TransactionsController@updateGiftPlan');
+    Route::group(['prefix' => 'menu'], function () {
+        Route::get('/', 'MenuController@mainMenu');
+        Route::post('/', 'MenuController@storeMainMenu');
+        Route::patch('/', 'MenuController@updateMainMenu');
+        Route::post('/sort','MenuController@sortMenu');
+        Route::get('/{id}/delete','MenuController@destroy');
     });
 
+    Route::group(['prefix' => 'giving'], function () {
+        Route::get('gift-options', 'GivingController@giftOptions');
+        Route::post('gift-options', 'GivingController@storeGiftOption');
+        Route::put('gift-options/{id}', 'GivingController@updateGiftOption');
+        Route::get('gifts', 'GivingController@gifts');
+        Route::post('gift', 'GivingController@showGift');
+        Route::post('give', 'GivingController@give');
+        Route::post('guest-giving', 'GivingController@manualGift');
+
+        Route::get('/history', 'GivingController@givingHistory');
+        Route::get('recurring', 'GivingController@recurringGifts');
+        Route::get('plan/{id}/{action}', 'GivingController@updateGiftPlan');
+
+        Route::get('option-info/{id}','GivingController@getOptionInfo');
+    });
+    Route::post('guest-giving', 'GivingController@manualGift');
 
     //routes for all
     Route::get('account', 'UserController@userAccount');
@@ -222,7 +226,6 @@ Route::group(['middleware' => 'web'], function () {
 
     });
 
-
     //support
     Route::group(['prefix' => 'support'], function () {
         Route::get('/', 'KbController@index');
@@ -241,10 +244,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('question/{id}', 'KbController@updateQuestion');
     });
 
-
-    Route::group(['prefix' => 'themes'], function () {
-        Route::get('/browse', 'ThemesController@browse');
-    });
 
     Route::group(['prefix' => 'reports'], function () {
         Route::get('downloadGiftsToDate', 'ReportsController@downloadGiftsToDate');

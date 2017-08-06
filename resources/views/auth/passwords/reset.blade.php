@@ -1,8 +1,7 @@
 @extends('layouts.public')
 @section('content')
 
-    <div class="jumbotron"
-         style="background-image:url(/themes/default/img/fern.jpg);-webkit-background-size: 100%;background-size: 100%;">
+    <div class="jumbotron">
         <div class="container">
 
             <div class="row">

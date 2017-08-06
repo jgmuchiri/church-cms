@@ -3965,7 +3965,8 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
     -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     -webkit-background-clip: padding-box;
-    background-clip: padding-box
+    background-clip: padding-box;
+    display: none;
 }
 
 .modal.fade {

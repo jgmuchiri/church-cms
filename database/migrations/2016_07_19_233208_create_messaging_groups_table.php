@@ -16,7 +16,7 @@ class CreateMessagingGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('desc')->nullable();
-            $table->string('users');
+            $table->longText('users')->nullable();
             $table->integer('active');
             $table->timestamps();
         });

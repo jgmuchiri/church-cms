@@ -58,7 +58,7 @@ class MessagingController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        if (!empty($request->users) && is_array($request->users)) {
+        if (!empty($request->users[0]) && is_array($request->users)) {
             //get all users\
             foreach ($request->users as $user) {
                 $u = User::find($user);
@@ -70,7 +70,8 @@ class MessagingController extends Controller
             return redirect()->back();
         }
 
-        if (!empty($request->group )) {
+
+        if (!empty($request->group)) {
             //get users in the group
             switch ($request->group) {
                 case "all":

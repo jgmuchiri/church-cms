@@ -10,7 +10,31 @@ use Illuminate\Support\Facades\Mail;
 
 class Transactions extends Model
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    function user(){
+        return $this->belongsTo(\App\User::class,'user_id','id');
+    }
 
+    /**
+     * @return string
+     */
+    function getNameAttribute()
+    {
+        $user_id =$this->attributes['user_id'];
+        $user = User::find($user_id);
+
+        return $user->first_name.' '.$user->last_name;
+    }
+
+    /**
+     * @param $value
+     * @return false|string
+     */
+    function getCreatedAtAttribute($value){
+        return date('d M, Y',strtotime($value));
+    }
 
     /**
      * @param $value
@@ -134,7 +158,7 @@ class Transactions extends Model
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount" => self::convertToCents($request->amount),
-                "currency" => Settings::read('currency'),
+                "currency" => env('CURRENCY'),
                 "customer" => $stripe_id,
                 "description" => $request->desc
             ));

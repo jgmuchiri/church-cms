@@ -63,10 +63,12 @@
                 <br/>
                 <div class="row-fluid">
                     <div class="span-12">
-                        <button type="button" class="btn btn-inverse draft"><i class="icon-save"></i> Save as
-                            Template
+                        <button type="button" class="btn btn-info send">
+                            <i class="icon-envelope-alt"></i> Send
                         </button>
-                        <button type="button" class="btn btn-info send"><i class="icon-envelope-alt"></i> Send
+
+                        <button type="button" class="btn btn-inverse draft pull-right">
+                            <i class="icon-save"></i> Save asTemplate
                         </button>
                     </div>
                 </div>

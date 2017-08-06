@@ -8,11 +8,11 @@
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="icon-plus"></i>
                 Upload theme</a>
 
-            <a href="/settings/themes/1/select" class="btn btn-info"><i
+            <a href="/theme/1/select" class="btn btn-info"><i
                         class="icon-check"></i> Set default theme</a>
 
-            <a href="/themes/browse" target="_blank" class="btn btn-warning"><i class="icon-shopping-cart"></i>
-                Browse themes</a>
+            {{--<a href="/theme/browse" target="_blank" class="btn btn-warning"><i class="icon-shopping-cart"></i>--}}
+                {{--Browse themes</a>--}}
         </div>
         <hr/>
         <div class="content">

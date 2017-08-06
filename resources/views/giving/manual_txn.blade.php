@@ -1,4 +1,4 @@
-{!! Form::open(['url'=>'/giving/manual-giving','id'=>'payment-form']) !!}
+{!! Form::open(['url'=>'/giving/give','id'=>'payment-form']) !!}
 <table>
     <tr>
         <td class="text-right">Amount:</td>
@@ -6,7 +6,7 @@
     </tr>
     <tr>
         <td class="text-right">Designation:</td>
-        <td>  {{Form::select('desc',DB::table('gift_options')->whereActive(1)->pluck('name','name'),null,['class'=>'select2'])}}
+        <td>  {{Form::select('gift_options_id',\App\Models\Giving\GiftOptions::whereActive(1)->pluck('name','id'),null,['class'=>'select2'])}}
 
         </td>
     </tr>
@@ -21,7 +21,6 @@
         <td>
             <button class="btn btn-success btn-xlg charge"
                     data-key="{{env('APP_ENV')=='local'?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}"
-                    data-image="/img/checkout.png"
                     data-email="{{$user->email}}"
                     data-currency="{{env('CURRENCY')}}"
                     data-name="Online Contribution"
@@ -35,10 +34,16 @@
 {!! Form::close() !!}
 
 @push('scripts')
-
+<script src="/plugins/numeraljs/numeral.min.js" type="text/javascript"></script>
 <script src="https://checkout.stripe.com/v2/checkout.js"></script>
 <script>
     $(document).ready(function () {
+        $('input[name=amount]').on('blur', function () {
+            var cur = $(this).val();
+            var am = numeral(cur).format('0.00');
+            $(this).val(am);
+        });
+
         $('.charge').on('click', function (event) {
             event.preventDefault();
 

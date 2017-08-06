@@ -1,5 +1,5 @@
 Name=Blue Light Theme
-Description=Blue light theme. This theme is great for may purposes
+Description=Blue Light Theme. This theme is great for may purposes
 Author= John Muchiri
 Url= http://amdtllcom
 Version= 1.0

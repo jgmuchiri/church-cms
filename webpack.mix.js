@@ -14,5 +14,8 @@ var mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/public_js.js','public/js')
     .js('resources/assets/js/login.js','public/js')
+    .js('resources/assets/js/roles.js','public/js')
+    .js('resources/assets/js/kiosk.js','public/js')
    .less('resources/assets/css/public.css', 'public/css')
-   .less('resources/assets/css/admin.css', 'public/css');
+   .less('resources/assets/css/admin.css', 'public/css')
+   .less('resources/assets/css/kiosk.css', 'public/css');

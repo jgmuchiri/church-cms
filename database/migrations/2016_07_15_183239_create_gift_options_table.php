@@ -15,7 +15,8 @@ class CreateGiftOptionsTable extends Migration
         Schema::create('gift_options', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('desc')->nullable();
+            $table->float('amount')->nullable();
+            $table->text('desc')->nullable();
             $table->integer('active');
             $table->timestamps();
         });

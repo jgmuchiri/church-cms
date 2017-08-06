@@ -117,7 +117,7 @@ class SermonsController extends Controller
         if(count($slug)>0){
             $slug = $slug.'_1';
         }else{
-            $slug = date('m_d_Y') . '_' . str_replace(' ', '_', $request->slug);
+            $slug = date('m_d_Y') . '_' . str_replace(' ', '_', $request->title);
         }
 
         $s->user_id = Auth::user()->id;

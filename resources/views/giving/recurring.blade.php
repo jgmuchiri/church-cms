@@ -8,7 +8,9 @@
 
 @section('content')
     <div class="widget-box">
-        <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+        <div class="widget-title"><span class="icon">
+                <a href="/giving/gifts"><i class="icon-chevron-left"></i></a>
+            </span>
             <h5>Cancellations will take effect on the next billing cycle.</h5>
         </div>
         <div class="widget-content nopadding">
@@ -17,7 +19,7 @@
                 <thead>
                 <tr>
                     <th>Date</th>
-                    <th>ID</th>
+                    <th>Subscription ID</th>
                     <th>Amount</th>
                     <th>Interval</th>
                     <th>Ends On</th>
@@ -29,7 +31,7 @@
                 @foreach($gifts as $gift)
                     <tr>
                         <td>{{date('d M, Y',strtotime($gift->created_at))}}</td>
-                        <td>{{$gift->subscript_id}}</td>
+                        <td>{{$gift->subscription_id}}</td>
                         <td>{{env('CURRENCY_SYMBOL').$gift->amount}}</td>
                         <td>{{ucwords($gift->interval)}}</td>
                         <td>{{$gift->ends_at}}</td>

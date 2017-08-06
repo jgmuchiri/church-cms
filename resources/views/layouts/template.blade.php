@@ -81,7 +81,19 @@
         @endpermission
 
         @role('admin')
-        <li class=""><a title="" href="/settings"><i class="icon-cog"></i> <span class="text">Settings</span></a>
+        <li class="dropdown" id="menu-messages">
+            <a href="#" data-toggle="dropdown" data-target="#menu-messages"
+               class="dropdown-toggle"><i class="icon-cog"></i> <span
+                        class="text">Settings</span>
+                <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/settings"><i class="icon-wrench"></i> Settings</a></li>
+                <li><a href="/roles"><i class="icon-key"></i> Roles</a></li>
+                <li><a href="/menu"><i class="icon-list"></i> Menu</a></li>
+                <li><a href="/theme"><i class="icon-th"></i>Change theme</a></li>
+                <li><a href="/themes"><i class="icon-th"></i> Gift Options</a></li>
+                <li><a href="/debug-log"><i class="icon-question-sign"></i> Debug logs</a></li>
+            </ul>
         </li>
         @endrole
         <li class="home">
@@ -90,7 +102,12 @@
                 <span class="text">Open site</span>
             </a>
         </li>
-
+        <li class="kiosk">
+            <a title="" href="/kiosk">
+                <i class="icon-external-link" style="color:red"></i>
+                <span class="text" style="color:red">Kiosk Mode</span>
+            </a>
+        </li>
         <li class="logout">
             <a title="" href="#">
                 <i class="icon-share-alt"></i>
@@ -101,8 +118,8 @@
 </div>
 
 {{--<div id="search">--}}
-    {{--<input type="text" placeholder="Search here..."/>--}}
-    {{--<button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>--}}
+{{--<input type="text" placeholder="Search here..."/>--}}
+{{--<button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>--}}
 {{--</div>--}}
 
 <!--sidebar-menu-->
@@ -110,35 +127,36 @@
     <ul class="sideNav">
         <li><a href="/dashboard"><i class="icon-home"></i> <span>Dashboard</span></a></li>
 
-        @permission('giving-read')
+        <li><a href="/account"><i class="icon-user"></i> <span>My Account</span></a></li>
+
+        @permission('read-gifts')
         <li><a href="/giving/gifts"><i class="icon-money"></i> <span>Gifts</span></a></li>
-        <li><a href="/giving/recurring"><i class="icon-refresh"></i> <span>Recurring gifts</span></a></li>
         @endpermission
 
-        @permission('messages-create')
+        @permission('read-mail')
         <li><a href="/messaging/admin"><i class="icon-envelope"></i> <span>Messaging</span>
                 <span class="label label-important">
                     {!! \App\Models\Messaging::whereSender(Auth::user()->id)->count() !!}
                 </span></a></li>
         @endpermission
 
-        @permission('ministries-create')
+        @permission('read-ministries')
         <li><a href="/ministries/admin"><i class="icon-th"></i> <span>Ministries</span></a></li>
         @endpermission
 
-        @permission('sermons-create')
+        @permission('read-sermons')
         <li><a href="/sermons/admin"><i class="icon-th"></i> <span>Sermons</span></a></li>
         @endpermission
 
-        @permission('events-create')
+        @permission('read-events')
         <li><a href="/events/admin"><i class="icon-calendar"></i> <span>Events</span></a></li>
         @endpermission
 
-        @permission('blog-create')
+        @permission('read-blog')
         <li><a href="/blog/admin"><i class="icon-leaf"></i> <span>Blog</span></a></li>
         @endpermission
 
-        @permission('users-read')
+        @permission('read-users')
         <li><a href="/users"><i class="icon-user"></i> <span>Users</span>
                 <span class="label label-important">
                   {{\App\User::count()}}
@@ -146,15 +164,27 @@
         </li>
         @endpermission
 
-        <li><a href="/account"><i class="icon-user"></i> <span>My Account</span></a></li>
-
         @if(\Trust::hasRole('admin'))
-        <li><a href="/birthdays"><i class="icon-refresh"></i> <span>Birthdays</span></a></li>
+            <li><a href="/birthdays"><i class="icon-refresh"></i> <span>Birthdays</span></a></li>
             <li><a href="/support/questions"><i class="icon-question-sign"></i> <span>Support</span></a></li>
         @else
             <li><a href="/support"><i class="icon-question-sign"></i> <span>Support</span></a></li>
         @endif
 
+        @role('admin')
+        <li class="submenu">
+            <a href="#"><i class="icon icon-cog"></i> <span>Admin</span></a>
+            <ul>
+                <li><a href="/settings"><i class="icon-wrench"></i> Settings</a></li>
+                <li><a href="/roles"><i class="icon-key"></i> Roles</a></li>
+                <li><a href="/menu"><i class="icon-list"></i> Menu</a></li>
+                <li><a href="/theme"><i class="icon-th"></i> Change themes</a></li>
+                <li><a href="/themes"><i class="icon-th"></i> Gift Options</a></li>
+                <li><a href="/debug-log"><i class="icon-question-sign"></i> Debug logs</a></li>
+            </ul>
+        </li>
+        <li><a href="/kiosk"><i class="icon-external-link"></i> <span>Kiosk Mode</span></a></li>
+        @endrole
     </ul>
 </div>
 <div id="content">

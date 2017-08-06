@@ -1,28 +1,37 @@
-<table id="table" class="display" cellspacing="0" width="100%">
-    <thead>
-    <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Email</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Email</th>
-    </tr>
-    </tfoot>
-    <tbody>
-    @foreach(App\User::get() as $u)
+<div id="users">
+    <div class="controls">
+        <div class="input-append">
+            <input class="search span11" placeholder="Search"/>
+            <span class="sort add-on" data-sort="name"><span class="icon-search"></span> </span></div>
+    </div>
+
+    <table id="table" class="display table" cellspacing="0" width="100%">
+        <thead>
         <tr>
-            <td>
-                {{Form::checkbox('users[]',$u->id, in_array($u->id,explode(',',$group->users)),['style'=>'width:45px;'])}}
-            </td>
-            <td>{{$u->first_name.' '.$u->last_name}}</td>
-            <td>{{$u->email}}</td>
+            <th></th>
+            <th>Name</th>
+            <th>Email</th>
         </tr>
-    @endforeach
-    </tbody>
-</table>
-@include('partials.datatables')
+        </thead>
+        <tbody class="list">
+        @foreach(App\User::get() as $u)
+            <tr>
+                <td>
+                    {{Form::checkbox('users[]',$u->id, in_array($u->id,explode(',',$group->users)),['style'=>'width:45px;'])}}
+                </td>
+                <td class="name">{{$u->first_name.' '.$u->last_name}}</td>
+                <td class="email">{{$u->email}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+@push('scripts')
+<script src="/plugins/listjs/listjs.min.js" type="text/javascript"></script>
+<script>
+    var options = {
+        valueNames: ['name', 'email']
+    };
+    new List('users', options);
+</script>
+@endpush

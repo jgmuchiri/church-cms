@@ -4,5 +4,8 @@
   "/js/public_js.js": "/js/public_js.js",
   "/js/login.js": "/js/login.js",
   "/css/public.css": "/css/public.css",
-  "/css/admin.css": "/css/admin.css"
+  "/css/admin.css": "/css/admin.css",
+  "/js/roles.js": "/js/roles.js",
+  "/css/kiosk.css": "/css/kiosk.css",
+  "/js/kiosk.js": "/js/kiosk.js"
 }

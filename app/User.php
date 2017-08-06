@@ -15,6 +15,12 @@ class User extends Authenticatable
     use LaratrustUserTrait;
     use Notifiable;
     protected $dates = ['trial_ends_at', 'subscription_ends_at'];
+    protected $fillable =[
+        'username','name','first_name','last_name','email',
+        'address','phone','photo','dob',
+        'password','confirmed','status','remember_token',
+        'stripe_id', 'card_brand','card_last_four','trial_ends_at'
+    ];
  
     /**
      * The database table used by the model.
@@ -37,7 +43,7 @@ class User extends Authenticatable
     {
         $stats = array();
         for ($i = 1; $i <= 12; $i++) {
-            $stats[] = self::usersByMonth($i);
+            $stats[] = self::stats($i);
         }
         return json_encode($stats);
     }

@@ -15,12 +15,12 @@
                             class="icon-plus"></i>
                     Upload theme</a>
 
-                <a href="/settings/themes/1/select" class="btn btn-info btn-mini"><i
+                <a href="/theme/1/select" class="btn btn-info btn-mini"><i
                             class="icon-check"></i> Set default theme</a>
 
-                <a href="/themes/browse" target="_blank" class="btn btn-warning btn-mini"><i
-                            class="icon-shopping-cart"></i>
-                    Browse themes</a>
+                {{--<a href="/theme/browse" target="_blank" class="btn btn-warning btn-mini"><i--}}
+                            {{--class="icon-shopping-cart"></i>--}}
+                    {{--Browse themes</a>--}}
             </div>
         </div>
         <div class="widget-content">
@@ -42,16 +42,16 @@
                             @if(App\Models\Settings::get_option('active_theme') ==$theme->id)
                                 <a class="btn btn-primary active"><i class="icon-check"></i></a>
                             @else
-                                {{--<a href="/settings/themes/{{$theme->id}}/preview" target="_blank" class="btn btn-info btn-mini"><i class="icon-eye"></i> Preview</a>--}}
+                                {{--<a href="/themes/{{$theme->id}}/preview" target="_blank" class="btn btn-info btn-mini"><i class="icon-eye"></i> Preview</a>--}}
                                 @if(App\Models\Settings::get_option('site_theme')==$theme->id)
                                     <button class="btn btn-success btn-mini"><i class="icon-check"></i> Active theme
                                     </button>
                                 @else
-                                    <a href="/settings/themes/{{$theme->id}}/select" class="btn btn-info btn-mini"><i
+                                    <a href="/theme/{{$theme->id}}/select" class="btn btn-info btn-mini"><i
                                                 class="icon-check"></i> Select theme</a>
                                 @endif
                             @endif
-                            <a href="/settings/themes/{{$theme->id}}/delete" class="btn btn-danger btn-mini delete"><i
+                            <a href="/theme/{{$theme->id}}/delete" class="btn btn-danger btn-mini delete"><i
                                         class="icon-trash"></i> Delete</a>
 
                         </div>
@@ -83,7 +83,7 @@
                                              data-trigger="hover"
                                              title="Theme structure"
                                              data-html="true"
-                                             data-content="<img src='/img/structure.png' style='width:100%'>"></i>
+                                             data-content="<img src='/images/structure.png' style='width:100%'>"></i>
                 </label>
                 {!! Form::file('theme') !!}
             </div>

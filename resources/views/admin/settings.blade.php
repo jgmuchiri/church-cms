@@ -4,9 +4,7 @@
 @endsection
 @section('content')
     <div class="row-fluid">
-        <div class="span2 btn-icon-pg">
-            @include('admin.settings-menu')
-        </div>
+        @include('admin.settings-menu')
 
         <div class="span10">
             <div class="widget-box no-top">

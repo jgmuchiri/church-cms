@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Log;
 use App\Models\Billing\Membership;
-use GuzzleHttp\Psr7\Response;
+use App\Models\Modules;
+use App\Permission;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +15,10 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Mail;
 
-use App\Permission;
+use App\Models\PermissionRole;
+use App\Models\RoleUser;
+
 use App\Role;
-use Illuminate\Support\Facades\View;
 
 class AuthController extends Controller
 {
@@ -73,37 +74,90 @@ class AuthController extends Controller
         flash()->success('You have successfully verified your account.');
         return redirect('/');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    function permissions($role_id, $module_id)
+    {
+        if (request()->ajax()) {
+            $module = Modules::find($module_id);
+            $levels = ['create', 'read', 'update', 'delete'];
+            $rolePerms = array();
+            foreach ($levels as $level) {
+                $perm = Permission::where('name', $level . '-' . $module->name)->first();
+                $role = null;
+                if (count($perm) > 0)
+                    $role = DB::table('permission_role')->where('role_id', $role_id)->where('permission_id', $perm->id)->first();
+                if ($role == null)
+                    $selected = false;
+                else
+                    $selected = true;
+                $rolePerms[] = array(
+                    'selected' => $selected,
+                    'level' => $level
+                );
+            }
+            return view('admin.permissions', compact('rolePerms'));
+        }
+    }
+
+
+    function updateRolePermissions(Request $request)
+    {
+        if ($request->ajax()) {
+            $role = $request->role;
+            $module = Modules::find($request->module);
+            $perms = $request->permissions;
+            if (is_array($perms)) {
+                //flush all permissions for this module
+                $ps = ['create', 'update', 'read', 'delete'];
+                foreach ($ps as $p) {
+                    $permission = $p . '-' . $module->name;
+                    $res = Permission::firstOrCreate(['name' => $permission, 'display_name' => ucwords($p) . ' ' . ucwords($module->name)]);
+                    PermissionRole::where('permission_id', $res->id)->where('role_id', $role)->delete();
+                }
+                //assign new
+                foreach ($perms as $perm) {
+                    $permission = $perm . '-' . $module->name;
+                    //find the permission
+                    $p = Permission::where('name', $permission)->first();
+                    DB::table('permission_role')->insert([
+                        'permission_id' => $p->id,
+                        'role_id' => $role
+                    ]);
+                }
+            } else {
+                DB::table('permission_role')->where('role_id', $role)->delete();
+            }
+
+            echo json_encode(['status' => 'success', 'message' => 'Role permissions updated']);
+        }
+
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     function roles()
     {
         $roles = Role::all();
-        return view('admin.roles', compact('roles'));
+        $modules = Modules::all();
+        return view('admin.roles', compact('roles', 'modules'));
     }
 
-    /**
-     * find roles
-     */
-    function rolesJson()
+    function showRole(Request $request)
     {
-        $q = $_GET['q'];
-        $roles = DB::table('roles')
-            ->distinct()
-            ->select('*')
-            ->where('display_name', 'like', "%$q%")
-            ->get();
-
-        $json = array();
-        foreach ($roles as $role) {
-            array_push($json, array(
-                    'id' => $role->id,
-                    'name' => $role->display_name)
+        if ($request->ajax()) {
+            $role = Role::find($request->role_id);
+            $data = array(
+                'name' => $role->name,
+                'display_name' => $role->display_name,
+                'desc' => $role->desc
             );
+            return $data;
         }
-        echo json_encode($json);
     }
-
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -112,192 +166,42 @@ class AuthController extends Controller
     {
         $rules = [
             'name' => 'required|max:50|unique:roles',
-            'display_name' => 'required|max:50|unique:roles',
+            'display_name' => 'required|max:50|unique:roles'
 
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $role = new Role();
-        $role->name = $request['name'];
-        $role->display_name = $request['display_name'];
-        $role->description = $request['description'];
-        $role->save();
+        $request->name = str_clean($request->name);
+        Role::create($request->all());
 
         flash()->success('Role added');
         return redirect()->back();
     }
 
-
-    /**
-     * @param null $key
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     */
-    function permissions($key = null)
-    {
-        if (Request()->ajax()) {
-            if (empty($key)) {
-                $permissions = Permission::paginate(20);
-                return Response()->json(View::make('admin.permissions-ajax',
-                    [
-                        'noPaginate' => 1, 'permissions' => $permissions
-                    ])->render());
-            } else {
-                $permissions = Permission::where('name', 'LIKE', '%' . $key . '%')->paginate(20);
-                return Response()->json(View::make('admin.permissions-ajax',
-                    [
-                        'noPaginate' => 1, 'permissions' => $permissions
-                    ])->render());
-            }
-        } else {
-            $my_perm = array();
-            if (isset($_GET['perm'])) {
-                $my_perm = Permission::findOrFail($_GET['perm']);
-            }
-
-            $permissions = Permission::paginate(15);
-            return view('admin.permissions', compact('permissions', 'my_perm'));
-        }
-    }
     /**
      * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse
-     */
-    function storePermission(Request $request)
-    {
-        $rules = [
-            'module' => 'required|max:50',
-            'perms' => 'required',
-            'roles' => 'required'
-
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $module = $request->module;
-
-        if ($request->has('special')) {
-            $perm = new Permission();
-            $perm->name = $request->name;
-            $perm->display_name = $request->display_name;
-            $perm->description = $request->description;
-            $perm->save();
-
-            foreach ($request->roles as $r) {
-                $role = Role::find($r);
-                $role->detachPermission($perm);
-                $role->attachPermission($perm);
-            }
-        } else {
-
-            $perms = str_split($request->perms, 1);
-
-            foreach ($perms as $p) {
-                $permName = self::permName($p);
-                $pName = $module . '-' . $permName;
-                $oldP = Permission::where('name', $pName)->first();
-                if (count($oldP) > 0) {
-                    $perm = $oldP;
-                } else {
-                    //create permission
-                    $perm = new Permission();
-                    $perm->name = $pName;
-                    $perm->display_name = ucwords($permName) . ' ' . ucwords($module);
-                    $perm->description = $request->description;
-                    $perm->save();
-                }
-
-                //assign permission to role
-                foreach ($request->roles as $r) {
-                    $role = Role::find($r);
-                    $role->detachPermission($perm);
-                    $role->attachPermission($perm);
-                }
-
-            }
-        }
-
-        flash()->success('Permission added');
-        return redirect()->back();
-    }
-
-    /**
-     * @param $perm
-     * @return string
-     */
-    function permName($perm)
-    {
-        switch ($perm) {
-            case 'c':
-                $perm = 'create';
-                break;
-            case 'r':
-                $perm = 'read';
-                break;
-            case 'u':
-                $perm = 'update';
-                break;
-            case 'd':
-                $perm = 'delete';
-                break;
-        }
-        return $perm;
-    }
-
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    function updatePermission(Request $request)
-    {
-        $id = $request->perm_id;
-        $rules = [
-            'name' => 'required|max:50',
-            //'description' => 'required',
-
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-        $perm = Permission::find($id);
-        $perm->name = $request->name;
-        $perm->display_name = $request->display_name;
-        $perm->description = $request->description;
-        $perm->save();
-
-        //dump permission roles
-        DB::table('permission_role')->where('permission_id', $perm->id)->delete();
-        //attach to role
-        foreach ($request->roles as $r) {
-            $role = Role::find($r);
-            //new roles
-            $role->attachPermission($perm);
-
-        }
-
-        flash()->success('Permission updated');
-        return redirect()->back();
-    }
-
-    /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    function deletePermission($id)
-    {
-        $perm = Permission::findOrFail($id);
-        $perm->delete();
-        flash()->success('Deleted!');
-        Log::add('deleted ' . $perm->name . ' permission', 'system', 'admin', $perm);
-        return redirect('permissions');
+    function updateRole(Request $request,$id){
+        $rules = [
+            'display_name' => 'required|max:50|unique:roles,display_name,'.$id
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $role = Role::find($id);
+
+        $role->fill($request->all());
+        $role->save();
+
+        flash()->success('Role updated!');
+        return redirect()->back();
     }
-
-
     /**
      * capture user submitted data
      * @param Request $request

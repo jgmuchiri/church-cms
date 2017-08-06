@@ -30,7 +30,7 @@
 
 <div id="loginbox">
 
-    <div class="control-group normal_text"><h3><img style="" src="/images/logo.png"></h3></div>
+    <div class="control-group normal_text"><h3><img style="" src="/images/admin-logo.png"></h3></div>
     {!! Form::open(['url'=>'login','method'=>'post','class'=>'form-vertical','id'=>'loginform']) !!}
 
     <div class="control-group">
@@ -73,7 +73,7 @@
 
     {!! Form::open(['url'=>'password/email/','id'=>'recoverform','class'=>'form-vertical'])!!}
 
-    <div class="controls"> <p class="">
+    <div class="controls"><p class="">
             Enter your e-mail address below and we will send you instructions how to recover a
             password.
         </p>
@@ -93,79 +93,84 @@
     </div>
     {!! Form::close() !!}
 
+
     {!! Form::open(['url'=>'register','id'=>'registerform','class'=>'form-vertical payment-form']) !!}
+    @if(env('ALLOW_REGISTRATION')==true)
+        <span class="payment-errors"></span>
 
-    <span class="payment-errors"></span>
-
-    <div class="control-group ">
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on bg_lg"><i class="icon-user"> </i></span>
-                {{Form::text('first_name',null,['required'=>'required','autofocus'=>'autofocus','placeholder'=>'Firstname'])}}
+        <div class="control-group ">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user"> </i></span>
+                    {{Form::text('first_name',null,['required'=>'required','autofocus'=>'autofocus','placeholder'=>'Firstname'])}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="control-group ">
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on bg_lg"><i class="icon-user"> </i></span>
-                {{Form::text('last_name',null,['required'=>'required','autofocus'=>'autofocus','placeholder'=>'Lastname'])}}
+        <div class="control-group ">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user"> </i></span>
+                    {{Form::text('last_name',null,['required'=>'required','autofocus'=>'autofocus','placeholder'=>'Lastname'])}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="control-group ">
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on bg_lg"><i class="icon-envelope"> </i></span>
-                {{Form::input('email','email',null,['required'=>'required','placeholder'=>'Email'])}}
+        <div class="control-group ">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-envelope"> </i></span>
+                    {{Form::input('email','email',null,['required'=>'required','placeholder'=>'Email'])}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="control-group ">
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on bg_lg"><i class="icon-th"> </i></span>
-                {{Form::text('phone',null,['placeholder'=>'Phone number'])}}
+        <div class="control-group ">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-th"> </i></span>
+                    {{Form::text('phone',null,['placeholder'=>'Phone number'])}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="control-group ">
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on bg_lg"><i class="icon-user"> </i></span>
-                {{Form::text('username',null,['required'=>'required','placeholder'=>'Username'])}}
+        <div class="control-group ">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user"> </i></span>
+                    {{Form::text('username',null,['required'=>'required','placeholder'=>'Username'])}}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="control-group ">
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on bg_lg"><i class="icon-lock"> </i></span>
-                {{Form::input('password','password',null,['required'=>'required','placeholder'=>'Password'])}}
+        <div class="control-group ">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-lock"> </i></span>
+                    {{Form::input('password','password',null,['required'=>'required','placeholder'=>'Password'])}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="control-group ">
-        <div class="controls">
-            <div class="main_input_box">
-                <span class="add-on bg_lg"><i class="icon-lock"> </i></span>
-                {{Form::input('password','password_confirmation',null,['required'=>'required','placeholder'=>'Confirm password'])}}
+        <div class="control-group ">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-lock"> </i></span>
+                    {{Form::input('password','password_confirmation',null,['required'=>'required','placeholder'=>'Confirm password'])}}
+                </div>
             </div>
         </div>
-    </div>
-    <br/>
+        <br/>
 
-    <div class="form-actions">
+        <div class="form-actions">
         <span class="pull-left">
             <a href="#" class="flip-link btn btn-success to-login">&laquo; Back to login</a>
         </span>
-        <span class="pull-right"><button class="btn btn-success">Submit</button> </span>
-    </div>
+            <span class="pull-right"><button class="btn btn-success">Submit</button> </span>
+        </div>
+    @else
+        <div class="alert alert-danger">Registration is not allowed at this time.</div>
+    @endif
+
     {{Form::close()}}
 
 </div>

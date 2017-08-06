@@ -1,3 +1,6 @@
+/**
+ * Created by jgmuchiri on 7/21/2017.
+ */
 require('./bootstrap.min');
 require('./jquery.uniform');
 require('./sweetalert.min');
@@ -7,7 +10,8 @@ require('./jquery.scrollTo.min');
 require('./jquery.validate');
 require('./matrix.popover');
 require('./matrix.form_validation');
-
+var tokenElement = $('meta[name="csrf-token"]');
+var _token = tokenElement.attr('content');
 //fix youtube embedding
 function youtube(url) {
     var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -18,6 +22,7 @@ function youtube(url) {
         return url;
     }
 }
+
 
 $(document).ready(function () {
     $('.btn-data').click(function (e) {
@@ -145,21 +150,4 @@ $(document).ready(function () {
             $(this).closest('.submenu').addClass('open');
         }
     });
-
 });
-
-
-//
-// window.Vue = require('vue');
-//
-// /**
-//  * Next, we will create a fresh Vue application instance and attach it to
-//  * the page. Then, you may begin adding components to this application
-//  * or customize the JavaScript scaffolding to fit your unique needs.
-//  */
-//
-// Vue.component('example', require('./components/Example.vue'));
-//
-// const app = new Vue({
-//     el: '#app'
-// });

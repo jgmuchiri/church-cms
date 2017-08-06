@@ -4,8 +4,8 @@
         <tr>
             <th>Date</th>
             <th>ID</th>
-            <th>Item</th>
             <th>Amount</th>
+            <th>Item</th>
             <th>Desc</th>
         </tr>
         </thead>
@@ -14,8 +14,8 @@
             <tr>
                 <td><a href="/giving/gift/{{$gift->txn_id}}">{{date('d M y',strtotime($gift->created_at))}}</a></td>
                 <td><a href="/giving/gift/{{$gift->txn_id}}">{{$gift->txn_id}}</a></td>
-                <td>{{$gift->item}}</td>
                 <td>{{$gift->amount}}</td>
+                <td>{{$gift->item}}</td>
                 <td>{{$gift->desc}}</td>
             </tr>
         @endforeach

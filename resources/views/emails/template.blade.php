@@ -271,62 +271,9 @@ TESTO INTENSE #ffffff
         }
     </style>
 </head>
-<body style="margin: 0; padding: 0;" bgcolor="#ffffff" align="center">
+<body style="margin: 0; padding: 0;"   align="center">
 
-<!-- PREHEADER -->
-
-<table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 530px;" id="ko_preheaderBlock_1">
-    <tbody>
-    <tr>
-        <td bgcolor="#3F3D33" class="mobile-hide">
-            <div align="center" style="padding: 0 15px 0 15px;">
-                <table border="0" cellpadding="0" cellspacing="0" width="500" style="min-width: 500px;" class="wrapper">
-                    <!--Preheade/view on web TEXT -->
-                    <tbody>
-                    <tr>
-                        <td style="padding: 10px 0 10px 0px;">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                <tbody>
-                                <tr>
-                                    <td bgcolor="#3F3D33" width="50%" align="left" class="mobile-hide">
-                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                            <tbody>
-                                            <tr>
-                                                <td align="left"
-                                                    style="padding: 0 0 5px 0; font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none;">
-
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-
-                                    <td bgcolor="#3F3D33" width="50%" align="right" class="mobile-hide">
-                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                            <tbody>
-                                            <tr>
-                                                <td align="right"
-                                                    style="padding: 0 0 5px 0; font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none;">
-                                                    <a href="{{url()->to('login')}}" style="color: #ffffff;"
-                                                       target="_new"><span><span style="text-decoration: underline;">my account</span><br
-                                                                    data-mce-bogus="1"></span></a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<table border="0" cellpadding="0" cellspacing="0" width="100%" id="ko_imageBlock_3">
+<table border="0" bgcolor="#eeece1" cellpadding="0" cellspacing="0" width="100%" id="ko_imageBlock_3">
     <tbody>
     <tr class="row-a">
         <td align="center" class="no-pad"
@@ -348,14 +295,14 @@ TESTO INTENSE #ffffff
                                                     <tbody>
                                                     <tr>
                                                         <td>
-                                                            <a style="color: #ffffff;text-decoration: none;"
+                                                            <a style="color: #ffffff;text-decoration: none;padding:15px;"
                                                                target="_new" href="{{url()->to('/')}}">
                                                                 <img width="auto"
                                                                      border="0"
                                                                      alt="my account"
                                                                      class="img-max"
-                                                                     style="display: block; padding: 0; color: #3F3D33; text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px;"
-                                                                     src="/img/logo.png">
+                                                                     style="height:25px;display: block; padding: 0; color: #3F3D33; text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px;"
+                                                                     src="{{asset('/images/logo.png')}}">
 
                                                             </a>
                                                         </td>
@@ -381,7 +328,7 @@ TESTO INTENSE #ffffff
 <table border="0" cellpadding="0" cellspacing="0" width="100%" id="ko_onecolumnBlock_4">
     <tbody>
     <tr class="row-a">
-        <td bgcolor="#eeece1" align="center" class="section-padding"
+        <td bgcolor="#fff" align="center" class="section-padding"
             style="padding-top: 30px; padding-left: 15px; padding-bottom: 30px; padding-right: 15px;">
             <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
                 <tbody>
@@ -395,7 +342,7 @@ TESTO INTENSE #ffffff
                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                         <tbody>
                                         <tr>
-                                            <td align="center" class="padding-copy"
+                                            <td class="padding-copy"
                                                 style="font-size: 25px; font-family: Helvetica, Arial, sans-serif; color: #3F3D33; padding-top: 0px;">
                                                 @yield('header')
                                             </td>
@@ -417,12 +364,12 @@ TESTO INTENSE #ffffff
                                            class="mobile-button-container">
                                         <tbody>
                                         <tr>
-                                            <td align="center" style="padding: 25px 0 0 0;" class="padding-copy">
+                                            <td  style="padding: 25px 0 0 0;" class="padding-copy">
                                                 <table border="0" cellspacing="0" cellpadding="0"
                                                        class="responsive-table">
                                                     <tbody>
                                                     <tr>
-                                                        <td align="center"><a target="_new" class="mobile-button"
+                                                        <td><a target="_new" class="mobile-button"
                                                                               style="display: inline-block; font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #ffffff; text-decoration: none; background-color: #00b050; padding-top: 10px; padding-bottom: 10px; padding-left: 25px; padding-right: 25px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-bottom: 3px solid #007334;"
                                                                               href="{{url()->to('/')}}">Visit site</a>
                                                         </td>
@@ -448,7 +395,7 @@ TESTO INTENSE #ffffff
 <table border="0" cellpadding="0" cellspacing="0" width="100%" id="ko_compactarticleBlock_6">
     <tbody>
     <tr class="row-a">
-        <td bgcolor="#974806" align="center" class="section-padding" style="padding: 0 15px 0 15px;">
+        <td bgcolor="#ccc" align="center" class="section-padding" style="padding: 0 15px 0 15px;">
             <p></p>
         </td>
     </tr>
@@ -458,36 +405,18 @@ TESTO INTENSE #ffffff
 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 500px;" id="ko_footerBlock_2">
     <tbody>
     <tr>
-        <td bgcolor="#ffffff" align="center">
+        <td bgcolor="#eeece1" align="center">
             <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
                 <tbody>
                 <tr>
                     <td style="padding: 20px 0 20px 0px;">
-                        <!-- UNSUBSCRIBE COPY -->
                         <table width="500" border="0" cellspacing="0" cellpadding="0" align="center"
                                class="responsive-table">
                             <tbody>
-                            <tr>
-                                <td align="center" valign="middle"
-                                    style="font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color: #3F3D33;">
-                                    {{--<span class="appleFooter" style="color: #3F3D33;">Main address and city</span><br><a--}}
-                                    {{--class="original-only" href="%5Bprofile_link%5D"--}}
-                                    {{--style="color: #3F3D33; text-decoration: none;" target="_new">Unsubscribe</a><span--}}
-                                    {{--class="original-only"--}}
-                                    {{--style="font-family: Arial, sans-serif; font-size: 12px; color: #444444;">���|���</span><a--}}
-                                    {{--href="%5Bshow_link%5D" style="color: #3F3D33; text-decoration: none;"--}}
-                                    {{--target="_new">View on web browser</a>--}}
-                                </td>
-                            </tr>
+
                             <tr style="text-align: center;">
                                 <td>
-                                    <a target="_new" href="{{url()->to('/')}}">
-                                        <img border="0"
-                                             hspace="0"
-                                             vspace="0"
-                                             src="/img/logo.png"
-                                             alt=" {{env('COMPANY_NAME')}}"
-                                             style="margin-top: 10px;"></a>
+                                   &copy; {{date('Y') . ' '. env('APP_NAME')}}. All rights reserved
                                 </td>
                             </tr>
                             </tbody>

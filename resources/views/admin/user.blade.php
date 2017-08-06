@@ -14,7 +14,7 @@
                 <li class="active"><a data-toggle="tab" href="#profile">Home</a></li>
                 <li><a data-toggle="tab" href="#giving">Manual Giving</a></li>
                 <li><a data-toggle="tab" href="#history">Giving History</a></li>
-                <li><a data-toggle="tab" href="#roles">Permissions</a></li>
+                <li><a data-toggle="tab" href="#roles">Roles & Permissions</a></li>
             </ul>
         </div>
         <div class="widget-content tab-content">
@@ -80,24 +80,27 @@
                 }
                 ?>
                 <div class="row-fluid">
-                    <div class="span6">
+                    <div class="span12">
                         <table class="table table-striped">
                             @foreach($roles as $role)
-                                @if($role->slug=='super')
-                                @else
-                                    <tr>
-                                        <td>
-                                            {{Form::radio('role',$role->id, is_checked($user->id,$role->id),['style'=>'width:20px '])}}
-                                        </td>
-                                        <td>{{$role->name}}</td>
-                                        <td> {{$role->description}}</td>
-                                    </tr>
-                                @endif
+                                <tr>
+                                    <td>
+                                        {{Form::radio('role',$role->id,(int)$currentRole==(int)$role->id)}}
+                                    </td>
+                                    <td valign="middle">{{ucwords($role->name)}}</td>
+                                    <td> {{$role->description}}</td>
+                                    <td>
+                                        @foreach($role->permissions as $rp)
+                                            <span class="label label-default"> {{$rp->name}}</span>
+                                        @endforeach
+                                    </td>
+                                </tr>
+
                             @endforeach
                             <tr>
                                 <td></td>
-                                <td colspan="2">
-                                    <button class="btn btn-info span6">Update user roles</button>
+                                <td colspan="3">
+                                    <button class="btn btn-info">Update user roles</button>
                                 </td>
                             </tr>
                         </table>
@@ -109,5 +112,15 @@
     </div>
 @endsection
 @push('scripts')
-<script src="/js/numeral.min.js"></script>
+
+<script src="/plugins/numeraljs/numeral.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $('input[name=amount]').on('blur', function () {
+            var cur = $(this).val();
+            var am = numeral(cur).format('0.00');
+            $(this).val(am);
+        });
+    });
+</script>
 @endpush

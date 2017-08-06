@@ -46,9 +46,16 @@ class UserController extends Controller
         if(Settings::isDemo()) return redirect()->back();
 
         $user = User::whereId($id)->first();
+
         $roles = Role::all();
+        $currentRole = $user->roles->first();
+        if ($currentRole == null)
+            $currentRole = 0;
+        else
+            $currentRole =$currentRole->id;
+
         $gifts = Transactions::whereUserId($user->id)->get();
-        return view('admin.user', compact('user', 'gifts', 'roles'));
+        return view('admin.user', compact('user', 'gifts', 'roles','currentRole'));
 
     }
 
@@ -80,18 +87,10 @@ class UserController extends Controller
         $password = str_random(6);
 
         //create customer
-        $user = new User();
-        $user->username = $request->username;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
-        $user->password = bcrypt($password);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->dob = $request->dob;
-        $user->created_at = date('Y-m-d H:i:s');
-        $user->confirmation_code = $confirmation_code;
-        $user->stripe_id = $customer->id;
-        $user->save();
+        $request['confirmation_code'] = $confirmation_code;
+        $request['password'] = bcrypt($password);
+        $request['stripe_id'] = $customer->id;
+        $user = User::create($request->all());
 
         //give basic role
         $user->attachRole(env('DEFAULT_ROLE'));
@@ -103,7 +102,7 @@ class UserController extends Controller
                 $m->to($request['email'], $request['first_name'])->subject('Your new account');
             });
 
-        flash()->success('Account has been registered succesfully. Account confirmation email has been sent.');
+        flash()->success('Account has been registered successfully. Account confirmation email has been sent.');
 
         return redirect()->back();
     }
@@ -127,25 +126,17 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $user = User::find($id);
-
         if (Input::has('password')) {
             if (Input::get('password') == Input::get('password_confirm')) {
-                $user->password = bcrypt($request['password']);
+                $request['password']= bcrypt($request['password']);
             } else {
                 flash()->warning('Error! Password confirmation does not match');
                 return redirect()->back()->withErrors($validator)->withInput();
             }
         }
 
-        $user->email = $request['email'];
-        $user->first_name = $request['first_name'];
-        $user->last_name = $request['last_name'];
-        $user->phone = $request['phone'];
-        $user->address = $request['address'];
-        $user->dob = $request->dob;
-        $user->updated_at = date('Y-m-d H:i:s');
-        $user->address = $request['address'];
+        $user = User::find($id);
+        $user->fill($request->all());
         $user->save();
 
         flash()->success('Profile updated!');
@@ -247,12 +238,7 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        if ($user->stripe_id == null || $user->stripe_id == "") {//create stripe customer
-            $customer = Transactions::createCustomer($request);
-            $user->stripe_id = $customer->id;
-        }
-
-        if (Input::has('password')) {
+        if ($request->has('password')) {
             $rules =[
                 'password'=>'min:6|confirmed'
             ];
@@ -261,15 +247,16 @@ class UserController extends Controller
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
-            $user->password = bcrypt($request['password']);
+            $request['password'] = bcrypt($request['password']);
+        }else{
+            unset($request['password']);
         }
 
-        $user->email = $request['email'];
-        $user->first_name = $request['first_name'];
-        $user->last_name = $request['last_name'];
-        $user->phone = $request['phone'];
-        $user->dob = $request->dob;
-        $user->updated_at = date('Y-m-d H:i:s');
+        if ($user->stripe_id == null || $user->stripe_id == "") {//create stripe customer
+            $customer = Transactions::createCustomer($request);
+            $request['stripe_id']= $customer->id;
+        }
+        $user->fill($request->all());
         $user->save();
 
         flash()->success('Profile updated!');

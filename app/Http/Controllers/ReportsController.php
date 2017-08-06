@@ -22,21 +22,20 @@ class ReportsController extends Controller
         $filename= "transactions_to_date";
         // the csv file with the first row
         $output = implode(",", array(
-            'Date','TXN ID','Item', 'Amount','Member','Member ID'
+            'Date','TXN ID','Member','Customer ID','Item','Description', 'Amount'
         ));
         $output .= "\n";
 
         foreach ($table as $row) {
-            $user = User::find($row->user_id);
             // iterate over each
             $output .= implode(",", array(
-                $row->created_at,
+                date('d M Y',strtotime($row->created_at)),
                 $row->txn_id,
+                $row->name,
+                $row->customer_id,
                 $row->item,
-                Settings::read('currency_symbol').$row->amount,
-                $user->first_name.' '.$user->last_name,
-                $row->customer_id
-
+                $row->desc,
+                env('CURRENCY_SYMBOL').$row->amount
             ));
             $output .= "\n";
         }
