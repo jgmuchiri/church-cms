@@ -2,7 +2,11 @@
 <html lang="it">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>{{env('COMPANY_NAME')}}</title><!--
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>{{env('APP_NAME')}}</title><!--
 COLORE INTENSE  #9C010F
 COLORE LIGHT #EDE8DA
 TESTO LIGHT #3F3D33

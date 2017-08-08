@@ -45,31 +45,31 @@
 
                     <p><i class="icon-phone"></i>{!! env('PHONE')!!}</p>
 
-                    <p><i class="icon-envelope"></i>{!! env('EMAIL')!!}</p>
+                    <p><i class="icon-envelope"></i>{!! env('EMAIL_FROM_ADDRESS')!!}</p>
                     <hr/>
 
                     {!! Form::open(['url'=>"contact"]) !!}
                     <table class="table table-responsive no-border">
                         <tr>
                             <td>Name:</td>
-                            <td>{{Form::text('name',null,['required'=>'required'])}}</td>
+                            <td>{{Form::text('name',null,['required'=>'required','class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td>{{Form::input('email','email',null,['required'=>'required'])}}</td>
+                            <td>{{Form::input('email','email',null,['required'=>'required','class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
                             <td>Subject:</td>
-                            <td>{{Form::text('subject',null,['required'=>'required'])}}</td>
+                            <td>{{Form::text('subject',null,['required'=>'required','class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
                             <td>Message:</td>
-                            <td>{{Form::textarea('message',null,['required'=>'required','rows'=>3])}}</td>
+                            <td>{{Form::textarea('message',null,['required'=>'required','rows'=>3,'class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <button class="btn btn-default">Send</button>
+                                <button class="btn btn-default"><i class="fa fa-paper-plane-o"></i> Send</button>
                             </td>
                         </tr>
                     </table>

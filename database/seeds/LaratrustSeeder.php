@@ -46,19 +46,21 @@ class LaratrustSeeder extends Seeder
                     }
                 }
             }
-
-            $this->command->info("Creating '{$key}' user");
-            // Create default user for each role
-            $user = \App\User::create([
-                'username'=>$key,
-                'name' => ucfirst($key),
-                'email' => $key.'@app.com',
-                'password' => bcrypt('password'),
-                'remember_token' => str_random(10),
-                'confirmed'=>1
-            ]);
-            $user->attachRole($role);
         }
+
+        $this->command->info("Creating  ".env('DEFAULT_USER')." user");
+
+        // Create default user for each role
+        $user = \App\User::create([
+            'username'=>'admin',
+            'first_name'=>'Admin',
+            'last_name'=>'Admin',
+            'email' => env('DEFAULT_USER'),
+            'password' => bcrypt(env('DEFAULT_PASSWORD')),
+            'remember_token' => str_random(10),
+            'confirmed'=>1
+        ]);
+        $user->attachRole(1);
     }
 
     /**

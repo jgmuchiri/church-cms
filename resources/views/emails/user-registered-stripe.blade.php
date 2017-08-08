@@ -11,6 +11,6 @@
         <br/>
         System generated email. Do not reply.
         <br/>
-        <strong>{{env('COMPANY_NAME')}}</strong>
+        <strong>{{env('APP_NAME')}}</strong>
     </p>
 @endsection

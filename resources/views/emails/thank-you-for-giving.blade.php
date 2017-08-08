@@ -20,6 +20,6 @@
         Sincerely,
         <br/>
         Your friends at<br/>
-        {{env('COMPANY_NAME')}}
+        {{env('APP_NAME')}}
     </p>
 @endsection

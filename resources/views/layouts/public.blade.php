@@ -6,7 +6,7 @@
         <!DOCTYPE html>
 <html>
 <head>
-    <title>{{env('COMPANY_NAME')}}</title>
+    <title>{{env('APP_NAME')}}</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no" xmlns="http://www.w3.org/1999/html"/>
     <meta name="description" content="Church content management system">

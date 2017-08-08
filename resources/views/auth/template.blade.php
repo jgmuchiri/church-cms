@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>{{env('COMPANY_NAME')}}</title>
+    <title>{{env('APP_NAME')}}</title>
     <meta charset="UTF-8"/>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -182,7 +182,7 @@
     <div class="span6 offset5">
         &copy;
         <script>document.write(new Date().getFullYear())</script>
-        <a href="#">{{env('COMPANY_NAME')}}</a>
+        <a href="#">{{env('APP_NAME')}}</a>
         by
         <a href="http://amdtllc.com" target="_blank">A&M Digital Technologies</a>
     </div>

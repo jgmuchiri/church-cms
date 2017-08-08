@@ -53,7 +53,6 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => 'required|min:4|unique:users',
-            'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -80,7 +79,8 @@ class RegisterController extends Controller
 
         $input = array(
             'username' => $data['username'],
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone'=>$data['phone'],
             'password' => bcrypt($data['password']),
@@ -103,7 +103,6 @@ class RegisterController extends Controller
     function registerAjax(Request $request)
     {
         $rules = [
-            'name' => 'required|max:50',
             'username' => 'required|min:4|unique:users',
             'phone'=>'required',
             'email' => 'required|email|unique:users',
@@ -120,7 +119,8 @@ class RegisterController extends Controller
         $request->confirmation_code = str_random(30);
         $data = array(
             'username' => $request['username'],
-            'name' => $request['name'],
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name'],
             'email' => $request['email'],
             'phone'=>$request->phone,
             'password' => bcrypt($request['password']),
@@ -147,11 +147,9 @@ class RegisterController extends Controller
     }
 
 
-
     /**
      * @param $confirmation_code
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws InvalidConfirmationCodeException
      */
     public function confirmAccount($confirmation_code)
     {
@@ -197,7 +195,7 @@ class RegisterController extends Controller
             $user->save();
         }
         Mail::send('emails.accounts-verify', ['confirmation_code' => $user->confirmation_code], function ($m) use ($request, $user) {
-            $m->from(env('EMAIL'), env('APP_NAME'));
+            $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
             $m->to($user->email, $user->name)->subject('Verify your email address');
         });
         flash()->success('Please check  email to verify your account');

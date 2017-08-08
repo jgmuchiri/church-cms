@@ -87,15 +87,4 @@ class Settings extends Model
         }
         return false;
     }
-    /**
-     * restrict access in demo mode
-     * @return bool|\Illuminate\Http\RedirectResponse
-     */
-    public static function isDemo(){
-        if(env('APP_ENV')=="DEMO"){
-            flash()->error('Sorry. Access denied to that page in demo mode');
-            return true;
-        }
-        return false;
-    }
 }

@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h1 class="logo">
-                        <a href="/">{{env('COMPANY_NAME')}}
+                        <a href="/">{{env('APP_NAME')}}
                         </a>
                     </h1>
                 </div>

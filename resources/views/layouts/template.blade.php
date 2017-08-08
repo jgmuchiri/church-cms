@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{env('COMPANY_NAME')}}</title>
+    <title>{{env('APP_NAME')}}</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/css/admin.css"/>
@@ -35,7 +35,7 @@
 
 <!--Header-part-->
 <div id="header">
-    <h1><a href="/dashboard">{{env('COMPANY_NAME')}}</a></h1>
+    <h1><a href="/dashboard">{{env('APP_NAME')}}</a></h1>
 </div>
 <!--close-Header-part-->
 

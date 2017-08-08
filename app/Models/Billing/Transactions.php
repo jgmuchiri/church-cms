@@ -131,7 +131,7 @@ class Transactions extends Model
 
         $customer = \Stripe\Customer::create(array(
             "email" => $request->email,
-            "description" => "Customer for ".env('COMPANY_NAME'),
+            "description" => "Customer for ".env('APP_NAME'),
             "source" => $request->stripeToken
         ));
 
@@ -143,8 +143,8 @@ class Transactions extends Model
                 'first_name' => $request->first_name
             ],
                 function ($m) use ($request) {
-                    $m->from(env('EMAIL'), env('COMPANY_NAME'));
-                    $m->to(env('EMAIL'), env('COMPANY_NAME'))->subject('Notice: New user');
+                    $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+                    $m->to(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'))->subject('Notice: New user');
                 });
         }
 
@@ -184,8 +184,8 @@ class Transactions extends Model
             'desc' => $desc
         ],
             function ($m) use ( $user, $desc) {
-                $m->from(env('EMAIL'), env('COMPANY_NAME'));
-                $m->to($user->email, $user->first_name)->subject(env('COMPANY_NAME') . ' Receipt- Thank you!');
+                $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+                $m->to($user->email, $user->first_name)->subject(env('APP_NAME') . ' Receipt- Thank you!');
             });
 
     }

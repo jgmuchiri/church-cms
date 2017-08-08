@@ -29,7 +29,7 @@ class DefaultMessaging extends Mailable
      */
     public function build()
     {
-        return $this->from(env('EMAIL'))
+        return $this->from(env('EMAIL_FROM_ADDRESS'))
             ->subject($this->data['subject'])
             ->with(
                 [

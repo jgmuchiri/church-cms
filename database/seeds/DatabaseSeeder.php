@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LaratrustSeeder::class);
         $this->call(MenuSeeder::class);
+        $this->call(ModuleSeeder::class);
+        $this->call(SiteSettingsTableSeeder::class);
     }
 }

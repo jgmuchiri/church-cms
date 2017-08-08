@@ -33,6 +33,8 @@
                                 <code>/sermons</code>
                                 <code>/events</code>
                                 <code>/ministries</code>
+                                <code>/blog</code>
+                                <code>/contact</code>
                                 <code>/account</code>
                                 <code>/login</code>
                             </div>

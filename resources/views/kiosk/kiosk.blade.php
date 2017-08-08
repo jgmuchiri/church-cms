@@ -7,7 +7,7 @@
                 <i class="icon-credit-card"></i>
             </div>
 
-            <h2>Give online</h2>
+            <h2> Give online <i class="fa fa-hand-o-up"></i></h2>
             <h4 class="text-yellow">we accept</h4>
 
             <i class="fa fa-cc-mastercard fa-2x"></i>
@@ -17,14 +17,30 @@
             <i class="fa fa-cc-paypal fa-2x"></i>
         </div>
     </div>
+    <hr/>
     <div class="row ">
-        <div class="col-lg-3 col-sm-6 kiosk" onclick="window.location.href='/events'">
+        <div class="col-sm-4" onclick="window.location.href='/events'">
             <div class="icon-big icon-warning text-center">
                 <i class="icon-calendar"></i>
             </div>
             <h2> Events</h2>
-
             <h3 class="text-yellow">register for upcoming events</h3>
+        </div>
+
+        <div class="col-sm-4" onclick="window.location.href='/sermons'">
+            <div class="icon-big icon-warning text-center">
+                <i class="icon-calendar"></i>
+            </div>
+            <h2> Sermons</h2>
+            <h3 class="text-yellow">Browse recent sermons</h3>
+        </div>
+
+        <div class="col-sm-4" onclick="window.location.href='/sermons'">
+            <div class="icon-big icon-warning text-center">
+                <i class="icon-calendar"></i>
+            </div>
+            <h2> Ministries</h2>
+            <h3 class="text-yellow">Become a part of the family</h3>
         </div>
 
     </div>

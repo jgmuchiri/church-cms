@@ -1,0 +1,1 @@
+touch storage/logs/laravel.log; composer dump-autoload; zip -r ccms-v.zip * -x "*.git*" "*.idea*" "*node_modules/*" "*vendor/*" "*.env*" "zip.bash" "deploy.bat" "resources/asset/*" "storage/framework/sessions/*" "npm-debug.log"

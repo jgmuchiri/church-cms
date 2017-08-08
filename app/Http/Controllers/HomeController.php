@@ -59,7 +59,7 @@ class HomeController extends Controller
 
         Mail::send('emails.general', ['subject' => $request->subject, 'msg' => $request->message], function ($m) use ($request) {
             $m->from($request->email, $request->name);
-            $m->to(config('email.from.address'), config('email.from.name'))->subject($request->subject);
+            $m->to(config('mail.from.address'), config('mail.from.name'))->subject($request->subject);
         });
 
         flash()->success('Thank you! We will get back with you shortly.');

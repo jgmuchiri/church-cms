@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Billing\Subscriptions;
 use App\Models\Billing\Transactions;
-use App\Models\Settings;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -43,7 +42,6 @@ class UserController extends Controller
      */
     function user($id)
     {
-        if(Settings::isDemo()) return redirect()->back();
 
         $user = User::whereId($id)->first();
 
@@ -98,7 +96,7 @@ class UserController extends Controller
         //notify user to activate account
         Mail::send('emails.accounts-verify', ['email' => $request->email, 'password' => $password, 'confirmation_code' => $confirmation_code],
             function ($m) use ($request) {
-                $m->from(Settings::read('email'), Settings::read('name'));
+                $m->from(env('EMAIL_FROM_ADDRESS'), env('EMAIL_FROM_NAME'));
                 $m->to($request['email'], $request['first_name'])->subject('Your new account');
             });
 

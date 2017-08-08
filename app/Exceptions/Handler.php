@@ -73,9 +73,9 @@ class Handler extends ExceptionHandler
                 $lc2 .= $lc1;
             }
 
-            Mail::send('emails.exceptions', ['error'=>$lc2], function ($m) {
-                $m->from(env('EMAIL'), env('APP_NAME'));
-                $m->to('alerts@amdtllc.com', 'ERROR HANDLER')->subject('ERROR HANDLER - ' . env('APP_NAME'));
+            Mail::send('emails.exceptions', ['content'=>$lc2], function ($m) {
+                $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+                $m->to(env('DEBUG_EMAIL'), 'ERROR HANDLER')->subject('ERROR HANDLER - ' . env('APP_NAME'));
             });
         }
         parent::report($exception);

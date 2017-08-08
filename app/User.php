@@ -124,7 +124,7 @@ class User extends Authenticatable
     public static function registrationNotice($request)
     {
         Mail::send('emails.accounts-registration', ['name' => $request['name']], function ($m) use ($request) {
-            $m->from(env('EMAIL'), env('APP_NAME'));
+            $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
             $m->to($request['email'], $request['name'])->subject('Your account is active!');
         });
     }

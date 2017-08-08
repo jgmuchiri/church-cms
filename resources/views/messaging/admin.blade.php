@@ -7,7 +7,6 @@
 @endsection
 @section('content')
     @include('messaging.topnav')
-
     <div class="row-fluid">
         <div class="alert alert-info">
             A log of sent messages is kept in the server and can be re-used as template.

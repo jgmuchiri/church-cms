@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Settings;
 use App\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +11,12 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'role:admin']);
+        $this->middleware('auth');
+        $this->middleware('role:admin');
+        $this->middleware('permission:read-settings',['only'=>['settings','backupEnv']]);
+        $this->middleware('permission:update-settings',['only'=>['updateEnv','uploadLogo']]);
+        $this->middleware('permission:read-log',['only'=>['debug']]);
+        $this->middleware('permission:delete-log',['only'=>['emptyDebug']]);
     }
 
     /**
@@ -34,8 +38,6 @@ class AdminController extends Controller
      */
     function settings()
     {
-        if (Settings::isDemo()) return redirect()->back();
-
         $envFile = "../.env";
         $fhandle = fopen($envFile, "rw");
         $size = filesize($envFile);

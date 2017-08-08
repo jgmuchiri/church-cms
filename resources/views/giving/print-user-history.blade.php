@@ -58,7 +58,7 @@
             </td>
             <td>
                 <img class="thumbnail" src="/images/admin-logo.png" style="background:#333;padding:10px;"/>
-                <h4 class="title">{{env('COMPANY_NAME')}}</h4>
+                <h4 class="title">{{env('APP_NAME')}}</h4>
                 <table class="no-border">
                     <tr>
                         <td><span class="icon-inbox"></span></td>
@@ -66,7 +66,7 @@
                     </tr>
                     <tr>
                         <td><span class="icon-envelope"></span></td>
-                        <td>{{env('EMAIL')}}</td>
+                        <td>{{env('EMAIL_FROM_ADDRESS')}}</td>
                     </tr>
                     <tr>
                         <td><span class="icon-phone"></span></td>

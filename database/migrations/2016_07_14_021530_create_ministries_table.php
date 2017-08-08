@@ -12,6 +12,14 @@ class CreateMinistriesTable extends Migration
      */
     public function up()
     {
+        Schema::create('ministry_cats', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('slug');
+            $table->longText('desc')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('ministries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -22,14 +30,6 @@ class CreateMinistriesTable extends Migration
 
             $table->foreign('category_id')->references('id')->on('ministry_cats')->onDelete('set null');
         });
-
-        Schema::create('ministry_cats', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->longText('desc')->nullable();
-            $table->timestamps();
-        });
     }
 
     /**
@@ -39,7 +39,7 @@ class CreateMinistriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ministry_cats');
         Schema::drop('ministries');
+        Schema::drop('ministry_cats');
     }
 }
