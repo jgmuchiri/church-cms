@@ -12,10 +12,11 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('main_menu')->truncate();
         $menu = ['sermons','ministries','blog','events','account','login'];
         $order=0;
         foreach($menu as $m){
-            DB::table('main_menu')->inset(
+            DB::table('main_menu')->insert(
                 [
                     'title'=>ucwords($m),
                     'path'=>'/'.$m,
@@ -27,5 +28,7 @@ class MenuSeeder extends Seeder
             );
             $order++;
         }
+
+        $this->command->info("Default menu has been created!");
     }
 }

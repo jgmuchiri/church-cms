@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ModuleSeeder extends Seeder
 {
@@ -11,8 +12,10 @@ class ModuleSeeder extends Seeder
      */
     public function run()
     {
-        $modules  = ['users','gifts','ministries','sermons','events','birthdays','tickets','mail','blog'];
+        DB::table('modules')->truncate();
+        $modules  = ['users','gifts','ministries','sermons','events','birthdays','tickets','mail','blog','logs','settings'];
         foreach($modules as $module){
+            $this->command->info("Creating  module ".$module);
             \App\Models\Modules::create(
                 [
                     'name'=>$module
@@ -20,5 +23,6 @@ class ModuleSeeder extends Seeder
             );
         }
 
+        $this->command->info("All modules have been created!");
     }
 }

@@ -57,6 +57,7 @@ class HomeController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        dd(config('mail.from.address'));
         Mail::send('emails.general', ['subject' => $request->subject, 'msg' => $request->message], function ($m) use ($request) {
             $m->from($request->email, $request->name);
             $m->to(config('mail.from.address'), config('mail.from.name'))->subject($request->subject);

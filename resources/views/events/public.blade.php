@@ -8,6 +8,13 @@
     </style>
     <div class="container">
         <div class="row">
+            <div class="col-md-9">
+                <br/>
+                <h3><i class="icon-calendar"></i> Events Calendar</h3>
+
+                <div id='calendar'></div>
+            </div>
+
             <div class="col-md-2 col-md-offset-1">
                 <h4>Upcoming events</h4>
                 <ul class="list-group">
@@ -20,26 +27,20 @@
                 </ul>
                 {{$latestEvents->render()}}
             </div>
-            <div class="col-md-9">
-                <br/>
-                <h3><i class="icon-calendar"></i> Events Calendar</h3>
-
-                <div id='calendar'></div>
-            </div>
         </div>
     </div>
 @endsection
 
 @push('scripts')
 
-    <link rel="stylesheet" href="/common/fc/calendar.css"/>
+    <link rel="stylesheet" href="/plugins/fullcalendar/calendar.css"/>
 
     @if(env('APP_ENV')=='local')
         <link rel="stylesheet" href="/plugins/fullcalendar/fullcalendar.min.css"/>
         {{--<link href="/plugins/jquery-ui/jquery-ui.css" type="text/css" rel="stylesheet"/>--}}
 
         {{--<script src="/pugins/jquery-ui/jquery-ui.min.js"></script>--}}
-        <script src="/js/moment.min.js"></script>
+        <script src="/plugins/moment/moment.min.js"></script>
         <script src="/plugins/fullcalendar/fullcalendar.min.js"></script>
     @else
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>

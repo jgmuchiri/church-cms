@@ -5,6 +5,7 @@
 
 @section('content')
     <div class="widget-box">
+
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-list"></i></span>
             <h5>
                 Current theme:
@@ -15,7 +16,7 @@
                             class="icon-plus"></i>
                     Upload theme</a>
 
-                <a href="/theme/1/select" class="btn btn-info btn-mini"><i
+                <a href="/theme/0/select" class="btn btn-info btn-mini"><i
                             class="icon-check"></i> Set default theme</a>
 
                 {{--<a href="/theme/browse" target="_blank" class="btn btn-warning btn-mini"><i--}}
@@ -23,8 +24,8 @@
                     {{--Browse themes</a>--}}
             </div>
         </div>
-        <div class="widget-content">
 
+        <div class="widget-content">
             <div class="row-fluid">
                 @foreach($themes as $theme)
                     <div class="span4">
@@ -51,7 +52,7 @@
                                                 class="icon-check"></i> Select theme</a>
                                 @endif
                             @endif
-                            <a href="/theme/{{$theme->id}}/delete" class="btn btn-danger btn-mini delete"><i
+                            <a href="/theme/{{$theme->id}}/d" class="btn btn-danger btn-mini delete"><i
                                         class="icon-trash"></i> Delete</a>
 
                         </div>
@@ -75,7 +76,7 @@
                     <i class="icon-upload"></i> Upload a theme
                 </h4>
             </div>
-            {!! Form::open(['url'=>'settings/themes','files'=>true]) !!}
+            {!! Form::open(['url'=>'theme','files'=>true]) !!}
             <div class="modal-body">
                 <label>Theme files (.zip)
                     <i class="icon-info-circle"

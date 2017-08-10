@@ -13,10 +13,8 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('role:admin');
-        $this->middleware('permission:read-settings',['only'=>['settings','backupEnv']]);
-        $this->middleware('permission:update-settings',['only'=>['updateEnv','uploadLogo']]);
-        $this->middleware('permission:read-log',['only'=>['debug']]);
-        $this->middleware('permission:delete-log',['only'=>['emptyDebug']]);
+        $this->middleware('permission:read-logs',['only'=>['debug']]);
+        $this->middleware('permission:delete-logs',['only'=>['emptyDebug']]);
     }
 
     /**
@@ -25,7 +23,7 @@ class AdminController extends Controller
     function index()
     {
         $user = Auth::user();
-        if ($user->hasRole('admin') || $user->hasRole('moderator')) {
+        if ($user->hasRole('admin')) {
             return view('admin.dashboard');
         } else {
             return redirect('account');

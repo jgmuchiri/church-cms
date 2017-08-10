@@ -45,6 +45,8 @@
                     <code>tickets</code>
                     <code>mail</code>
                     <code>blog</code>
+                    <code>logs</code>
+                    <code>settings</code>
                 </p>
             </div>
             <div class="row-fluid">

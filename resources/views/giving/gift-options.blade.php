@@ -31,7 +31,7 @@
                                             <em class="text-danger">@if($go->active==0) inactive @endif</em>
                                         </td>
                                         <td>
-                                            {{$go->desc}}
+                                            {!! $go->desc !!}
                                         </td>
                                     </tr>
                                 @endforeach

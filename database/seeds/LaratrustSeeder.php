@@ -32,10 +32,12 @@ class LaratrustSeeder extends Seeder
                     $permissionValue = $mapPermission->get($perm);
 
                     $permission = \App\Permission::firstOrCreate([
-                        'name' => $module . '-' . $permissionValue,
+                        'name' => $permissionValue.'-'.$module,
                         'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                         'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                     ]);
+
+                    //ass
 
                     $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
 
@@ -45,7 +47,9 @@ class LaratrustSeeder extends Seeder
                         $this->command->info($key . ': ' . $p . ' ' . $permissionValue . ' already exist');
                     }
                 }
+
             }
+
         }
 
         $this->command->info("Creating  ".env('DEFAULT_USER')." user");
@@ -61,6 +65,7 @@ class LaratrustSeeder extends Seeder
             'confirmed'=>1
         ]);
         $user->attachRole(1);
+
     }
 
     /**

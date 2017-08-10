@@ -1,5 +1,5 @@
 @push('styles')
-<link rel="stylesheet" href="/themes/{{theme('location')}}/css/style.css"/>
+<link rel="stylesheet" href="/themes/default/css/style.css"/>
 @endpush
 @section('body')
     <header id="layout-header">

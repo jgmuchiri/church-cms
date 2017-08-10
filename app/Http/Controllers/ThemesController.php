@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Settings;
@@ -11,17 +10,25 @@ use ZipArchive;
 
 class ThemesController extends Controller
 {
-    public function __contruct()
+    public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:admin');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     function index()
     {
         $themes = Themes::get();
         return view('themes.index', compact('themes'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     function upload(Request $request)
     {
         $rules = [
@@ -41,6 +48,7 @@ class ThemesController extends Controller
 
         $dir = basename($request->theme->getClientOriginalName(), '.' . $extension);
 
+
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -53,47 +61,54 @@ class ThemesController extends Controller
             //validate required files
             for ($i = 0; $i < $za->numFiles; $i++) {
                 $stat = $za->statIndex($i);
-                echo "Extracted ". basename($stat['name']) . PHP_EOL;
+                echo "Extracted " . basename($stat['name']) . PHP_EOL;
                 echo "<br/>";
                 if (!in_array("screenshot.png", $stat) || !in_array("index.blade.php", $stat)) {
                     //flash()->error('Some required files are missing');
                     //return redirect()->back()->withInput();
                 }
-
             }
 
             //unzip and save
             $theme_path = '../resources/views/themes/' . $dir;
             $files_path = 'themes/' . $dir;
 
-            if (!\File::isDirectory($theme_path) || !\File::isDirectory($files_path)) {
-                \File::makeDirectory($theme_path, 493, true);
-                \File::makeDirectory($files_path, 493, true);
-            }
-            /*
-            else {
+            if (!\File::isDirectory($files_path)) {
+                @\File::makeDirectory($files_path, 493, true);
+            } else {
                 //todo this overwrites the current directory. Force user to confirm before doing so
                 flash()->error('A theme directory with that name exists. Please delete it before proceeding');
                 return redirect()->back()->withInput();
             }
-            */
+
+            if (!\File::isDirectory($theme_path)) {
+                @\File::makeDirectory($theme_path, 493, true);
+            }
 
             $za->extractTo($files_path);
-            copy($files_path . '/index.blade.php', $theme_path . '/index.blade.php');
-            @unlink($files_path . '/index.blade.php');
+            try {
+                copy($files_path . '/index.blade.php', $theme_path . '/index.blade.php');
+
+            } catch (\Exception $e) {
+                @unlink($files_path . '/index.blade.php');
+                \File::deleteDirectory($files_path);
+                flash()->error('There was a problem installing the theme. Check files and try again.');
+                return redirect()->back();
+            }
+
             $za->close();
 
             //extract information about the theme
             $themeName = $extension;
             $themeDesc = "EMPTY: Unable to process";
-            try{
-                $data = file_get_contents(public_path('themes/'.$dir.'/info.txt'));
-                $data = array_chunk(array_filter(array_map("trim",explode(chr(13).chr(10).chr(13), $data))),2);
+            try {
+                $data = file_get_contents(public_path('themes/' . $dir . '/info.txt'));
+                $data = array_chunk(array_filter(array_map("trim", explode(chr(13) . chr(10) . chr(13), $data))), 2);
                 $lists = array();
 
-                foreach ( $data as $value ) {
+                foreach ($data as $value) {
                     $list = array();
-                    foreach ( explode("\n", implode("", $value)) as $item ) {
+                    foreach (explode("\n", implode("", $value)) as $item) {
                         list($key, $value) = explode("=", $item);
                         $list[trim(strtolower($key))] = trim($value);
                     }
@@ -103,7 +118,7 @@ class ThemesController extends Controller
                     $themeDesc = $lists[0]['description'];
                     //todo add version, author, url, version date
                 }
-            }catch(Exception $e){
+            } catch (Exception $e) {
                 flash()->warning('Theme uploaded with errors. Please verify.');
             }
 
@@ -114,7 +129,7 @@ class ThemesController extends Controller
 
             //update db
             $theme = new Themes();
-            $theme->name =$themeName;
+            $theme->name = $themeName;
             $theme->desc = $themeDesc;
             $theme->location = $dir;
             $theme->active = 1;
@@ -130,6 +145,7 @@ class ThemesController extends Controller
         }
 
     }
+
 
     /**
      * @param $id
@@ -148,6 +164,9 @@ class ThemesController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     function browse()
     {
         return view('themes.browse');
@@ -157,9 +176,9 @@ class ThemesController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    function deleteTheme($id)
+    function destroy($id)
     {
-        $theme = Themes::find($id);
+        $theme = Themes::findOrFail($id);
         \File::deleteDirectory('../resources/views/themes/' . $theme->location);
         \File::deleteDirectory('themes/' . $theme->location);
         $theme->delete();

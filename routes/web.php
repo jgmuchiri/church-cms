@@ -144,7 +144,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['prefix' => 'theme','middleware'=>'auth'], function () {
         Route::get('/', 'ThemesController@index');
         Route::post('/', 'ThemesController@upload');
-        Route::get('{id}/delete', 'ThemesController@deleteTheme');
+        Route::get('{id}/d', 'ThemesController@destroy');
         Route::get('{id}/select', 'ThemesController@selectTheme');
         Route::get('/browse', 'ThemesController@browse');
     });
