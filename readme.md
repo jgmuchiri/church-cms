@@ -15,7 +15,10 @@ or open a ticket [https://amdtllc.com/support](https://amdtllc.com/support).
 * SSH access
 * MySQL database
 * composer
-* npm  
+* npm
+
+##Installation
+See instructions inside /docs/ccms-installation-guide.pdf
 
 ## Official Documentation
 * See attached UserGuide for installation instructions

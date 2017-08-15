@@ -14,9 +14,9 @@ class CreateSysOptionsTable extends Migration
     {
         Schema::create('sys_options', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('option_name')->unique();
-            $table->string('option_value')->nullable();
-            $table->string('autoload')->nullable();
+            $table->string('option_name',50)->unique();
+            $table->string('option_value',50)->nullable();
+            $table->string('autoload',10)->nullable();
             $table->timestamps();
         });
     }

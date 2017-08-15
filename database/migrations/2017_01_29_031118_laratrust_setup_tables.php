@@ -14,9 +14,9 @@ class LaratrustSetupTables extends Migration
         // Create table for storing roles
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('display_name')->nullable();
-            $table->string('description')->nullable();
+            $table->string('name',50)->unique();
+            $table->string('display_name',50)->nullable();
+            $table->string('description',100)->nullable();
             $table->timestamps();
         });
 
@@ -24,7 +24,7 @@ class LaratrustSetupTables extends Migration
         Schema::create('role_user', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
-            $table->string('user_type');
+            $table->string('user_type',50);
 
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -35,9 +35,9 @@ class LaratrustSetupTables extends Migration
         // Create table for storing permissions
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('display_name')->nullable();
-            $table->string('description')->nullable();
+            $table->string('name',50)->unique();
+            $table->string('display_name',50)->nullable();
+            $table->string('description',100)->nullable();
             $table->timestamps();
         });
 
@@ -58,7 +58,7 @@ class LaratrustSetupTables extends Migration
         Schema::create('permission_user', function (Blueprint $table) {
             $table->integer('permission_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string('user_type');
+            $table->string('user_type',50);
 
             $table->foreign('permission_id')->references('id')->on('permissions')
                 ->onUpdate('cascade')->onDelete('cascade');

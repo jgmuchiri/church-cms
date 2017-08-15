@@ -28,9 +28,9 @@
         theme: 'modern',
         plugins: [
             'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            'searchreplace wordcount visualblocks visualchars code fullscreen',
-            'insertdatetime media nonbreaking save table contextmenu directionality',
-            'emoticons template paste textcolor colorpicker textpattern imagetools autoresize',
+            'visualblocks visualchars fullscreen',
+            'media nonbreaking save table contextmenu',
+            'template textcolor colorpicker textpattern imagetools autoresize',
             'bootstrap'
         ],
         toolbar1: 'insertfile undo redo | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
