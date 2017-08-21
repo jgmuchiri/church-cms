@@ -1,0 +1,14 @@
+{
+    "Username or password incorrect":"Username or password incorrect",
+    "No confirmation code found":"No confirmation code found",
+    "Confirmation code is invalid or expired":"Confirmation code is invalid or expired",
+    "You have successfully verified your account":"You have successfully verified your account",
+    "Role permissions updated":"Role permissions updated",
+    "Role updated":"Role updated",
+    "Error":"Error",
+    "Check fields and try again":"Check fields and try again",
+    "Thanks for signing up":"Please check your email",
+    "This account is already verified":"This account is already verified",
+    "Please check  email to verify your account":"Please check  email to verify your account",
+    "Verify your email address":"Verify your email address"
+}

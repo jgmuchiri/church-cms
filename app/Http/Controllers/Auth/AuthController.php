@@ -40,7 +40,7 @@ class AuthController extends Controller
             return redirect('dashboard');
         }
 
-        flash()->error('Username or password incorrect');
+        flash()->error(_('Username or password incorrect'));
         return redirect()->back();
     }
 
@@ -59,19 +59,19 @@ class AuthController extends Controller
     public function confirmAccount($confirmation_code)
     {
         if (!$confirmation_code) {
-            flash()->error('No confirmation code found');
+            flash()->error(__('No confirmation code found'));
             return redirect('/');
         }
         $user = User::whereConfirmationCode($confirmation_code)->first();
         if (!$user) {
-            flash()->error('Confirmation code is invalid or expired');
+            flash()->error(__('Confirmation code is invalid or expired'));
             return redirect('/');
         }
         $user->confirmed = 1;
         $user->confirmation_code = null;
         $user->save();
 
-        flash()->success('You have successfully verified your account.');
+        flash()->success(__('You have successfully verified your account'));
         return redirect('/');
     }
 
@@ -131,7 +131,7 @@ class AuthController extends Controller
                 DB::table('permission_role')->where('role_id', $role)->delete();
             }
 
-            echo json_encode(['status' => 'success', 'message' => 'Role permissions updated']);
+            echo json_encode(['status' => 'success', 'message' => __('Role permissions updated']));
         }
 
     }
@@ -199,7 +199,7 @@ class AuthController extends Controller
         $role->fill($request->all());
         $role->save();
 
-        flash()->success('Role updated!');
+        flash()->success(__('Role updated'));
         return redirect()->back();
     }
     /**
@@ -253,7 +253,7 @@ class AuthController extends Controller
                 'phone' => 'required'
             ]);
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__('Error').'!'.__("Check fields and try again"));
             return redirect('/login')->withErrors($validator)->withInput();
         }
 
@@ -295,7 +295,7 @@ class AuthController extends Controller
         //subscribe to mailchimp
         //Newsletter::subscribe($request['email'],['firstName'=>$request['first_name']]);
 
-        flash()->success('Thanks for signing up! Please check your email.');
+        flash()->success(__("Thanks for signing up").__("Please check your email"));
 
         return redirect('login');
 
@@ -317,7 +317,7 @@ class AuthController extends Controller
         }
 
         if ($user->confirmed == 1) {//check if its verified
-            flash()->success('This account is already verified');
+            flash()->success(__('This account is already verified'));
             return redirect('account');
         }
 
@@ -327,9 +327,9 @@ class AuthController extends Controller
         }
         Mail::send('emails.accounts-verify', ['confirmation_code' => $user->confirmation_code], function ($m) use ($request, $user) {
             $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-            $m->to($user->email, $user->first_name)->subject('Verify your email address');
+            $m->to($user->email, $user->first_name)->subject(__("Verify your email address"));
         });
-        flash()->success('Please check  email to verify your account');
+        flash()->success(__("Please check  email to verify your account"));
         return redirect('dashboard');
     }
 }
