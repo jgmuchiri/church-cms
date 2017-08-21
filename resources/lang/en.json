@@ -10,5 +10,9 @@
     "Thanks for signing up":"Please check your email",
     "This account is already verified":"This account is already verified",
     "Please check  email to verify your account":"Please check  email to verify your account",
-    "Verify your email address":"Verify your email address"
+    "Verify your email address":"Verify your email address",
+    "Username or password is incorrect":"Username or password is incorrect",
+    "Welcome! Login successful":"Welcome! Login successful",
+    "success":"success"
+
 }

@@ -143,7 +143,7 @@ class RegisterController extends Controller
 
         //login
         //flash()->info('Your account was created');
-        return json_encode(['message'=>'success']);
+        return json_encode(['message'=>__("success")]);
     }
 
 
@@ -154,19 +154,19 @@ class RegisterController extends Controller
     public function confirmAccount($confirmation_code)
     {
         if (!$confirmation_code) {
-            flash()->error('No confirmation code found');
+            flash()->error(__("No confirmation code found"));
             return redirect('/');
         }
         $user = User::whereConfirmationCode($confirmation_code)->first();
         if (!$user) {
-            flash()->error('Confirmation code is invalid or expired');
+            flash()->error(__("Confirmation code is invalid or expired"));
             return redirect('/');
         }
         $user->confirmed = 1;
         $user->confirmation_code = null;
         $user->save();
 
-        flash()->success('You have successfully verified your account.');
+        flash()->success(__("You have successfully verified your account"));
         return redirect('/');
     }
 
@@ -186,7 +186,7 @@ class RegisterController extends Controller
         }
 
         if ($user->confirmed == 1) {//check if its verified
-            flash()->success('This account is already verified');
+            flash()->success(__("This account is already verified"));
             return redirect('/');
         }
 
@@ -196,9 +196,9 @@ class RegisterController extends Controller
         }
         Mail::send('emails.accounts-verify', ['confirmation_code' => $user->confirmation_code], function ($m) use ($request, $user) {
             $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-            $m->to($user->email, $user->name)->subject('Verify your email address');
+            $m->to($user->email, $user->name)->subject(__("Verify your email address"));
         });
-        flash()->success('Please check  email to verify your account');
+        flash()->success(__("Please check  email to verify your account"));
         return redirect('/');
     }
 }

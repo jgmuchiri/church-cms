@@ -44,10 +44,10 @@ class LoginController extends Controller
      */
     function loginAjax(Request $request){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            flash()->success('Welcome! Login successful');
-            return json_encode(['message'=>'success']);
+            flash()->success(__("Welcome! Login successful"));
+            return json_encode(['message'=>__("success")]);
         }else{
-            return json_encode(['message'=>'Username or password is incorrect']);
+            return json_encode(['message'=>__("Username or password is incorrect")]);
         }
     }
 }
