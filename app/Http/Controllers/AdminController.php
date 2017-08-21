@@ -71,7 +71,7 @@ class AdminController extends Controller
         $fhandle = fopen($envFile, "w");
         fwrite($fhandle, $request->envContent);
         fclose($fhandle);
-        flash()->success('Settings have been update. Please verify that your application is working properly.');
+        flash()->success(__("Settings have been update. Please verify that your application is working properly"));
         return redirect()->back();
     }
 
