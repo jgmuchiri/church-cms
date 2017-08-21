@@ -14,5 +14,7 @@
     "Username or password is incorrect":"Username or password is incorrect",
     "Welcome! Login successful":"Welcome! Login successful",
     "success":"success",
-    "Settings have been update. Please verify that your application is working properly":"Settings have been update. Please verify that your application is working properly"
+    "Settings have been update. Please verify that your application is working properly":"Settings have been update. Please verify that your application is working properly",
+    "Your log file is empty":"Your log file is empty",
+    "Debug log has been emptied":"Debug log has been emptied"
 }

@@ -101,7 +101,7 @@ class AdminController extends Controller
         $size = filesize($logFile);
         $logContent ="";
         if($size ==0){
-            flash()->error('Your log file is empty');
+            flash()->error(__('Your log file is empty'));
         }else{
             $logContent = fread($fhandle,$size);
             fclose($fhandle);
@@ -120,7 +120,7 @@ class AdminController extends Controller
         $fhandle = fopen($logFile, "w");
         fwrite($fhandle,'');
         fclose($fhandle);
-        flash()->success('Debug log has been emptied');
+        flash()->success(__("Debug log has been emptied"));
         return redirect()->back();
     }
 
