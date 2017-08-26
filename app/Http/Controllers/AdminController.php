@@ -87,7 +87,7 @@ class AdminController extends Controller
            Tools::uploadImage(Input::file('logo'), $path, 'logo');
         }
 
-        flash()->success('Logo uploaded updated!');
+        flash()->success(__("Logo uploaded updated!"));
         return redirect()->back();
     }
 
