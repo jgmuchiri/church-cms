@@ -17,5 +17,14 @@
     "Settings have been update. Please verify that your application is working properly":"Settings have been update. Please verify that your application is working properly",
     "Your log file is empty":"Your log file is empty",
     "Debug log has been emptied":"Debug log has been emptied",
-    "Logo uploaded updated!":"Logo uploaded updated!"
+    "Logo uploaded updated!":"Logo uploaded updated!",
+    "Blog posted":"Blog posted",
+    "Error! Check fields and try again":"Error! Check fields and try again",
+    "Blog updated":"Blog updated",
+    "Blog deleted":"Blog deleted",
+    "Comment posted":"Comment posted",
+    "Comment deleted":"Comment deleted",
+    "Category created":"Category created",
+    "Category updated":"Category updated"
+    
 }

@@ -95,7 +95,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -117,7 +117,7 @@ class BlogController extends Controller
         $blog->created_at = date('Y-m-d H:i:s');
         $blog->save();
 
-        flash()->success('Blog posted');
+        flash()->success(__("Blog posted"));
         return redirect()->back();
     }
 
@@ -147,7 +147,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -167,7 +167,7 @@ class BlogController extends Controller
         $blog->updated_at = date('Y-m-d H:i:s');
         $blog->save();
 
-        flash()->success('Blog updated');
+        flash()->success(__("Blog updated"));
         return redirect()->back();
     }
 
@@ -179,7 +179,7 @@ class BlogController extends Controller
     {
         $blog = Blog::find($id);
         $blog->delete();
-        flash()->success('Blog delete');
+        flash()->success(__("Blog deleted"));
         return redirect()->back();
     }
 
@@ -197,7 +197,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -207,7 +207,7 @@ class BlogController extends Controller
         $cm->parent_id = $request->parent_id;
         $cm->comment = $request->comment;
         $cm->save();
-        flash()->success('Comment posted');
+        flash()->success(__("Comment posted"));
         return redirect()->back();
     }
 
@@ -220,7 +220,7 @@ class BlogController extends Controller
         $cm = BlogComments::findOrFail($id);
         $cm->delete();
 
-        flash()->success('Comment deleted');
+        flash()->success(__("Comment deleted"));
         return redirect()->back();
     }
 
@@ -246,7 +246,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $data = array(
@@ -254,7 +254,7 @@ class BlogController extends Controller
             'desc' => $request->desc
         );
         DB::table('blog_cats')->insert($data);
-        flash()->success('Category created');
+        flash()->success(__("Category created"));
         return redirect()->back();
     }
 
@@ -272,7 +272,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $data = array(
@@ -280,7 +280,7 @@ class BlogController extends Controller
             'desc' => $request->desc
         );
         DB::table('blog_cats')->where('id', $id)->update($data);
-        flash()->success('Category updated');
+        flash()->success(__("Category updated"));
         return redirect()->back();
 
     }
