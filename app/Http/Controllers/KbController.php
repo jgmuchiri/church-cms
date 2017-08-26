@@ -37,7 +37,7 @@ class KbController extends Controller
             $topics = Kb::whereCategory($cat->id)->whereActive(1)->simplePaginate(25);
         else
             $topics = array();
-        return view('kb.topic', compact('topics'));
+        return view('kb.topic', compact(__("topics")));
     }
 
     /**
@@ -55,7 +55,7 @@ class KbController extends Controller
             ->orWhere('question', 'LIKE', "%$term%")
             ->orWhere('question_desc', 'LIKE', "%$term%")
             ->simplePaginate(25);
-        return view('kb.topic', compact('topics'));
+        return view('kb.topic', compact(__("topics")));
     }
 
 
@@ -74,7 +74,7 @@ class KbController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -96,7 +96,7 @@ class KbController extends Controller
         $kb->created_at = date('Y-m-d H:i:s');
         $kb->active = 0;
         $kb->save();
-        flash()->success('Thank you! We will respond as soon as possible');
+        flash()->success(__("Thank you! We will respond as soon as possible"));
         return redirect()->back();
     }
 
@@ -123,7 +123,7 @@ class KbController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -143,7 +143,7 @@ class KbController extends Controller
         $kb->created_at = date('Y-m-d H:i:s');
         $kb->active = $request->active;
         $kb->save();
-        flash()->success('Question added');
+        flash()->success(__("Question added"));
         return redirect()->back();
     }
 
@@ -192,7 +192,7 @@ class KbController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()
                 ->back()
                 ->withErrors($validator)
@@ -203,7 +203,7 @@ class KbController extends Controller
         $qn->update($request->all());
         $qn->save();
 
-        flash()->success('Question updated');
+        flash()->success(__("Question updated"));
         return redirect()->back();
     }
 
@@ -215,7 +215,7 @@ class KbController extends Controller
     {
         $q = Kb::findOrFail($id);
         $q->delete();
-        flash()->success('Question deleted');
+        flash()->success(__("Question deleted"));
         return redirect()->back();
     }
 
@@ -241,7 +241,7 @@ class KbController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()
                 ->back()
                 ->withErrors($validator)
@@ -255,7 +255,7 @@ class KbController extends Controller
             'order' => $request->order
         );
         DB::table('kb_cats')->insert($data);
-        flash()->success('Category added');
+        flash()->success(__("Category added"));
         return redirect()->back();
     }
 
@@ -272,7 +272,7 @@ class KbController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()
                 ->back()
                 ->withErrors($validator)
@@ -286,7 +286,7 @@ class KbController extends Controller
             'order' => $request->order
         );
         DB::table('kb_cats')->where('id', $id)->update($data);
-        flash()->success('Category updated');
+        flash()->success(__("Category updated"));
         return redirect()->back();
     }
 }
