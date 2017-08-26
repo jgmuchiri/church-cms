@@ -79,7 +79,7 @@ class GivingController extends Controller
         $desc = $opt->desc;
 
         //find user
-        if ($request->has('email')) { //guest giving
+        if ($request->has(__("email"))) { //guest giving
             $user = User::whereEmail($request->email)->first();
         } else {
             $user = User::find($request->user_id);
@@ -115,7 +115,7 @@ class GivingController extends Controller
                         "description" => $user->email)
                 );
             } catch (\Stripe\Error\Base $e) {
-                flash()->error('Unable to create a Stripe Account. Please contact us.');
+                flash()->error(__("Unable to create a Stripe Account. Please contact us."));
                 return redirect()->back()->withInput();
             }
             $stripe_id = $customer->id;
@@ -144,7 +144,7 @@ class GivingController extends Controller
                     $user->save();
                 }
             } else {
-                flash()->error('Unable to create a Stripe Account. Please contact us.');
+                flash()->error(__("Unable to create a Stripe Account. Please contact us."));
                 return redirect()->back()->withInput();
             }
 
@@ -156,7 +156,7 @@ class GivingController extends Controller
                 //one time payment
                 $charge = \Stripe\Charge::create(array(
                     "amount" => Transactions::convertToCents($request->amount),
-                    "currency" => env('CURRENCY'),
+                    "currency" => env(__("CURRENCY")),
                     "customer" => $stripe_id,
                     "description" =>$desc
                 ));
@@ -166,7 +166,7 @@ class GivingController extends Controller
             }
 
         } catch (\Stripe\Error\Card $e) {
-            flash()->error('Card has been declined. Please try another card');
+            flash()->error(__("Card has been declined. Please try another card"));
             return redirect()->back()->withInput();
         }
 
@@ -179,14 +179,14 @@ class GivingController extends Controller
         $txn->desc = "Online Contribution";
         $txn->amount = number_format(($request->amount), 2);
         $txn->customer_id = $user->stripe_id;
-        $txn->currency = env('CURRENCY');
+        $txn->currency = env(__("CURRENCY"));
         $txn->save();
 
         //send thank you
 
         Transactions::sendThankYou($user, $request->amount, $desc);
 
-        flash()->success('Thank you! Gift processed. We have sent email confirmation.');
+        flash()->success(__("Thank you! Gift processed. We have sent email confirmation."));
 
         return redirect()->back();
     }
@@ -208,7 +208,7 @@ class GivingController extends Controller
                 "amount" => Transactions::convertToCents($request->amount),
                 "interval" => $request->interval,
                 "name" => " $request->desc " . $user->email . '_' . rand(1111, 9999),
-                "currency" => env('CURRENCY'),
+                "currency" => env(__("CURRENCY")),
                 "id" => $plan_name
             )
         );
@@ -264,7 +264,7 @@ class GivingController extends Controller
             $user->last_name = 'guest';
             $user->created_at = date('Y-m-d H:i:s');
             $user->confirmation_code = str_random(30);
-            $user->company = env('name');
+            $user->company = env(__("name"));
             //create stripe customer
             $customer = Transactions::createCustomer($request);
             $stripe_id = $customer->id;
@@ -288,13 +288,13 @@ class GivingController extends Controller
         $txn->desc = "Online Contribution";
         $txn->amount = number_format(($request->amount), 2);
         $txn->customer_id = $user->stripe_id;
-        $txn->currency = env('currency');
+        $txn->currency = env(__("currency"));
         $txn->save();
 
         //send thank you
         Transactions::sendThankYou($user, $request->amount, $request->desc);
 
-        flash()->success('Gift processed. Thank you! A confirmation has been sent to your email');
+        flash()->success(__("Gift processed. Thank you! A confirmation has been sent to your email"));
         return redirect()->back();
     }
 
@@ -311,7 +311,7 @@ class GivingController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->get();
         }
-        return view('giving.print-user-history', compact('gifts'));
+        return view('giving.print-user-history', compact(__("gifts")));
     }
 
     /**
@@ -320,7 +320,7 @@ class GivingController extends Controller
     function recurringGifts()
     {
         $gifts = Subscription::whereUserId(Auth::user()->id)->get();
-        return view('giving.recurring', compact('gifts'));
+        return view('giving.recurring', compact(__("gifts")));
     }
 
     /**
@@ -347,7 +347,7 @@ class GivingController extends Controller
                         $subsc->status = "cancelled";
                         $subsc->save();
                     } catch (Exception $e) {
-                        flash()->error('Unable to deactivate your recurring gift. Please contact us.');
+                        flash()->error(__("Unable to deactivate your recurring gift. Please contact us."));
                         return redirect()->back();
                     }
                     break;
@@ -364,14 +364,14 @@ class GivingController extends Controller
                     //update db
                     $subsc->status = "active";
                     $subsc->save();
-                    flash()->error('Plan has reactivated');
+                    flash()->error(__("Plan has reactivated"));
                     break;
                 default:
-                    flash('Unable to process your request');
+                    flash(__("Unable to process your request"));
                     break;
             }
         } else {
-            flash()->error('Transaction not found');
+            flash()->error(__("Transaction not found"));
         }
         return redirect()->back();
     }
@@ -381,10 +381,10 @@ class GivingController extends Controller
      */
     function giftOptions()
     {
-        $gOptions = DB::table('gift_options')->get();
+        $gOptions = DB::table(__("gift_options"))->get();
         $gOption = array();
         if (isset($_GET['option'])) {
-            $gOption = DB::table('gift_options')->where('id', $_GET['option'])->first();
+            $gOption = DB::table(__("gift_options"))->where('id', $_GET['option'])->first();
         }
         return view('giving.gift-options', compact('gOptions', 'gOption'));
     }
@@ -403,7 +403,7 @@ class GivingController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         GiftOptions::create($request->all());
-        flash()->success('Gift option added');
+        flash()->success(__("Gift option added"));
         return redirect()->back();
     }
 
@@ -418,13 +418,13 @@ class GivingController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $option = GiftOptions::findOrFail($id);
         $option->find($request->all());
         $option->save();
-        flash()->success('Gift option added');
+        flash()->success(__("Gift option added"));
         return redirect()->back();
     }
 

@@ -49,7 +49,24 @@
     "Event deleted!":"Event deleted!",
     "church_schedule":"church_schedule",
     "Event added":"Event added",
-    "schedule"
+    "schedule":"schedule",
+    "email":"email",
+    "Unable to create a Stripe Account. Please contact us.":"Unable to create a Stripe Account. Please contact us.",
+    "CURRENCY":"CURRENCY",
+    "Card has been declined. Please try another card":"Card has been declined. Please try another card",
+    "Thank you! Gift processed. We have sent email confirmation.":"Thank you! Gift processed. We have sent email confirmation.",
+    "name":"name",
+    "currency":"currency",
+    "Gift processed. Thank you! A confirmation has been sent to your email":"Gift processed. Thank you! A confirmation has been sent to your email",
+    "gifts":"gifts",
+    "Unable to deactivate your recurring gift. Please contact us.":"Unable to deactivate your recurring gift. Please contact us.",
+    "Plan has reactivated":"Plan has reactivated",
+    "Unable to process your request":"Unable to process your request",
+    "Transaction not found":"Transaction not found",
+    "gift_options":"gift_options",
+    "Gift option added":"Gift option added",
+
+    
     
     
 }
