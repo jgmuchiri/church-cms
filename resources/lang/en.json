@@ -43,7 +43,13 @@
     "Recurrence":"Recurrence",
     "Designation":"Designation",
     "Debit/Credit Card":"Debit/Credit Card",
-    "Process Payment":"Process Payment"
+    "Process Payment":"Process Payment",
+    "allDay":"allDay",
+    "Event updated!":"Event updated!",
+    "Event deleted!":"Event deleted!",
+    "church_schedule":"church_schedule",
+    "Event added":"Event added",
+    "schedule"
     
     
 }

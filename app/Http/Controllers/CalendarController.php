@@ -98,7 +98,7 @@ class CalendarController extends Controller
             $e = new Events();
             $e->title = $request->title;
             $e->start = $request->start . ' ' . $request->startTime;
-            if (!Input::has('allDay'))
+            if (!Input::has(__("allDay")))
                 $e->end = $request->end . ' ' . $request->endTime;
             $e->desc = $request->desc;
             $e->allDay = $request->allDay;
@@ -138,14 +138,14 @@ class CalendarController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $e = Events::whereId($id)->first();
         $e->title = $request->title;
         $e->start = $request->start . ' ' . $request->startTime;
-        if (!Input::has('allDay'))
+        if (!Input::has(__("allDay")))
             $e->end = $request->end . ' ' . $request->endTime;
         $e->desc = $request->desc;
         $e->allDay = $request->allDay;
@@ -157,7 +157,7 @@ class CalendarController extends Controller
         $e->save();
 
 
-        flash()->success('Event updated!');
+        flash()->success(__("Event updated!"));
         return redirect()->back();
     }
 
@@ -169,7 +169,7 @@ class CalendarController extends Controller
     {
         $e = Events::whereId($id)->first();
         $e->delete();
-        flash()->success('Event deleted!');
+        flash()->success(__("Event deleted!"));
         return redirect()->back();
     }
 
@@ -188,8 +188,8 @@ class CalendarController extends Controller
      */
     function churchSchedule()
     {
-        $schedule = DB::table('church_schedule')->orderBy('order', 'ASC')->get();
-        return view('events.church-schedule', compact('schedule'));
+        $schedule = DB::table(__("church_schedule"))->orderBy('order', 'ASC')->get();
+        return view('events.church-schedule', compact(__("schedule")));
     }
 
     /**
@@ -206,7 +206,7 @@ class CalendarController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -217,8 +217,8 @@ class CalendarController extends Controller
             'desc' => $request->desc,
             'order' => $request->order
         );
-        DB::table('church_schedule')->insert($data);
-        flash()->success('Event added');
+        DB::table(__("church_schedule"))->insert($data);
+        flash()->success(__("Event added"));
         return redirect()->back();
     }
 
@@ -236,7 +236,7 @@ class CalendarController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -247,8 +247,8 @@ class CalendarController extends Controller
             'desc' => $request->desc,
             'order' => $request->order
         );
-        DB::table('church_schedule')->where('id', $id)->update($data);
-        flash()->success('Event updated');
+        DB::table(__("church_schedule"))->where('id', $id)->update($data);
+        flash()->success(__("Event updated"));
         return redirect()->back();
     }
 
@@ -258,8 +258,8 @@ class CalendarController extends Controller
      */
     function churchScheduleDelete($id)
     {
-        DB::table('church_schedule')->where('id', $id)->delete();
-        flash()->success('Event deleted');
+        DB::table(__("church_schedule"))->where('id', $id)->delete();
+        flash()->success(__("Event deleted"));
         return redirect()->back();
     }
 }
