@@ -1,9 +1,9 @@
 @extends('layouts.template')
 @section('title')
-    Giving Account
+    @lang("Giving Account")
 @endsection
 @section('crumbs')
-    <a href="#" class="current">My Account</a>
+    <a href="#" class="current">@lang("My Account")</a>
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
                     <div class="right">
                         <strong>
                             ${{App\Models\Billing\Transactions::whereUserId(Auth::user()->id)->sum('amount')}}
-                        </strong> <a href="#gift-history">Gifts to date </a>
+                        </strong> <a href="#gift-history">@lang("Gifts to date") </a>
                     </div>
                 </li>
 
@@ -31,8 +31,7 @@
                             <i class="icon-credit-card icon-4x"></i>
                         </div>
                         <div class="right">
-                            <strong>Click</strong>
-                            to give
+                            @lang("Click to give")
                         </div>
                     </a>
                 </li>
@@ -41,7 +40,7 @@
 
 
             <div id="gift-history">
-                <h5 class="title"><i class="icon-th"></i> print history</h5>
+                <h5 class="title"><i class="icon-th"></i> @lang("print history")</h5>
 
                 <?php
                 $created = date('Y', strtotime(Auth::user()->created_at));
@@ -56,7 +55,7 @@
                     <span class="input-group-addon"> Select year:</span>
                     {{Form::select('y',$years,date('Y'))}}
                     <span class="input-group-btn">
-                        <button class="btn btn-default"><i class="icon-print"></i> Print</button>
+                        <button class="btn btn-default"><i class="icon-print"></i> @lang("Print")</button>
                     </span>
                 </div>
                 {{Form::close()}}
@@ -66,27 +65,21 @@
 
     <div class="widget-box">
         <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
-            <h5>Giving history</h5>
+            <h5>@lang("Giving history")</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table selec2">
                 <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>ID</th>
-                    <th>Amount</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th>@lang("Date")</th>
+                    <th>@lang("ID")</th>
+                    <th>@lang("Amount")</th>
+                    <th>@lang("Name")</th>
+                    <th>@lang("Description")</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>d</td>
-                    <td>d</td>
-                    <td>d</td>
-                    <td>d</td>
-                    <td>d</td>
-                </tr>
+             
                 @foreach($txns as $tx)
 
                     <tr>
@@ -111,8 +104,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Thank you!</h4>
-                Complete the form below and submit
+                <h4 class="modal-title" id="myModalLabel">@lang("Thank you!")</h4>
+                @lang("Complete the form below and submit")
 
             </div>
 
@@ -120,22 +113,22 @@
             <div class="modal-body">
                 <table class="table">
                     <tr>
-                        <td class="text-right">Amount:</td>
-                        <td> {!! Form::text('amount',null,['placeholder'=>'Amount','class'=>'controls','required'=>'required']) !!}</td>
+                        <td class="text-right">@lang("Amount"):</td>
+                        <td> {!! Form::text('amount',null,['placeholder'=>__("Amount"),'class'=>'controls','required'=>'required']) !!}</td>
                     </tr>
                     <tr>
-                        <td class="text-right">Designation:</td>
+                        <td class="text-right">@lang("Designation"):</td>
                         <td> {{Form::select('gift_options_id',\App\Models\Giving\GiftOptions::whereActive(1)->pluck('name','id'))}}</td>
                     </tr>
                     <tr>
-                        <td class="text-right">Recurrence:</td>
+                        <td class="text-right">@lang("Recurrence"):</td>
                         <td> <br/>
                             {!! Form::select('interval',['once'=>'One time','week'=>'Weekly','month'=>'Monthly','year'=>'Yearly']) !!}
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            Debit/Credit Card<br/>
+                            @lang("Debit/Credit Card")<br/>
                             <div id="card-element" class="field"></div></td>
                     </tr>
                 </table>
@@ -150,7 +143,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-success btn-xlg charge">
-                <i class="icon-credit-card"></i> Process Payment
+                <i class="icon-credit-card"></i> @lang("Process Payment")
             </button>
 
         </div>

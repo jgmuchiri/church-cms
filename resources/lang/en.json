@@ -25,6 +25,25 @@
     "Comment posted":"Comment posted",
     "Comment deleted":"Comment deleted",
     "Category created":"Category created",
-    "Category updated":"Category updated"
+    "Category updated":"Category updated",
+    "Giving Account":"Giving Account",
+    "My Account":"My Account",
+    "Gifts to date":"Gifts to date",
+    "Click to give":"Click to give",
+    "Print":"Print",
+    "print history":"print history",
+    "Giving history":"Giving history",
+    "Date":"Date",
+    "ID":"ID",
+    "Amount":"Amount",
+    "Name":"Name",
+    "Description":"Description",
+    "Thank you!":"Thank you!",
+    "Complete the form below and submit":"Complete the form below and submit",
+    "Recurrence":"Recurrence",
+    "Designation":"Designation",
+    "Debit/Credit Card":"Debit/Credit Card",
+    "Process Payment":"Process Payment"
+    
     
 }
