@@ -22,8 +22,8 @@ class HomeController extends Controller
     function index()
     {
         $ministries = Ministry::whereActive(1)->limit(10)->get();
-        $blogs =Blog::whereStatus('published')->limit(10)->get();
-        $events = Events::whereStatus('active')->limit(10)->get();
+        $blogs =Blog::whereStatus(__("published"))->limit(10)->get();
+        $events = Events::whereStatus(__("active"))->limit(10)->get();
         $churchSchedule =Events::churchSchedule();
         $slides = Slides::whereActive(1)->get();
         return view("home.index",compact('ministries','blogs','events','churchSchedule','slides'));
@@ -63,7 +63,7 @@ class HomeController extends Controller
             $m->to(config('mail.from.address'), config('mail.from.name'))->subject($request->subject);
         });
 
-        flash()->success('Thank you! We will get back with you shortly.');
+        flash()->success(__("Thank you! We will get back with you shortly."));
         return redirect()->back();
     }
 
@@ -73,7 +73,7 @@ class HomeController extends Controller
      */
     function giving(){
         if(Auth::check())
-            return redirect('account');
+            return redirect(__("account"));
         return view('home.giving');
     }
 }
