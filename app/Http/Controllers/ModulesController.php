@@ -54,7 +54,7 @@ class ModulesController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         Modules::create(['name' => str_clean($request->name)]);
-        flash()->success('Module has been registered');
+        flash()->success(__("Module has been registered"));
         return redirect()->back();
     }
 
@@ -102,7 +102,7 @@ class ModulesController extends Controller
         $mod = Modules::find($id);
         $mod->name = $request->name;
         $mod->save();
-        flash()->success('Module has been registered');
+        flash()->success(__("Module has been registered"));
         return redirect()->back();
     }
 
