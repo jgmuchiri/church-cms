@@ -29,7 +29,7 @@ class MinistryController extends Controller
             $cat = array();
             $ministries = Ministry::whereActive(1)->get();
         }
-        $title = "Ministries";
+        $title = (__("Ministries"));
         $categories = MinistryCats::get();
         return view('ministries.index', compact('ministries','cat','title','categories'));
     }
@@ -47,7 +47,7 @@ class MinistryController extends Controller
        }
 
         if(!$ministry) return view("errors.404");
-        $title = 'View ministry';
+        $title = (__("View ministry"));
         $categories = MinistryCats::get();
         return view('ministries.show',compact('ministry','title','categories'));
     }
@@ -57,7 +57,7 @@ class MinistryController extends Controller
      */
     function create()
     {
-        $title ="New Ministry";
+        $title =(__("New Ministry"));
         return view('ministries.create',compact('title'));
     }
 
@@ -92,7 +92,7 @@ class MinistryController extends Controller
     function edit($id)
     {
         $ministry = Ministry::findOrFail($id);
-        $title = "Edit ministry";
+        $title = (__("Edit ministry"));
         return view('ministries.edit', compact('ministry','title'));
     }
 
@@ -142,7 +142,7 @@ class MinistryController extends Controller
         }else{
             $ministries = Ministry::paginate(10);
         }
-        $title="Ministries";
+        $title=(__("Ministries"));
         return view('ministries.admin', compact('ministries','title'));
     }
 
@@ -152,7 +152,7 @@ class MinistryController extends Controller
     function categories()
     {
         $cats = MinistryCats::get();
-        $title = 'Ministry Categories';
+        $title = (__("Ministry Categories"));
         return view('ministries.categories', compact('cats','title'));
     }
 
