@@ -134,7 +134,7 @@ class SermonsController extends Controller
         $s->status = $request->status;
         $s->save();
 
-        flash()->success('Sermon added');
+        flash()->success(__("Sermon added"));
         return redirect()->back();
 
     }
@@ -166,7 +166,7 @@ class SermonsController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -203,7 +203,7 @@ class SermonsController extends Controller
         $s->status = $request->status;
         $s->save();
 
-        flash()->success('Sermon updated');
+        flash()->success(__("Sermon updated"));
         return redirect()->back();
     }
 
@@ -215,10 +215,10 @@ class SermonsController extends Controller
     {
         $s = Sermons::whereId($id)->first();
         if (count($s) > 0) {
-            flash()->success('Sermon deleted');
+            flash()->success(__("Sermon deleted"));
             $s->delete();
         } else {
-            flash()->error('Sermon not found');
+            flash()->error(__("Sermon not found"));
         }
         return redirect()->back();
     }
