@@ -54,7 +54,7 @@ class MessagingController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         if(empty($request->group) && empty($request->users[0]) && empty($request->email)){
-            flash()->error('No recipient selected');
+            flash()->error(__("No recipient selected"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -66,7 +66,7 @@ class MessagingController extends Controller
                 self::sendTo($request, $u,serialize($request->users));
             }
 
-            flash()->success('Message has been sent');
+            flash()->success(__("Message has been sent"));
             return redirect()->back();
         }
 
@@ -81,7 +81,7 @@ class MessagingController extends Controller
                         self::sendTo($request, $u,$recipients);
                     }
 
-                    flash()->success('Message has been sent');
+                    flash()->success(__("Message has been sent"));
                     return redirect()->back();
                     break;
                 case "admins":
@@ -93,7 +93,7 @@ class MessagingController extends Controller
                         }
                     }
 
-                    flash()->success('Message has been sent');
+                    flash()->success(__("Message has been sent"));
                     return redirect()->back();
                     break;
                 case "moderators":
@@ -105,7 +105,7 @@ class MessagingController extends Controller
                         }
                     }
 
-                    flash()->success('Message has been sent');
+                    flash()->success(__("Message has been sent"));
                     return redirect()->back();
                     break;
                 case "users":
@@ -117,7 +117,7 @@ class MessagingController extends Controller
                         }
                     }
 
-                    flash()->success('Message has been sent');
+                    flash()->success(__("Message has been sent"));
                     return redirect()->back();
                     break;
                 case "bday-m":
@@ -130,7 +130,7 @@ class MessagingController extends Controller
                         }
                     }
 
-                    flash()->success('Message has been sent');
+                    flash()->success(__("Message has been sent"));
                     return redirect()->back();
                     break;
                 case "bday-d":
@@ -144,7 +144,7 @@ class MessagingController extends Controller
                         }
                     }
 
-                    flash()->success('Message has been sent');
+                    flash()->success(__("Message has been sent"));
                     return redirect()->back();
                     break;
                 default:
@@ -157,18 +157,18 @@ class MessagingController extends Controller
                             self::sendTo($request, $u,$recipients);
                         }
 
-                        flash()->success('Message has been sent');
+                        flash()->success(__("Message has been sent"));
                         return redirect()->back();
 
                     } else {
-                        flash()->error('No user found matching that criteria');
+                        flash()->error(__("No user found matching that criteria"));
                         return redirect()->back();
                     }
                     break;
             }
         }
 
-        flash()->error('There was an error sending message');
+        flash()->error(__("There was an error sending message"));
         return redirect()->back();
     }
 
@@ -183,7 +183,7 @@ class MessagingController extends Controller
     {
         if($user==null)
         {
-            flash()->error('User selected is invalid');
+            flash()->error(__("User selected is invalid"));
             return redirect()->back();
         }
 
@@ -225,7 +225,7 @@ class MessagingController extends Controller
     function destroy($id)
     {
         $msg = DB::table('messaging')->where('id', $id)->delete();
-        flash()->success('Message deleted');
+        flash()->success(__("Message deleted"));
         return redirect()->back();
     }
 
@@ -261,7 +261,7 @@ class MessagingController extends Controller
             'created_at' => date('Y-m-d H:i:s')
         );
         DB::table('messaging_groups')->insert($data);
-        flash()->success('Group saved');
+        flash()->success(__("Group saved"));
         return redirect()->back();
     }
 
@@ -293,7 +293,7 @@ class MessagingController extends Controller
         );
         DB::table('messaging_groups')->whereId($id)->update($data);
 
-        flash()->success('Group saved');
+        flash()->success(__("Group saved"));
         return redirect()->back();
     }
 
@@ -333,7 +333,7 @@ class MessagingController extends Controller
         $temp->body=preg_replace('/\r?\n|\r/','',$request->body);
         $temp->active=$request->active;
         $temp->save();
-        flash()->success('Template created');
+        flash()->success(__("Template created"));
         return redirect()->back();
     }
 
@@ -367,7 +367,7 @@ class MessagingController extends Controller
         $temp->body=preg_replace('/\r?\n|\r/','',$request->body);
         $temp->active=$request->active;
         $temp->save();
-        flash()->success('Template updated');
+        flash()->success(__("Template updated"));
         return redirect()->back();
 
     }
@@ -379,7 +379,7 @@ class MessagingController extends Controller
     function destroyTemplate($id){
         $temp=EditorTemplates::find($id);
         $temp->delete();
-        flash()->success('Template updated');
+        flash()->success(__("Template updated"));
         return redirect()->back();
     }
 }

@@ -77,7 +77,16 @@
     "Category added":"Category added",
     "Menu item added":"Menu item added",
     "Menu item updated":"Menu item updated",
-    "Menu deleted!":"Menu deleted!"
+    "Menu deleted!":"Menu deleted!",
+    "No recipient selected":"No recipient selected",
+    "Message has been sent":"Message has been sent",
+    "No user found matching that criteria":"No user found matching that criteria",
+    "There was an error sending message":"There was an error sending message",
+    "User selected is invalid":"User selected is invalid",
+    "Message deleted":"Message deleted",
+    "Group saved":"Group saved",
+    "Template created":"Template created",
+    "Template updated":"Template updated"
 
     
     
