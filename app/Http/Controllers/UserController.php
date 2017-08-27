@@ -100,7 +100,7 @@ class UserController extends Controller
                 $m->to($request['email'], $request['first_name'])->subject('Your new account');
             });
 
-        flash()->success('Account has been registered successfully. Account confirmation email has been sent.');
+        flash()->success(__("Account has been registered successfully. Account confirmation email has been sent."));
 
         return redirect()->back();
     }
@@ -128,7 +128,7 @@ class UserController extends Controller
             if (Input::get('password') == Input::get('password_confirm')) {
                 $request['password']= bcrypt($request['password']);
             } else {
-                flash()->warning('Error! Password confirmation does not match');
+                flash()->warning(__("Error! Password confirmation does not match"));
                 return redirect()->back()->withErrors($validator)->withInput();
             }
         }
@@ -137,7 +137,7 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        flash()->success('Profile updated!');
+        flash()->success(__("Profile updated!"));
         return redirect()->back();
     }
 
@@ -158,7 +158,7 @@ class UserController extends Controller
             //remove all
             $user->detachRoles();
             $user->attachRole($request->role);
-            flash()->success('Roles updated');
+            flash()->success(__("Roles updated"));
         }
 
         return redirect('user/' . $request->id . '#roles');
@@ -257,7 +257,7 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        flash()->success('Profile updated!');
+        flash()->success(__("Profile updated!"));
         return redirect()->back();
     }
 
