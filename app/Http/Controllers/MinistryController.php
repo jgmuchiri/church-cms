@@ -74,14 +74,14 @@ class MinistryController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $request['slug'] = str_clean($request->name);
         Ministry::create($request->all());
 
-        flash()->success('Ministry added');
+        flash()->success(__("Ministry added"));
         return redirect()->back();
     }
 
@@ -119,7 +119,7 @@ class MinistryController extends Controller
         $ministry->fill($request->all());
         $ministry->save();
 
-        flash()->success('Ministry updated');
+        flash()->success(__("Ministry updated"));
         return redirect()->back();
     }
 
@@ -131,7 +131,7 @@ class MinistryController extends Controller
     {
         $ministry = Ministry::find($id);
         $ministry->delete();
-        flash()->success('Ministry deleted');
+        flash()->success(__("Ministry deleted"));
         return redirect()->back();
     }
 
@@ -169,14 +169,14 @@ class MinistryController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $slug =str_replace(' ','_',trim(strip_tags(strtolower($request->name))));
 
         $request['slug'] = $slug;
         MinistryCats::create($request->all());
-        flash()->success('Category created');
+        flash()->success(__("Category created"));
         return redirect()->back();
     }
 
@@ -194,7 +194,7 @@ class MinistryController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            flash()->error('Error! Check fields and try again');
+            flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $slug =str_replace(' ','_',trim(strip_tags(strtolower($request->name))));
@@ -202,7 +202,7 @@ class MinistryController extends Controller
         $mc = MinistryCats::findOrFail($id);
         $mc->fill($request->all());
         $mc->save();
-        flash()->success('Category updated');
+        flash()->success(__("Category updated"));
         return redirect()->back();
 
     }
