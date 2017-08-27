@@ -53,7 +53,7 @@ class MenuController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         MainMenu::create($request->all());
-        flash()->success('Menu item added');
+        flash()->success(__("Menu item added"));
         return redirect()->back();
     }
 
@@ -78,7 +78,7 @@ class MenuController extends Controller
         $menu->fill($request->all());
         $menu->save();
 
-        flash()->success('Menu item updated');
+        flash()->success(__("Menu item updated"));
         return redirect()->back();
     }
 
@@ -115,7 +115,7 @@ class MenuController extends Controller
         $c->parent=0;
         $c->save();
         $m->delete();
-        flash()->success('Menu deleted!');
+        flash()->success(__("Menu deleted!"));
         return redirect()->back();
     }
 
