@@ -94,7 +94,15 @@
     "Sermon added":"Sermon added",
     "Sermon updated":"Sermon updated",
     "Sermon deleted":"Sermon deleted",
-    "Sermon not found":"Sermon not found"
+    "Sermon not found":"Sermon not found",
+    "No file selected":"No file selected",
+    "Zip file is required.":"Zip file is required.",
+    "A theme directory with that name exists. Please delete it before proceeding":"A theme directory with that name exists. Please delete it before proceeding",
+    "There was a problem installing the theme. Check files and try again.":"There was a problem installing the theme. Check files and try again.",
+    "Theme uploaded with errors. Please verify.":"Theme uploaded with errors. Please verify.",
+    "Theme has been uploaed":"Theme has been uploaed",
+    "Unable to extract the zip file":"Unable to extract the zip file",
+    "Theme updated":"Theme updated"
     
 
     

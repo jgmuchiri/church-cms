@@ -36,13 +36,13 @@ class ThemesController extends Controller
         ];
 
         if ($request->theme == null) {
-            flash()->error('No file selected');
+            flash()->error(__("No file selected"));
             return redirect()->back()->withInput();
         }
         $extension = $request->theme->getClientOriginalExtension();
 
         if ($extension !== 'zip') {
-            flash()->error('Zip file is required.');
+            flash()->error(__("Zip file is required."));
             return redirect()->back()->withInput();
         }
 
@@ -77,7 +77,7 @@ class ThemesController extends Controller
                 @\File::makeDirectory($files_path, 493, true);
             } else {
                 //todo this overwrites the current directory. Force user to confirm before doing so
-                flash()->error('A theme directory with that name exists. Please delete it before proceeding');
+                flash()->error(__("A theme directory with that name exists. Please delete it before proceeding"));
                 return redirect()->back()->withInput();
             }
 
@@ -92,7 +92,7 @@ class ThemesController extends Controller
             } catch (\Exception $e) {
                 @unlink($files_path . '/index.blade.php');
                 \File::deleteDirectory($files_path);
-                flash()->error('There was a problem installing the theme. Check files and try again.');
+                flash()->error(__("There was a problem installing the theme. Check files and try again."));
                 return redirect()->back();
             }
 
@@ -100,7 +100,7 @@ class ThemesController extends Controller
 
             //extract information about the theme
             $themeName = $extension;
-            $themeDesc = "EMPTY: Unable to process";
+            $themeDesc = (__("EMPTY: Unable to process"));
             try {
                 $data = file_get_contents(public_path('themes/' . $dir . '/info.txt'));
                 $data = array_chunk(array_filter(array_map("trim", explode(chr(13) . chr(10) . chr(13), $data))), 2);
@@ -119,7 +119,7 @@ class ThemesController extends Controller
                     //todo add version, author, url, version date
                 }
             } catch (Exception $e) {
-                flash()->warning('Theme uploaded with errors. Please verify.');
+                flash()->warning(__("Theme uploaded with errors. Please verify."));
             }
 
             //check whether this name is used and over
@@ -136,11 +136,11 @@ class ThemesController extends Controller
             $theme->created_at = date('Y-m-d H:i:s');
             $theme->save();
 
-            flash()->success("Theme has been uploaed");
+            flash()->success(__("Theme has been uploaed"));
             return redirect()->back();
 
         } else {
-            flash()->error('Unable to extract the zip file');
+            flash()->error(__("Unable to extract the zip file"));
             return redirect()->back()->withInput();
         }
 
@@ -160,7 +160,7 @@ class ThemesController extends Controller
             Settings::set_option('site_theme', $id);
         }
 
-        flash()->success('Theme updated');
+        flash()->success(__("Theme updated"));
         return redirect()->back();
     }
 
@@ -182,7 +182,7 @@ class ThemesController extends Controller
         \File::deleteDirectory('../resources/views/themes/' . $theme->location);
         \File::deleteDirectory('themes/' . $theme->location);
         $theme->delete();
-        flash()->success('Theme deleted');
+        flash()->success(__("Theme deleted"));
         return redirect()->back();
     }
 
