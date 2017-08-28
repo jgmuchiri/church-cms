@@ -131,7 +131,7 @@ class AuthController extends Controller
                 DB::table('permission_role')->where('role_id', $role)->delete();
             }
 
-            echo json_encode(['status' => 'success', 'message' => __('Role permissions updated']));
+            echo json_encode(['status' => 'success', 'message' => __('Role permissions updated')]);
         }
 
     }
