@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="/css/admin.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
     <script type="text/javascript">
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -191,21 +201,6 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/login.js"></script>
 @include('partials.flash')
-<script>
-    function notice(errorNote, type) {
-        if (type === "error") {
-            type = 'danger';
-        }
-        $.notify({
-            icon: 'ti-check',
-            message: errorNote
-
-        }, {
-            type: type,
-            timer: 4000
-        });
-    }
-</script>
 </body>
 
 </html>

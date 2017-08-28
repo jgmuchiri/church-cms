@@ -2,8 +2,10 @@
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-Route::auth();
+
 Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
     if (Request()->segment(3) == "delete") {
         return view('errors.202');
     }
@@ -27,11 +29,6 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'confirmation_path',
         'uses' => 'Auth\AuthController@confirmAccount'
     ]);
-
-    // Password Reset Routes...
-    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-    Route::post('password/email', 'Auth\PasswordController@sendResetLink');
-    Route::post('password/reset', 'Auth\PasswordController@resetPassword');
 
     //public routes//
     Route::get('giving', 'HomeController@giving');

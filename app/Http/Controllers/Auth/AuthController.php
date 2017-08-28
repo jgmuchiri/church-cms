@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 use App\Models\PermissionRole;
-use App\Models\RoleUser;
 
 use App\Role;
 
@@ -40,7 +39,7 @@ class AuthController extends Controller
             return redirect('dashboard');
         }
 
-        flash()->error(_('Username or password incorrect'));
+        flash()->error('hotni');
         return redirect()->back();
     }
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use Illuminate\Support\Facades\Schema;
 class CreateMessagingTable extends Migration
 {
     /**
@@ -17,7 +17,7 @@ class CreateMessagingTable extends Migration
             $table->integer('sender');
             $table->string('subject');
             $table->longText('message');
-            $table->string('receipients');
+            $table->string('recipients');
             $table->timestamps();
         });
     }

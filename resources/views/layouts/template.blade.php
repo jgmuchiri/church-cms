@@ -28,7 +28,7 @@
     @endif
     <script>
         var curPage = "{{request()->segment(1)}}";
-        var CRSF_TOKEN = '{{csrf_token()}}';
+        //var CRSF_TOKEN = '{{csrf_token()}}';
     </script>
 </head>
 <body>

@@ -33,6 +33,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
         if ($exception instanceof \Exception && env('SEND_DEBUG_EMAIL') == true) {
 
             //send email for any errors
@@ -73,10 +74,15 @@ class Handler extends ExceptionHandler
                 $lc2 .= $lc1;
             }
 
-            Mail::send('emails.exceptions', ['content'=>$lc2], function ($m) {
-                $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-                $m->to(env('DEBUG_EMAIL'), 'ERROR HANDLER')->subject('ERROR HANDLER - ' . env('APP_NAME'));
-            });
+            try{
+                Mail::send('emails.exceptions', ['content'=>$lc2], function ($m) {
+                    $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+                    $m->to(env('DEBUG_EMAIL'), 'ERROR HANDLER')->subject('ERROR HANDLER - ' . env('APP_NAME'));
+                });
+            }catch (Exception $e){
+
+            }
+
         }
         parent::report($exception);
     }
