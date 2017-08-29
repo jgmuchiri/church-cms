@@ -7,14 +7,14 @@
                     <span class="label label-success">
                         ${{App\Models\Billing\Transactions::sum('amount')}}
                     </span>
-                    Gifts</a>
+                    @lang("Gifts")</a>
             </li>
 
             <li class="bg_lb">
                 <a href="/messaging/admin">
                     <i class="icon-envelope-alt"></i>
                     <span class="label label-important"></span>
-                    Messages
+                    @lang("Messages")
                 </a>
             </li>
 
@@ -24,7 +24,7 @@
                     <span class="label label-info">
                         {{App\Models\Sermons::count()}}
                     </span>
-                    Sermons
+                    @lang("Sermons")
                 </a>
             </li>
 
@@ -34,13 +34,13 @@
                     <span class="label label-warning">
                         {{App\Models\Blog\Blog::count()}}
                     </span>
-                    Blog
+                    @lang("Blog")
                 </a>
             </li>
 
             <li class="bg_lg">
                 <a href="/events/admin">
-                    <i class="icon-calendar"></i> Calendar
+                    <i class="icon-calendar"></i> @lang("Calendar")
                 </a>
             </li>
 
@@ -48,7 +48,7 @@
                 <a href="/support">
                     <i class="icon-question-sign"></i>
                     <span class="label label-warning">{{App\Models\Kb::whereActive(0)->count()}}</span>
-                    Support
+                    @lang("Support")
                 </a>
             </li>
 
@@ -59,7 +59,7 @@
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
-                <h5>Site Analytics</h5>
+                <h5>@lang("Site Analytics")</h5>
             </div>
             <div class="widget-content">
                 <div class="row-fluid">
@@ -69,27 +69,27 @@
                     <div class="span3">
                         <ul class="site-stats">
                             <li class="bg_lh"><i class="icon-user"></i> <strong>{{\App\User::count()}}</strong>
-                                <small>Total User(s)</small>
+                                <small>@lang("Total User(s)")</small>
                             </li>
                             <li class="bg_lh"><i class="icon-question-sign"></i> <strong>
                                     {!! \App\Models\Kb::count() !!}
                                 </strong>
-                                <small>Questions</small>
+                                <small>@lang(Questions")</small>
                             </li>
                             <li class="bg_lh"><i class="icon-calendar"></i> <strong>
                                     {{\App\Models\Events::count()}}
                                 </strong>
-                                <small>Events</small>
+                                <small>@lang("Events")</small>
                             </li>
                             <li class="bg_lh"><i class="icon-tag"></i> <strong>
                                     {!! \App\Models\Sermons::count() !!}
                                 </strong>
-                                <small>Sermons</small>
+                                <small>@lang("Sermons")</small>
                             </li>
                             <li class="bg_lh"><i class="icon-th"></i> <strong>
                                     {{\App\Models\Ministry\Ministry::count()}}
                                 </strong>
-                                <small>Ministries</small>
+                                <small>@lang("Ministries")</small>
                             </li>
                         </ul>
                     </div>
