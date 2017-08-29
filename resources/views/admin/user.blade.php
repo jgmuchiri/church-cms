@@ -11,10 +11,10 @@
     <div class="widget-box">
         <div class="widget-title">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#profile">Home</a></li>
-                <li><a data-toggle="tab" href="#giving">Manual Giving</a></li>
-                <li><a data-toggle="tab" href="#history">Giving History</a></li>
-                <li><a data-toggle="tab" href="#roles">Roles & Permissions</a></li>
+                <li class="active"><a data-toggle="tab" href="#profile">@lang("Home")</a></li>
+                <li><a data-toggle="tab" href="#giving">@lang("Manual Giving")</a></li>
+                <li><a data-toggle="tab" href="#history">@lang("Giving History")</a></li>
+                <li><a data-toggle="tab" href="#roles">@lang("Roles & Permissions")</a></li>
             </ul>
         </div>
         <div class="widget-content tab-content">
@@ -22,35 +22,35 @@
                 {!! Form::model($user,['url'=>'user/'.$user->id]) !!}
                 <table class="table table-striped">
                     <tr>
-                        <td>First name:</td>
+                        <td>@lang("First name:")</td>
                         <td>{{Form::text('first_name')}}</td>
                     </tr>
                     <tr>
-                        <td>Last name:</td>
+                        <td>@lang("Last name:")</td>
                         <td>{{Form::text('last_name')}}</td>
                     </tr>
                     <tr>
-                        <td>Email:</td>
+                        <td>@lang("Email:")</td>
                         <td>{{Form::input('email','email')}}</td>
                     </tr>
                     <tr>
-                        <td>Phone:</td>
+                        <td>@lang("Phone:")</td>
                         <td>{{Form::text('phone')}}</td>
                     </tr>
                     <tr>
-                        <td>Address:</td>
+                        <td>@lang("Address:")</td>
                         <td>{{Form::textarea('address',null,['rows'=>3])}}</td>
                     </tr>
                     <tr>
-                        <td>DOB:</td>
+                        <td>@lang("DOB:")</td>
                         <td>{{Form::input('date','dob')}}</td>
                     </tr>
                     <tr>
-                        <td>Stripe ID:</td>
+                        <td>@lang("Stripe ID:")</td>
                         <td>{{$user->stripe_id}}</td>
                     </tr>
                     <tr>
-                        <td>Registered:</td>
+                        <td>@lang("Registered:")</td>
                         <td>{{$user->created_at}}</td>
                     </tr>
                     <tr>

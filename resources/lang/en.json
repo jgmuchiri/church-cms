@@ -213,7 +213,18 @@
     "System Settings":"System Settings",
     "Change these settings only if you know what you are doing!":"Change these setting only if you know what you are doing",
     "file located in the root of your application.":"file located in the root of your application.",
-    "Backup First!":"Backup First!"
+    "Backup First!":"Backup First!",
+    "Home":"Home",
+    "Manual Giving":"Manual Giving",
+    "Giving History":"Giving History",
+    "Roles & Permissions":"Roles & Permissions",
+    "Email:":"Email:",
+    "Phone:":"Phone:",
+    "Address:":"Address:",
+    "DOB:":"DOB:",
+    "Stripe ID:":"Stripe ID:",
+    "Registered:":"Registered:"
+    
 
     
     
