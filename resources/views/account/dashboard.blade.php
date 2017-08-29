@@ -52,7 +52,7 @@
                 ?>
                 {{Form::open(['url'=>'/giving/history','method'=>'get','target'=>'blank','class'=>'form-inline'])}}
                 <div class="input-group">
-                    <span class="input-group-addon"> Select year:</span>
+                    <span class="input-group-addon">@lang("Select year:")</span>
                     {{Form::select('y',$years,date('Y'))}}
                     <span class="input-group-btn">
                         <button class="btn btn-default"><i class="icon-print"></i> @lang("Print")</button>
