@@ -144,8 +144,15 @@
     "Questions":"Questions",
     "Events":"Events",
     "Empty log":"Empty log",
-    "Debug log":"Debug log"
-    
+    "Debug log":"Debug log",
+    "Main Menu":"Main Menu",
+    "Main menu":"Main menu",
+    "main menu":"main menu",
+    "New menu item":"New menu item",
+    " If you add sub-menu items and would like them to hide them from front-end, add":" If you add sub-menu items and would like them to hide them from front-end, add",
+    "no-submenu":"no-submenu",
+    "parameter in your template navigation":"parameter in your template navigation",
+    "Default menu":"Default menu"
 
     
     

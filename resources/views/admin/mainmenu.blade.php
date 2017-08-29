@@ -1,9 +1,9 @@
 @extends('layouts.template')
 @section('title')
-    Main Menu
+    @lang("Main Menu")
 @endsection
 @section('crumbs')
-    <a href="#" class="current">main menu</a>
+    <a href="#" class="current">@lang("main menu")</a>
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
         <div class="span10">
             <div class="widget-box no-top">
                 <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
-                    <h5>Main menu</h5>
+                    <h5>@lang("Main menu")</h5>
                     <div class="buttons">
                         <a href="/menu" class="btn btn-inverse btn-mini right">
                             <i class="icon-plus"></i>
-                            New menu item
+                            @lang("New menu item")
                         </a>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
                     <div class="row-fluid">
                         <div class="span8">
                             <div class="alert alert-info">
-                                If you add sub-menu items and would like them to hide them from front-end, add <code>no-submenu</code>
-                                parameter in your template navigation
+                               @lang(" If you add sub-menu items and would like them to hide them from front-end, add") <code>@lang("no-submenu")</code>
+                                @lang("parameter in your template navigation")
                                 <br/>
-                                Default menu
+                                @lang("Default menu")
                                 <code>/home</code>
                                 <code>/sermons</code>
                                 <code>/events</code>
