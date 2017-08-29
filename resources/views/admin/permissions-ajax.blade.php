@@ -1,7 +1,7 @@
 <table class="table table-striped table-full-width table-responsive" id="">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>@lang("Name")</th>
         <th>Permissions</th>
         <th>Description</th>
     </tr>

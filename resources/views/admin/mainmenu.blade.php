@@ -41,10 +41,10 @@
                             <table class="table table-responsive">
                                 <thead>
                                 <tr>
-                                    <th>Menu</th>
-                                    <th>Order</th>
-                                    <th>Icon</th>
-                                    <th>Status</th>
+                                    <th>@lang("Menu")</th>
+                                    <th>@lang("Order")</th>
+                                    <th>@lang("Icon")</th>
+                                    <th>@lang("Status")</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -85,20 +85,20 @@
                         <div class="span4">
 
                             @if(count($menuItem))
-                                <h4>Edit Menu Item</h4>
+                                <h4>@lang("Edit Menu Item")</h4>
                                 {{Form::model($menuItem,['url'=>'menu/','method'=>'patch'])}}
                                 {{Form::hidden('id',$menuItem->id)}}
-                                <label>Title</label>
+                                <label>@lang("Title")</label>
                                 {{Form::text('title',null,['required'=>'required'])}}
-                                <label>Path</label>
+                                <label>@lang("Path")</label>
                                 {{Form::text('path',null,['required'=>'required','placeholder'=>'e.g. /home'])}}
-                                <label>Parent</label>
+                                <label>@lang("Parent")</label>
                                 {!! Form::select('parent',$items,$menuItem->parent) !!}
                                 <br/>
 
-                                <label>Order</label>
+                                <label>@lang("Order")</label>
                                 {{Form::text('order',null,['required'=>'required'])}}
-                                <label>Icon</label>
+                                <label>@lang("Icon")</label>
                                 <div class="controls">
                                     <div class="input-group">
                                         <span class="addon span1">
@@ -116,20 +116,20 @@
                                 {{Form::select('active',['1'=>'active','0'=>'disabled'])}}
                                 <br/>
 
-                                <button class="btn btn-default"><i class="icon-save"></i> Save</button>
+                                <button class="btn btn-default"><i class="icon-save"></i> @lang("Save")</button>
                                 <a href="/menu" class="btn btn-danger right"><i class="icon-eye-close"></i>
-                                    Close</a>
+                                    @lang("Close")</a>
 
                                 {{Form::close()}}
 
                             @else
-                                <h4>New Menu Item</h4>
+                                <h4>@lang("New Menu Item")</h4>
                                 {{Form::open(['url'=>'menu'])}}
-                                <label>Title</label>
+                                <label>@lang("Title")</label>
                                 {{Form::text('title',null,['required'=>'required'])}}
-                                <label>Path</label>
+                                <label>@lang("Path")</label>
                                 {{Form::text('path',null,['required'=>'required','placeholder'=>'e.g. /home'])}}
-                                <label>Parent</label>
+                                <label>@lang("Parent")</label>
                                 <select name="parent" class="select2">
                                     <option value="0">--NONE--</option>
                                     @foreach($menu as $p)
@@ -138,9 +138,9 @@
                                 </select>
                                 <br/>
 
-                                <label>Order</label>
+                                <label>@lang("Order")</label>
                                 {{Form::text('order',null,['required'=>'required'])}}
-                                <label>Icon</label>
+                                <label>@lang("Icon")</label>
                                 <div class="controls">
                                     <div class="input-group">
                                         <span class="addon span1">
@@ -159,7 +159,7 @@
                                 {{Form::select('active',['1'=>'active','0'=>'disabled'])}}
 
                                 <br/>
-                                <button class="btn btn-default">Save</button>
+                                <button class="btn btn-default">@lang("Save")</button>
 
                                 {{Form::close()}}
                             @endif
