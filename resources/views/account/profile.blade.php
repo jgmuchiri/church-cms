@@ -2,7 +2,7 @@
 @section('title') Edit profile @endsection
 @section('crumbs')
     <a href="/account">@lang("Account")</a>
-    <a href="#" class="current">My profile</a>
+    <a href="#" class="current">@lang("My profile")</a>
     @endsection
 
 @section('content')
