@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('title')
-    User Roles
+    @lang("User Roles")
 @endsection
 
 @section('content')
@@ -9,13 +9,13 @@
 
         <div class="span10">
             <div class="alert alert-info">
-                When you create new modules, add them here and assign permissions. For example if module is
-                <code>users</code>, then permissions are generated as
-                <code>create-users</code>
-                <code>read-users</code>
-                <code>update-users</code>
-                <code>delete-users</code>.
-                In your module code, you can define access using
+                @lang("When you create new modules, add them here and assign permissions. For example if module is")
+                <code>@lang("users")</code>, @lang("then permissions are generated as")
+                <code>@lang("create-users")</code>
+                <code>@lang("read-users")</code>
+                <code>@lang("update-users")</code>
+                <code>@lang("delete-users")</code>.
+                @lang("In your module code, you can define access using")
                 <div class="row-fluid">
                     <div class="span5">
                         <code>
@@ -35,18 +35,18 @@
                 </div>
 
                 <p>
-                    Default modules
-                    <code>users</code>
-                    <code>gifts</code>
-                    <code>ministries</code>
-                    <code>sermons</code>
-                    <code>events</code>
-                    <code>birthdays</code>
-                    <code>tickets</code>
-                    <code>mail</code>
-                    <code>blog</code>
-                    <code>logs</code>
-                    <code>settings</code>
+                   @lang("Default modules")
+                    <code>@lang("users")</code>
+                    <code>@lang("gifts")</code>
+                    <code>@lang("ministries")</code>
+                    <code>@lang("sermons")</code>
+                    <code>@lang("events")</code>
+                    <code>@lang("birthdays")</code>
+                    <code>@lang("tickets")</code>
+                    <code>@lang("mail")</code>
+                    <code>@lang("blog")</code>
+                    <code>@lang("logs")</code>
+                    <code>@lang("settings")</code>
                 </p>
             </div>
             <div class="row-fluid">

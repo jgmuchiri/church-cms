@@ -168,7 +168,22 @@
     "New Menu Item":"New Menu Item",
     "Tittle":"Tittle",
     "Permissions":"Permissions",
-    "Inverse selection":"Inverse selection"
+    "Inverse selection":"Inverse selection",
+    "User Roles":"User Roles",
+    "When you create new modules, add them here and assign permissions. For example if module is":"When you create new modules, add them here and assign permissions. For example if module is",
+    "users":"users",
+    "then permissions are generated as":"then permissions are generated as",
+    "create-users":"create-users",
+    "read-users":"read-users",
+    "update-users":"update-users",
+    "delete-users":"delete-users",
+    "In your module code, you can define access using":"In your module code, you can define access using",
+    "Default modules":"Default modules",
+    "tickets":"tickets",
+    "mail":"mail",
+    "blog":"blog",
+    "settings":"settings",
+    "logs":"logs"
 
     
     
