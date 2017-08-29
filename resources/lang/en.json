@@ -209,7 +209,11 @@
     "Debug Log":"Debug Log",
     "Kiosk Mode":"Kiosk Mode",
     "SEO":"SEO",
-    "Gift Options":"Gift Options"
+    "Gift Options":"Gift Options",
+    "System Settings":"System Settings",
+    "Change these settings only if you know what you are doing!":"Change these setting only if you know what you are doing",
+    "file located in the root of your application.":"file located in the root of your application.",
+    "Backup First!":"Backup First!"
 
     
     
