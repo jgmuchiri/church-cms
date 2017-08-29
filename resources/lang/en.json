@@ -223,7 +223,12 @@
     "Address:":"Address:",
     "DOB:":"DOB:",
     "Stripe ID:":"Stripe ID:",
-    "Registered:":"Registered:"
+    "Registered:":"Registered:",
+    "Here is your password reset link":"Here is your password reset link",
+    "You or someone has requested to reset password at":"You or someone has requested to reset password at",
+    "Click here to reset your password":"Click here to reset your password",
+    "If you did not make this request, please visit":"If you did not make this request, please visit",
+    "and update your password":"and update your password"
     
 
     
