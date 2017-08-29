@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('title') Edit profile @endsection
 @section('crumbs')
-    <a href="/account">Account</a>
+    <a href="/account">@lang("Account")</a>
     <a href="#" class="current">My profile</a>
     @endsection
 
@@ -11,9 +11,9 @@
             <h5>{{$user->username}}</h5>
 
             <div class="buttons">
-                <strong>Registered:</strong> {{$user->created_at}}
+                @lang("Registered"):{{$user->created_at}}
                 @if(!empty($user->stripe_id))
-                    <strong>TXN ID:</strong> {{$user->stripe_id}}
+                    @lang("TXN ID"): {{$user->stripe_id}}
                 @endif
 
             </div>
@@ -22,29 +22,29 @@
             {!! Form::model($user,['url'=>'profile']) !!}
             <div class="row-fluid">
                 <div class="span6">
-                    <label>First name</label>
+                    <label>@lang("First name")</label>
                     {{Form::text('first_name')}}
 
-                    <label>Last name</label>
+                    <label>@lang("Last name")</label>
                     {{Form::text('last_name')}}
 
-                    <label>Email</label>
+                    <label>@lang("Email")</label>
                     {{Form::input('email','email')}}
 
-                    <label>Phone</label>
+                    <label>@lang("Phone")</label>
                     {{Form::text('phone')}}
                 </div>
                 <div class="span6">
-                    <label>Address</label>
+                    <label>@lang("Address")</label>
                     {{Form::textarea('address',null,['rows'=>3])}}
 
-                    <label>DOB</label>
+                    <label>@lang("DOB")</label>
                     {{Form::input('date','dob')}}
 
                     <div class="callout callout-danger">
-                        <label>Password: <em>(only if changing)</em></label>
+                        <label>@lang("Password"): <em>@lang("(only if changing)")</em></label>
                         {!! Form::input('password','password') !!}
-                        <label>Confirm Password:</label>
+                        <label>@lang("Confirm Password"):</label>
                         {!! Form::input('password','password_confirmation') !!}
                     </div>
 
