@@ -183,7 +183,15 @@
     "mail":"mail",
     "blog":"blog",
     "settings":"settings",
-    "logs":"logs"
+    "logs":"logs",
+    "Roles":"Roles",
+    "double a role click to edit":"double a role click to edit",
+    "Modules":"Modules",
+    "New Role":"New Role",
+    "(no spaces or special characters)":"(no spaces or special characters)",
+    "Display name":"Display name",
+    "Submit":"Submit",
+    "New Module":"New Module"
 
     
     

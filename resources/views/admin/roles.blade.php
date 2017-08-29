@@ -53,13 +53,13 @@
 
                 <div class="span3">
                     <div class="">
-                        <strong>Roles</strong>
+                        <strong>@lang("Roles")</strong>
                         <a href="#" data-toggle="tooltip" title="Add a role" class="pull-right create-role-btn"><i
                                     class="icon-plus"></i></a>
                     </div>
                     <div id="roles">
                         <input class="search form-control input-sm" placeholder="Search"/><br/>
-                        <i>double a role click to edit</i>
+                        <i>@lang("double a role click to edit")</i>
                         <ul class="list nav nav-pills nav-stacked">
                             @foreach($roles as $role)
                                 <li id="{{$role->id}}" data-toggle="tooltip" title="{{$role->desc}}">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="span3">
                     <div class="">
-                        <strong>Modules</strong>
+                        @lang("Modules")
                         <a href="#" data-toggle="tooltip" title="Register a module"
                            class="pull-right register-module-btn"><i
                                     class="icon-plus"></i></a>
@@ -87,7 +87,7 @@
 
                 </div>
                 <div class="span3">
-                    <strong>Permissions</strong><br/>
+                    <strong>@lang("Permissions")</strong><br/>
                     <div id="permissions">
 
                     </div>
@@ -110,20 +110,20 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel"><i class="icon-plus-circle"></i> New Role</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="icon-plus-circle"></i> @lang("New Role")</h4>
             </div>
             {!! Form::open(['url'=>'/roles']) !!}
             <div class="modal-body">
-                <label>Name <i class="small">(no spaces or special characters)</i></label>
+                <label>@lang("Name")<i class="small">@lang("(no spaces or special characters)")</i></label>
                 {!! Form::text('name',null,['class'=>'form-control']) !!}
-                <label>Display name</label>
+                <label>@lang("Display name")</label>
                 {!! Form::text('display_name',null,['class'=>'form-control']) !!}
-                <label>Description</label>
+                <label>@lang("Description")</label>
                 {!! Form::textarea('description',null,['rows'=>2,'class'=>'form-control']) !!}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary">Submit</button>
+                <button class="btn btn-primary">@lang("Submit")</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -137,7 +137,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">New Module</h4>
+                <h4 class="modal-title" id="myModalLabel">@lang("New Module")</h4>
             </div>
             {!! Form::open(['url'=>route('modules.store'),'method'=>'post']) !!}
             <div class="modal-body">
@@ -146,7 +146,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary">Submit</button>
+                <button class="btn btn-primary">@lang("Submit")</button>
             </div>
             {!! Form::close() !!}
         </div>
