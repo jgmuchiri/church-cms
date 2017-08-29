@@ -2,8 +2,8 @@
     <thead>
     <tr>
         <th>@lang("Name")</th>
-        <th>Permissions</th>
-        <th>Description</th>
+        <th>@lang("Permissions")</th>
+        <th>@lang("Description"</th>
     </tr>
     </thead>
     <tbody>
