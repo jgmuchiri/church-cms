@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <h3>Account Access</h3>
+                    <h3>@lang("Account Access")</h3>
 
-                    <p>Reset your password</p>
+                    <p>@lang("Reset your password")</p>
 
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="toggle">
                     <a style="color:#fff" href="/login"><i class="icon-times fa-key"></i>
 
-                        <div class="tooltip" title="">Login</div>
+                        <div class="tooltip" title="">@lang("Login")</div>
                     </a>
                 </div>
 
@@ -30,6 +30,7 @@
                     <input type="hidden" name="token" class="form-control" value="{{ $token }}">
 
                     <div>
+<<<<<<< HEAD
                         Email
                         <input type="email" name="email" class="form-control" value="{{ old('email') }}">
                     </div>
@@ -42,12 +43,26 @@
                     <div>
                         Confirm Password
                         <input type="password" class="form-control" name="password_confirmation">
+=======
+                        @lang("Email")
+                        <input type="email" name="email" value="{{ old('email') }}">
+                    </div>
+
+                    <div>
+                        @lang("Password")
+                        <input type="password" name="password">
+                    </div>
+
+                    <div>
+                        @lang("Confirm Password")
+                        <input type="password" name="password_confirmation">
+>>>>>>> translated reset.blade.php
                     </div>
 
                     <div>
                         <br/>
                         <button class="btn btn-warning">
-                            Reset Password
+                            @lang("Reset Password")
                         </button>
                     </div>
                 </form>
