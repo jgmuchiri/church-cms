@@ -4,7 +4,7 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 ?>
 @extends('layouts.template')
 @section('title')
-    Registered Users
+    @lang("Registered Users")
 @endsection
 
 @section('content')
@@ -19,42 +19,42 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
     <div class="row-fluid">
         <div class="span6">
             <div class="callout callout-info">
-                <h4>Birthdays</h4>
-                <a class="" href="/birthdays"><i class="icon-new-window"></i> View Birthdays</a> |
+                <h4>@lang("Birthdays")</h4>
+                <a class="" href="/birthdays"><i class="icon-new-window"></i> @lang("View Birthdays")</a> |
 
                 <a href="/birthdays?m={{$thisMonth}}" class="">
                     <i class="badge">{{App\User::where('dob','LIKE',"%-$thisMonth-%")->count()}}</i>
-                    This month
+                    @lang("This month")
                 </a> |
 
                 <a href="/birthdays?m={{$nextMonth}}" class="">
                     <i class="badge">
                         {{App\User::where('dob','LIKE',"%-$nextMonth-%")->count()}}
                     </i>
-                    Next month
+                    @lang("Next month")
                 </a>
             </div>
         </div>
         <div class="span6">
-            <button class="btn btn-default newUser"><i class="icon-plus"></i> New User</button>
+            <button class="btn btn-default newUser"><i class="icon-plus"></i>@lang("New User")</button>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                    <h5>Users</h5>
+                    <h5>@lang("Users")</h5>
                 </div>
                 <div class="widget-content nopadding">
                     <table class="table table-bordered data-table selec2">
                         <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Phone</th>
-                            <th>Registered</th>
+                            <th>@lang("Username")</th>
+                            <th>@lang("Email")</th>
+                            <th>@lang("Firstname")</th>
+                            <th>@lang("Lastname")</th>
+                            <th>@lang("Phone")</th>
+                            <th>@lang("Registered")</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -95,37 +95,37 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Register a user</h4>
+                    <h4 class="modal-title" id="myModalLabel">@lang("Register a user")</h4>
                 </div>
                 <div class="modal-body">
                     {!! Form::open(['url'=>'registerUser']) !!}
                     <table class="table table-striped no-border">
                         <tr>
-                            <td>Username:</td>
+                            <td>@lang("Username:")</td>
                             <td>{{Form::text('username')}}</td>
                         </tr>
                         <tr>
-                            <td>First name:</td>
+                            <td>@lang("First name:")</td>
                             <td>{{Form::text('first_name')}}</td>
                         </tr>
                         <tr>
-                            <td>Last name:</td>
+                            <td>@lang("Last name:")</td>
                             <td>{{Form::text('last_name')}}</td>
                         </tr>
                         <tr>
-                            <td>Email:</td>
+                            <td>@lang("Email")</td>
                             <td>{{Form::input('email','email')}}</td>
                         </tr>
                         <tr>
-                            <td>Phone:</td>
+                            <td>@lang("Phone")</td>
                             <td>{{Form::text('phone')}}</td>
                         </tr>
                         <tr>
-                            <td>Address:</td>
+                            <td>@lang("Address")</td>
                             <td>{{Form::textarea('address',null,['rows'=>3])}}</td>
                         </tr>
                         <tr>
-                            <td>DOB:</td>
+                            <td>@lang("DOB")</td>
                             <td>{{Form::input('date','dob')}}</td>
                         </tr>
                         <tr>

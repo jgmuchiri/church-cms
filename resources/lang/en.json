@@ -191,7 +191,20 @@
     "(no spaces or special characters)":"(no spaces or special characters)",
     "Display name":"Display name",
     "Submit":"Submit",
-    "New Module":"New Module"
+    "New Module":"New Module",
+    "Registered Users":"Registered Users",
+    "View Birthdays":"View Birthdays",
+    "This month":"This month",
+    "Next month":"Next month",
+    "New User":"New User",
+    "Users":"Users",
+    "Username":"Username",
+    "Firstname":"Firstname",
+    "Lastname":"Lastname",
+    "Register a user":"Register a user",
+    "Username:":"Username:",
+    "Last name:":"Last name:",
+    "First name:":"First name"
 
     
     
