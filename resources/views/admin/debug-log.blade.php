@@ -3,7 +3,7 @@
     Debug log
 @endsection
 @section('crumbs')
-    <a href="#" class="current">Debug log</a>
+    <a href="#" class="current">@lang("Debug log")</a>
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
             {!! Form::open(['url'=>route('empty-debug-log')]) !!}
             <textarea name="logContent" style="width:100%" class="controls" rows="20">{!! $logContent !!}</textarea>
             <br/>
-            <button class="btn btn-danger">Empty log</button>
+            <button class="btn btn-danger">@lang("Empty log")</button>
             {!! Form::close() !!}
         </div>
     </div>
