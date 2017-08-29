@@ -204,7 +204,12 @@
     "Register a user":"Register a user",
     "Username:":"Username:",
     "Last name:":"Last name:",
-    "First name:":"First name"
+    "First name:":"First name",
+    "Theme":"Theme",
+    "Debug Log":"Debug Log",
+    "Kiosk Mode":"Kiosk Mode",
+    "SEO":"SEO",
+    "Gift Options":"Gift Options"
 
     
     
