@@ -3,22 +3,22 @@
     Update Post
 @endsection
 @section('crumbs')
-    <a href="/blog/admin">Blog</a>
-    <a href="#" class="current">Edit blog post</a>
+    <a href="/blog/admin">@lang("Blog")</a>
+    <a href="#" class="current">@lang("Edit blog post")</a>
 @endsection
 @section('content')
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
-                <h5>Blog admin</h5>
+                <h5>@lang("Blog admin")</h5>
                 <div class="buttons">
-                    <a class="btn btn-default btn-mini" href="/blog/admin"><i class="icon-chevron-left"></i> back</a>
+                    <a class="btn btn-default btn-mini" href="/blog/admin"><i class="icon-chevron-left"></i> @lang("back")</a>
 
-                    <a href="/blog" class="btn btn-default btn-mini"><i class="icon-home"></i> Blog Homepage</a>
+                    <a href="/blog" class="btn btn-default btn-mini"><i class="icon-home"></i> @lang("Blog Homepage")</a>
                     <a href="/blog/categories" class="btn btn-info btn-mini"><i class="icon-list-alt"></i>
                         Categories</a>
-                    <a href="/blog/create" class="btn btn-inverse btn-mini"><i class="icon-plus"></i> New
-                        Post</a>
+                    <a href="/blog/create" class="btn btn-inverse btn-mini"><i class="icon-plus"></i> @lang("New
+                        Post")</a>
                 </div>
             </div>
             <div class="widget-content">
@@ -26,20 +26,20 @@
                 <div class="row-fluid">
 
                     <div class="span10">
-                        <label>Title</label>
+                        <label>@lang("Title")</label>
                         {{Form::text('title',null,['required'=>'required'])}}
 
-                        <label>Publish Date</label>
+                        <label>@lang("Publish Date")</label>
                         {{Form::input('date','published_at',date('Y-m-d'),['required'=>'required'])}}
 
-                        <label>Status</label>
+                        <label>@lang("Status")</label>
                         {{Form::select('status',['draft'=>'Draft','published'=>'Published'])}}
 
-                        <label>Body</label>
+                        <label>@lang("Body")</label>
                         {{Form::textarea('body',null,['required'=>'required','class'=>'editor'])}}
                     </div>
                     <div class="span2">
-                        <label>Categories</label>
+                        <label>@lang"(Categories")</label>
                         <?php $cats = DB::table('blog_cats')->get(); ?>
                         @foreach($cats as $cat)
                             @if(strpos($blog->category, $cat->id.'') !== FALSE)
@@ -52,7 +52,7 @@
 
                         <br/>
                         <br/>
-                        <button class="btn btn-default">Submit</button>
+                        <button class="btn btn-default">@lang("Submit")</button>
                     </div>
                 </div>
                 {{Form::close()}}
