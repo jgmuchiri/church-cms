@@ -1,25 +1,25 @@
 @extends('layouts.template')
 @section('title')
-    Events Calendar
+    @lang("Events Calendar")
 @endsection
 @section('crumbs')
-    <a href="#">Events calendar</a>
+    <a href="#">@lang("Events calendar")</a>
 @endsection
 
 @section('content')
     <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
-            <h5>New sermon</h5>
+            <h5>@lang("New sermon")</h5>
 
             <div class="buttons">
                 <a href="/events/church-schedule" class="btn btn-warning btn-mini">
-                    <i class="icon icon-calendar"></i> Sunday Schedule
+                    <i class="icon icon-calendar"></i> @lang("Sunday Schedule")
                 </a>
                 <a class="btn btn-info btn-mini newEventBtn" data-toggle="modal" data-target="#new-event" href="#"><i
                             class="icon-plus"></i>
-                    create event</a>
+                    @lang("create event")</a>
                 <a class="btn btn-inverse btn-mini" href="/events/list"><i class="icon-list"></i>
-                    events list</a>
+                    @Lang("events list")</a>
             </div>
         </div>
         <div class="widget-content">
@@ -67,7 +67,7 @@
                 <span id="eventPage"></span>
                 <span id="editEvent"></span>
                 <span id="deleteEvent"></span>
-                <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-inverse" data-dismiss="modal">@lang("Close")</button>
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">New Event</h4>
+                <h4 class="modal-title" id="myModalLabel">@lang("New Event")</h4>
 
             </div>
             {{Form::open(['url'=>'events','id'=>'new-event-form'])}}
@@ -91,32 +91,32 @@
 
                     <div class="row-fluid">
                         <div class="span6">
-                            <label>Start date</label>
+                            <label>@lang("Start date")</label>
                             {{Form::input('date','start',null,['placeholder'=>'Start','required'=>'required','class'=>'span12'])}}
                         </div>
                         <div class="span6" id="e-start-time">
-                            <label>Start time</label>
+                            <label>@lang("Start time")</label>
                             {{Form::input('time','startTime',null,['placeholder'=>'Start','class'=>'span12'])}}
                         </div>
                     </div>
 
                     <div class="row-fluid">
                         <div class="span6">
-                            <label>Status</label>
+                            <label>@lang("Status")</label>
                             {{Form::select('status',['active'=>'Active','private'=>'Private'],null,['class'=>'span12'])}}
                         </div>
                         <div class="span6">
-                            {{Form::checkbox('allDay')}} <label>All day?</label>
+                            {{Form::checkbox('allDay')}} <label>@lang("All day")?</label>
                         </div>
                     </div>
 
                     <div class="row-fluid">
                         <div class="span6">
-                            <label>End date</label>
+                            <label>@lang("End date")</label>
                             {{Form::input('date','end',null,['placeholder'=>'End','class'=>'span12'])}}
                         </div>
                         <div class="span6" id="e-end-time">
-                            <label>End time</label>
+                            <label>@lang("End time")</label>
                             {{Form::input('time','endTime',null,['placeholder'=>'End','class'=>'span12'])}}
                         </div>
                     </div>
@@ -126,7 +126,7 @@
 
                             <label>
                                 {{Form::checkbox('registration',1,false)}}
-                                This event requires registration?
+                                @lang("This event requires registration")?
                             </label>
                             {{Form::text('form_id',null,['placeholder'=>'Paste Google form link','class'=>'span12', 'style'=>'display:none'])}}<br/>
                             {{Form::text('url',null,['placeholder'=>'Event external link','class'=>'span12'])}}<br/>
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-default">Save</button>
+                <button class="btn btn-default">@lang("Save")</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
                     Close
                 </button>

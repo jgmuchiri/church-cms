@@ -299,7 +299,19 @@
     "404 Error":"404 Error",
     "Page not found":"Page not found",
     "Go back and try a different search term":"Go back and try a different search term",
-    "Be right back":"Be right back"
+    "Be right back":"Be right back",
+    "Events calendar":"Events calendar",
+    "New sermon":"New sermon",
+    "Sunday Sermon":"Sunday Sermon",
+    "create event":"create event",
+    "event list":"event list",
+    "New Event":"New Event",
+    "Start date":"Start date",
+    "Start time":"Start time",
+    "All day":"All day",
+    "End date":"End date",
+    "End time":"End time",
+    "This event requires registration":"This event requires registration"
     
     
     
