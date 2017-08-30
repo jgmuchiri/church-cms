@@ -1,7 +1,7 @@
 @extends('layouts.public')
 @section('content')
     <div class="container">
-        <h2><a href="/blog">Church blog</a></h2>
+        <h2><a href="/blog">@lang("Church blog")</a></h2>
 
         <div class="row">
             <div class="col-md-8">
@@ -10,7 +10,7 @@
                 {!! $article->body !!}
             </div>
             <div class="col-sm-4">
-                <h3 class="">Categories</h3>
+                <h3 class="">@lang("Categories")</h3>
 
                 <ul class="nav nav-stacked">
                     @foreach($cats as $c)
@@ -26,7 +26,7 @@
                 <div class="col-md-8">
 
                     <hr/>
-                    <h3>Comments</h3>
+                    <h3>@lang("Comments")</h3>
 
                     @foreach($comments as $cm)
                         <div style="border-bottom:dotted 1px #ccc;margin-bottom:15px;">
@@ -46,17 +46,17 @@
                     {{$comments->render()}}
 
                     <hr/>
-                    <h3>Post your comment</h3>
+                    <h3>@lang("Post your comment")</h3>
                     @if(Auth::check())
                         {{Form::open(['url'=>'blog/'.$article->id.'/postComment'])}}
                         {{Form::hidden('article_id',$article->id)}}
                         {{Form::hidden('parent_id',0)}}
                         {{Form::textarea('comment',null,['required'=>'required','placeholder'=>'Enter you comments. use @to reply to specific user','rows'=>3])}}
                         <br/>
-                        <button class="btn btn-default">Post</button>
+                        <button class="btn btn-default">@lang("Post")</button>
                         {{Form::close()}}
                     @else
-                        <i>Login to comment</i>
+                        <i>@lang("Login to comment")</i>
                     @endif
                 </div>
             </div>
