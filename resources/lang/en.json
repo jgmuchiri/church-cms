@@ -280,7 +280,13 @@
     "Your password reset link":"Your password reset link",
     "You or someone requested to reset account password. If it was not you, it might be that":"You or someone requested to reset account password. If it was not you, it might be that",
     "there was attempt to access the account. Please login and change your password.":"there was attempt to access the account. Please login and change your password.",
-    "Reset Your Account Password":"Reset Your Account Password"
+    "Reset Your Account Password":"Reset Your Account Password",
+    "Hello":"Hello",
+    "New user has been registered in your Stripe Account":"New user has been registered in your Stripe Account",
+    "You can see their information is your Stripe Account Dashboard":"You can see their information is your Stripe Account Dashboard",
+    "Do not reply":"Do not reply",
+    "System generated email":"System generated email"
+    
     
     
     

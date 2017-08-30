@@ -2,14 +2,14 @@
 
 @section('content')
 
-    <strong>Hello,</strong>
-    <p>New user has been registered in your Stripe Account.</p>
+    <strong>@lang("Hello"),</strong>
+    <p>@lang("New user has been registered in your Stripe Account").</p>
 
-    <p>You can see their information is your Stripe Account Dashboard</p>
+    <p>@lang("You can see their information is your Stripe Account Dashboard")</p>
 
     <p>
         <br/>
-        System generated email. Do not reply.
+        @lang("System generated email"). @lang("Do not reply").
         <br/>
         <strong>{{env('APP_NAME')}}</strong>
     </p>

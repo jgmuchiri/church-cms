@@ -2,9 +2,9 @@
 
 @section('content')
     <h2 style="font-size: 22px;line-height: 28px;margin: 0 0 12px 0;">
-Please confirm your account
+@lang("Please confirm your account")
     </h2>
-    Welcome to {{env('APP_NAME')}}!
+    @lang {{env('APP_NAME')}}!
     <p>Your account has been registered but we need you to take one final step to insure
         someone else is not
         trying to sign up using your email.</p>
