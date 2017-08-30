@@ -1,8 +1,8 @@
 @extends('errors.template')
 @section('title')
-   404 Error!
+   @lang("404 Error")!
 @endsection
 @section('content')
-    <h2>Page not found</h2>
-    Go back and try a different search term
+    <h2>@lang("Page not found")</h2>
+    @lang("Go back and try a different search term")
 @endsection
