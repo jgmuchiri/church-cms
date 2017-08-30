@@ -238,9 +238,14 @@
     "If you did not sign up, please disregard this email or contact us at":"If you did not sign up, please disregard this email or contact us at",
     "Account Access":"Account Access",
     "Login":"Login",
-    "Reset Password":"Reset Password"
-    
-
+    "Reset Password":"Reset Password",
+    "Remember Me":"Remember Me",
+    "Lost password?":"Lost password?",
+    "Recover":"Recover",
+    "Enter your e-mail address below and we will send you instructions how to recover a":"Enter your e-mail address below and we will send you instructions how to recover a",
+    "password.":"password.",
+    "Registration is not allowed at this time.":"Registration is not allowed at this time.",
+    "A&M Digital Technologies":""
     
     
     

@@ -63,19 +63,19 @@
     </div>
     <div class="row-fluid">
         <div class="span4 offset1 checkbox">
-            <input type="checkbox" name="remember"> Remember Me
+            <input type="checkbox" name="remember"> @lang("Remember Me")
         </div>
     </div>
 
     <div class="form-actions">
-        <span class="pull-left"><a href="#" class="flip-link btn btn-info to-recover">Lost password?</a></span>
-        <span class="pull-right"><button class="btn btn-success">Login</button> </span>
+        <span class="pull-left"><a href="#" class="flip-link btn btn-info to-recover">@lang("Lost password?")</a></span>
+        <span class="pull-right"><button class="btn btn-success">@lang("Login")</button> </span>
     </div>
 
     <div class="row-fluid">
         <div class="span6 offset5" style="color:#fff">
             No account?
-            <a href="#" class="to-register btn btn-warning btn-mini">Register</a>
+            <a href="#" class="to-register btn btn-warning btn-mini">@lang("Register")</a>
         </div>
     </div>
 
@@ -84,8 +84,8 @@
     {!! Form::open(['url'=>'password/email/','id'=>'recoverform','class'=>'form-vertical'])!!}
 
     <div class="controls"><p class="">
-            Enter your e-mail address below and we will send you instructions how to recover a
-            password.
+            @lang("Enter your e-mail address below and we will send you instructions how to recover a")
+            @lang("password.")
         </p>
         <div class="main_input_box">
             <span class="add-on bg_lo"><i class="icon-envelope"></i></span>
@@ -98,7 +98,7 @@
                 <a href="#" class="flip-link btn btn-success to-login">&laquo; Back to login</a>
             </span>
         <span class="pull-right">
-            <button class="btn btn-success">Recover</button>
+            <button class="btn btn-success">@lang("Recover")</button>
         </span>
     </div>
     {!! Form::close() !!}
@@ -175,10 +175,10 @@
         <span class="pull-left">
             <a href="#" class="flip-link btn btn-success to-login">&laquo; Back to login</a>
         </span>
-            <span class="pull-right"><button class="btn btn-success">Submit</button> </span>
+            <span class="pull-right"><button class="btn btn-success">@lang("Submit")</button> </span>
         </div>
     @else
-        <div class="alert alert-danger">Registration is not allowed at this time.</div>
+        <div class="alert alert-danger">@lang("Registration is not allowed at this time.")</div>
     @endif
 
     {{Form::close()}}
@@ -194,7 +194,7 @@
         <script>document.write(new Date().getFullYear())</script>
         <a href="#">{{env('APP_NAME')}}</a>
         by
-        <a href="http://amdtllc.com" target="_blank">A&M Digital Technologies</a>
+        <a href="http://amdtllc.com" target="_blank">@lang("A&M Digital Technologies")</a>
     </div>
 </div>
 
