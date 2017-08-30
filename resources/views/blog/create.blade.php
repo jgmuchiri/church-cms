@@ -45,7 +45,7 @@
                         <br/>
                         @endforeach
                         <br/>
-                        <button class="btn btn-default">Submit</button>
+                        <button class="btn btn-default">@lang("Submit")</button>
                         {{Form::close()}}
                     </div>
                 </div>
