@@ -1,15 +1,15 @@
 @extends('emails.template')
 @section('header')
-    <h2>Your password was changed</h2>
+    <h2>@lang("Your password was changed")</h2>
 @endsection
 @section('content')
-    This is to notify you that your account password was recently changed.
+    @lang("This is to notify you that your account password was recently changed.")
 
     <p>
-        If this was not you, please reset your password immediately.
+        @lang("If this was not you, please reset your password immediately.")
 
         <br/>
-        <a href="{{url()->to('/login')}}">Click here to login</a>
+        <a href="{{url()->to('/login')}}">@lang("Click here to login")</a>
     </p>
 
 @endsection

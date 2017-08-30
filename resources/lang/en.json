@@ -272,7 +272,11 @@
     "Verify Account":"Verify Account",
     "Visit site":"Visit site",
     "Please follow the link below to verify your email address":"Please follow the link below to verify your email address",
-    "Your new account is almost ready!":"Your new account is almost ready!"
+    "Your new account is almost ready!":"Your new account is almost ready!",
+    "Your password was changed":"Your password was changed",
+    "This is to notify you that your account password was recently changed.":"This is to notify you that your account password was recently changed.",
+    "If this was not you, please reset your password immediately.":"If this was not you, please reset your password immediately.",
+    "Click here to login":"Click here to login"
     
     
     
