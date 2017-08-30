@@ -2,24 +2,24 @@
 
 @section('content')
 
-    <strong>Hello, {{$first_name}}</strong>
-    <p>Thank you for your generous giving.</p>
+    <strong>@lang("Hello"), {{$first_name}}</strong>
+    <p>@lang("Thank you for your generous giving").</p>
 
-    <p>We have processed your contribution:</p>
+    <p>@lang("We have processed your contribution"):</p>
         <hr/>
     {{$desc}}
        -  {{env('CURRENCY_SYMBOL').number_format($amount,2)}}
 
 <hr/>
-    <p>You can login to your account to see transaction history</p>
+    <p>@lang("You can login to your account to see transaction history")</p>
 
-    Thank you once again.
+    @lang("Thank you once again").
 
     <p>
         <br/>
-        Sincerely,
+        @lang("Sincerely"),
         <br/>
-        Your friends at<br/>
+        @lang("Your friends at")<br/>
         {{env('APP_NAME')}}
     </p>
 @endsection
