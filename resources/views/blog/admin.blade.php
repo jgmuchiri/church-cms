@@ -3,20 +3,20 @@
     Blog Articles
 @endsection
 @section('crumbs')
-    <a href="#" class="current">Blog</a>
+    <a href="#" class="current">@lang(Blog")</a>
 @endsection
 
 @section('content')
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
-                <h5>Blog admin</h5>
+                <h5>@lang("Blog admin")</h5>
                 <div class="buttons">
-                    <a href="/blog" class="btn btn-default btn-mini"><i class="icon-home"></i> Blog Homepage</a>
+                    <a href="/blog" class="btn btn-default btn-mini"><i class="icon-home"></i> @lang("Blog Homepage")</a>
                     <a href="/blog/categories" class="btn btn-info btn-mini"><i class="icon-list-alt"></i>
                         Categories</a>
-                    <a href="/blog/create" class="btn btn-inverse btn-mini"><i class="icon-plus"></i> New
-                        Post</a>
+                    <a href="/blog/create" class="btn btn-inverse btn-mini"><i class="icon-plus"></i> @lang("New
+                        Post")</a>
                 </div>
             </div>
             <div class="widget-content">
@@ -51,10 +51,10 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Title</th>
-                                <th>Body</th>
-                                <th>Posted by</th>
+                                <th>@lang("Date")</th>
+                                <th>@lang("Title")</th>
+                                <th>@lang("Body")</th>
+                                <th>@lang("Posted by")</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -93,7 +93,7 @@
                         <div class="text-center">{{$blog->render()}}</div>
                     @else
                         <hr/>
-                        <div class="alert alert-danger">No records found</div>
+                        <div class="alert alert-danger">@lang("No records found")</div>
                     @endif
             </div>
         </div>
