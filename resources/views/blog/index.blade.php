@@ -31,7 +31,7 @@
                 {{$blog->render()}}
             </div>
             <div class="col-sm-4">
-                <h3 class="">Categories</h3>
+                <h3 class="">@lang("Categories")</h3>
 
                 <ul class="nav nav-stacked">
                     @foreach($cats as $c)
