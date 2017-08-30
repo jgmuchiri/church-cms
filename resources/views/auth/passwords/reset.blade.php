@@ -30,33 +30,18 @@
                     <input type="hidden" name="token" class="form-control" value="{{ $token }}">
 
                     <div>
-<<<<<<< HEAD
-                        Email
+                        @lang("Email")
                         <input type="email" name="email" class="form-control" value="{{ old('email') }}">
                     </div>
 
                     <div>
-                        Password
+                        @lang("Password")
                         <input type="password" class="form-control" name="password">
                     </div>
 
                     <div>
-                        Confirm Password
-                        <input type="password" class="form-control" name="password_confirmation">
-=======
-                        @lang("Email")
-                        <input type="email" name="email" value="{{ old('email') }}">
-                    </div>
-
-                    <div>
-                        @lang("Password")
-                        <input type="password" name="password">
-                    </div>
-
-                    <div>
                         @lang("Confirm Password")
-                        <input type="password" name="password_confirmation">
->>>>>>> translated reset.blade.php
+                        <input type="password" class="form-control" name="password_confirmation">
                     </div>
 
                     <div>
