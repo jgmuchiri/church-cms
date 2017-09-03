@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-md-9">
                 <br/>
-                <h3><i class="icon-calendar"></i> Events Calendar</h3>
+                <h3><i class="icon-calendar"></i> @lang("Events Calendar")</h3>
 
                 <div id='calendar'></div>
             </div>
 
             <div class="col-md-2 col-md-offset-1">
-                <h4>Upcoming events</h4>
+                <h4>@lang("Upcoming events")</h4>
                 <ul class="list-group">
                     @foreach($latestEvents as $event)
                         <li class="list-group-item">
@@ -116,16 +116,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i
-                                    class="icon-times"></i> </span> <span class="sr-only">close</span></button>
+                                    class="icon-times"></i> </span> <span class="sr-only">@lang("close")</span></button>
                     <h4 id="modalTitle" class="modal-title"></h4>
                     <span id="modalDate"></span>
                 </div>
                 <div id="modalBody" class="modal-body"></div>
                 <div class="modal-footer">
-                    <a type="button" class="btn btn-primary link">Open</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <a class="btn btn-primary" id="eventUrl" target="_blank">Event Page</a>
-                    <a class="btn btn-primary" id="eventReg">Register to Event</a>
+                    <a type="button" class="btn btn-primary link">@lang("Open")</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@lang("Close")</button>
+                    <a class="btn btn-primary" id="eventUrl" target="_blank">@lang("Event Page")</a>
+                    <a class="btn btn-primary" id="eventReg">@lang("Register to Event")</a>
                 </div>
             </div>
         </div>
