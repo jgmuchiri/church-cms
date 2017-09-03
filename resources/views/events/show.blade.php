@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-11 col-md-offset-1">
-                <a href="/events"><i class="icon-chevron-circle-left"></i> back to calendar</a>
+                <a href="/events"><i class="icon-chevron-circle-left"></i> @lang("back to calendar")</a>
                 <h3>{{$event->title}}</h3>
                 <hr/>
 
