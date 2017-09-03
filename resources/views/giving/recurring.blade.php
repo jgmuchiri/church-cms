@@ -1,9 +1,9 @@
 @extends('layouts.template')
 @section('title')
-    Recurring Gifts
+    @lang("Recurring Gifts")
 @endsection
 @section('crumbs')
-    <a href="#">Recurring gifts</a>
+    <a href="#">@lang("Recurring gifts")</a>
 @endsection
 
 @section('content')
