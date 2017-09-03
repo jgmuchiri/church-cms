@@ -3,15 +3,15 @@
     Events list
 @endsection
 @section('crumbs')
-    <a href="/events/admin">Events</a>
-    <a href="#">Events list</a>
+    <a href="/events/admin">@lang("Events")</a>
+    <a href="#">@lang("Events list")</a>
 @endsection
 
 @section('content')
 
     <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
-            <h5>Events list</h5>
+            <h5>@lang("Events list")</h5>
 
             <div class="buttons">
                 <a class="btn btn-info btn-mini" href="/events/admin"><i class="icon-chevron-left"></i>
@@ -53,9 +53,9 @@
                                 <i class="icon-trash-o"></i> </a>
                         </td>
                         <td>
-                            <strong class="label label-info">Start:</strong>
+                            <strong class="label label-info">@lang("Start"):</strong>
                             <span class="label label-success">{{date('d, M y H:i',strtotime($event->start))}}</span>
-                            <strong class="label label-info">End: </strong>
+                            <strong class="label label-info">@lang("End"): </strong>
                             <span class="label label-success">{{date('d, M y H:i',strtotime($event->end))}}</span>
                         </td>
                         <td>
