@@ -1,15 +1,15 @@
 @extends('layouts.template')
 @section('title')
-    Church Schedule
+    @lang("Church Schedule")
 @endsection
 @section('crumbs')
-    <a href="#" class="current">Church schedule</a>
+    <a href="#" class="current">@lang("Church Schedule")</a>
 @endsection
 
 @section('content')
     <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
-            <h5>Regular service schedules</h5>
+            <h5>@lang("Regular service schedules")</h5>
 
             <div class="buttons">
                 <a class="btn btn-default btn-mini" href="/events/admin"><i class="icon-chevron-left"></i>
@@ -20,11 +20,11 @@
             <table class="table table-bordered data-table selec2">
                 <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Start</td>
-                    <td>End</td>
-                    <td>Desc</td>
-                    <td>Order</td>
+                    <td>@lang("Name")</td>
+                    <td>@lang("Start")</td>
+                    <td>@lang("End")</td>
+                    <td>@lang("Desc")</td>
+                    <td>@lang("Order")</td>
                     <td></td>
                 </tr>
                 </thead>
