@@ -112,10 +112,6 @@
     "Account has been registered successfully":"Account has been registered successfully",
     "Account confirmation email has been sent":"Account confirmation email has been sent",
     "Profile updated!":"Profile updated!",
-<<<<<<< HEAD
-    "Roles updated":"Roles updated"
-}
-=======
     "Roles updated":"Roles updated",
     "Account":"Account",
     "Registered":"Registered",
@@ -320,9 +316,4 @@
     "Register to Event":"Register to Event",
     "Events list":"Events list",
     "Recurring Gifts":"Recurring Gifts"
-    
-    
-    
-    
 }
->>>>>>> trans;ated profile.blade.php
