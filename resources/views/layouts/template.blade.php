@@ -28,7 +28,7 @@
     @endif
     <script>
         var curPage = "{{request()->segment(1)}}";
-        //var CRSF_TOKEN = '{{csrf_token()}}';
+        var CRSF_TOKEN = '{{csrf_token()}}';
     </script>
 </head>
 <body>
@@ -91,7 +91,7 @@
                 <li><a href="/roles"><i class="icon-key"></i> Roles</a></li>
                 <li><a href="/menu"><i class="icon-list"></i> Menu</a></li>
                 <li><a href="/theme"><i class="icon-th"></i>Change theme</a></li>
-                <li><a href="/themes"><i class="icon-th"></i> Gift Options</a></li>
+                <li><a href="/giving/gift-options"><i class="icon-th"></i> Gift Options</a></li>
                 <li><a href="/debug-log"><i class="icon-question-sign"></i> Debug logs</a></li>
             </ul>
         </li>
@@ -179,7 +179,7 @@
                 <li><a href="/roles"><i class="icon-key"></i> Roles</a></li>
                 <li><a href="/menu"><i class="icon-list"></i> Menu</a></li>
                 <li><a href="/theme"><i class="icon-th"></i> Change themes</a></li>
-                <li><a href="/themes"><i class="icon-th"></i> Gift Options</a></li>
+                <li><a href="/giving/gift-options"><i class="icon-th"></i> Gift Options</a></li>
                 <li><a href="/debug-log"><i class="icon-question-sign"></i> Debug logs</a></li>
             </ul>
         </li>

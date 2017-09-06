@@ -6,7 +6,7 @@
  * @link        https://amdtllc.com
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Theme
 {
@@ -16,7 +16,7 @@ class Theme
     {
         $theme_id = App\Models\Settings::get_option('site_theme');
         if ($theme_id !== '') {
-            $this->theme = DB::table('themes')->whereId($theme_id)->first();
+            $this->theme = \App\Models\Themes::whereId($theme_id)->first();
         } else {
             $this->theme = 'default';
         }
@@ -26,7 +26,7 @@ class Theme
      * @param $opt
      * @return null
      */
-    function theme($opt)
+    function themeOpts($opt)
     {
         $theme = $this->theme;
         if ($theme == 'default' || $theme ==null)
@@ -121,7 +121,7 @@ function theme($opt = '')
     if ($opt == '') {
         return $theme;
     } else {
-        return $theme->theme($opt);
+        return $theme->themeOpts($opt);
     }
 
 }
@@ -139,5 +139,3 @@ if (!function_exists('str_clean')) {
         return strtolower(trim($string, '-'));
     }
 }
-?>
-

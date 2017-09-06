@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -66,23 +66,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-
-//        $user = User::create([
-//            'username' => $data['username'],
-//            'name' => $data['name'],
-//            'email' => $data['email'],
-//            'password' => bcrypt($data['password']),
-//            'confirmation_code' => $data['confirmation_code'],
-//            'confirmed' => 0
-//        ]);
-
         $input = array(
             'username' => $data['username'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'phone'=>$data['phone'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
             'confirmation_code' => str_random(28),
             'confirmed' => 0,
@@ -92,60 +81,13 @@ class RegisterController extends Controller
 
         //assign role
         $user = User::find($user_id);
-        $user->roles()->attach(env('DEFAULT_ROLE'));
+        $user->roles()->attach(2);
 
         //send activation notice
-        User::activationNotice($input);
+        //todo
 
         return $user;
     }
-
-    function registerAjax(Request $request)
-    {
-        $rules = [
-            'username' => 'required|min:4|unique:users',
-            'phone'=>'required',
-            'email' => 'required|email|unique:users',
-            'address'=>'required',
-            'password'=>'required|min:6'
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-
-            //return redirect()->back()->withErrors($validator)->withInput();
-            return $validator->errors();
-        }
-        //register
-        $request->confirmation_code = str_random(30);
-        $data = array(
-            'username' => $request['username'],
-            'first_name' => $request['first_name'],
-            'last_name' => $request['last_name'],
-            'email' => $request['email'],
-            'phone'=>$request->phone,
-            'password' => bcrypt($request['password']),
-            'confirmation_code' => $request->confirmation_code,
-            'address'=>$request->address,
-            'confirmed' => 1,
-            'created_at' => date('Y-m-d H:i:s')
-        );
-        $user_id = DB::table('users')->insertGetId($data);
-
-        //assign role
-        $user = User::find($user_id);
-        if($request->has('role'))
-            $user->roles()->attach($request->role);
-        else
-            $user->roles()->attach(3);
-
-        //send activation notice
-        //self::activationNotice($request);
-
-        //login
-        //flash()->info('Your account was created');
-        return json_encode(['message'=>__("success")]);
-    }
-
 
     /**
      * @param $confirmation_code
@@ -191,11 +133,11 @@ class RegisterController extends Controller
         }
 
         if ($user->confirmation_code == null) {
-            $user->confirmation_code =str_random(28);
+            $user->confirmation_code = str_random(28);
             $user->save();
         }
         Mail::send('emails.accounts-verify', ['confirmation_code' => $user->confirmation_code], function ($m) use ($request, $user) {
-            $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $m->from(env('EMAIL_FROM_ADDRESS'), env('EMAIL_FROM_NAME'));
             $m->to($user->email, $user->name)->subject(__("Verify your email address"));
         });
         flash()->success(__("Please check  email to verify your account"));

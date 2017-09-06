@@ -14,7 +14,7 @@
 
 @section('footer')
 
-    <a href="{{url()->to('/')}}">
-       Visit site
+    <a href="{{ url('register/verify/' . $confirmation_code) }}">
+       Veriify account
     </a>
     @endsection

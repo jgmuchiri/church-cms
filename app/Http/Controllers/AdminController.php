@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin');
+        $this->middleware('role:admin',['only'=>['settings','backupEnv','updateEnv','uploadLogo']]);
         $this->middleware('permission:read-logs',['only'=>['debug']]);
         $this->middleware('permission:delete-logs',['only'=>['emptyDebug']]);
     }

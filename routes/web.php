@@ -1,10 +1,20 @@
 <?php
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-
+Route::auth();
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+
+//    Route::get('/login', function () {
+//        if (Auth::check()) {
+//            return redirect('/dashboard');
+//        }
+//        return view('auth.auth');
+//    });
+//
+//    Route::post('login', 'Auth\AuthController@login');
+//
 
     if (Request()->segment(3) == "delete") {
         return view('errors.202');
@@ -13,22 +23,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
 
-    Route::get('/login', function () {
-        if (Auth::check()) {
-            return redirect('/dashboard');
-        }
-        return view('auth.auth');
-    });
-    Route::post('login', 'Auth\AuthController@login');
-
-    // Registration Routes...
-    Route::get('register', 'Auth\AuthController@showRegistrationForm');
-    Route::post('register', 'Auth\AuthController@createUser');
     Route::get('register/confirm', 'Auth\AuthController@resendConfirmation');
     Route::get('register/verify/{confirmationCode}', [
         'as' => 'confirmation_path',
         'uses' => 'Auth\AuthController@confirmAccount'
     ]);
+    Route::post('registerUser', 'UserController@registerUser');
 
     //public routes//
     Route::get('giving', 'HomeController@giving');
@@ -103,7 +103,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('{id}', 'UserController@updateUser');
         Route::post('{id}/roles', 'UserController@updateUserRoles');
     });
-    Route::post('registerUser', 'UserController@registerUser');
 
     //admin routes
 

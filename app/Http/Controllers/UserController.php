@@ -21,7 +21,14 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth']);
+        $this->middleware('auth');
+        $this->middleware('permission:read-users',['only'=>['users','user','findUser']]);
+        $this->middleware('permission:create-users',['only'=>['registerUser']]);
+        $this->middleware('permission:update-users',['only'=>['updateUser','updateUserRoles']]);
+
+        $this->middleware('permission:read-profile',['only'=>['profile']]);
+        $this->middleware('permission:update-profile',['only'=>['updateProfile']]);
+        $this->middleware('permission:read-birthdays',['only'=>['birthdays']]);
 
     }
 
@@ -100,9 +107,9 @@ class UserController extends Controller
                 $m->to($request['email'], $request['first_name'])->subject('Your new account');
             });
 
-        flash()->success(__("Account has been registered successfully. Account confirmation email has been sent."));
+        flash()->success(__("Account has been registered successfully").' '.__("Account confirmation email has been sent"));
 
-        return redirect()->back();
+        return redirect('users');
     }
 
     /**

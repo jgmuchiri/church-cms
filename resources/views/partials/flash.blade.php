@@ -1,8 +1,8 @@
 <script src="/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 <script>
     function notice(errorNote, type) {
-        if(type==="error"){
-            type='danger';
+        if (type === "error") {
+            type = 'danger';
         }
         $.notify({
             icon: 'icon-check',

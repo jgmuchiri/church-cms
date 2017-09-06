@@ -22,6 +22,30 @@ return [
             'blog'=>'c,r,u,d',
             'logs'=>'c,r,u,d',
         ],
+        'manager'=>[
+            'users' => 'c,r,u,d',
+            'user' => 'c,r,u,d',
+            'profile' => 'c,r,u,d',
+            'ministries'=>'c,r,u,d',
+            'ministry'=>'c,r,u,d',
+            'events'=>'c,r,u,d',
+            'event'=>'c,r,u,d',
+            'sermons'=>'c,r,u,d',
+            'sermon'=>'c,r,u,d',
+            'giving'=>'c,r,u,d',
+            'gifts'=>'c,r,u,d',
+            'settings'=>'c,r,u,d',
+            'birthdays'=>'c,r,u,d',
+            'messaging'=>'c,r,u,d',
+            'templates'=>'c,r,u,d',
+            'themes'=>'r,u',
+            'blog'=>'c,r,u,d',
+            'logs'=>'c,r,u,d',
+        ],
+        'user'=>[
+            'profile'=>'c,r,u,d',
+            'giving'=>'r,u'
+        ]
     ],
     'permissions_map' => [
         'c' => 'create',

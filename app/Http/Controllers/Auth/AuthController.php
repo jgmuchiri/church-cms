@@ -36,10 +36,10 @@ class AuthController extends Controller
      */
     function login(Request $request){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('dashboard');
+            return redirect('account');
         }
 
-        flash()->error('hotni');
+        flash()->error(__('Username or password is incorrect'));
         return redirect()->back();
     }
 
@@ -316,7 +316,7 @@ class AuthController extends Controller
         }
 
         if ($user->confirmed == 1) {//check if its verified
-            flash()->success(__('This account is already verified'));
+            flash()->success(__("This account is already verified"));
             return redirect('account');
         }
 
@@ -329,6 +329,6 @@ class AuthController extends Controller
             $m->to($user->email, $user->first_name)->subject(__("Verify your email address"));
         });
         flash()->success(__("Please check  email to verify your account"));
-        return redirect('dashboard');
+        return redirect()->back();
     }
 }
