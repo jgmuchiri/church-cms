@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "Username or password incorrect":"Username or password incorrect",
     "No confirmation code found":"No confirmation code found",
     "Confirmation code is invalid or expired":"Confirmation code is invalid or expired",
@@ -114,3 +115,7 @@
     "Profile updated!":"Profile updated!",
     "Roles updated":"Roles updated"
 }
+=======
+    
+}
+>>>>>>> add translation
