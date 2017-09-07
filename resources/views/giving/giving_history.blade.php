@@ -2,11 +2,11 @@
     <table class="table table-bordered data-table">
         <thead>
         <tr>
-            <th>Date</th>
-            <th>ID</th>
-            <th>Amount</th>
-            <th>Item</th>
-            <th>Desc</th>
+            <th>@lang("Date")</th>
+            <th>@lang("ID")</th>
+            <th>@lang("Amount")</th>
+            <th>@lang("Item")</th>
+            <th>@lang("Description")</th>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +25,6 @@
 
 @else
     <hr/>
-    <div class="alert alert-danger">No records found</div>
+    <div class="alert alert-danger">@lang("No records found")</div>
 @endif
 @include('partials.datatables')

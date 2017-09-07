@@ -7,8 +7,8 @@
                 <i class="icon-credit-card"></i>
             </div>
 
-            <h2> Give online <i class="fa fa-hand-o-up"></i></h2>
-            <h4 class="text-yellow">we accept</h4>
+            <h2> @lang("Give online") <i class="fa fa-hand-o-up"></i></h2>
+            <h4 class="text-yellow">@lang("we accept")</h4>
 
             <i class="fa fa-cc-mastercard fa-2x"></i>
             <i class="fa fa-cc-visa fa-2x"></i>
@@ -23,24 +23,24 @@
             <div class="icon-big icon-warning text-center">
                 <i class="icon-calendar"></i>
             </div>
-            <h2> Events</h2>
-            <h3 class="text-yellow">register for upcoming events</h3>
+            <h2> @lang("Events")</h2>
+            <h3 class="text-yellow">@lang("register for upcoming events")</h3>
         </div>
 
         <div class="col-sm-4" onclick="window.location.href='/sermons'">
             <div class="icon-big icon-warning text-center">
                 <i class="icon-calendar"></i>
             </div>
-            <h2> Sermons</h2>
-            <h3 class="text-yellow">Browse recent sermons</h3>
+            <h2> @lang("Sermons")</h2>
+            <h3 class="text-yellow">@lang("Browse recent sermons")</h3>
         </div>
 
         <div class="col-sm-4" onclick="window.location.href='/sermons'">
             <div class="icon-big icon-warning text-center">
                 <i class="icon-calendar"></i>
             </div>
-            <h2> Ministries</h2>
-            <h3 class="text-yellow">Become a part of the family</h3>
+            <h2> @lang("Ministries")</h2>
+            <h3 class="text-yellow">@lang("Become a part of the family")</h3>
         </div>
 
     </div>
@@ -54,20 +54,20 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Thank you!</h4>
-                Complete the form below and submit
+                <h4 class="modal-title" id="myModalLabel">@lang("Thank you!")</h4>
+                @lang("Complete the form below and submit")
             </div>
             @include('partials.demo-warning')
             {!! Form::open(['url'=>'/giving/guest-giving','id'=>'payment-form']) !!}
             {!! Form::hidden('interval','once') !!}
             <div class="modal-body charge-content">
                 <div class="input-group">
-                    <span class="input-group-addon text-right">Amount:</span>
-                    {!! Form::text('amount',null,['placeholder'=>'Amount','required'=>'required','class'=>'form-control']) !!}
+                    <span class="input-group-addon text-right">@lang("Amount"):</span>
+                    {!! Form::text('amount',null,['placeholder'=>__("Amount"),'required'=>'required','class'=>'form-control']) !!}
                 </div>
                 <br/>
                 <div class="input-group">
-                    <span class="input-group-addon text-right">Designation:</span>
+                    <span class="input-group-addon text-right">@lang("Designation"):</span>
                     {{Form::select('gift_options_id',DB::table('gift_options')->whereActive(1)->pluck('name','id'),null,['class'=>'form-control','style'=>'width:360px'])}}
                     <span class="input-group-addon cursor gift-option-help">
                         <a href="#" class=""> <i class="fa fa-question"></i></a>
@@ -78,9 +78,10 @@
                 <button class="btn btn-success btn-xlg charge"
                         data-key="{{env('APP_ENV')=='local'?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}"
                         data-currency="{{env('CURRENCY')}}"
-                        data-name="Online Contribution"
-                        data-description="Online Contribution"
-                        data-label="Give online"><i class="icon-credit-card"></i> Process Payment
+                        data-name="@lang("Online Contribution")"
+                        data-description="@lang("Online Contribution")"
+                        data-label="Give online"><i class="icon-credit-card"></i>
+                    @lang("Process Payment")
                 </button>
             </div>
             {!! Form::close() !!}
@@ -99,7 +100,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang("Close")</button>
             </div>
         </div>
     </div>

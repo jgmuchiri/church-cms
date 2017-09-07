@@ -54,7 +54,7 @@
             <td class="text-center">
 
                 <h2>{{$_GET['y']}}</h2>
-                <h3>Yearly Contributions</h3>
+                <h3>@lang("Yearly Contributions")</h3>
             </td>
             <td>
                 <img class="thumbnail" src="/images/admin-logo.png" style="background:#333;padding:10px;"/>
@@ -80,10 +80,10 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Date</th>
-                <th>Item</th>
-                <th>Desc</th>
-                <th>Amount</th>
+                <th>@lang("Date")</th>
+                <th>@lang("Item")</th>
+                <th>@lang("Description")</th>
+                <th>@lang("Amount")</th>
             </tr>
             </thead>
             <tbody>
@@ -101,7 +101,7 @@
 
     @else
         <hr/>
-        <div class="alert alert-danger">No records found</div>
+        <div class="alert alert-danger">@lang("No records found")</div>
     @endif</div>
 
 </body>

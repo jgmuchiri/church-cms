@@ -1,15 +1,15 @@
 @extends('layouts.template')
 @section('title')
-    Knowledge Base Categories
+   @lang("Knowledge case categories")
 @endsection
 @section('content')
 
     <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon"></i></span>
-            <h5>Knowledge case categories</h5>
+            <h5>@lang("Knowledge case categories")</h5>
             <div class="buttons">
                 <a href="/support/questions" class="btn btn-info btn-mini">
-                    <i class="icon-chevron-left"></i> Back
+                    <i class="icon-chevron-left"></i> @lang("Back")
                 </a>
             </div>
         </div>
@@ -19,10 +19,10 @@
                 <div class="span6">
                     <table class="table table-bordered data-table selec2">
                         <tr>
-                            <th>Name</th>
-                            <th>Desc</th>
-                            <th>Icon</th>
-                            <th>Order</th>
+                            <th>@lang("Name")</th>
+                            <th>@lang("Description")</th>
+                            <th>@lang("Icon")</th>
+                            <th>@lang("Order")</th>
                         </tr>
                         @foreach($cats as $cat)
                             <tr>
@@ -37,28 +37,28 @@
                 <div class="span6">
                     @if(isset($_GET['cat']))
 
-                        <h4 class="title">Update Category</h4>
+                        <h4 class="title">@lang("Update Category")</h4>
                         <?php
                         $myCat = DB::table('kb_cats')->where('id', $_GET['cat'])->first();
                         $button = "Update";
                         ?>
                         {{Form::model($myCat,['url'=>'support/categories/'.$myCat->id,'method'=>'patch'])}}
                     @else
-                        <h4 class="title">New Category</h4>
+                        <h4 class="title">@lang("New Category")</h4>
                         {{Form::open(['url'=>'support/categories'])}}
                         <?php $button = "Submit"; ?>
                     @endif
 
-                    <label>Name</label>
+                    <label>@lang("Name")</label>
                     {{Form::text('name',null,['required'=>'required'])}}
 
-                    <label>Desc</label>
+                    <label>@lang("Description")</label>
                     {{Form::textarea('desc',null,['rows'=>3])}}
 
-                    <label>Order</label>
+                    <label>@lang("Order")</label>
                     {{Form::input('number','order',null,['class'=>'form-control'])}}
 
-                    <label>Display icon</label>
+                    <label>@lang("Display icon")</label>
                     <div class="row-fluid">
                         <div class="span4">
                             <select name="icon" class="span12 select2">

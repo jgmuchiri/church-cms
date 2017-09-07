@@ -9,8 +9,8 @@
         <thead>
         <tr>
             <th></th>
-            <th>Name</th>
-            <th>Email</th>
+            <th>@lang("Name")</th>
+            <th>@lang("Email")</th>
         </tr>
         </thead>
         <tbody class="list">

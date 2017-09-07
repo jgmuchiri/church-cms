@@ -1,22 +1,22 @@
 @extends('layouts.template')
 @section('title')
-    Templates
+    @lang("Templates")
 @endsection
 
 @section('content')
 
-    <a href="/messaging/admin" class="btn btn-default"><i class="icon-inbox"></i> Messaging</a>
-    <a href="/templates/create" class="btn btn-default"><i class="icon-plus"></i> New template</a>
+    <a href="/messaging/admin" class="btn btn-default"><i class="icon-inbox"></i> @lang("Messaging")</a>
+    <a href="/templates/create" class="btn btn-default"><i class="icon-plus"></i> @lang("New template")</a>
     <div class="widget-box">
         <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
-            <h5>Message templates</h5>
+            <h5>@lang("Message templates")</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-striped table-responsive" id="table">
                 <tr>
-                    <th>Name</th>
-                    <th>Desc</th>
-                    <td>Status</td>
+                    <th>@lang("Name")</th>
+                    <th>@lang("Description")</th>
+                    <td>@lang("Status")</td>
                     <td></td>
                 </tr>
                 @foreach($templates as $temp)

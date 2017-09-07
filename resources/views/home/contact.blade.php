@@ -3,7 +3,7 @@
 @section('content')
     <section id="layout-content">
         <div class="container">
-            <div class="h2 title bg-success">Contact us</div>
+            <div class="h2 title bg-success">@lang("Contact us")</div>
 
             <div class="row">
                 <div class="col-md-7">
@@ -25,7 +25,7 @@
                                     });
                                     places.push(results[0].geometry.location);
                                 } else {
-                                    alert("Geocode was not successful for the following reason: " + status);
+                                    notify("Geocode was not successful for the following reason: " + status);
                                 }
                             });
 
@@ -51,25 +51,25 @@
                     {!! Form::open(['url'=>"contact"]) !!}
                     <table class="table table-responsive no-border">
                         <tr>
-                            <td>Name:</td>
+                            <td>@lang("Name"):</td>
                             <td>{{Form::text('name',null,['required'=>'required','class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
-                            <td>Email:</td>
+                            <td>@lang("Email"):</td>
                             <td>{{Form::input('email','email',null,['required'=>'required','class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
-                            <td>Subject:</td>
+                            <td>@lang("Subject"):</td>
                             <td>{{Form::text('subject',null,['required'=>'required','class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
-                            <td>Message:</td>
+                            <td>@lang("Message"):</td>
                             <td>{{Form::textarea('message',null,['required'=>'required','rows'=>3,'class'=>'form-control'])}}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <button class="btn btn-default"><i class="fa fa-paper-plane-o"></i> Send</button>
+                                <button class="btn btn-default"><i class="fa fa-paper-plane-o"></i> @lang("Send")</button>
                             </td>
                         </tr>
                     </table>

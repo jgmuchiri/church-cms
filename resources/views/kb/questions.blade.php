@@ -1,19 +1,19 @@
 @extends('layouts.template')
 @section('title')
-    Support admin
+    @lang("Support admin")
 @endsection
 @section('content')
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title bg_lg"><span class="icon"><i class="icon-question-sign"></i></span>
-                <h5>Support topics</h5>
+                <h5>@lang("Support topics")</h5>
                 <div class="buttons">
-                    <a href="/support/categories" class="btn btn-info btn-mini"><i class="icon-list"></i> Knowledge Base
-                        Categories</a>
+                    <a href="/support/categories" class="btn btn-info btn-mini"><i class="icon-list"></i> @lang("Knowledge Base")
+                        @lang("Categories")</a>
                     <a href="/support/create" class="btn btn-info btn-mini">
-                        <i class="icon-plus"></i> New Support Topic</a>
+                        <i class="icon-plus"></i> @lang("New support topic")</a>
                     <a href="/support" class="btn btn-primary btn-mini">
-                        <i class="icon-home"></i> User view</a>
+                        <i class="icon-home"></i> @lang("User view")</a>
                 </div>
             </div>
             <div class="widget-content">
@@ -22,11 +22,11 @@
 
                         <thead>
                         <tr>
-                            <th>Question</th>
-                            <th>Description</th>
-                            <th>Date Created</th>
-                            <th>Date Updated</th>
-                            <th>Status</th>
+                            <th>@lang("Question")</th>
+                            <th>@lang("Description")</th>
+                            <th>@lang("Date Created")</th>
+                            <th>@lang("Date Updated")</th>
+                            <th>@lang("Status")</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -39,9 +39,13 @@
                                 <td>{{$q->updated_at}}</td>
                                 <td>
                                     @if($q->active ==1)
-                                        <i class="label label-success">published</i>
+                                        <i class="label label-success">
+                                            @lang("published")
+                                        </i>
                                     @else
-                                        <i class="label label-danger">pending</i>
+                                        <i class="label label-danger">
+                                            @lang("pending")
+                                        </i>
                                     @endif
                                 </td>
                                 <td>

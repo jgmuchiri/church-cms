@@ -16,13 +16,13 @@
                 <div class="row">
                     <div class="col-sm-6">
                         @if($event->start)
-                            From: <i class="icon-clock-o"></i>
+                            @lang("From"): <i class="icon-clock-o"></i>
                             {{date('d-M-Y H:ia',strtotime($event->start))}}
                         @endif
                     </div>
                     <div class="col-sm-6">
                         @if($event->end)
-                            To: <i class="icon-clock-o"></i>
+                            @lang("To"): <i class="icon-clock-o"></i>
                             {{date('d-M-Y H:ia',strtotime($event->end))}}
                         @endif
                     </div>
@@ -30,14 +30,13 @@
                 <p> {!! $event->desc !!}</p>
                 <br/>
                 @if($event->url)
-                    <a href="{{$event->url}}" target="_blank"><i class="icon-external-link"></i> More...</a>
+                    <a href="{{$event->url}}" target="_blank"><i class="icon-external-link"></i> @lang("More")...</a>
                 @endif
 
                 <p><br/>
                     @if($event->registration)
-                        <a href="/events/{{$event->id}}/register"><i class="icon-pencil-square-o"></i> Register for
-                            this
-                            event</a>
+                        <a href="/events/{{$event->id}}/register"><i class="icon-pencil-square-o"></i>
+                            @lang("Register for this event")</a>
                     @endif
                 </p>
             </div>

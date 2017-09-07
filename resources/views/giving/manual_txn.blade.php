@@ -1,19 +1,19 @@
 {!! Form::open(['url'=>'/giving/give','id'=>'payment-form']) !!}
 <table>
     <tr>
-        <td class="text-right">Amount:</td>
+        <td class="text-right">@lang("Amount"):</td>
         <td>{!! Form::text('amount',null,['placeholder'=>'Amount','required'=>'required']) !!}</td>
     </tr>
     <tr>
-        <td class="text-right">Designation:</td>
+        <td class="text-right">@lang("Designation"):</td>
         <td>  {{Form::select('gift_options_id',\App\Models\Giving\GiftOptions::whereActive(1)->pluck('name','id'),null,['class'=>'select2'])}}
 
         </td>
     </tr>
     <tr>
-        <td class="text-right">Recurrence:</td>
+        <td class="text-right">@lang("Recurrence"):</td>
         <td> <br/>
-            {!! Form::select('interval',['once'=>'One time','week'=>'Weekly','month'=>'Monthly','year'=>'Yearly']) !!}
+            {!! Form::select('interval',['once'=>__("One time"),'week'=>__("Weekly"),'month'=>__("Monthly"),'year'=>__("Yearly")]) !!}
         </td>
     </tr>
     <tr>
@@ -23,9 +23,9 @@
                     data-key="{{env('APP_ENV')=='local'?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}"
                     data-email="{{$user->email}}"
                     data-currency="{{env('CURRENCY')}}"
-                    data-name="Online Contribution"
-                    data-description="Online Contribution"
-                    data-label="Give online"><i class="icon-credit-card"></i> Process Payment
+                    data-name="@lang("Online Contribution")"
+                    data-description="@lang("Online Contribution")"
+                    data-label="@lang("Give online")"><i class="icon-credit-card"></i> @lang("Process Payment")
             </button>
         </td>
     </tr>

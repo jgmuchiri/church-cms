@@ -11,19 +11,19 @@
         <div class="widget-title"><span class="icon">
                 <a href="/giving/gifts"><i class="icon-chevron-left"></i></a>
             </span>
-            <h5>Cancellations will take effect on the next billing cycle.</h5>
+            <h5>@lang("Cancellations will take effect on the next billing cycle")</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table selec2">
 
                 <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Subscription ID</th>
-                    <th>Amount</th>
-                    <th>Interval</th>
-                    <th>Ends On</th>
-                    <th>Status</th>
+                    <th>@lang("Date")</th>
+                    <th>@lang("Subscription ID")</th>
+                    <th>@lang("Amount")</th>
+                    <th>@lang("Interval")</th>
+                    <th>@lang("Ends On")</th>
+                    <th>@lang("Status")</th>
                     <th data-orderable="false"></th>
                 </tr>
                 </thead>
@@ -40,7 +40,7 @@
                             {{--<a href="/giving/plan/{{$gift->id}}/suspend" class="label label-warning"><i class="icon-warning"></i> Suspend</a>--}}
                             @if($gift->status =="active")
                                 <a href="/giving/plan/{{$gift->id}}/cancel" class="label label-danger"><i
-                                            class="icon-times"></i> Cancel</a>
+                                            class="icon-times"></i> @lang("Cancel")</a>
                             @endif
                         </td>
                     </tr>

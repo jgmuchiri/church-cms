@@ -1,9 +1,9 @@
 @extends('layouts.template')
 @section('title')
-    Gifts
+    @lang("Gifts")
 @endsection
 @section('crumbs')
-    <a href="#">Gifts</a>
+    <a href="#">@lang("Gifts")</a>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                     </div>
                     <div class="right">
                         <strong> {{env('CURRENCY_SYBMBOL').App\Models\Billing\Transactions::sum('amount')}} </strong>
-                        Contributions
+                        @lang("Contributions")
                     </div>
                 </li>
                 <li>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="right">
                         <strong>  {{App\Models\Billing\Transactions::count()}}</strong>
-                        Transactions
+                        @lang("Transactions")
                     </div>
                 </li>
                 <li><a href="/giving/recurring">
@@ -33,7 +33,7 @@
                             <i class="icon-refresh icon-4x"></i>
                         </div>
                         <div class="right">
-                            <span>Recurring gifts</span>
+                            <span>@lang("Recurring gifts")</span>
                         </div>
                     </a>
                 </li>
@@ -44,10 +44,10 @@
 
     <div class="widget-box">
         <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
-            <h5>Giving history</h5>
+            <h5>@lang("Giving history")</h5>
             <div class="buttons">
                 <a href="/reports/downloadGiftsToDate" class="btn btn-inverse btn-mini no-print">
-                    <i class="icon-download-alt"></i> Download CSV</a>
+                    <i class="icon-download-alt"></i> @lang("Download CSV")</a>
             </div>
         </div>
         <div class="widget-content nopadding">
@@ -55,11 +55,11 @@
                 <table class="table table-bordered data-table">
                     <thead>
                     <tr>
-                        <th>Date</th>
-                        <th class="no-print">ID</th>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Desc</th>
+                        <th>@lang("Date")</th>
+                        <th class="no-print">@lang("ID")</th>
+                        <th>@lang("Name")</th>
+                        <th>@lang("Amount")</th>
+                        <th>@lang("Description")</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,7 +79,7 @@
                     </tbody>
                 </table>
             @else
-                <div class="alert alert-danger">No records found</div>
+                <div class="alert alert-danger">@lang("No records found")</div>
             @endif
         </div>
     </div>

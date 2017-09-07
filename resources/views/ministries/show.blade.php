@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-7">
 
-                <h3>{{$ministry->category->name}} Ministry</h3>
+                <h3>{{$ministry->category->name}} @lang("Ministry")</h3>
                 <br/>
                 <h4 style="border-bottom:solid 1px #ccc;padding-bottom:5px;">{{$ministry->name}}</h4>
 

@@ -1,33 +1,33 @@
 @extends('layouts.template')
 @section('title')
-   Ministry categories
+   @lang("Ministry categories")
 @endsection
 @section('crumbs')
-    <a href="/ministries/admin">Ministries</a>
-    <a href="#">Ministry categories</a>
+    <a href="/ministries/admin">@lang("Ministries")</a>
+    <a href="#">@lang("Ministry categories")</a>
     @endsection
 
 @section('content')
     <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
-            <h5>Ministry categories</h5>
+            <h5>@lang("Ministry categories")</h5>
             <div class="buttons">
                 <a class="btn btn-default btn-mini" href="/ministries/admin"><i class="icon-chevron-left"></i>
-                    back</a>
+                    @lang("back")</a>
 
                 <a href="/ministries/create" class="btn btn-inverse btn-mini">
-                    <i class="icon-plus"></i> New Ministry
+                    <i class="icon-plus"></i> @lang("New Ministry")
                 </a>
             </div>
         </div>
         <div class="widget-content">
             <div class="row-fluid">
                 <div class="span6">
-                    <h3>Categories</h3>
+                    <h3>@lang("Categories")</h3>
                     <table class="table table-responsive">
                         <tr>
-                            <th>Name</th>
-                            <th>Desc</th>
+                            <th>@lang("Name")</th>
+                            <th>@lang("Description")</th>
                         </tr>
                         @foreach($cats as $cat)
                             <tr>
@@ -40,7 +40,7 @@
                 <div class="span6">
                     @if(isset($_GET['cat']))
 
-                        <h3>Update Category</h3>
+                        <h3>@lang("Update Category")</h3>
                         <?php
                         $myCat = DB::table('ministry_cats')->where('id', $_GET['cat'])->first();
                         $button = "Update";
@@ -48,18 +48,18 @@
                         {{Form::model($myCat,['url'=>'ministries/categories/'.$myCat->id,'method'=>'patch'])}}
                     @else
 
-                        <h3>New Category</h3>
+                        <h3>@lang("New Category")</h3>
                         {{Form::open(['url'=>'ministries/categories'])}}
                         <?php $button = "Submit"; ?>
                     @endif
-                    <label>Name</label>
+                    <label>@lang("Name")</label>
                     {{Form::text('name',null,['required'=>'required'])}}
-                    <label>Desc <em>(this will show on top of ministry page)</em></label>
+                    <label>@lang("Description") <em>(@lang("this will show on top of ministry page")</em></label>
                     {{Form::textarea('desc',null,['class'=>'editor','rows'=>3])}}
                     <br/>
                     <br/>
                     @if(isset($myCat))
-                        <a href="/ministries/categories" class="btn btn-danger">Cancel</a>
+                        <a href="/ministries/categories" class="btn btn-danger">@lang("Cancel")</a>
                     @endif
                     <button class="btn btn-default">{{$button}}</button>
                     {{Form::close()}}

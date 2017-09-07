@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{env('APP_NAME')}} - KIOSK</title>
+    <title>{{env('APP_NAME')}} - {{strtoupper(__("kiosk"))}}</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -22,9 +22,9 @@
 <header class="">
     <div class="header-content ">
         <div class="header-content-inner">
-            <h1 id="homeHeading">{{env('APP_NAME')}} - KIOSK</h1>
+            <h1 id="homeHeading">{{env('APP_NAME')}} - {{strtoupper(__("kiosk"))}}</h1>
             <hr>
-            <p>Thank you for your support!</p>
+            <p>@lang("Thank you for your support!")</p>
             @yield('content')
         </div>
     </div>

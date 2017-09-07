@@ -16,7 +16,7 @@
                     <i class="icon-calendar icon-4x text-warning"></i>
 
                     <div id="caption">
-                        <h3>Regular Schedule</h3>
+                        <h3>@lang("Regular Schedule")</h3>
                         <table class="table table-responsive text-left">
                             @foreach($churchSchedule as $schedule)
                                 <tr>
@@ -30,7 +30,7 @@
                         <br/>
 
                         <p>
-                            <a href="/events" class="btn btn-lg btn-warning nav-item" role="button">Calendar</a>
+                            <a href="/events" class="btn btn-lg btn-warning nav-item" role="button">@lang("Calendar")</a>
                         </p>
                     </div>
                 </div>
@@ -45,29 +45,29 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <h3>Latest blogs</h3>
+                    <h3>@lang("Latest articles")</h3>
                     @foreach($blogs as $blog)
                         <a href="/blog/{{$blog->id}}">{{$blog->title}}</a><br/>
                     @endforeach
-                    <a href="/blog" class="link">more...</a>
+                    <a href="/blog" class="link">@lang("more")...</a>
                 </div>
 
                 <div class="col-md-4">
-                    <h3>Ministries</h3>
+                    <h3>@lang("Ministries")</h3>
                     @foreach($ministries as $min)
                         <a href="/ministries/{{$min->slug}}">{{$min->name}}</a>
                         <br/>
                     @endforeach
-                    <a href="/ministries" class="link">more...</a>
+                    <a href="/ministries" class="link">@lang("more")...</a>
                 </div>
 
                 <div class="col-md-4">
-                    <h3>Events</h3>
+                    <h3>@lang("Events")</h3>
                     @foreach($events as $event)
                         <a href="/events/{{$event->id}}">{{$event->title}}</a>
                         <br/>
                     @endforeach
-                    <a href="/events" class="link">more...</a>
+                    <a href="/events" class="link">@lang("more")...</a>
                 </div>
             </div>
         </div>

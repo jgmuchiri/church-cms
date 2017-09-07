@@ -1,20 +1,20 @@
 @extends('layouts.template')
 @section('title')
-    Knowledge base
+    @lang("Knowledge base")
 @endsection
 @section('crumbs')
-    <a href="/support">Knowledge base</a>
-    <a href="#" class="current">Support question</a>
+    <a href="/support">@lang("Knowledge base")</a>
+    <a href="#" class="current">@lang("Support questions")</a>
 @endsection
 
 @section('content')
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
-                <h5>Support questions</h5>
+                <h5>@lang("Support questions")</h5>
                 <div class="buttons">
                     <a href="/support" class="btn btn-default btn-mini">
-                        <i class="icon-chevron-left"></i> back</a>
+                        <i class="icon-chevron-left"></i> @lang("back")</a>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                             @endforeach
                             {{$topics->links()}}
                         @else
-                            <div class="alert alert-danger">No records found</div>
+                            <div class="alert alert-danger">@lang("No records found")</div>
                         @endif
                     </div>
                 </div>
@@ -75,16 +75,16 @@
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
-                <h5>Still can't find what you are looking for? Submit your question here</h5>
+                <h5>@lang("Still can't find what you are looking for? Submit your question here")</h5>
             </div>
             <div class="widget-content">
                 {{Form::open(['url'=>'support/sendQuestion'])}}
                 {{Form::hidden('cat',Request::segment('3'))}}
-                {{Form::text('name',null,['placeholder'=>'Enter your question here','class'=>'span12'])}}
+                {{Form::text('name',null,['placeholder'=>__("Enter your question here"),'class'=>'span12'])}}
                 <br/>
-                {{Form::textarea('desc',null,['rows'=>3,'Placehoder'=>'Enter a detailed problem here','class'=>'span12'])}}
+                {{Form::textarea('desc',null,['rows'=>3,'Placeholder'=>__("Enter a detailed problem here"),'class'=>'span12'])}}
                 <br/>
-                <button class="btn btn-default btn-flat">Submit</button>
+                <button class="btn btn-default btn-flat">@lang("Submit")</button>
                 {{Form::close()}}
             </div>
         </div>

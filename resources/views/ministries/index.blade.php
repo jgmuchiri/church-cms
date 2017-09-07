@@ -24,9 +24,9 @@
                     @if(isset($_GET['cat']))
                         {{ucwords($cat->name)}}
                     @elseif(Request()->segment('2'))
-                        {{ucwords($ministry->name)}} Ministry
+                        {{ucwords($ministry->name)}} @lang("Ministry")
                     @else
-                        Ministries
+                        @lang("Ministries")
                     @endif
                 </h3>
 

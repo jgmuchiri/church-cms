@@ -13,13 +13,13 @@
 
             <div class="buttons">
                 <a href="/ministries" class="btn btn-info btn-mini">
-                    <i class="icon-home"></i> Ministries Homepage
+                    <i class="icon-home"></i> @lang("Ministries Homepage")
                 </a>
                 <a href="/ministries/categories" class="btn btn-primary btn-mini">
-                    <i class="icon-list-alt"></i> Categories
+                    <i class="icon-list-alt"></i> @lang("Categories")
                 </a>
                 <a href="/ministries/create" class="btn btn-inverse btn-mini">
-                    <i class="icon-plus"></i> New Ministry
+                    <i class="icon-plus"></i> @lang("New Ministry")
                 </a>
             </div>
         </div>
@@ -51,10 +51,10 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Title</th>
-                        <th>Created On</th>
+                        <th>@lang("Date")</th>
+                        <th>@lang("Category")</th>
+                        <th>@lang("Title")</th>
+                        <th>@lang("Created On")</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -77,11 +77,11 @@
                             <td>{{date('d M, Y',strtotime($m->created_at))}}</td>
                             <td>
                                 <a class="btn btn-mini btn-inverse" href="/ministries/{{$m->slug}}?preview" target="_blank">
-                                    <i class="icon-external-link"></i> preview </a>
+                                    <i class="icon-external-link"></i> @lang("preview") </a>
                                 <a href="/ministries/{{$m->id}}/edit" class="btn btn-info btn-mini edit">
-                                    <i class="icon-pencil"></i> edit</a>
+                                    <i class="icon-pencil"></i> @lang("edit")</a>
                                 <a href="/ministries/{{$m->id}}/delete" class="btn btn-danger btn-mini  delete">
-                                    <i class="icon-trash"></i> delete</a>
+                                    <i class="icon-trash"></i> @lang("delete")</a>
                             </td>
                         </tr>
                     @endforeach
@@ -90,7 +90,7 @@
                 {{$ministries->links()}}
             @else
                 <hr/>
-                <div class="alert alert-danger">No records found</div>
+                <div class="alert alert-danger">@lang("No records found")</div>
             @endif
         </div>
     </div>
@@ -99,7 +99,7 @@
 @push('scripts')
 <script>
     $('.delete').click(function (e) {
-        if (confirm('Are you sure?')) {
+        if (confirm('@lang("Are you sure?")')) {
             return true;
         }
         e.preventDefault();

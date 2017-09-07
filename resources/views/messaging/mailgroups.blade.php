@@ -1,10 +1,10 @@
 @extends('layouts.template')
 @section('title')
-    Message Groups
+    @lang("Message Groups")
 @endsection
 @section('crumbs')
-    <a href="/messaging/admin">Messaging</a>
-    <a href="#">Message groups</a>
+    <a href="/messaging/admin">@lang("Messaging")</a>
+    <a href="#">@lang("Message groups")</a>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
         <div class="span6">
             <div class="widget-box">
                 <div class="widget-title bg_lg"><span class="icon"><i class="icon-envelope"></i></span>
-                    <h5>Message Groups</h5>
+                    <h5>@lang("Message Groups")</h5>
                 </div>
                 <div class="widget-content">
                     @if(count($group))
@@ -39,23 +39,23 @@
         <div class="span6">
             <div class="widget-box">
                 <div class="widget-title bg_lg"><span class="icon"><i class="icon-envelope"></i></span>
-                    <h5>Create/Edit Groups</h5>
+                    <h5>@lang("Create/Edit Groups")</h5>
                 </div>
                 <div class="widget-content">
                     @if(count($group))
-                        <h4 class="title">Edit Group</h4>
+                        <h4 class="title">@lang("Edit Group")</h4>
                     @else
                         {{Form::open(['url'=>'/messaging/mail-groups'])}}
-                        <h4 class="title">New Group</h4>
+                        <h4 class="title">@lang("New Group")</h4>
                     @endif
-                    <label>Name</label>
+                    <label>@lang("Name")</label>
                     {{Form::text('name',null,['required'=>'required'])}}
-                    <label>Desc</label>
+                    <label>@lang("Description")</label>
                     {{Form::text('desc',null,['required'=>'required'])}}
-                    <label>Active?</label>
-                    {{Form::select('active',[1=>'Yes',0=>'No'])}}
+                    <label>@lang("Active?")</label>
+                    {{Form::select('active',[1=>__("Yes"),0=>__("No")])}}
                     <br/>
-                    <button class="btn btn-default">Submit</button>
+                    <button class="btn btn-default">@lang("Submit")</button>
                     {{Form::close()}}
                 </div>
             </div>

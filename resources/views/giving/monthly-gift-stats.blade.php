@@ -7,11 +7,11 @@
     $(function () {
         $('#chartActivity').highcharts({
             title: {
-                text: 'Monthly Reports',
+                text: '@lang("Monthly Reports")',
                 x: -20 //center
             },
             subtitle: {
-                text: 'Here is how we are doing so far...',
+                text: '@lang("Here is how we are doing so far")',
                 x: -20
             },
             xAxis: {
@@ -40,11 +40,11 @@
             series: [
 
                 {
-                    name: 'Members',
+                    name: '@lang("Members")',
                     data: [{{App\Models\Reports::usersByMonth()}}]
                 },
                 {
-                    name: 'Contributions',
+                    name: '@lang("Contributions")',
                     data: [{{App\Models\Reports::montlyGiving()}}]
                 }
 
