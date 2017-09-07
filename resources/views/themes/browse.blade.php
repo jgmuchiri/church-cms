@@ -1,15 +1,15 @@
 @extends('layouts.template')
 @section('title')
-    Browse themes
+    @lang('Browse themes")
 @endsection
 @section('content')
     <div class="card">
         <div class="header">
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="icon-plus"></i>
-                Upload theme</a>
+                @lang("Upload theme")</a>
 
             <a href="/theme/1/select" class="btn btn-info"><i
-                        class="icon-check"></i> Set default theme</a>
+                        class="icon-check"></i> @lang('Set default theme")</a>
 
             {{--<a href="/theme/browse" target="_blank" class="btn btn-warning"><i class="icon-shopping-cart"></i>--}}
                 {{--Browse themes</a>--}}

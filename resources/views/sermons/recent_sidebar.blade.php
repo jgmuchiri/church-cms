@@ -1,4 +1,4 @@
-<h4 class="">Recent sermons</h4>
+<h4 class="">@lang("Recent sermons")</h4>
 <?php
 $rSermons = App\Models\Sermons::simplePaginate(10);
 ?>
@@ -17,7 +17,7 @@ $rSermons = App\Models\Sermons::simplePaginate(10);
                     <a href="/sermons/{{$s->slug}}" style="font-size:12px">{{$s->title}}</a></div>
             </div>
             <div class="row">
-                <div class="col-md-6"><em style="font-size: 11px;">by {{$s->speaker}}</em></div>
+                <div class="col-md-6"><em style="font-size: 11px;">@lang("by") {{$s->speaker}}</em></div>
                 <div class="col-md-6"><em style="font-size: 11px;">{{date('d M, Y',strtotime($s->created_at))}}</em>
                 </div>
             </div>

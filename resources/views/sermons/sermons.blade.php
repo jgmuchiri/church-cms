@@ -6,9 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h3 class="method-title">Sermons</h3>
+                <h3 class="method-title">@lang("Sermons")</h3>
                 @if(count($sermons) ==0)
-                    <div class="alert alert-danger">No results found</div>
+                    <div class="alert alert-danger">@lang("No results found")</div>
                 @else
                     @include('sermons.sermon-slider')
                 @endif
@@ -17,7 +17,7 @@
                     <div class="input-group">
                         <input name="s" placeholder="Search" class="form-control">
                         <span class="input-group-btn"><button class="btn btn-default"><i
-                                        class="icon-search"></i> Search
+                                        class="icon-search"></i> @lang("Search")
                                 </button>
                             </span>
                     </div>
@@ -28,9 +28,9 @@
                     <div class="callout callout-info">
                         <div class="row">
                             <div class="col-sm-2">
-                                <strong>Date</strong><br/>
+                                <strong>@lang("Date")</strong><br/>
                                 {{date('d M, Y',strtotime($s->created_at))}}<br/>
-                                <strong>Speaker:</strong>
+                                <strong>@lang("Speaker"):</strong>
                                 <br/>
                                 {{$s->speaker}}
                             </div>

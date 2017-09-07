@@ -14,43 +14,48 @@
                             {!! App\Tools::postThumb('none','85px','85px') !!}
                         @endif
                         <a href="/sermons"><i class="icon-chevron-left"></i>
-                            back to sermons
+                            @lang("back to sermons")
                         </a>
                     </div>
                     <div class="col-sm-6">
                         <h3 class="method-title">{{$sermon->title}}</h3>
                         {{date('d M, Y',strtotime($sermon->created_at))}}
                         &nbsp;&nbsp;|&nbsp;&nbsp;
-                        Speaker: {{$sermon->speaker}}
+                        @lang("Speaker"): {{$sermon->speaker}}
                         &nbsp;&nbsp;|&nbsp;&nbsp;
-                        Scriptures: {{$sermon->scriptures}}
+                        @lang("Scripture"): {{$sermon->scriptures}}
 
                         <p><br/>
-                            Description: {{$sermon->desc}}
+                            @lang("Description"): {{$sermon->desc}}
                         </p>
 
                         <p>
-                            Topic: {{$sermon->topic}}
+                            @lang("Topic"): {{$sermon->topic}}
                             &nbsp;&nbsp;|&nbsp;&nbsp;
-                            Sub Topic: {{$sermon->sub_topic}}
+                            @lang("Sub Topic"): {{$sermon->sub_topic}}
                         </p>
                         <hr/>
 
                         @if($sermon->audio =="")
-                            <button class="btn btn-primary disabled"><i class="icon-file-audio-o"></i> Play Audio
+                            <button class="btn btn-primary disabled"><i class="icon-file-audio-o"></i>
+                                @lang("Play Audio")
                             </button>
                         @else
-                            <button class="btn btn-primary play-audio"><i class="icon-file-audio-o"></i> Play Audio
+                            <button class="btn btn-primary play-audio"><i class="icon-file-audio-o"></i>
+                                @lang("Play Audio")
                             </button>
                         @endif
                         @if($sermon->video =="")
-                            <button class="btn btn-danger disabled"><i class="icon-video-camera"></i> Play Video
+                            <button class="btn btn-danger disabled"><i class="icon-video-camera"></i>
+                                @lang("Play Video")
                             </button>
                         @else
-                            <button class="btn btn-danger play-video"><i class="icon-video-camera"></i> Play Video
+                            <button class="btn btn-danger play-video"><i class="icon-video-camera"></i>
+                                @lang("Play Video")
                             </button>
                         @endif
-                        <button class="btn btn-success sermon-message"><i class="icon-eye-open"></i> Read Message
+                        <button class="btn btn-success sermon-message"><i class="icon-eye-open"></i>
+                            @lang("Read Message")
                         </button>
 
                     </div>
@@ -121,7 +126,7 @@
                         <div class="col-sm-10"><h4>{{$sermon->title}}</h4></div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-danger" style="float:right" data-dismiss="modal"
-                                    aria-label="Close">Close
+                                    aria-label="Close">@lang("Close")
                             </button>
                         </div>
                     </div>

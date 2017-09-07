@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Invoice</title>
+    <title>@lang("Invoice")</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -66,7 +66,7 @@
         </tr>
         <tr valign="top">
             <td style="font-size:28px;color:#cccccc;">
-                    Receipt
+                    @lang("Receipt")
             </td>
 
             <!-- Organization Name / Date -->

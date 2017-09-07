@@ -1,26 +1,26 @@
 @extends('layouts.template')
 @section('title')
-    Sermons
+    @lang("Sermons")
 @endsection
 
 @section('crumbs')
-    <a href="#">Sermons</a>
+    <a href="#">@lang("Sermons")</a>
 @endsection
 
 @section('content')
     <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-list"></i></span>
-            <h5>Sermons</h5>
+            <h5>@lang("Sermons")</h5>
 
             <div class="buttons">
                 <a href="/sermons/admin" class="btn btn-primary btn-mini">
-                    <i class="icon-list-alt"></i> Sermons
+                    <i class="icon-list-alt"></i> @lang("Sermons")
                 </a>
                 <a href="/sermons/admin/drafts" class="btn btn-primary btn-mini">
-                    <i class="icon-list-alt"></i> Drafts
+                    <i class="icon-list-alt"></i> @lang("Drafts")
                 </a>
                 <a href="/sermons/create" class="btn btn-inverse btn-mini">
-                    <i class="icon-plus"></i> New Sermon
+                    <i class="icon-plus"></i>@lang("New Sermon")
                 </a>
             </div>
         </div>
@@ -30,13 +30,13 @@
             <ul class="stat-boxes2">
                 <li>
                     <div class="right">
-                        <strong>{{count($sermons->where('status','published'))}}</strong> Published
+                        <strong>{{count($sermons->where('status','published'))}}</strong> @lang("Published")
                     </div>
                 </li>
 
                 <li>
                     <div class="right">
-                        <strong>{{count($sermons->where('status','draft'))}}</strong> Draft(s)
+                        <strong>{{count($sermons->where('status','draft'))}}</strong> @lang("Draft")
                     </div>
                 </li>
 
@@ -45,9 +45,9 @@
             <table class="table table-striped">
                 <tr>
                     <th></th>
-                    <th>Published on</th>
-                    <th>Topic</th>
-                    <th>Speaker</th>
+                    <th>@lang("Published on")</th>
+                    <th>@lang("Topic")</th>
+                    <th>@lang("Speaker")</th>
                     <th></th>
                 </tr>
                 @foreach($sermons as $s)
@@ -83,7 +83,7 @@
 <script>
     $('.delete').click(function (e) {
 
-        if (confirm('Are you sure?')) {
+        if (confirm('@lang("Are you sure?")')) {
             return true;
         }
 
