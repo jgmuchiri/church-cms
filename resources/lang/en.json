@@ -488,5 +488,11 @@
     "Theme files must contain ":"Theme files must contain :opts",
 
     "Invoice":"Invoice",
-    "Receipt":"Receipt"
+    "Receipt":"Receipt",
+    "Product":"Product",
+    "Invoice Number":"Invoice Number",
+    "Starting Balance":"Starting Balance",
+    "Subscription":"Subscription",
+    "Total":"Total",
+    "Tax":"Tax"
 }
