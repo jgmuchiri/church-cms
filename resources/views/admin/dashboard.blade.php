@@ -74,7 +74,7 @@
                             <li class="bg_lh"><i class="icon-question-sign"></i> <strong>
                                     {!! \App\Models\Kb::count() !!}
                                 </strong>
-                                <small>@lang(Questions")</small>
+                                <small>@lang("Questions")</small>
                             </li>
                             <li class="bg_lh"><i class="icon-calendar"></i> <strong>
                                     {{\App\Models\Events::count()}}

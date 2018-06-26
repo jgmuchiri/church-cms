@@ -112,11 +112,11 @@ $(document).ready(function () {
     // === Fixes the position of buttons group in content header and top user navigation === //
     function fix_position() {
         var uwidth = $('#user-nav').find('> ul')
-            .width()
+            //.width()
             .css({width: uwidth, 'margin-left': '-' + uwidth / 2 + 'px'});
 
         var cwidth = $('#content-header').find('.btn-group')
-            .width()
+            //.width()
             .css({width: cwidth, 'margin-left': '-' + uwidth / 2 + 'px'});
     }
 

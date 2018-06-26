@@ -40,7 +40,7 @@
 <!--close-Header-part-->
 
 <!--top-Header-menu-->
-<div id="user-nav" class="navbar navbar-inverse">
+<div id="user-nav" class="navbar navbar-default">
     <ul class="nav">
         <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
                                                       data-target="#profile-messages" class="dropdown-toggle"><i
@@ -134,7 +134,7 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon-info-sign"></i> @lang("Error")</a>
     <ul class="sideNav">
-        <li><a href="/dashboard"><i class="icon-home"></i> <span></span></a></li>
+        <li><a href="/dashboard"><i class="icon-home"></i> <span>@lang('Dashboard')</span></a></li>
 
         <li><a href="/account"><i class="icon-user"></i> <span>@lang("My Account")</span></a></li>
 

@@ -3,7 +3,7 @@
     <tr>
         <th>@lang("Name")</th>
         <th>@lang("Permissions")</th>
-        <th>@lang("Description"</th>
+        <th>@lang("Description")</th>
     </tr>
     </thead>
     <tbody>

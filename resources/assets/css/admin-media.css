@@ -1,7 +1,6 @@
 body {
-    background:#2E363F;
+    background:#1f4960;
 }
-
 #header {
     background-color: #1f262d;
     margin-top:10px;
@@ -14,7 +13,7 @@ body {
 }
 #sidebar > ul{border-bottom: 1px solid #37414b}
 #sidebar > ul > li {
-    border-top: 1px solid #37414b; border-bottom: 1px solid #1f262d;
+     border-bottom: 1px solid #e5e5e5;
 }
 #sidebar > ul > li.active {
     background-color: #27a9e3; border-bottom: 1px solid #27a9e3;  border-top: 1px solid #27a9e3;
