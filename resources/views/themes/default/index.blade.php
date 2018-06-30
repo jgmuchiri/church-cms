@@ -14,7 +14,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/"><img style="height: 21px;" src="/images/logo.png"></a></div>
+                        <a class="navbar-brand" href="/"><img style="height: 21px;" src="/img/logo.png"></a></div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             {!! theme()->menu() !!}

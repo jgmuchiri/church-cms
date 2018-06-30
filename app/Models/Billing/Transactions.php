@@ -13,8 +13,9 @@ class Transactions extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    function user(){
-        return $this->belongsTo(\App\User::class,'user_id','id');
+    function user()
+    {
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
 
     /**
@@ -22,7 +23,7 @@ class Transactions extends Model
      */
     function getNameAttribute()
     {
-        $user_id =$this->attributes['user_id'];
+        $user_id = $this->attributes['user_id'];
         $user = User::find($user_id);
 
         return $user->first_name.' '.$user->last_name;
@@ -32,8 +33,9 @@ class Transactions extends Model
      * @param $value
      * @return false|string
      */
-    function getCreatedAtAttribute($value){
-        return date('d M, Y',strtotime($value));
+    function getCreatedAtAttribute($value)
+    {
+        return date('d M, Y', strtotime($value));
     }
 
     /**
@@ -47,7 +49,7 @@ class Transactions extends Model
         // strip out all but numbers and dot
         $value = preg_replace("/([^0-9\.])/i", "", $value);
         // make sure we are dealing with a proper number now, no +.4393 or 3...304 or 76.5895,94
-        if (!is_numeric($value)) {
+        if(!is_numeric($value)) {
             return 0.00;
         }
         // convert to a float explicitly
@@ -80,7 +82,7 @@ class Transactions extends Model
     public static function getGiftStats()
     {
         $stats = array();
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i<=12; $i++) {
             $stats[] = Transactions::giftByMonth($i);
         }
         return json_encode($stats);
@@ -90,18 +92,18 @@ class Transactions extends Model
      * @param $month
      * @return int
      */
-    private static function  giftByMonth($month)
+    private static function giftByMonth($month)
     {
 //            $txns = Transactions::get()
 //                ->groupBy(function($date){
 //                    return Carbon::parse($date->created_at)->format('m');
 //                });
         $year = date('Y');
-        if ($month < 10) {
-            $month = '0' . $month;
+        if($month<10) {
+            $month = '0'.$month;
         }
-        $search = $year . '-' . $month;
-        $revenues = self::where('created_at', 'like', $search . '%')->get();
+        $search = $year.'-'.$month;
+        $revenues = self::where('created_at', 'like', $search.'%')->get();
         $sum = 0;
         foreach ($revenues as $revenue) {
             $sum += $revenue->amount;
@@ -116,16 +118,16 @@ class Transactions extends Model
      */
     public static function createCustomer($request)
     {
-        if (env('APP_ENV') =="production" && env('STRIPE_SECRET') == null) {
+        if(env('APP_ENV') == "production" && env('STRIPE_SECRET') == null) {
             die("Stripe is not setup for this account");
         }
-        if (env('APP_ENV') =="local" && env('STRIPE_TEST_SECRET') == null) {
+        if(env('APP_ENV') == "local" && env('STRIPE_TEST_SECRET') == null) {
             die("Stripe is not setup for this account");
         }
 
-        if(env('APP_ENV')=="production"){
+        if(env('APP_ENV') == "production") {
             \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        }else{
+        } else {
             \Stripe\Stripe::setApiKey(env('STRIPE_TEST_SECRET'));
         }
 
@@ -136,18 +138,15 @@ class Transactions extends Model
         ));
 
         //alert admin
-        if ($customer->id !== null || $customer->id !== "") {
-
+        if($customer->id !== null || $customer->id !== "") {
             Mail::send('emails.user-registered-stripe', [
                 'email' => $request->email,
                 'first_name' => $request->first_name
-            ],
-                function ($m) use ($request) {
-                    $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-                    $m->to(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'))->subject('Notice: New user');
-                });
+            ], function ($m) use ($request) {
+                $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+                $m->to(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'))->subject('Notice: New user');
+            });
         }
-
 
         return $customer;
     }
@@ -183,9 +182,9 @@ class Transactions extends Model
             'amount' => $amount,
             'desc' => $desc
         ],
-            function ($m) use ( $user, $desc) {
+            function ($m) use ($user, $desc) {
                 $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-                $m->to($user->email, $user->first_name)->subject(env('APP_NAME') . ' Receipt- Thank you!');
+                $m->to($user->email, $user->first_name)->subject(env('APP_NAME').' Receipt- Thank you!');
             });
 
     }

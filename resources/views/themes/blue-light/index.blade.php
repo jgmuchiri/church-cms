@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <h1>
                     <a href="{{url()->to('/')}}">
-                        <img style="height: 21px;" src="/images/logo.png">
+                        <img style="height: 21px;" src="/img/logo.png">
                     </a>
                 </h1>
             </div>

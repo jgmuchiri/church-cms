@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.admin-template')
 @section('title')
     New Post
 @endsection

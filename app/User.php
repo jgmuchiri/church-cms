@@ -47,7 +47,6 @@ class User extends Authenticatable
         }
         return json_encode($stats);
     }
-
     /**
      * @param $month
      * @return int
@@ -127,5 +126,8 @@ class User extends Authenticatable
             $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
             $m->to($request['email'], $request['name'])->subject('Your account is active!');
         });
+    }
+    function name(){
+        return $this->getAttribute('first_name').' '.$this->getAttribute('last_name');
     }
 }

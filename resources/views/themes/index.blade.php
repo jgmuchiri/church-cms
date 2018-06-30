@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.admin-template')
 @section('title')
     @lang("Themes")
 @endsection
@@ -88,7 +88,7 @@
                                              data-trigger="hover"
                                              title="@lang("Theme structure")"
                                              data-html="true"
-                                             data-content="<img src='/images/structure.png' style='width:100%'>"></i>
+                                             data-content="<img src='/img/structure.png' style='width:100%'>"></i>
                 </label>
                 {!! Form::file('theme') !!}
             </div>

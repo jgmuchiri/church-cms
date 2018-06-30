@@ -38,7 +38,6 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('account');
         }
-
         flash()->error(__('Username or password is incorrect'));
         return redirect()->back();
     }
@@ -69,7 +68,6 @@ class AuthController extends Controller
         $user->confirmed = 1;
         $user->confirmation_code = null;
         $user->save();
-
         flash()->success(__('You have successfully verified your account'));
         return redirect('/');
     }

@@ -40,7 +40,7 @@
 
 <div id="loginbox">
 
-    <div class="control-group normal_text"><h3><img style="" src="/images/admin-logo.png"></h3></div>
+    <div class="control-group normal_text"><h3><img style="" src="/img/admin-logo.png"></h3></div>
     {!! Form::open(['url'=>'login','method'=>'post','class'=>'form-vertical','id'=>'loginform']) !!}
 
     <div class="control-group">

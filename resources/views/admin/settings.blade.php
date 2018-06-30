@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.admin-template')
 @section('title')
     @lang("System Settings")
 @endsection
@@ -45,7 +45,7 @@
                     {!! Form::open(['url'=>'settings/logo','method'=>'post','files'=>'true']) !!}
                     <label>Upload logo </label>
 
-                    <img class="thumbnail" src="/images/logo.png"
+                    <img class="thumbnail" src="/img/logo.png"
                          style="width:300px;"/>
 
                     {{Form::file('logo')}}

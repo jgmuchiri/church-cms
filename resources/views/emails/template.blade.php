@@ -1,437 +1,399 @@
-<!DOCTYPE html>
-<html lang="it">
+<!doctype html>
+<html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>DaycarePRO</title>
+	<style>
+		/* -------------------------------------
+			GLOBAL RESETS
+		------------------------------------- */
+		img {
+			border: none;
+			-ms-interpolation-mode: bicubic;
+			max-width: 100%;
+		}
 
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		body {
+			background-color: #f6f6f6;
+			font-family: sans-serif;
+			-webkit-font-smoothing: antialiased;
+			font-size: 14px;
+			line-height: 1.4;
+			margin: 0;
+			padding: 0;
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
 
-    <title>{{env('APP_NAME')}}</title><!--
-COLORE INTENSE  #9C010F
-COLORE LIGHT #EDE8DA
-TESTO LIGHT #3F3D33
-TESTO INTENSE #ffffff 
+		table {
+			border-collapse: separate;
+			mso-table-lspace: 0pt;
+			mso-table-rspace: 0pt;
+			width: 100%;
+		}
 
- -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <style type="text/css">
-        @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+		table td {
+			font-family: sans-serif;
+			font-size: 14px;
+			vertical-align: top;
+		}
 
-        body {
-            -webkit-font-smoothing: antialiased;
-            -webkit-text-size-adjust: none;
-            font-size: 16px;
-            margin: 0 auto;
-            background: transparent;
-            color: #332;
-            font-family: 'Droid Sans', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
-            padding: 10px;
-        }
+		/* -------------------------------------
+			BODY & CONTAINER
+		------------------------------------- */
 
-        .callout {
-            margin-bottom: 20px;
-            padding: 20px;
-            border-left: 3px solid #eeeeee;
-        }
+		.body {
+			background-color: #f6f6f6;
+			width: 100%;
+		}
 
-        .callout h4 {
-            margin-top: 0;
-            margin-bottom: 5px;
-        }
+		.container {
+			display: block;
+			Margin: 0 auto !important;
+			/* makes it centered */
+			max-width: 580px;
+			padding: 10px;
+			width: 580px;
+		}
 
-        .callout p:last-child {
-            margin-bottom: 0;
-        }
+		.content {
+			box-sizing: border-box;
+			display: block;
+			Margin: 0 auto;
+			max-width: 580px;
+			padding: 10px;
+		}
 
-        .callout-danger {
-            background-color: #fdf7f7;
-            border-color: #ebccd1;
-        }
+		/* -------------------------------------
+			HEADER, FOOTER, MAIN
+		------------------------------------- */
+		.main {
+			background: #ffffff;
+			border-radius: 3px;
+			width: 100%;
+		}
 
-        .callout-danger h4 {
-            color: #a94442;
-        }
+		.wrapper {
+			box-sizing: border-box;
+			padding: 20px;
+		}
 
-        .callout-warning {
-            background-color: #faf8f0;
-            border-color: #faebcc;
-        }
+		.content-block {
+			padding-bottom: 10px;
+			padding-top: 10px;
+		}
 
-        .callout-warning h4 {
-            color: #8a6d3b;
-        }
+		.footer {
+			clear: both;
+			Margin-top: 10px;
+			text-align: center;
+			width: 100%;
+		}
 
-        .callout-info {
-            background-color: #f4f8fa;
-            border-color: #bce8f1;
-        }
+		.footer td,
+		.footer p,
+		.footer span,
+		.footer a {
+			color: #999999;
+			font-size: 12px;
+			text-align: center;
+		}
 
-        .callout-info h4 {
-            color: #31708f;
-        }
+		/* -------------------------------------
+			TYPOGRAPHY
+		------------------------------------- */
+		h1,
+		h2,
+		h3,
+		h4 {
+			color: #000000;
+			font-family: sans-serif;
+			font-weight: 400;
+			line-height: 1.4;
+			margin: 0;
+			Margin-bottom: 30px;
+		}
 
-        .callout-success {
-            background-color: #f9fdf7;
-            border-color: #d6e9c6;
-        }
+		h1 {
+			font-size: 35px;
+			font-weight: 300;
+			text-align: center;
+			text-transform: capitalize;
+		}
 
-        .callout-success h4 {
-            color: #3c763d;
-        }
+		p,
+		ul,
+		ol {
+			font-family: sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			margin: 0;
+			Margin-bottom: 15px;
+		}
 
-        #ko_onecolumnBlock_4 .textintenseStyle a, #ko_onecolumnBlock_4 .textintenseStyle a:link, #ko_onecolumnBlock_4 .textintenseStyle a:visited, #ko_onecolumnBlock_4 .textintenseStyle a:hover {
-            color: #fff;
-            text-decoration: none;
-            text-decoration: none;
-            font-weight: bold;
-        }
+		p li,
+		ul li,
+		ol li {
+			list-style-position: inside;
+			margin-left: 5px;
+		}
 
-        #ko_onecolumnBlock_4 .textlightStyle a:visited, #ko_onecolumnBlock_4 .textlightStyle a:hover {
-            color: #3f3d33;
-            text-decoration: none;
-            font-weight: bold;
-        }
+		a {
+			color: #3498db;
+			text-decoration: underline;
+		}
 
-        #ko_twocolumnBlock_8 .textsmallintenseStyle a, #ko_twocolumnBlock_8 .textsmallintenseStyle a:link, #ko_twocolumnBlock_8 .textsmallintenseStyle a:visited, #ko_twocolumnBlock_8 .textsmallintenseStyle a:hover {
-            color: #fff;
-            text-decoration: none;
-            text-decoration: none;
-            font-weight: bold;
-        }
+		/* -------------------------------------
+			BUTTONS
+		------------------------------------- */
+		.btn {
+			box-sizing: border-box;
+			width: 100%;
+		}
 
-        #ko_twocolumnBlock_8 .textsmalllightStyle a:visited, #ko_twocolumnBlock_8 .textsmalllightStyle a:hover {
-            color: #3f3d33;
-            text-decoration: none;
-            text-decoration: none;
-            font-weight: bold;
-        }
+		.btn > tbody > tr > td {
+			padding-bottom: 15px;
+		}
 
-        #ko_compactarticleBlock_6 .articletextintenseStyle a:visited, #ko_compactarticleBlock_6 .articletextintenseStyle a:hover {
-            color: #fff;
-            text-decoration: none;
-            text-decoration: none;
-            font-weight: bold;
-        }
+		.btn table {
+			width: auto;
+		}
 
-        #ko_compactarticleBlock_6 .articletextlightStyle a, #ko_compactarticleBlock_6 .articletextlightStyle a:link, #ko_compactarticleBlock_6 .articletextlightStyle a:visited, #ko_compactarticleBlock_6 .articletextlightStyle a:hover {
-            color: #3f3d33;
-            text-decoration: none;
-            text-decoration: none;
-            font-weight: bold;
-        }</style>
-    <style type="text/css">
-        /* CLIENT-SPECIFIC STYLES */
-        #outlook a {
-            padding: 0;
-        }
+		.btn table td {
+			background-color: #ffffff;
+			border-radius: 5px;
+			text-align: center;
+		}
 
-        /* Force Outlook to provide a "view in browser" message */
-        .ReadMsgBody {
-            width: 100%;
-        }
+		.btn a {
+			background-color: #ffffff;
+			border: solid 1px #3498db;
+			border-radius: 5px;
+			box-sizing: border-box;
+			color: #3498db;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 14px;
+			font-weight: bold;
+			margin: 0;
+			padding: 12px 25px;
+			text-decoration: none;
+			text-transform: capitalize;
+		}
 
-        .ExternalClass {
-            width: 100%;
-        }
+		.btn-primary table td {
+			background-color: #3498db;
+		}
 
-        /* Force Hotmail to display emails at full width */
-        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
-            line-height: 100%;
-        }
+		.btn-primary a {
+			background-color: #3498db;
+			border-color: #3498db;
+			color: #ffffff;
+		}
 
-        /* Force Hotmail to display normal line spacing */
-        body, table, td, a {
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
+		/* -------------------------------------
+			OTHER STYLES THAT MIGHT BE USEFUL
+		------------------------------------- */
+		.last {
+			margin-bottom: 0;
+		}
 
-        /* Prevent WebKit and Windows mobile changing default text sizes */
-        table, td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
+		.first {
+			margin-top: 0;
+		}
 
-        /* Remove spacing between tables in Outlook 2007 and up */
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
+		.align-center {
+			text-align: center;
+		}
 
-        /* Allow smoother rendering of resized image in Internet Explorer */
+		.align-right {
+			text-align: right;
+		}
 
-        /* RESET STYLES */
-        body {
-            margin: 0;
-            padding: 0;
-        }
+		.align-left {
+			text-align: left;
+		}
 
-        img {
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-        }
+		.clear {
+			clear: both;
+		}
 
-        table {
-            border-collapse: collapse !important;
-        }
+		.mt0 {
+			margin-top: 0;
+		}
 
-        body {
-            height: 100% !important;
-            margin: 0;
-            padding: 0;
-            width: 100% !important;
-        }
+		.mb0 {
+			margin-bottom: 0;
+		}
 
-        /* iOS BLUE LINKS */
-        .appleBody a {
-            color: #68440a;
-            text-decoration: none;
-        }
+		.preheader {
+			color: transparent;
+			display: none;
+			height: 0;
+			max-height: 0;
+			max-width: 0;
+			opacity: 0;
+			overflow: hidden;
+			mso-hide: all;
+			visibility: hidden;
+			width: 0;
+		}
 
-        .appleFooter a {
-            color: #999999;
-            text-decoration: none;
-        }
+		.powered-by a {
+			text-decoration: none;
+		}
 
-        /* MOBILE STYLES */
-        @media screen and (max-width: 525px) {
+		hr {
+			border: 0;
+			border-bottom: 1px solid #f6f6f6;
+			Margin: 20px 0;
+		}
 
-            /* ALLOWS FOR FLUID TABLES */
-            table[class="wrapper"] {
-                width: 100% !important;
-                min-width: 0 !important;
-            }
+		/* -------------------------------------
+			RESPONSIVE AND MOBILE FRIENDLY STYLES
+		------------------------------------- */
+		@media only screen and (max-width: 620px) {
+			table[class=body] h1 {
+				font-size: 28px !important;
+				margin-bottom: 10px !important;
+			}
 
-            /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
-            td[class="mobile-hide"] {
-                display: none;
-            }
+			table[class=body] p,
+			table[class=body] ul,
+			table[class=body] ol,
+			table[class=body] td,
+			table[class=body] span,
+			table[class=body] a {
+				font-size: 16px !important;
+			}
 
-            img[class="mobile-hide"] {
-                display: none !important;
-            }
+			table[class=body] .wrapper,
+			table[class=body] .article {
+				padding: 10px !important;
+			}
 
-            img[class="img-max"] {
-                width: 100% !important;
-                max-width: 100% !important;
-                height: auto !important;
-            }
+			table[class=body] .content {
+				padding: 0 !important;
+			}
 
-            /* FULL-WIDTH TABLES */
-            table[class="responsive-table"] {
-                width: 100% !important;
-            }
+			table[class=body] .container {
+				padding: 0 !important;
+				width: 100% !important;
+			}
 
-            /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
-            td[class="padding"] {
-                padding: 10px 5% 15px 5% !important;
-            }
+			table[class=body] .main {
+				border-left-width: 0 !important;
+				border-radius: 0 !important;
+				border-right-width: 0 !important;
+			}
 
-            td[class="padding-copy"] {
-                padding: 10px 5% 10px 5% !important;
-                text-align: center;
-            }
+			table[class=body] .btn table {
+				width: 100% !important;
+			}
 
-            td[class="padding-meta"] {
-                padding: 30px 5% 0 5% !important;
-                text-align: center;
-            }
+			table[class=body] .btn a {
+				width: 100% !important;
+			}
 
-            td[class="no-pad"] {
-                padding: 0 0 0 0 !important;
-            }
+			table[class=body] .img-responsive {
+				height: auto !important;
+				max-width: 100% !important;
+				width: auto !important;
+			}
+		}
 
-            td[class="no-padding"] {
-                padding: 0 !important;
-            }
+		/* -------------------------------------
+			PRESERVE THESE STYLES IN THE HEAD
+		------------------------------------- */
+		@media all {
+			.ExternalClass {
+				width: 100%;
+			}
 
-            td[class="section-padding"] {
-                padding: 10px 15px 10px 15px !important;
-            }
+			.ExternalClass,
+			.ExternalClass p,
+			.ExternalClass span,
+			.ExternalClass font,
+			.ExternalClass td,
+			.ExternalClass div {
+				line-height: 100%;
+			}
 
-            td[class="section-padding-bottom-image"] {
-                padding: 10px 15px 0 15px !important;
-            }
+			.apple-link a {
+				color: inherit !important;
+				font-family: inherit !important;
+				font-size: inherit !important;
+				font-weight: inherit !important;
+				line-height: inherit !important;
+				text-decoration: none !important;
+			}
 
-            /* ADJUST BUTTONS ON MOBILE */
-            td[class="mobile-wrapper"] {
-                padding: 10px 5% 15px 5% !important;
-            }
+			.btn-primary table td:hover {
+				background-color: #34495e !important;
+			}
 
-            table[class="mobile-button-container"] {
-                margin: 0 auto;
-                width: 100% !important;
-            }
+			.btn-primary a:hover {
+				background-color: #34495e !important;
+				border-color: #34495e !important;
+			}
+		}
 
-            a[class="mobile-button"] {
-                width: 80% !important;
-                padding: 15px !important;
-                border: 0 !important;
-                font-size: 16px !important;
-            }
-
-        }
-    </style>
+	</style>
 </head>
-<body style="margin: 0; padding: 0;"   align="center">
+<body class="">
+<table border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>&nbsp;</td>
+		<td class="container">
+			<div class="content">
+				<span class="preheader">
+					@yield('header')
+				</span>
 
-<table border="0" bgcolor="#eeece1" cellpadding="0" cellspacing="0" width="100%" id="ko_imageBlock_3">
-    <tbody>
-    <tr class="row-a">
-        <td align="center" class="no-pad"
-            style="padding-top: 0px; padding-left: 15px; padding-bottom: 0px; padding-right: 15px;">
-            <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
-                <tbody>
-                <tr>
-                    <td>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <!-- HERO IMAGE -->
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                        <tr>
-                                            <td class="no-padding">
-                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <a style="color: #ffffff;text-decoration: none;padding:15px;"
-                                                               target="_new" href="{{url()->to('/')}}">
-                                                                <img width="auto"
-                                                                     border="0"
-                                                                     alt="my account"
-                                                                     class="img-max"
-                                                                     style="height:25px;display: block; padding: 0; color: #3F3D33; text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px;"
-                                                                     src="{{asset('/images/logo.png')}}">
-
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<table border="0" cellpadding="0" cellspacing="0" width="100%" id="ko_onecolumnBlock_4">
-    <tbody>
-    <tr class="row-a">
-        <td bgcolor="#fff" align="center" class="section-padding"
-            style="padding-top: 30px; padding-left: 15px; padding-bottom: 30px; padding-right: 15px;">
-            <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
-                <tbody>
-                <tr>
-                    <td>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <!-- COPY -->
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                        <tr>
-                                            <td class="padding-copy"
-                                                style="font-size: 25px; font-family: Helvetica, Arial, sans-serif; color: #3F3D33; padding-top: 0px;">
-                                                @yield('header')
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="padding-copy textlightStyle"
-                                                style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #3F3D33;">
-                                                @yield('content')
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <!-- BULLETPROOF BUTTON -->
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
-                                           class="mobile-button-container">
-                                        <tbody>
-                                        <tr>
-                                            <td  style="padding: 25px 0 0 0;" class="padding-copy">
-                                                <table border="0" cellspacing="0" cellpadding="0"
-                                                       class="responsive-table">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td><a target="_new" class="mobile-button"
-                                                                              style="display: inline-block; font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #ffffff; text-decoration: none; background-color: #00b050; padding-top: 10px; padding-bottom: 10px; padding-left: 25px; padding-right: 25px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-bottom: 3px solid #007334;"
-                                                                              href="{{url()->to('/')}}">Visit site</a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<table border="0" cellpadding="0" cellspacing="0" width="100%" id="ko_compactarticleBlock_6">
-    <tbody>
-    <tr class="row-a">
-        <td bgcolor="#ccc" align="center" class="section-padding" style="padding: 0 15px 0 15px;">
-            <p></p>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<!-- FOOTER -->
-<table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 500px;" id="ko_footerBlock_2">
-    <tbody>
-    <tr>
-        <td bgcolor="#eeece1" align="center">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-                <tbody>
-                <tr>
-                    <td style="padding: 20px 0 20px 0px;">
-                        <table width="500" border="0" cellspacing="0" cellpadding="0" align="center"
-                               class="responsive-table">
-                            <tbody>
-
-                            <tr style="text-align: center;">
-                                <td>
-                                   &copy; {{date('Y') . ' '. env('APP_NAME')}}. All rights reserved
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </tbody>
+				<table>
+					<tr>
+						<td>
+							<img width="auto" border="0" alt="my account" class="img-max" style="height:25px;display: block; padding: 0; color: #3F3D33; text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px;" src="{{asset('/img/logo.png')}}">
+						</td>
+					</tr>
+				</table>
+				<table class="main">
+					<tr>
+						<td class="wrapper">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										@yield('header')
+										<br/>
+										@yield('content')
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<div class="footer">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="content-block">
+                                <span class="apple-link">
+                                    &copy; {{date('Y') . ' '. config('app.name')}}. All rights reserved
+								</span>
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td class="content-block powered-by">
+								<a href="https://amdtllc.com">A&M Digital Tech</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</td>
+		<td>&nbsp;</td>
+	</tr>
 </table>
 </body>
 </html>

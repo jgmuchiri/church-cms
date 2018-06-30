@@ -84,7 +84,7 @@
             if (youtube(v)) {
                 video = v + "?color=white&iv_load_policy=3&rel=0&showinfo=0&theme=light";
             } else {
-                div.find('iframe').attr('src', '/images/404.png');
+                div.find('iframe').attr('src', '/img/404.png');
             }
 
             div.find('iframe').attr('src', video);

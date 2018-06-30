@@ -2,7 +2,7 @@
 $thisMonth = date('m');
 $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 ?>
-@extends('layouts.template')
+@extends('layouts.admin-template')
 @section('title')
     @lang("Registered Users")
 @endsection

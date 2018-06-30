@@ -84,7 +84,7 @@
                     <br/>
                     <button class="btn btn-success btn-xlg charge"
                             data-key="{{env('APP_ENV')=='local'?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}"
-                            data-image="/images/checkout.png"
+                            data-image="/img/checkout.png"
                             data-currency="{{env('CURRENCY')}}"
                             data-name="Online Contribution"
                             data-description="Online Contribution"

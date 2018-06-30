@@ -1,60 +1,72 @@
-@extends('layouts.template')
+@extends('layouts.admin-template')
 @section('title') Edit profile @endsection
-@section('crumbs')
-    <a href="/account">@lang("Account")</a>
-    <a href="#" class="current">@lang("My profile")</a>
-    @endsection
-
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
-            <h5>{{$user->username}}</h5>
+	<div class="row">
+		<div class="col-xl-12">
+			<div class="card card-default">
+				<div class="card-header">
+					<div class="card-title"><h3><i class="fa fa-user"></i> {{ucwords($user->username)}}</h3></div>
+					@lang("Registered"):{{$user->created_at}}
+					@if(!empty($user->stripe_id))
+						@lang("TXN ID"): {{$user->stripe_id}}
+					@endif
+				</div>
+				{!! Form::model($user,['url'=>'profile']) !!}
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-6">
+							{{Form::label(__('First name'))}}
+							{{Form::text('first_name',null,['class'=>'form-control'])}}
 
-            <div class="buttons">
-                @lang("Registered"):{{$user->created_at}}
-                @if(!empty($user->stripe_id))
-                    @lang("TXN ID"): {{$user->stripe_id}}
-                @endif
+							{{Form::label(__('Last name'))}}
+							{{Form::text('last_name',null,['class'=>'form-control'])}}
 
-            </div>
-        </div>
-        <div class="widget-content">
-            {!! Form::model($user,['url'=>'profile']) !!}
-            <div class="row-fluid">
-                <div class="span6">
-                    <label>@lang("First name")</label>
-                    {{Form::text('first_name')}}
+							{{Form::label(__('Email'))}}
+							{{Form::input('email','email',null,['class'=>'form-control'])}}
 
-                    <label>@lang("Last name")</label>
-                    {{Form::text('last_name')}}
-
-                    <label>@lang("Email")</label>
-                    {{Form::input('email','email')}}
-
-                    <label>@lang("Phone")</label>
-                    {{Form::text('phone')}}
-                </div>
-                <div class="span6">
-                    <label>@lang("Address")</label>
-                    {{Form::textarea('address',null,['rows'=>3])}}
-
-                    <label>@lang("DOB")</label>
-                    {{Form::input('date','dob')}}
-
-                    <div class="callout callout-danger">
-                        <label>@lang("Password"): <em>@lang("(only if changing)")</em></label>
-                        {!! Form::input('password','password') !!}
-                        <label>@lang("Confirm Password"):</label>
-                        {!! Form::input('password','password_confirmation') !!}
-                    </div>
-
-                    {{Form::submit('Update',['class'=>'btn btn-primary'])}}
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-
+							{{Form::label(__('DOB'))}}
+							{{Form::input('date','dob',null,['class'=>'form-control'])}}
+						</div>
+						<div class="col-sm-6">
+							{{Form::label(__('Phone'))}}
+							{{Form::text('phone',null,['class'=>'form-control'])}}
+							{{Form::label(__('Address'))}}
+							{{Form::textarea('address',null,['rows'=>3,'class'=>'form-control'])}}
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					{{Form::submit(__('Update'),['class'=>'btn btn-primary'])}}
+				</div>
+				{!! Form::close() !!}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xl-12">
+			<div class="card card-default">
+				<div class="card-header">
+					<div class="card-title"><h3>@lang('Change password')</h3></div>
+				</div>
+				{!! Form::model($user,['url'=>'profile/password']) !!}
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-6">
+							{{Form::label(__('Current Password'))}}
+							{!! Form::input('password','current_password',null,['class'=>'form-control']) !!}
+							<br/>
+							{{Form::label(__('Password'))}}
+							{!! Form::input('password','new_password',null,['class'=>'form-control']) !!}
+							{{Form::label(__('Confirm Password'))}}
+							{!! Form::input('password','password_confirmation',null,['class'=>'form-control']) !!}
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					{{Form::submit(__('Update'),['class'=>'btn btn-primary'])}}
+				</div>
+				{!! Form::close() !!}
+			</div>
+		</div>
+	</div>
 @stop

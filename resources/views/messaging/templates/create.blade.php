@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.admin-template')
 @section('crumbs')
     <a href="#">@lang("New message template")</a>
     @endsection

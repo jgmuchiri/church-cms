@@ -121,7 +121,7 @@
     "Email":"Email",
     "Phone":"Phone",
     "Address":"Address",
-    "DOB":"DOB",
+    "DOB":"Date of birth",
     "Password":"Password",
     "(only if changing)":"(only if changing)",
     "Confirm Password":"Confirm Password",
@@ -494,5 +494,12 @@
     "Starting Balance":"Starting Balance",
     "Subscription":"Subscription",
     "Total":"Total",
-    "Tax":"Tax"
+    "Tax":"Tax",
+    "Blog articles":"Blog articles",
+    "Print history":"Print history",
+    "Complete the form below to give":"Complete the form below to give",
+    "Change Password":"Change Password",
+    "Current Password": "Current Password",
+    "This is to notify you that your account information was recently changed":"This is to notify you that your account information was recently changed",
+    "Your account information was updated":"Your account information was updated"
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
@@ -57,7 +57,7 @@
                 <h3>@lang("Yearly Contributions")</h3>
             </td>
             <td>
-                <img class="thumbnail" src="/images/admin-logo.png" style="background:#333;padding:10px;"/>
+                <img class="thumbnail" src="/img/admin-logo.png" style="background:#333;padding:10px;"/>
                 <h4 class="title">{{env('APP_NAME')}}</h4>
                 <table class="no-border">
                     <tr>

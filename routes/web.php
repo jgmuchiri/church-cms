@@ -94,8 +94,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('{id}', 'UserController@index');
     });
     Route::group(['prefix'=>'birthdays'],function (){
-        Route::get('/', 'UserController@birthdays');
-        Route::get('{id}', 'UserController@birthdays');
+        Route::get('/', 'BirthdayController@index');
+        Route::get('{id}', 'BirthdayController@index');
     });
 
     Route::group(['prefix' => 'user'], function () {
@@ -175,6 +175,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('account', 'UserController@userAccount');
     Route::get('profile', 'UserController@profile');
     Route::post('profile', 'UserController@updateProfile');
+    Route::post('profile/password', 'UserController@updatePassword');
 
     //ministries
     Route::group(['prefix' => 'ministries'], function () {
