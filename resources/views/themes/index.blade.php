@@ -4,9 +4,9 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
+    <div class="card card-default">
 
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-list"></i></span>
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-list"></i></span>
             <h5>
                 @lang("Current theme"):
                 <strong class="text-info">{{App\Models\Themes::currentTheme()}}</strong></h5>
@@ -26,10 +26,10 @@
             </div>
         </div>
 
-        <div class="widget-content">
-            <div class="row-fluid">
+        <div class="card-body">
+            <div class="row">
                 @foreach($themes as $theme)
-                    <div class="span4">
+                    <div class="col-sm-4">
                         <div style="max-height: 360px;background:#f2f2f6;padding:10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
                             <h3>{{$theme->name}}</h3>
 

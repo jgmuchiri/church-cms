@@ -31,7 +31,7 @@
                     @foreach($comments as $cm)
                         <div style="border-bottom:dotted 1px #ccc;margin-bottom:15px;">
                             <div style="margin-bottom:2px; " class="text-uppercase">
-                                <span style="font-weight: bold;">{{App\User::find($cm->user_id)->username}}</span>
+                                <span style="font-weight: bold;">{{App\User::find($cm->user_id)->name}}</span>
                                 on
                                 <span style="font-size:10px;"> {{date('d, M Y',strtotime($cm->created_at))}}</span>
 

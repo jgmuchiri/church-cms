@@ -8,24 +8,6 @@ function formatCurrency(num) {
     $(this).val(am);
 }
 
-/**
- * @returns {boolean}
- */
-function validCurrency() {
-    var amount = $('input[name=amount]').val();
-
-    var regex = /^\d+(?:\.\d{0,2})$/;
-    if (regex.test(amount)) {//curreny is ok
-        if (amount === '0.00') {
-            alert('Amount entered must be greater than zero');
-            return false;
-        }
-        return true;
-    } else {
-        alert('Amount entered is invalid');
-        return false;
-    }
-}
 $(document).ready(function () {
     //logout function
      $('.logout').click(function () {

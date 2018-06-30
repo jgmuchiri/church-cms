@@ -90,39 +90,4 @@ class AdminController extends Controller
         flash()->success(__("Logo uploaded updated!"));
         return redirect()->back();
     }
-
-    /**
-     * @return View
-     */
-    function debug(){
-
-        $logFile = "../storage/logs/laravel.log";
-        $fhandle = fopen($logFile, "rw");
-        $size = filesize($logFile);
-        $logContent ="";
-        if($size ==0){
-            flash()->error(__('Your log file is empty'));
-        }else{
-            $logContent = fread($fhandle,$size);
-            fclose($fhandle);
-        }
-
-        return view('admin.debug-log', compact('logContent'));
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    function emptyDebugLog(){
-
-        $logFile = "../storage/logs/laravel.log";
-        $fhandle = fopen($logFile, "w");
-        fwrite($fhandle,'');
-        fclose($fhandle);
-        flash()->success(__("Debug log has been emptied"));
-        return redirect()->back();
-    }
-
-
 }

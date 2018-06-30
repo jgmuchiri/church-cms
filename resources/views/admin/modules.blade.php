@@ -1,9 +1,9 @@
 <input class="search form-control input-sm" placeholder="Search"/><br/>
-<ul class="list nav nav-pills nav-stacked">
+<ul class="list nav nav-pills nav-stacked dd-list">
     @foreach($modules as $module)
-        <li id="{{$module->id}}" class="module">
-            <a href="#" class="name">{{ucwords($module->name)}}
-                <span class="pull-right"><i class="fa fa-chevron-right" style="display: none;"></i> </span>
+        <li class="dd-item module" id="{{$module->id}}">
+            <a href="#" class="name text-success">{{ucwords($module->name)}}
+                <span class="pull-right"><i class="fa fa-chevron-right" style="display: none;color:green"></i> </span>
             </a>
         </li>
     @endforeach

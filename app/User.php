@@ -16,7 +16,7 @@ class User extends Authenticatable
     use Notifiable;
     protected $dates = ['trial_ends_at', 'subscription_ends_at'];
     protected $fillable =[
-        'username','name','first_name','last_name','email',
+        'name','first_name','last_name','email',
         'address','phone','photo','dob',
         'password','confirmed','status','remember_token',
         'stripe_id', 'card_brand','card_last_four','trial_ends_at'

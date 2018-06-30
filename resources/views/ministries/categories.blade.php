@@ -8,8 +8,8 @@
     @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
             <h5>@lang("Ministry categories")</h5>
             <div class="buttons">
                 <a class="btn btn-default btn-mini" href="/ministries/admin"><i class="icon-chevron-left"></i>
@@ -20,9 +20,9 @@
                 </a>
             </div>
         </div>
-        <div class="widget-content">
-            <div class="row-fluid">
-                <div class="span6">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
                     <h3>@lang("Categories")</h3>
                     <table class="table table-responsive">
                         <tr>
@@ -37,7 +37,7 @@
                         @endforeach
                     </table>
                 </div>
-                <div class="span6">
+                <div class="col-sm-6">
                     @if(isset($_GET['cat']))
 
                         <h3>@lang("Update Category")</h3>

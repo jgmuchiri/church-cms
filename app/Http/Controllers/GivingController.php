@@ -87,8 +87,6 @@ class GivingController extends Controller
 
         if (count($user) == 0) { //user does not exist so create one
             $user = new User();
-            $username = explode('@', $request->email);
-            $user->username = $username[0] . rand(1111, 9999); //give them auto username
             $user->phone = '123456789';
             $user->email = $request->email;
             $user->password = bcrypt(str_random(6));
@@ -255,8 +253,6 @@ class GivingController extends Controller
         } else {
             //create new user
             $user = new User();
-            $username = explode('@', $request->email);
-            $user->username = $username[0] . rand(1111, 9999);
             $user->phone = '123456789';
             $user->email = $request->email;
             $user->password = bcrypt(str_random(6));

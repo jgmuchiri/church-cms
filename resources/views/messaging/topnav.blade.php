@@ -1,5 +1,5 @@
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-sm-12">
         <a href="/messaging/admin"
            class="btn btn-primary @if(Request()->segment(2)=='admin')active @endif">
             <i class="icon-plus-sign-alt"></i> @lang("New Message")

@@ -7,9 +7,9 @@
 @endsection
 
 @section('content')
-    <div class="row-fluid">
-        <div class="widget-box">
-            <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
+    <div class="row">
+        <div class="card card-default">
+            <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
                 <h5>@lang("Blog admin")</h5>
                 <div class="buttons">
                     <a href="/blog" class="btn btn-default btn-mini"><i class="icon-home"></i> @lang("Blog Homepage")</a>
@@ -19,7 +19,7 @@
                         Post")</a>
                 </div>
             </div>
-            <div class="widget-content">
+            <div class="card-body">
 
                 <ul class="stat-boxes2">
                     <li>

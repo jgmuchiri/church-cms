@@ -10,12 +10,12 @@ require('./jquery.scrollTo.min');
 require('./jquery.validate');
 require('./matrix.popover');
 require('./matrix.form_validation');
-var tokenElement = $('meta[name="csrf-token"]');
-var _token = tokenElement.attr('content');
+let tokenElement = $('meta[name="csrf-token"]');
+let _token = tokenElement.attr('content');
 //fix youtube embedding
 function youtube(url) {
-    var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    var match = url.match(regExp);
+    let regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    let match = url.match(regExp);
     if (match && match[2].length === 11) {
         return 'https://www.youtube.com/embed/' + match[2];
     } else {
@@ -26,17 +26,17 @@ function youtube(url) {
 
 $(document).ready(function () {
     $('.btn-data').click(function (e) {
-        var modal = $(this).attr('id');
+        let modal = $(this).attr('id');
         $(modal).modal('show');
     });
 
-    var sidebar = $('#sidebar');
+    let sidebar = $('#sidebar');
     $('.submenu > a').click(function (e) {
         e.preventDefault();
-        var submenu = $(this).siblings('ul');
-        var li = $(this).parents('li');
-        var submenus = sidebar.find('li.submenu ul');
-        var submenus_parents = sidebar.find('li.submenu');
+        let submenu = $(this).siblings('ul');
+        let li = $(this).parents('li');
+        let submenus = sidebar.find('li.submenu ul');
+        let submenus_parents = sidebar.find('li.submenu');
         if (li.hasClass('open')) {
             if (($(window).width() > 768) || ($(window).width() < 479)) {
                 submenu.slideUp();
@@ -57,10 +57,10 @@ $(document).ready(function () {
         }
     });
 
-    var ul = sidebar.find('> ul');
+    let ul = sidebar.find('> ul');
     sidebar.find('> a').click(function (e) {
         e.preventDefault();
-        var sidebar = $('#sidebar');
+        let sidebar = $('#sidebar');
         if (sidebar.hasClass('open')) {
             sidebar.removeClass('open');
             ul.slideUp(250);
@@ -111,17 +111,17 @@ $(document).ready(function () {
 
     // === Fixes the position of buttons group in content header and top user navigation === //
     function fix_position() {
-        var uwidth = $('#user-nav').find('> ul')
+        let uwidth = $('#user-nav').find('> ul')
             //.width()
             .css({width: uwidth, 'margin-left': '-' + uwidth / 2 + 'px'});
 
-        var cwidth = $('#content-header').find('.btn-group')
+        let cwidth = $('#content-header').find('.btn-group')
             //.width()
             .css({width: cwidth, 'margin-left': '-' + uwidth / 2 + 'px'});
     }
 
     // === Style switcher === //
-    var switcher = $('#style-switcher').find('i');
+    let switcher = $('#style-switcher').find('i');
     switcher.click(function () {
         if ($(this).hasClass('open')) {
             $(this).parent().animate({marginRight: '-=190'});
@@ -135,7 +135,7 @@ $(document).ready(function () {
     });
 
     switcher.click(function () {
-        var style = $(this).attr('href').replace('#', '');
+        let style = $(this).attr('href').replace('#', '');
         $('.skin-color').attr('href', 'css/maruti.' + style + '.css');
         $(this).siblings('a').css({'border-color': 'transparent'});
         $(this).css({'border-color': '#aaaaaa'});
@@ -143,7 +143,7 @@ $(document).ready(function () {
 
     //toggle active class on sidebar
     $('.sideNav').find('a').each(function () {
-        var link = $(this).attr('href');
+        let link = $(this).attr('href');
         link = link.split("/")[1];
         if (link === curPage) {
             $(this).parent('li').addClass('active');

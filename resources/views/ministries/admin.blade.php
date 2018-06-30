@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
             <h5>{{$title}}</h5>
 
             <div class="buttons">
@@ -23,10 +23,10 @@
                 </a>
             </div>
         </div>
-        <div class="widget-content">
-            <div class="row-fluid">
+        <div class="card-body">
+            <div class="row">
 
-                <div class="span12">
+                <div class="col-sm-12">
 
                     <form class="form-inline" method="get">
                         <div class="controls">

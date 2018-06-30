@@ -10,11 +10,11 @@
 
 @section('content')
     @include('messaging.topnav')
-    <div class="widget-box">
-        <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+    <div class="card card-default">
+        <div class="card-header"><span class="icon"><i class="icon-th"></i></span>
             <h5>@lang("Previous Messages")</h5>
         </div>
-        <div class="widget-content nopadding">
+        <div class="card-body nopadding">
             <table class="table table-striped table-responsive" id="table">
                 <thead>
                 <tr>

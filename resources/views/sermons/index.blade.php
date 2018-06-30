@@ -8,8 +8,8 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-list"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-list"></i></span>
             <h5>@lang("Sermons")</h5>
 
             <div class="buttons">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="widget-content nopadding">
+        <div class="card-body nopadding">
 <br/>
             <ul class="stat-boxes2">
                 <li>

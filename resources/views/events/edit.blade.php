@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
             <h5>@lang"(Edit event")</h5>
             <div class="buttons">
                 <a class="btn btn-default btn-mini" href="/events/admin"><i class="icon-chevron-left"></i>
@@ -18,7 +18,7 @@
                     events list</a>
             </div>
         </div>
-        <div class="widget-content">
+        <div class="card-body">
 
             {{Form::model($event,['url'=>'events/'.$event->id.'/edit'])}}
             {{Form::text('title',null,['placeholder'=>'Event Title','required'=>'required'])}}<br/>
@@ -29,20 +29,20 @@
 
             <br/>
 
-            <div class="row-fluid">
-                <div class="span6">
+            <div class="row">
+                <div class="col-sm-6">
                     <label>@lang("Status")</label>
                     {{Form::select('status',['active'=>'Active','private'=>'Private'])}}
 
                 </div>
-                <div class="span6">
+                <div class="col-sm-6">
                     {{Form::checkbox('allDay')}} <label>@lang("All day")?</label>
                 </div>
             </div>
 
 
-            <div class="row-fluid">
-                <div class="span6">
+            <div class="row">
+                <div class="col-sm-6">
                     <label>@lang("End")</label>
                     {{Form::input('date','end',date('Y-m-d',strtotime($event->end)),['placeholder'=>'End'])}}
                     {{Form::input('time','endTime',date('H:i',strtotime($event->end)),['placeholder'=>'End'])}}
@@ -50,15 +50,15 @@
             </div>
 
             <br/>
-            {{Form::textarea('desc',null,['placeholder'=>'Description','rows'=>3,'class'=>'span12'])}}
+            {{Form::textarea('desc',null,['placeholder'=>'Description','rows'=>3,'class'=>'col-sm-12'])}}
 
             <label>@lang("This event requires registration")?</label>
             {{Form::radio('registration',1,false)}} Yes
             {{Form::radio('registration',0,true)}} No
             <br/>
             <em>(paste google form url below)</em>
-            {{Form::text('form_id',null,['placeholder'=>'Google Form Link','class'=>'span12'])}}<br/>
-            {{Form::text('url',null,['placeholder'=>'Event URL','class'=>'span12'])}}<br/>
+            {{Form::text('form_id',null,['placeholder'=>'Google Form Link','class'=>'col-sm-12'])}}<br/>
+            {{Form::text('url',null,['placeholder'=>'Event URL','class'=>'col-sm-12'])}}<br/>
             <button class="btn btn-default">@lang("Save")</button>
             {{Form::close()}}
         </div>

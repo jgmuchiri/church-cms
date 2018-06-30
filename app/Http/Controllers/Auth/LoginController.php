@@ -51,4 +51,8 @@ class LoginController extends Controller
             return json_encode(['message' => __("Username or password is incorrect")]);
         }
     }
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
+    }
 }

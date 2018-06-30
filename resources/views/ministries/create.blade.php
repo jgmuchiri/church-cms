@@ -8,8 +8,8 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
             <h5>@lang("New Ministry")</h5>
             <div class="buttons">
                 <a class="btn btn-default btn-mini" href="/ministries/admin">
@@ -23,16 +23,16 @@
                 </a>
             </div>
         </div>
-        <div class="widget-content">
+        <div class="card-body">
             {{Form::open(['url'=>'ministries/create'])}}
             <label>@lang("Name")</label>
-            {{Form::text('name',null,['required'=>'required','class'=>'span6'])}}
+            {{Form::text('name',null,['required'=>'required','class'=>'col-sm-6'])}}
             <label>@lang("Categories")</label>
-            {{Form::select('cat',DB::table('ministry_cats')->pluck('name','id'),null,['class'=>'span6'])}}
+            {{Form::select('cat',DB::table('ministry_cats')->pluck('name','id'),null,['class'=>'col-sm-6'])}}
             <label>@lang("Status")</label>
-            {{Form::select('active',['1'=>'Posted','0'=>'Draft'],null,['class'=>'span6'])}}
+            {{Form::select('active',['1'=>'Posted','0'=>'Draft'],null,['class'=>'col-sm-6'])}}
             <label>@lang("Description")</label>
-            {{Form::textarea('desc',null,['required'=>'required','class'=>'span6'])}}
+            {{Form::textarea('desc',null,['required'=>'required','class'=>'col-sm-6'])}}
 
             <p></p>
             <button class="btn btn-default">@lang("Submit")</button>

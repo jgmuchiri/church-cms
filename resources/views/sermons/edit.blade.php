@@ -8,8 +8,8 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-list"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-list"></i></span>
             <h5>@lang("New sermon")</h5>
 
             <div class="buttons">
@@ -24,31 +24,31 @@
                 </a>
             </div>
         </div>
-        <div class="widget-content">
+        <div class="card-body">
             {{Form::model($sermon,['url'=>'sermons/'.$sermon->id.'/edit','files'=>'true'])}}
             <table class="table">
                 <tr>
                     <td>@lang("Title"):</td>
-                    <td>{{Form::text('title',null,['required'=>'required','placeholder'=>__("Title"),'class'=>'span12'])}}</td>
+                    <td>{{Form::text('title',null,['required'=>'required','placeholder'=>__("Title"),'class'=>'col-sm-12'])}}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <div class="row-fluid">
+                        <div class="row">
                             <div class="form-inline">
-                                <div class="span4">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>@lang("Topic"):</label><br/>
                                         {{Form::text('topic')}}
                                     </div>
                                 </div>
-                                <div class="span4">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>@lang("Sub Topic")</label><br/>
                                         {{Form::text('sub_topic',null,['required'=>'required','placeholder'=>__("Sub Topic")])}}
                                     </div>
                                 </div>
-                                <div class="span4">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>@lang("Date")</label><br/>
                                         {{Form::input('date','created_at',date('Y-m-d',strtotime($sermon->created_at)),['required'=>'required'])}}
@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                     <td>@lang("Description"):</td>
-                    <td> {{Form::textarea('desc',null,['placeholder'=>__("Short Description"),'rows'=>3,'class'=>'span12'])}}</td>
+                    <td> {{Form::textarea('desc',null,['placeholder'=>__("Short Description"),'rows'=>3,'class'=>'col-sm-12'])}}</td>
                 </tr>
                 <tr>
                     <td>@lang("Message"):</td>

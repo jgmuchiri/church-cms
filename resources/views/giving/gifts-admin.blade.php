@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="widget-box widget-plain">
+    <div class="card card-default widget-plain">
         <div class="center">
             <ul class="stat-boxes2">
                 <li>
@@ -42,15 +42,15 @@
     </div>
 
 
-    <div class="widget-box">
-        <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+    <div class="card card-default">
+        <div class="card-header"><span class="icon"><i class="icon-th"></i></span>
             <h5>@lang("Giving history")</h5>
             <div class="buttons">
                 <a href="/reports/downloadGiftsToDate" class="btn btn-inverse btn-mini no-print">
                     <i class="icon-download-alt"></i> @lang("Download CSV")</a>
             </div>
         </div>
-        <div class="widget-content nopadding">
+        <div class="card-body nopadding">
             @if(count($txns)>0)
                 <table class="table table-bordered data-table">
                     <thead>

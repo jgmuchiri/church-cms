@@ -7,21 +7,21 @@
 @endsection
 @section('content')
     @include('messaging.topnav')
-    <div class="row-fluid">
+    <div class="row">
         <div class="alert alert-info">
             @lang("A log of sent messages is kept in the server and can be re-used as template")
         </div>
         {!! Form::open(['url'=>'messaging/send','id'=>'template-form']) !!}
-        <div class="widget-box">
-            <div class="widget-title">
+        <div class="card card-default">
+            <div class="card-header">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab1">@lang("Groups")</a></li>
                     <li><a data-toggle="tab" href="#tab2">Find user</a></li>
                 </ul>
             </div>
-            <div class="widget-content tab-content">
+            <div class="card-body tab-content">
                 <div id="tab1" class="tab-pane active">
-                    <select name="group" id="user-groups" class="span6">
+                    <select name="group" id="user-groups" class="col-sm-6">
                         <option value="">--@lang("Select User Group")--</option>
                         <option value="all">@lang("All Users")</option>
                         <option value="admins">@lang("Admins")</option>
@@ -36,31 +36,31 @@
                     </select>
                 </div>
                 <div id="tab2" class="tab-pane">
-                    <div class="row-fluid">
-                        <div class="span6">
-                            {{Form::text('users[]',null,['id'=>'names','placeholder'=>'Start typing to search...','class'=>'span12'])}}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{Form::text('users[]',null,['id'=>'names','placeholder'=>'Start typing to search...','class'=>'col-sm-12'])}}
                         </div>
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span6">
+                <div class="row">
+                    <div class="col-sm-6">
                         <label><i class="icon-arrow-circle-right"></i> @lang("Subject")</label>
-                        {{Form::text('subject',null,['required'=>'required','class'=>'span12'])}}
+                        {{Form::text('subject',null,['required'=>'required','class'=>'col-sm-12'])}}
                     </div>
                 </div>
-                <div class="row-fluid">
-                    <div class="span10">
+                <div class="row">
+                    <div class="col-sm-10">
                         <label><i class="icon-arrow-circle-right"></i> @lang("Message")</label>
                         @if($template ==null)
-                            {{Form::textarea('message',null,['class'=>'editor span12'])}}
+                            {{Form::textarea('message',null,['class'=>'editor col-sm-12'])}}
                         @else
-                            {{Form::textarea('message',$template,['class'=>'editor span12'])}}
+                            {{Form::textarea('message',$template,['class'=>'editor col-sm-12'])}}
                         @endif
                     </div>
                 </div>
                 <br/>
-                <div class="row-fluid">
+                <div class="row">
                     <div class="span-12">
                         <button type="button" class="btn btn-info send">
                             <i class="icon-envelope-alt"></i> @lang("Send")

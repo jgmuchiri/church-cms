@@ -9,8 +9,8 @@
 
 @section('content')
 
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
             <h5>@lang("Events list")</h5>
 
             <div class="buttons">
@@ -21,7 +21,7 @@
                     create event</a>
             </div>
         </div>
-        <div class="widget-content">
+        <div class="card-body">
             <form action="" method="get" class="form-inline">
                 <div class="input-group">
                     <input name="s" placeholder="Search" class="form-control">

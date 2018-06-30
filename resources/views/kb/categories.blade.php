@@ -4,8 +4,8 @@
 @endsection
 @section('content')
 
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon"></i></span>
             <h5>@lang("Knowledge case categories")</h5>
             <div class="buttons">
                 <a href="/support/questions" class="btn btn-info btn-mini">
@@ -14,9 +14,9 @@
             </div>
         </div>
 
-        <div class="widget-content nopadding">
-            <div class="row-fluid">
-                <div class="span6">
+        <div class="card-body nopadding">
+            <div class="row">
+                <div class="col-sm-6">
                     <table class="table table-bordered data-table selec2">
                         <tr>
                             <th>@lang("Name")</th>
@@ -34,7 +34,7 @@
                         @endforeach
                     </table>
                 </div>
-                <div class="span6">
+                <div class="col-sm-6">
                     @if(isset($_GET['cat']))
 
                         <h4 class="title">@lang("Update Category")</h4>
@@ -59,9 +59,9 @@
                     {{Form::input('number','order',null,['class'=>'form-control'])}}
 
                     <label>@lang("Display icon")</label>
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <select name="icon" class="span12 select2">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select name="icon" class="col-sm-12 select2">
                                 @foreach(App\Tools::fa() as $icon)
                                     <option
                                             {{isset($myCat) && ($icon == $myCat->icon)?'selected':''}}
@@ -72,7 +72,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="span2">
+                        <div class="col-sm-2">
                             <span class="icon-show">
                                 @if(isset($myCat))
                                     <i class="fa {{$myCat->icon}} fa-4x"></i>

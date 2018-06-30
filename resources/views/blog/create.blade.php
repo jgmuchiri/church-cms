@@ -8,9 +8,9 @@
 @endsection
 @section('content')
 
-    <div class="row-fluid">
-        <div class="widget-box">
-            <div class="widget-title bg_lg"><span class="icon"><i class="icon-th"></i></span>
+    <div class="row">
+        <div class="card card-default">
+            <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
                 <h5>@lang("Blog categories")</h5>
                 <div class="buttons">
                     <a class="btn btn-default btn-mini" href="/blog/admin"><i class="icon-chevron-left"></i>
@@ -21,10 +21,10 @@
                         Categories</a>
                 </div>
             </div>
-            <div class="widget-content">
+            <div class="card-body">
                 {{Form::open(['url'=>'blog/create'])}}
-                <div class="row-fluid">
-                    <div class="span10">
+                <div class="row">
+                    <div class="col-sm-10">
                         <label>@lang("Title")</label>
                         {{Form::text('title',null,['required'=>'required'])}}
 
@@ -37,7 +37,7 @@
                         <label>@lang("Body")</label>
                         {{Form::textarea('body',null,['class'=>'editor'])}}
                     </div>
-                    <div class="span2">
+                    <div class="col-sm-2">
                         <label>@lang("Categories")</label>
                         <?php $cats = DB::table('blog_cats')->get(); ?>
                         @foreach ($cats as $cat)<br/>

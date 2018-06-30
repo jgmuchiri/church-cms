@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
             <h5>@lang("New sermon")</h5>
 
             <div class="buttons">
@@ -22,7 +22,7 @@
                     @Lang("events list")</a>
             </div>
         </div>
-        <div class="widget-content">
+        <div class="card-body">
             @if(Request()->segment(2)=="list")
             @else
                 <div id='calendar' style="background-color: #fff;"></div>
@@ -85,51 +85,51 @@
             </div>
             {{Form::open(['url'=>'events','id'=>'new-event-form'])}}
             <div class="modal-body">
-                <div class="row-fluid">
-                    {{Form::text('title',null,['placeholder'=>'Event Title','required'=>'required','class'=>'span12'])}}
+                <div class="row">
+                    {{Form::text('title',null,['placeholder'=>'Event Title','required'=>'required','class'=>'col-sm-12'])}}
                     <br/>
 
-                    <div class="row-fluid">
-                        <div class="span6">
+                    <div class="row">
+                        <div class="col-sm-6">
                             <label>@lang("Start date")</label>
-                            {{Form::input('date','start',null,['placeholder'=>'Start','required'=>'required','class'=>'span12'])}}
+                            {{Form::input('date','start',null,['placeholder'=>'Start','required'=>'required','class'=>'col-sm-12'])}}
                         </div>
-                        <div class="span6" id="e-start-time">
+                        <div class="col-sm-6" id="e-start-time">
                             <label>@lang("Start time")</label>
-                            {{Form::input('time','startTime',null,['placeholder'=>'Start','class'=>'span12'])}}
+                            {{Form::input('time','startTime',null,['placeholder'=>'Start','class'=>'col-sm-12'])}}
                         </div>
                     </div>
 
-                    <div class="row-fluid">
-                        <div class="span6">
+                    <div class="row">
+                        <div class="col-sm-6">
                             <label>@lang("Status")</label>
-                            {{Form::select('status',['active'=>'Active','private'=>'Private'],null,['class'=>'span12'])}}
+                            {{Form::select('status',['active'=>'Active','private'=>'Private'],null,['class'=>'col-sm-12'])}}
                         </div>
-                        <div class="span6">
+                        <div class="col-sm-6">
                             {{Form::checkbox('allDay')}} <label>@lang("All day")?</label>
                         </div>
                     </div>
 
-                    <div class="row-fluid">
-                        <div class="span6">
+                    <div class="row">
+                        <div class="col-sm-6">
                             <label>@lang("End date")</label>
-                            {{Form::input('date','end',null,['placeholder'=>'End','class'=>'span12'])}}
+                            {{Form::input('date','end',null,['placeholder'=>'End','class'=>'col-sm-12'])}}
                         </div>
-                        <div class="span6" id="e-end-time">
+                        <div class="col-sm-6" id="e-end-time">
                             <label>@lang("End time")</label>
-                            {{Form::input('time','endTime',null,['placeholder'=>'End','class'=>'span12'])}}
+                            {{Form::input('time','endTime',null,['placeholder'=>'End','class'=>'col-sm-12'])}}
                         </div>
                     </div>
-                    <div class="row-fluid">
-                        <div class="span12">
-                            {{Form::textarea('desc',null,['placeholder'=>'Description','rows'=>3,'class'=>'span12'])}}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{Form::textarea('desc',null,['placeholder'=>'Description','rows'=>3,'class'=>'col-sm-12'])}}
 
                             <label>
                                 {{Form::checkbox('registration',1,false)}}
                                 @lang("This event requires registration")?
                             </label>
-                            {{Form::text('form_id',null,['placeholder'=>'Paste Google form link','class'=>'span12', 'style'=>'display:none'])}}<br/>
-                            {{Form::text('url',null,['placeholder'=>'Event external link','class'=>'span12'])}}<br/>
+                            {{Form::text('form_id',null,['placeholder'=>'Paste Google form link','class'=>'col-sm-12', 'style'=>'display:none'])}}<br/>
+                            {{Form::text('url',null,['placeholder'=>'Event external link','class'=>'col-sm-12'])}}<br/>
 
                         </div>
                     </div>

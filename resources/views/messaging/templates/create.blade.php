@@ -7,21 +7,21 @@
 
     <a href="/templates" class="btn btn-default"><i class="icon-chevron-circle-left"></i> @lang("Back")</a>
 
-    <div class="row-fluid">
-        <div class="widget-box">
-            <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+    <div class="row">
+        <div class="card card-default">
+            <div class="card-header bg_lg"><span class="icon"><i class="icon-signal"></i></span>
                 <h5>@lang("Create a message template")</h5>
             </div>
-            <div class="widget-content">
-                <div class="row-fluid">
+            <div class="card-body">
+                <div class="row">
 
                     @if(isset($template))
                         {{Form::model($template,['url'=>'templates/'.$template->id.'/edit'])}}
                     @else
                         {{Form::open(['url'=>'templates'])}}
                     @endif
-                    <div class="row-fluid">
-                        <div class="span6">
+                    <div class="row">
+                        <div class="col-sm-6">
                             <label>@lang("Name")</label>
                             {{Form::text('name',null,['required'=>'required'])}}
                         </div>

@@ -5,7 +5,7 @@
 		<div class="col-xl-12">
 			<div class="card card-default">
 				<div class="card-header">
-					<div class="card-title"><h3><i class="fa fa-user"></i> {{ucwords($user->username)}}</h3></div>
+					<div class="card-title"><h3><i class="fa fa-user"></i> {{ucwords($user->name())}}</h3></div>
 					@lang("Registered"):{{$user->created_at}}
 					@if(!empty($user->stripe_id))
 						@lang("TXN ID"): {{$user->stripe_id}}

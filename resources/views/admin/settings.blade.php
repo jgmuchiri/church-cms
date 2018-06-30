@@ -3,18 +3,18 @@
     @lang("System Settings")
 @endsection
 @section('content')
-    <div class="row-fluid">
+    <div class="row">
         @include('admin.settings-menu')
 
-        <div class="span10">
-            <div class="widget-box no-top">
-                <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+        <div class="col-sm-9">
+            <div class="card card-default no-top">
+                <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
                     <h5>@lang("Settings")</h5>
                     <div class="buttons">
 
                     </div>
                 </div>
-                <div class="widget-content">
+                <div class="card-body">
                     <div class="alert content-alert alert-danger alert-white rounded">
                         {{--<a href="#" class="close"><i class="icon-times-circle-o"></i> </a>--}}
                         <div class="icon">
@@ -36,7 +36,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             {!! Form::open() !!}
-                            {!! Form::textarea('envContent',$envContent,['rows'=>20,'class'=>'span12']) !!}
+                            {!! Form::textarea('envContent',$envContent,['rows'=>20,'class'=>'col-sm-12']) !!}
                             <button class="btn btn-default"><i class="icon-save"></i> @lang("Update")</button>
                             {!! Form::close() !!}
                         </div>

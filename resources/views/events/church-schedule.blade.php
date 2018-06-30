@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+    <div class="card card-default">
+        <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
             <h5>@lang("Regular service schedules")</h5>
 
             <div class="buttons">
@@ -16,7 +16,7 @@
                     back to calendar</a>
             </div>
         </div>
-        <div class="widget-content nopadding">
+        <div class="card-body nopadding">
             <table class="table table-bordered data-table selec2">
                 <thead>
                 <tr>
@@ -33,19 +33,19 @@
                     {{Form::model($s,['url'=>'events/church-schedule/'.$s->id,'method'=>'patch'])}}
                     <tr>
                         <td>
-                            {{Form::text('event',null,['required'=>'required','class'=>'span12'])}}
+                            {{Form::text('event',null,['required'=>'required','class'=>'col-sm-12'])}}
                         </td>
                         <td>
-                            {{Form::input('time','start',null,['required'=>'required','class'=>'span12'])}}
+                            {{Form::input('time','start',null,['required'=>'required','class'=>'col-sm-12'])}}
                         </td>
                         <td>
-                            {{Form::input('time','end',null,['required'=>'required','class'=>'span12'])}}
+                            {{Form::input('time','end',null,['required'=>'required','class'=>'col-sm-12'])}}
                         </td>
                         <td>
-                            {{Form::text('desc',null,['class'=>'span12'])}}
+                            {{Form::text('desc',null,['class'=>'col-sm-12'])}}
                         </td>
                         <td>
-                            {{Form::text('order',null,['class'=>'span12'])}}
+                            {{Form::text('order',null,['class'=>'col-sm-12'])}}
                         </td>
                         <td>
                         <span class="btn-group">
@@ -63,19 +63,19 @@
 
                 <tr>
                     <td>
-                        {{Form::text('event',null,['required'=>'required','class'=>'span12'])}}
+                        {{Form::text('event',null,['required'=>'required','class'=>'col-sm-12'])}}
                     </td>
                     <td>
-                        {{Form::input('time','start',null,['required'=>'required','class'=>'span12'])}}
+                        {{Form::input('time','start',null,['required'=>'required','class'=>'col-sm-12'])}}
                     </td>
                     <td>
-                        {{Form::input('time','end',null,['required'=>'required','class'=>'span12'])}}
+                        {{Form::input('time','end',null,['required'=>'required','class'=>'col-sm-12'])}}
                     </td>
                     <td>
-                        {{Form::text('desc',null,['class'=>'span12'])}}
+                        {{Form::text('desc',null,['class'=>'col-sm-12'])}}
                     </td>
                     <td>
-                        {{Form::text('order',null,['class'=>'span12'])}}
+                        {{Form::text('order',null,['class'=>'col-sm-12'])}}
                     </td>
                     <td>
                         <button class="btn btn-success btn-mini"><i class="icon-save"></i></button>

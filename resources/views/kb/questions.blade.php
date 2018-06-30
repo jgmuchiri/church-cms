@@ -3,9 +3,9 @@
     @lang("Support admin")
 @endsection
 @section('content')
-    <div class="row-fluid">
-        <div class="widget-box">
-            <div class="widget-title bg_lg"><span class="icon"><i class="icon-question-sign"></i></span>
+    <div class="row">
+        <div class="card card-default">
+            <div class="card-header bg_lg"><span class="icon"><i class="icon-question-sign"></i></span>
                 <h5>@lang("Support topics")</h5>
                 <div class="buttons">
                     <a href="/support/categories" class="btn btn-info btn-mini"><i class="icon-list"></i> @lang("Knowledge Base")
@@ -16,8 +16,8 @@
                         <i class="icon-home"></i> @lang("User view")</a>
                 </div>
             </div>
-            <div class="widget-content">
-                <div class="widget-content nopadding">
+            <div class="card-body">
+                <div class="card-body nopadding">
                     <table class="table table-bordered data-table">
 
                         <thead>

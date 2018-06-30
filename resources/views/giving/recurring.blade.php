@@ -7,13 +7,13 @@
 @endsection
 
 @section('content')
-    <div class="widget-box">
-        <div class="widget-title"><span class="icon">
+    <div class="card card-default">
+        <div class="card-header"><span class="icon">
                 <a href="/giving/gifts"><i class="icon-chevron-left"></i></a>
             </span>
             <h5>@lang("Cancellations will take effect on the next billing cycle")</h5>
         </div>
-        <div class="widget-content nopadding">
+        <div class="card-body nopadding">
             <table class="table table-bordered data-table selec2">
 
                 <thead>

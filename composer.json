@@ -9,15 +9,16 @@
   "type": "project",
   "require": {
     "php": ">=5.6.4",
-    "laravel/framework": "5.4.*",
+    "doctrine/dbal": "^2.5",
+    "guzzlehttp/guzzle": "^6.2",
     "intervention/image": "^2.3",
     "laracasts/flash": "^2.0",
-    "laravelcollective/html": "^5.3",
-    "guzzlehttp/guzzle": "^6.2",
-    "doctrine/dbal": "^2.5",
-    "santigarcor/laratrust": "3.2.*",
     "laravel/cashier": "^7.0",
-    "laravel/tinker": "^1.0"
+    "laravel/framework": "5.4.*",
+    "laravel/tinker": "^1.0",
+    "laravelcollective/html": "^5.3",
+    "rap2hpoutre/laravel-log-viewer": "^0.16.0",
+    "santigarcor/laratrust": "3.2.*"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

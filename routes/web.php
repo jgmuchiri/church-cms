@@ -19,6 +19,8 @@ Route::group(['middleware' => 'web'], function () {
     if (Request()->segment(3) == "delete") {
         return view('errors.202');
     }
+    Route::get('password/forgot','Auth\ForgotPasswordController@index')->name('password.forgot');
+    Route::get('logout', 'Auth\LoginController@logout');
 
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
@@ -133,8 +135,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'AdminController@settings');
         Route::post('/logo', 'AdminController@uploadLogo');
     });
-    Route::get('debug-log','AdminController@debug')->name('debug');
-    Route::post('debug-log','AdminController@emptyDebugLog')->name('empty-debug-log');
+    Route::get('debug-log','\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
     //themes
     Route::group(['prefix' => 'theme','middleware'=>'auth'], function () {
@@ -144,7 +145,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('{id}/select', 'ThemesController@selectTheme');
         Route::get('/browse', 'ThemesController@browse');
     });
-
 
     Route::group(['prefix' => 'menu'], function () {
         Route::get('/', 'MenuController@mainMenu');

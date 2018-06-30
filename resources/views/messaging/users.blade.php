@@ -1,7 +1,7 @@
 <div id="users">
     <div class="controls">
         <div class="input-append">
-            <input class="search span11" placeholder="Search"/>
+            <input class="search col-sm-11" placeholder="Search"/>
             <span class="sort add-on" data-sort="name"><span class="icon-search"></span> </span></div>
     </div>
 

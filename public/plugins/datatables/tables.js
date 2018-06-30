@@ -7,8 +7,6 @@ $(document).ready(function(){
 		"sDom": '<""l>t<"F"fp>'
 	});
 	
-	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
-	
 	// $('.dataTables_length select').select2();
 	
 	$("span.icon input:checkbox, th input:checkbox").click(function() {

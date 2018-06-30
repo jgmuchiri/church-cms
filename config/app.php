@@ -186,6 +186,7 @@ return [
         Laravel\Cashier\CashierServiceProvider::class,
 
         Laravel\Tinker\TinkerServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ],
 
     /*

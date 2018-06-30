@@ -56,7 +56,6 @@ class LaratrustSeeder extends Seeder
 
         // Create default user for each role
         $user = \App\User::create([
-            'username'=>'admin',
             'first_name'=>'Admin',
             'last_name'=>'Admin',
             'email' => env('DEFAULT_USER'),

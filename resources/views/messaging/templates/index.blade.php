@@ -7,11 +7,11 @@
 
     <a href="/messaging/admin" class="btn btn-default"><i class="icon-inbox"></i> @lang("Messaging")</a>
     <a href="/templates/create" class="btn btn-default"><i class="icon-plus"></i> @lang("New template")</a>
-    <div class="widget-box">
-        <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+    <div class="card card-default">
+        <div class="card-header"><span class="icon"><i class="icon-th"></i></span>
             <h5>@lang("Message templates")</h5>
         </div>
-        <div class="widget-content nopadding">
+        <div class="card-body nopadding">
             <table class="table table-striped table-responsive" id="table">
                 <tr>
                     <th>@lang("Name")</th>
