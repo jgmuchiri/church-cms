@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="toggle">
-                    <a style="color:#fff" href="/login"><i class="icon-times fa-key"></i>
+                    <a style="color:#fff" href="/login"><i class="fa fa-times fa-key"></i>
 
                         <div class="tooltip" title="">@lang("Login")</div>
                     </a>

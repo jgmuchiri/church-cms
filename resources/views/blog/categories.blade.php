@@ -10,21 +10,21 @@
 
     <div class="row">
         <div class="card card-default">
-            <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
+            <div class="card-header bg_lg"><span class="icon"><i class="fa fa-th"></i></span>
                 <h5>@lang("Blog categories")</h5>
                 <div class="buttons">
-                    <a class="btn btn-default btn-mini" href="/blog/admin"><i class="icon-chevron-left"></i>
+                    <a class="btn btn-default btn-sm" href="/blog/admin"><i class="fa fa-chevron-left"></i>
                         back</a>
 
-                    <a href="/blog" class="btn btn-default btn-mini"><i class="icon-home"></i> @lang("Blog Homepage")</a>
-                    <a href="/blog/categories" class="btn btn-info btn-mini"><i class="icon-list-alt"></i>
+                    <a href="/blog" class="btn btn-default btn-sm"><i class="fa fa-home"></i> @lang("Blog Homepage")</a>
+                    <a href="/blog/categories" class="btn btn-info btn-sm"><i class="fa fa-list-alt"></i>
                         Categories</a>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <table class="table table-responsive">
+                        <table class="table ">
                             <tr>
                                 <th>@lang("Name")</th>
                                 <th>@lang("Desc")</th>

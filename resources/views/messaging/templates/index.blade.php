@@ -5,14 +5,14 @@
 
 @section('content')
 
-    <a href="/messaging/admin" class="btn btn-default"><i class="icon-inbox"></i> @lang("Messaging")</a>
-    <a href="/templates/create" class="btn btn-default"><i class="icon-plus"></i> @lang("New template")</a>
+    <a href="/messaging/admin" class="btn btn-default"><i class="fa fa-inbox"></i> @lang("Messaging")</a>
+    <a href="/templates/create" class="btn btn-default"><i class="fa fa-plus"></i> @lang("New template")</a>
     <div class="card card-default">
-        <div class="card-header"><span class="icon"><i class="icon-th"></i></span>
+        <div class="card-header"><span class="icon"><i class="fa fa-th"></i></span>
             <h5>@lang("Message templates")</h5>
         </div>
         <div class="card-body nopadding">
-            <table class="table table-striped table-responsive" id="table">
+            <table class="table table-striped " id="table">
                 <tr>
                     <th>@lang("Name")</th>
                     <th>@lang("Description")</th>
@@ -25,12 +25,12 @@
                         <td>{{$temp->desc}}</td>
                         <td>{!! ($temp->active==1)?'<span class="label label-success">Active</span>':'<span class="label label-danger">Disabled</span>' !!}</td>
                         <td>
-                            <a class="btn btn-info btn-mini" data-toggle="tooltip" title="Copy to start new message"
-                               href="/messaging/admin?tmp={{$temp->id}}"><i class="icon-copy"></i> </a>
-                            <a class="btn btn-default btn-mini" data-toggle="tooltip" title="Edit"
-                               href="/templates/{{$temp->id}}/edit"><i class="icon-pencil"></i> </a>
-                            <a class="btn btn-danger btn-mini delete" data-toggle="tooltip" title="Delete"
-                               href="/templates/delete/{{$temp->id}}"><i class="icon-trash"></i> </a>
+                            <a class="btn btn-info btn-sm" data-toggle="tooltip" title="Copy to start new message"
+                               href="/messaging/admin?tmp={{$temp->id}}"><i class="fa fa-copy"></i> </a>
+                            <a class="btn btn-default btn-sm" data-toggle="tooltip" title="Edit"
+                               href="/templates/{{$temp->id}}/edit"><i class="fa fa-pencil"></i> </a>
+                            <a class="btn btn-danger btn-sm delete" data-toggle="tooltip" title="Delete"
+                               href="/templates/delete/{{$temp->id}}"><i class="fa fa-trash"></i> </a>
                         </td>
                     </tr>
                 @endforeach

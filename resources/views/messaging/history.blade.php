@@ -11,11 +11,11 @@
 @section('content')
     @include('messaging.topnav')
     <div class="card card-default">
-        <div class="card-header"><span class="icon"><i class="icon-th"></i></span>
+        <div class="card-header"><span class="icon"><i class="fa fa-th"></i></span>
             <h5>@lang("Previous Messages")</h5>
         </div>
         <div class="card-body nopadding">
-            <table class="table table-striped table-responsive" id="table">
+            <table class="table table-striped " id="table">
                 <thead>
                 <tr>
                     <th>@lang("Date")</th>
@@ -40,10 +40,10 @@
                             {{$user}}
                         </td>
                         <td>
-                            <a class="btn btn-default btn-mini" data-toggle="tooltip" title="@lang("Copy to start a new message")"
-                               href="/messaging/admin?msg={{$msg->id}}"><i class="icon-copy"></i> </a>
-                            <a class="btn btn-danger btn-mini  delete" data-toggle="tooltip" title="@lang("Delete")"
-                               href="/messaging/delete/{{$msg->id}}"><i class="icon-trash"></i> </a>
+                            <a class="btn btn-default btn-sm" data-toggle="tooltip" title="@lang("Copy to start a new message")"
+                               href="/messaging/admin?msg={{$msg->id}}"><i class="fa fa-copy"></i> </a>
+                            <a class="btn btn-danger btn-sm  delete" data-toggle="tooltip" title="@lang("Delete")"
+                               href="/messaging/delete/{{$msg->id}}"><i class="fa fa-trash"></i> </a>
                         </td>
                     </tr>
                 @endforeach

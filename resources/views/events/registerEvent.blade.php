@@ -6,8 +6,8 @@
             <div class="card">
                 <div class="header">
 
-                    <a class="btn btn-default btn-mini" href="/events"><i
-                                class="icon-chevron-left"></i>
+                    <a class="btn btn-default btn-sm" href="/events"><i
+                                class="fa fa-chevron-left"></i>
                         back to events</a>
 
                 </div>

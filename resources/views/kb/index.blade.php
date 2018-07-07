@@ -29,7 +29,7 @@
                                            placeholder="What can we help you with? Enter a search term.">
                                 </div>
                                 <div class="col-sm-1">
-                                    <span class="btn btn-inverse"><i class="icon-search"></i> </span>
+                                    <span class="btn btn-inverse"><i class="fa fa-search"></i> </span>
                                 </div>
                             </div>
                         </form>

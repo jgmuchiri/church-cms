@@ -20,10 +20,10 @@
             @endforeach
         </div>
         <a class="left carousel-control" href="#carousel-example-captions" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="glyphicon glyphfa fa-chevron-left"></span>
         </a>
         <a class="right carousel-control" href="#carousel-example-captions" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="glyphicon glyphfa fa-chevron-right"></span>
         </a>
     </div>
 </div>

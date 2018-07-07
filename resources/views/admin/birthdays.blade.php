@@ -21,7 +21,7 @@
 
 								@role('admin')
 								<a href="/messaging/admin" class="input-group-btn btn btn-warning pull-right"><i
-											class="icon-envelope-alt"></i> @lang("Send birthday
+											class="fa fa-envelope-alt"></i> @lang("Send birthday
         message")</a>
 								@endrole
 							</div>

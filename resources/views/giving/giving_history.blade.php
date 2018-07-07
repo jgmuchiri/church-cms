@@ -1,5 +1,5 @@
 @if(count($gifts)>0)
-    <table class="table table-bordered data-table">
+    <table class="table table-bordered data-table" id="table">
         <thead>
         <tr>
             <th>@lang("Date")</th>

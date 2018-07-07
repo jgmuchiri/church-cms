@@ -7,13 +7,13 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-                        @if(is_file('uploads/sermons/cover/'.$sermon->cover))
+                        @if(Storage::exists($sermon->cover))
                             <img class="thumbnail" style="heigth:100%;width:400px;"
-                                 src="/uploads/sermons/cover/{{$sermon->cover}}"/>
+                                 src="{{Storage::url($sermon->cover)}}"/>
                         @else
                             {!! App\Tools::postThumb('none','85px','85px') !!}
                         @endif
-                        <a href="/sermons"><i class="icon-chevron-left"></i>
+                        <a href="/sermons"><i class="fa fa-chevron-left"></i>
                             @lang("back to sermons")
                         </a>
                     </div>
@@ -37,24 +37,24 @@
                         <hr/>
 
                         @if($sermon->audio =="")
-                            <button class="btn btn-primary disabled"><i class="icon-file-audio-o"></i>
+                            <button class="btn btn-primary disabled"><i class="fa fa-file-audio-o"></i>
                                 @lang("Play Audio")
                             </button>
                         @else
-                            <button class="btn btn-primary play-audio"><i class="icon-file-audio-o"></i>
+                            <button class="btn btn-primary play-audio"><i class="fa fa-file-audio-o"></i>
                                 @lang("Play Audio")
                             </button>
                         @endif
                         @if($sermon->video =="")
-                            <button class="btn btn-danger disabled"><i class="icon-video-camera"></i>
+                            <button class="btn btn-danger disabled"><i class="fa fa-video-camera"></i>
                                 @lang("Play Video")
                             </button>
                         @else
-                            <button class="btn btn-danger play-video"><i class="icon-video-camera"></i>
+                            <button class="btn btn-danger play-video"><i class="fa fa-video-camera"></i>
                                 @lang("Play Video")
                             </button>
                         @endif
-                        <button class="btn btn-success sermon-message"><i class="icon-eye-open"></i>
+                        <button class="btn btn-success sermon-message"><i class="fa fa-eye-open"></i>
                             @lang("Read Message")
                         </button>
 
@@ -78,9 +78,9 @@
             $('#message-modal').modal('show');
         });
         $('.play-video').click(function () {
-            var div = $('#video-modal');
-            var v = "{{$sermon->video}}";
-            var video;
+            let div = $('#video-modal');
+            let v = "{{$sermon->video}}";
+            let video;
             if (youtube(v)) {
                 video = v + "?color=white&iv_load_policy=3&rel=0&showinfo=0&theme=light";
             } else {
@@ -109,7 +109,7 @@
                     <h4 class="modal-title" id="myModalLabel">{{$sermon->title}}</h4>
                 </div>
                 <div class="modal-body">
-                    <audio style="width:100%" src="{{'/uploads/sermons/audio/'.$sermon->audio}}"
+                    <audio style="width:100%" src="{{Storage::url($sermon->audio)}}"
                            controls="controls"></audio>
                 </div>
 

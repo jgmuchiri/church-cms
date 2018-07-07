@@ -8,8 +8,8 @@
         <div class="card-header bg_lg"><span class="icon"><i class="icon"></i></span>
             <h5>@lang("Knowledge case categories")</h5>
             <div class="buttons">
-                <a href="/support/questions" class="btn btn-info btn-mini">
-                    <i class="icon-chevron-left"></i> @lang("Back")
+                <a href="/support/questions" class="btn btn-info btn-sm">
+                    <i class="fa fa-chevron-left"></i> @lang("Back")
                 </a>
             </div>
         </div>
@@ -73,7 +73,7 @@
                             </select>
                         </div>
                         <div class="col-sm-2">
-                            <span class="icon-show">
+                            <span class="fa fa-show">
                                 @if(isset($myCat))
                                     <i class="fa {{$myCat->icon}} fa-4x"></i>
                                 @endif
@@ -104,7 +104,7 @@
 
     $('select[name=icon]').change(function () {
         var icon = $(this).val();
-        $('.icon-show').html("<i class='fa " + icon + " fa-4x text-info'></i>");
+        $('.fa fa-show').html("<i class='fa " + icon + " fa-4x text-info'></i>");
     });
 </script>
 @endpush

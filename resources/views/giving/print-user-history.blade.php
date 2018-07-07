@@ -15,7 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 
     <style>
-        [class^="icon-"], [class*=" icon-"] {
+        [class^="fa fa-"], [class*=" fa fa-"] {
             margin-left: 4px;
             margin-right: 4px;
         }
@@ -37,15 +37,15 @@
             <td>
                 <table class="no-border">
                     <tr>
-                        <td><span class="icon-user"></span></td>
+                        <td><span class="fa fa-user"></span></td>
                         <td><strong> {{Auth::user()->first_name.' '.Auth::user()->last_name}}</strong></td>
                     </tr>
                     <tr>
-                        <td><span class="icon-inbox"></span></td>
+                        <td><span class="fa fa-inbox"></span></td>
                         <td>{!! Auth::user()->address !!}</td>
                     </tr>
                     <tr>
-                        <td><span class="icon-phone"></span></td>
+                        <td><span class="fa fa-phone"></span></td>
                         <td>{{Auth::user()->phone}}</td>
                     </tr>
                 </table>
@@ -61,15 +61,15 @@
                 <h4 class="title">{{env('APP_NAME')}}</h4>
                 <table class="no-border">
                     <tr>
-                        <td><span class="icon-inbox"></span></td>
+                        <td><span class="fa fa-inbox"></span></td>
                         <td valign="top">{!!env('ADDRESS') !!}</td>
                     </tr>
                     <tr>
-                        <td><span class="icon-envelope"></span></td>
+                        <td><span class="fa fa-envelope"></span></td>
                         <td>{{env('EMAIL_FROM_ADDRESS')}}</td>
                     </tr>
                     <tr>
-                        <td><span class="icon-phone"></span></td>
+                        <td><span class="fa fa-phone"></span></td>
                         <td>{{env('PHONE')}}</td>
                     </tr>
                 </table>

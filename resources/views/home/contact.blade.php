@@ -41,15 +41,15 @@
                 </div>
                 <div class="col-md-5">
 
-                    <p><i class="icon-inbox"></i>{!! env('ADDRESS') !!}</p>
+                    <p><i class="fa fa-inbox"></i>{!! env('ADDRESS') !!}</p>
 
-                    <p><i class="icon-phone"></i>{!! env('PHONE')!!}</p>
+                    <p><i class="fa fa-phone"></i>{!! env('PHONE')!!}</p>
 
-                    <p><i class="icon-envelope"></i>{!! env('EMAIL_FROM_ADDRESS')!!}</p>
+                    <p><i class="fa fa-envelope"></i>{!! env('EMAIL_FROM_ADDRESS')!!}</p>
                     <hr/>
 
                     {!! Form::open(['url'=>"contact"]) !!}
-                    <table class="table table-responsive no-border">
+                    <table class="table  no-border">
                         <tr>
                             <td>@lang("Name"):</td>
                             <td>{{Form::text('name',null,['required'=>'required','class'=>'form-control'])}}</td>

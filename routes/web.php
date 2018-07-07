@@ -61,13 +61,15 @@ Route::group(['middleware' => 'web'], function () {
     //sermons
     Route::group(['prefix' => 'sermons'], function () {
         Route::get('/', 'SermonsController@index');
+        Route::post('/', 'SermonsController@store')->name('create-sermon');
+        Route::patch('/{id}', 'SermonsController@update')->name('update-sermon');
+
         Route::get('admin', 'SermonsController@sermonsAdmin');
         Route::get('admin/drafts', 'SermonsController@sermonsAdmin');
         Route::get('drafts', 'SermonsController@index');
         Route::get('create', 'SermonsController@create');
-        Route::post('create', 'SermonsController@store');
+
         Route::get('{id}/edit', 'SermonsController@edit');
-        Route::post('{id}/edit', 'SermonsController@update');
         Route::get('{id}/delete', 'SermonsController@destroy');
         Route::get('{slug}', 'SermonsController@show');
     });
@@ -155,15 +157,14 @@ Route::group(['middleware' => 'web'], function () {
     });
 
     Route::group(['prefix' => 'giving'], function () {
-        Route::get('gift-options', 'GivingController@giftOptions');
+        Route::get('gift-options', 'GivingController@giftOptions')->name('gift-options');
         Route::post('gift-options', 'GivingController@storeGiftOption');
         Route::put('gift-options/{id}', 'GivingController@updateGiftOption');
         Route::get('gifts', 'GivingController@gifts');
         Route::post('gift', 'GivingController@showGift');
         Route::post('give', 'GivingController@give');
         Route::post('guest-giving', 'GivingController@manualGift');
-
-        Route::get('/history', 'GivingController@givingHistory');
+        Route::get('history', 'GivingController@givingHistory');
         Route::get('recurring', 'GivingController@recurringGifts');
         Route::get('plan/{id}/{action}', 'GivingController@updateGiftPlan');
 
@@ -180,13 +181,14 @@ Route::group(['middleware' => 'web'], function () {
     //ministries
     Route::group(['prefix' => 'ministries'], function () {
         Route::get('/', 'MinistryController@index');
+        Route::post('/', 'MinistryController@store');
+        Route::patch('/', 'MinistryController@update')->name('update-ministry');
+
         Route::get('/{id}/edit', 'MinistryController@edit');
 
         //admin
         Route::get('/create', 'MinistryController@create');
-        Route::post('/create', 'MinistryController@store');
         Route::get('{id}/edit', 'MinistryController@edit');
-        Route::post('update', 'MinistryController@update');
         Route::get('{id}/delete', 'MinistryController@destroy');
 
         Route::get('/admin', 'MinistryController@admin');

@@ -1,4 +1,4 @@
-<a href="#" id="invert_selection"><i class="icon-check"></i> @lang("Inverse selection")</a>
+<a href="#" id="invert_selection"><i class="fa fa-check"></i> @lang("Inverse selection")</a>
 {!! Form::open(['url'=>'update-role-permissions','class'=>'permissions']) !!}
 @foreach($rolePerms as $rp)
     <input type="checkbox" @if($rp['selected'] == true) checked @endif name="permissions[]"

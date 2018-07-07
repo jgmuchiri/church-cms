@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SermonsRequest;
 use App\Models\Sermons;
 use App\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class SermonsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth'], ['except' => ['show','index','publicSermons']]);
+        $this->middleware(['auth'], ['except' => ['show', 'index', 'publicSermons']]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    function index(){
-        if (isset($_GET['s'])) {
+    function index()
+    {
+        if(isset($_GET['s'])) {
             $term = $_GET['s'];
 
             $sermons = Sermons::whereStatus('published')
@@ -32,7 +35,7 @@ class SermonsController extends Controller
         } else {
             $sermons = Sermons::whereStatus('published')->simplePaginate(25);
         }
-        return view('sermons.sermons',compact('sermons'));
+        return view('sermons.sermons', compact('sermons'));
     }
 
     /**
@@ -40,7 +43,7 @@ class SermonsController extends Controller
      */
     function sermonsAdmin()
     {
-        if (isset($_GET['s'])) {
+        if(isset($_GET['s'])) {
             $term = $_GET['s'];
 
             $sermons = Sermons::where('desc', 'LIKE', "%$term%")
@@ -50,7 +53,7 @@ class SermonsController extends Controller
                 ->simplePaginate(25);
         } else {
             $r = Request()->segment(3);
-            if ($r == "drafts") {
+            if($r == "drafts") {
                 $status = "draft";
             } else {
                 $status = "published";
@@ -68,7 +71,7 @@ class SermonsController extends Controller
     function show($slug)
     {
         $sermon = Sermons::where('slug', $slug)->first();
-        if(count($sermon)==0) return view('errors.404');
+        if(count($sermon) == 0) return view('errors.404');
         $sermons = Sermons::simplePaginate(10);
         return view('sermons.show', compact('sermon', 'sermons'));
     }
@@ -85,39 +88,29 @@ class SermonsController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    function store(Request $request)
+    function store(SermonsRequest $request)
     {
-
-        $rules = [
-            'title' => 'required'
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
 
         $s = new Sermons();
 
         $path = 'uploads/sermons';
 
         $file = Input::file('audio');
-        if (($file !== null)) {
-            $s->audio = Tools::uploadImage($request->audio,$path.'/audio/',time(),716,600);
+        if(($file !== null)) {
+            $s->audio = Tools::uploadImage($request->audio, $path.'/audio/', time(), 716, 600);
         }
 
         $cover = Input::file('cover');
-        if ($cover !== null) {
-            $s->cover = Tools::uploadImage($request->cover,$path.'/cover/',time(),716,600);
+        if($cover !== null) {
+            $s->cover = Tools::uploadImage($request->cover, $path.'/cover/', time(), 716, 600);
         }
 
         //keep slugs unique
         $slug = Sermons::whereSlug($request->slug)->first();
-        if(count($slug)>0){
+        if(count($slug)>0) {
             $slug = $slug.'_1';
-        }else{
-            $slug = date('m_d_Y') . '_' . str_replace(' ', '_', $request->title);
+        } else {
+            $slug = date('m_d_Y').'_'.str_replace(' ', '_', $request->title);
         }
 
         $s->user_id = Auth::user()->id;
@@ -146,7 +139,7 @@ class SermonsController extends Controller
     function edit($id)
     {
         $sermon = Sermons::whereId($id)->first();
-        if (count($sermon) == 0)
+        if(count($sermon) == 0)
             return view('errors.404');
         return view('sermons.edit', compact('sermon'));
     }
@@ -156,41 +149,25 @@ class SermonsController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    function update(Request $request, $id)
+    function update(SermonsRequest $request,$id)
     {
-        $rules = [
-            'title' => 'required',
-            'name'=>'unique:sermons,name,'.$id
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            flash()->error(__("Error! Check fields and try again"));
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
 
         $s = Sermons::find($id);
 
-        $path = 'uploads/sermons';
+        if($request->hasFile('audio')) {
+            Storage::delete($s->audio);
 
-        $file = Input::file('audio');
-        if (($file !== null)) {
-            if($s->audio !==null)
-                @unlink($path.'/audio/'.$s->audio);
-            $s->audio = Tools::uploadImage($request->audio,$path.'/audio/',time(),716,600);
+            $s->audio = $request->audio->store('sermons/audio');
         }
 
-        $cover = Input::file('cover');
-        if ($cover !== null) {
-            if($s->cover !==null)
-                @unlink($path.'/cover/'.$s->cover);
-            $s->cover = Tools::uploadImage($request->cover,$path.'/cover/',time(),716,600);
-        }
+        if($request->hasFile('cover')) {
+            Storage::delete($s->cover);
 
-        $s->user_id = Auth::user()->id;
+            $s->cover = $request->cover->store('sermons/cover');
+        }
+        //keep slugs unique
         $s->title = $request->title;
+        $s->slug = date('m_d_Y').'_'.str_replace(' ', '_', $request->title);
         $s->desc = $request->desc;
         $s->message = $request->message;
         $s->video = $request->video;
@@ -198,9 +175,8 @@ class SermonsController extends Controller
         $s->sub_topic = $request->sub_topic;
         $s->speaker = $request->speaker;
         $s->scripture = $request->scripture;
-        $s->created_at = $request->created_at;
-        $s->updated_at = date('Y-m-d H:i:s');
         $s->status = $request->status;
+
         $s->save();
 
         flash()->success(__("Sermon updated"));
@@ -214,12 +190,16 @@ class SermonsController extends Controller
     function destroy($id)
     {
         $s = Sermons::whereId($id)->first();
-        if (count($s) > 0) {
+
+        if(count($s)>0) {
             flash()->success(__("Sermon deleted"));
+
             $s->delete();
         } else {
+
             flash()->error(__("Sermon not found"));
         }
+
         return redirect()->back();
     }
 

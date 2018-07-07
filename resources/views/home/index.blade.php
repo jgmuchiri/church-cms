@@ -13,14 +13,14 @@
             <div class="col-md-4 col-sm-3">
                 <div class="thumbnail text-center">
                     <br/>
-                    <i class="icon-calendar icon-4x text-warning"></i>
+                    <i class="fa fa-calendar fa fa-4x text-warning"></i>
 
                     <div id="caption">
                         <h3>@lang("Regular Schedule")</h3>
-                        <table class="table table-responsive text-left">
+                        <table class="table  text-left">
                             @foreach($churchSchedule as $schedule)
                                 <tr>
-                                    <td><i class="icon-clock-o"></i>
+                                    <td><i class="fa fa-clock-o"></i>
                                         {{date('H:ia',strtotime($schedule->start)).'- '.date('H:ia',strtotime($schedule->end))}}
                                     </td>
                                     <td>{{$schedule->event}}</td>

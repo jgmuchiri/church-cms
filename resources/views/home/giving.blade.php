@@ -14,16 +14,16 @@
                 <div class="col-md-6">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <i class="icon-check"></i>
+                            <i class="fa fa-check"></i>
                             @lang("Secure online giving")
                         </li>
                         <li class="list-group-item">
-                            <i class="icon-check"></i>
+                            <i class="fa fa-check"></i>
                             @lang("Easy processing")
                         </li>
-                        <li class="list-group-item"><i class="icon-check"></i> @lang("Transparent accounting")</li>
+                        <li class="list-group-item"><i class="fa fa-check"></i> @lang("Transparent accounting")</li>
                         <li class="list-group-item">
-                            <i class="icon-check"></i>
+                            <i class="fa fa-check"></i>
                             @lang("Recurring giving")
                         </li>
                     </ul>
@@ -36,11 +36,11 @@
         <div class="row">
             <div class="col-sm-6">
                 <h2>@lang("Account access")</h2>
-                <a href="/login" class="btn btn-info btn-lg"><i class="icon-lock"></i> @lang("Login/Register to give online")</a>
+                <a href="/login" class="btn btn-info btn-lg"><i class="fa fa-lock"></i> @lang("Login/Register to give online")</a>
             </div>
             <div class="col-sm-6">
                 <h2>@lang("Guest giving")</h2>
-                <a class="btn btn-warning btn-lg giveBtn" href="#"><i class="icon-new-window"></i> @lang("Click to give")</a>
+                <a class="btn btn-warning btn-lg giveBtn" href="#"><i class="fa fa-new-window"></i> @lang("Click to give")</a>
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@
                             data-currency="{{env('CURRENCY')}}"
                             data-name="Online Contribution"
                             data-description="Online Contribution"
-                            data-label="Give online"><i class="icon-credit-card"></i>
+                            data-label="Give online"><i class="fa fa-credit-card"></i>
                         @lang("Process Payment")
                     </button>
                     {!! Form::close() !!}

@@ -7,7 +7,6 @@
 	<meta name="keywords" content="church, content management system, cms">
 	<title>{{env('APP_NAME')}}</title>
 	<link rel="stylesheet" href="{{ url('css/font-awesome.css')}}">
-	<link rel="stylesheet" href="{{ url('css/simple-line-icons.css')}}">
 	<link rel="stylesheet" href="{{ url('css/animate.css')}}">
 	<link rel="stylesheet" href="{{ url('css/whirl.css')}}">
 	<link rel="stylesheet" href="{{ url('css/bootstrap.css')}}" id="bscss">
@@ -38,6 +37,7 @@
 </head>
 
 <body>
+<div class="loading">Loading&#8230;</div>
 <div class="wrapper">
 	<header class="topnavbar-wrapper">
 		<nav class="navbar topnavbar">
@@ -64,19 +64,19 @@
 				</li>
 				<li class="nav-item d-none d-md-block">
 					<a class="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
-						<em class="icon-user"></em>
+						<em class="fa fa-user"></em>
 					</a>
 				</li>
 				<li class="nav-item d-none d-md-block">
 					<a class="nav-link" href="{{route('logout')}}" title="Lock screen">
-						<em class="icon-lock"></em>
+						<em class="fa fa-lock"></em>
 					</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav flex-row">
 				<li class="nav-item">
 					<a class="nav-link" href="#" data-search-open="">
-						<em class="icon-magnifier"></em>
+						<em class="fa fa-search"></em>
 					</a>
 				</li>
 				<li class="nav-item d-none d-md-block">
@@ -86,7 +86,7 @@
 				</li>
 				<li class="nav-item dropdown dropdown-list">
 					<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
-						<em class="icon-bell"></em>
+						<em class="fa fa-bell"></em>
 						<span class="badge badge-danger">11</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right animated flipInX">
@@ -142,7 +142,7 @@
 				@role('admin')
 				<li class="nav-item">
 					<a class="nav-link" href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
-						<em class="icon-notebook"></em>
+						<em class="fa fa-cogs"></em>
 					</a>
 				</li>
 				@endrole
@@ -176,7 +176,7 @@
 										{{Auth::user()->name()}}
 									</span>
 									<span class="user-block-role">
-										<a href="/profile"><i class="icon-user"></i>
+										<a href="/profile"><i class="fa fa-user"></i>
 											@lang("My Profile")
 										</a>
 									</span>
@@ -184,10 +184,10 @@
 							</div>
 						</div>
 					</li>
-					<li class=" "><a href="/dashboard" title="Dashboard v1"><em class="icon-speedometer"></em>
+					<li class=" "><a href="/dashboard" title="Dashboard v1"><em class="fa fa-dashboard"></em>
 							<span data-localize="sidebar.nav.DASHBOARD">@lang('Dashboard')</span></a>
 					</li>
-					<li><a href="/account"><em class="icon-user"></em>
+					<li><a href="/account"><em class="fa fa-user"></em>
 							<span>@lang("My Account")</span></a>
 					</li>
 					@permission('read-gifts')
@@ -199,10 +199,10 @@
 							<div class="float-right badge badge-success">
 								{!! \App\Models\Messaging::whereSender(Auth::user()->id)->count() !!}
 							</div>
-							<em class="icon-envelope"></em><span>@lang("Messaging")</span></a></li>
+							<em class="fa fa-envelope"></em><span>@lang("Messaging")</span></a></li>
 					@endpermission
 					@permission('read-ministries')
-					<li><a href="/ministries/admin"><em class="icon-list"></em>
+					<li><a href="/ministries/admin"><em class="fa fa-list"></em>
 							<span>@lang("Ministries")</span></a></li>
 					@endpermission
 					@permission('read-sermons')
@@ -275,7 +275,7 @@
 
 			@if(Auth::check() && Auth::user()->confirmed ==0)
 				<div class="callout callout-danger text-center text-danger">
-					<i style="font-size:60px;" class="icon-exclamation-triangle"></i>
+					<i style="font-size:60px;" class="fa fa-exclamation-triangle"></i>
 					<h5 class="">
 						@lang("Your account is not confirmed yet")
 						@lang("Please follow instructions received on the email").

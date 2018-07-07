@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4 col-xs-12 giveBtn kiosk ">
 
-            <div class="icon-big icon-info text-center">
-                <i class="icon-credit-card"></i>
+            <div class="fa fa-big fa fa-info text-center">
+                <i class="fa fa-credit-card"></i>
             </div>
 
             <h2> @lang("Give online") <i class="fa fa-hand-o-up"></i></h2>
@@ -20,24 +20,24 @@
     <hr/>
     <div class="row ">
         <div class="col-sm-4" onclick="window.location.href='/events'">
-            <div class="icon-big icon-warning text-center">
-                <i class="icon-calendar"></i>
+            <div class="fa fa-big fa fa-warning text-center">
+                <i class="fa fa-calendar"></i>
             </div>
             <h2> @lang("Events")</h2>
             <h3 class="text-yellow">@lang("register for upcoming events")</h3>
         </div>
 
         <div class="col-sm-4" onclick="window.location.href='/sermons'">
-            <div class="icon-big icon-warning text-center">
-                <i class="icon-calendar"></i>
+            <div class="fa fa-big fa fa-warning text-center">
+                <i class="fa fa-calendar"></i>
             </div>
             <h2> @lang("Sermons")</h2>
             <h3 class="text-yellow">@lang("Browse recent sermons")</h3>
         </div>
 
         <div class="col-sm-4" onclick="window.location.href='/sermons'">
-            <div class="icon-big icon-warning text-center">
-                <i class="icon-calendar"></i>
+            <div class="fa fa-big fa fa-warning text-center">
+                <i class="fa fa-calendar"></i>
             </div>
             <h2> @lang("Ministries")</h2>
             <h3 class="text-yellow">@lang("Become a part of the family")</h3>
@@ -80,7 +80,7 @@
                         data-currency="{{env('CURRENCY')}}"
                         data-name="@lang("Online Contribution")"
                         data-description="@lang("Online Contribution")"
-                        data-label="Give online"><i class="icon-credit-card"></i>
+                        data-label="Give online"><i class="fa fa-credit-card"></i>
                     @lang("Process Payment")
                 </button>
             </div>

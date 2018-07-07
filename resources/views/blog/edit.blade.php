@@ -9,15 +9,15 @@
 @section('content')
     <div class="row">
         <div class="card card-default">
-            <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
+            <div class="card-header bg_lg"><span class="icon"><i class="fa fa-th"></i></span>
                 <h5>@lang("Blog admin")</h5>
                 <div class="buttons">
-                    <a class="btn btn-default btn-mini" href="/blog/admin"><i class="icon-chevron-left"></i> @lang("back")</a>
+                    <a class="btn btn-default btn-sm" href="/blog/admin"><i class="fa fa-chevron-left"></i> @lang("back")</a>
 
-                    <a href="/blog" class="btn btn-default btn-mini"><i class="icon-home"></i> @lang("Blog Homepage")</a>
-                    <a href="/blog/categories" class="btn btn-info btn-mini"><i class="icon-list-alt"></i>
+                    <a href="/blog" class="btn btn-default btn-sm"><i class="fa fa-home"></i> @lang("Blog Homepage")</a>
+                    <a href="/blog/categories" class="btn btn-info btn-sm"><i class="fa fa-list-alt"></i>
                         Categories</a>
-                    <a href="/blog/create" class="btn btn-inverse btn-mini"><i class="icon-plus"></i> @lang("New
+                    <a href="/blog/create" class="btn btn-inverse btn-sm"><i class="fa fa-plus"></i> @lang("New
                         Post")</a>
                 </div>
             </div>

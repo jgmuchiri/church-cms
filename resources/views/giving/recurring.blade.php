@@ -9,7 +9,7 @@
 @section('content')
     <div class="card card-default">
         <div class="card-header"><span class="icon">
-                <a href="/giving/gifts"><i class="icon-chevron-left"></i></a>
+                <a href="/giving/gifts"><i class="fa fa-chevron-left"></i></a>
             </span>
             <h5>@lang("Cancellations will take effect on the next billing cycle")</h5>
         </div>
@@ -37,10 +37,10 @@
                         <td>{{$gift->ends_at}}</td>
                         <td>{{ucwords($gift->status)}}</td>
                         <td>
-                            {{--<a href="/giving/plan/{{$gift->id}}/suspend" class="label label-warning"><i class="icon-warning"></i> Suspend</a>--}}
+                            {{--<a href="/giving/plan/{{$gift->id}}/suspend" class="label label-warning"><i class="fa fa-warning"></i> Suspend</a>--}}
                             @if($gift->status =="active")
                                 <a href="/giving/plan/{{$gift->id}}/cancel" class="label label-danger"><i
-                                            class="icon-times"></i> @lang("Cancel")</a>
+                                            class="fa fa-times"></i> @lang("Cancel")</a>
                             @endif
                         </td>
                     </tr>

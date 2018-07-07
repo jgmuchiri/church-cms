@@ -37,7 +37,7 @@
 
                                 @role('admin')
                                 <a class="delete" href="/blog/comment/{{$cm->id}}/delete"><i
-                                            class="icon-trash text-danger"></i> </a>
+                                            class="fa fa-trash text-danger"></i> </a>
                                 @endrole
                             </div>
                             <span style="font-size: 16px;">{{$cm->comment}}</span>

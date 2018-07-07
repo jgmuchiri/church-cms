@@ -5,13 +5,13 @@
 @section('content')
     <div class="card">
         <div class="header">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="icon-plus"></i>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>
                 @lang("Upload theme")</a>
 
             <a href="/theme/1/select" class="btn btn-info"><i
-                        class="icon-check"></i> @lang('Set default theme")</a>
+                        class="fa fa-check"></i> @lang('Set default theme")</a>
 
-            {{--<a href="/theme/browse" target="_blank" class="btn btn-warning"><i class="icon-shopping-cart"></i>--}}
+            {{--<a href="/theme/browse" target="_blank" class="btn btn-warning"><i class="fa fa-shopping-cart"></i>--}}
                 {{--Browse themes</a>--}}
         </div>
         <hr/>

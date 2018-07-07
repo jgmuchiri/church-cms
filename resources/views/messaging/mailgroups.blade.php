@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="card card-default">
-                <div class="card-header bg_lg"><span class="icon"><i class="icon-envelope"></i></span>
+                <div class="card-header bg_lg"><span class="icon"><i class="fa fa-envelope"></i></span>
                     <h5>@lang("Message Groups")</h5>
                 </div>
                 <div class="card-body">
@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-6">
             <div class="card card-default">
-                <div class="card-header bg_lg"><span class="icon"><i class="icon-envelope"></i></span>
+                <div class="card-header bg_lg"><span class="icon"><i class="fa fa-envelope"></i></span>
                     <h5>@lang("Create/Edit Groups")</h5>
                 </div>
                 <div class="card-body">

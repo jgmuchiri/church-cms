@@ -28,7 +28,7 @@
 								{{Form::text('last_name',null,['class'=>'form-control'])}}
 								{{Form::label('email',__('Email'))}}
 								{{Form::input('email','email',null,['class'=>'form-control'])}}
-								{{Form::label('phone',__('Phone'))}}
+								{{Form::label('phone`	',__('Phone'))}}
 								{{Form::text('phone',null,['class'=>'form-control'])}}
 								{{Form::label('address',__('Address'))}}
 								{{Form::textarea('address',null,['rows'=>3,'class'=>'form-control'])}}

@@ -25,7 +25,7 @@
                     data-currency="{{env('CURRENCY')}}"
                     data-name="@lang("Online Contribution")"
                     data-description="@lang("Online Contribution")"
-                    data-label="@lang("Give online")"><i class="icon-credit-card"></i> @lang("Process Payment")
+                    data-label="@lang("Give online")"><i class="fa fa-credit-card"></i> @lang("Process Payment")
             </button>
         </td>
     </tr>

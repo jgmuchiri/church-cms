@@ -17,7 +17,7 @@
                     <div class="input-group">
                         <input name="s" placeholder="Search" class="form-control">
                         <span class="input-group-btn"><button class="btn btn-default"><i
-                                        class="icon-search"></i> @lang("Search")
+                                        class="fa fa-search"></i> @lang("Search")
                                 </button>
                             </span>
                     </div>
@@ -35,9 +35,9 @@
                                 {{$s->speaker}}
                             </div>
                             <div class="col-sm-2">
-                                @if(is_file('uploads/sermons/cover/'.$s->cover))
+                                @if(Storage::exists($s->cover))
                                     <img style="heigth:85px;width:85px;"
-                                         src="/uploads/sermons/cover/{{$s->cover}}"/>
+                                         src="{{Storage::url($s->cover)}}"/>
                                 @else
                                     {!! App\Tools::postThumb('none','85px','85px') !!}
                                 @endif

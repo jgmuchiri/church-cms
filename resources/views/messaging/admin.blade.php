@@ -45,13 +45,13 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <label><i class="icon-arrow-circle-right"></i> @lang("Subject")</label>
+                        <label><i class="fa fa-arrow-circle-right"></i> @lang("Subject")</label>
                         {{Form::text('subject',null,['required'=>'required','class'=>'col-sm-12'])}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-10">
-                        <label><i class="icon-arrow-circle-right"></i> @lang("Message")</label>
+                        <label><i class="fa fa-arrow-circle-right"></i> @lang("Message")</label>
                         @if($template ==null)
                             {{Form::textarea('message',null,['class'=>'editor col-sm-12'])}}
                         @else
@@ -63,11 +63,11 @@
                 <div class="row">
                     <div class="span-12">
                         <button type="button" class="btn btn-info send">
-                            <i class="icon-envelope-alt"></i> @lang("Send")
+                            <i class="fa fa-envelope-alt"></i> @lang("Send")
                         </button>
 
                         <button type="button" class="btn btn-inverse draft pull-right">
-                            <i class="icon-save"></i> @lang("Save as template")
+                            <i class="fa fa-save"></i> @lang("Save as template")
                         </button>
                     </div>
                 </div>

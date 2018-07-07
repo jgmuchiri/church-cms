@@ -10,11 +10,11 @@
 @section('content')
     <div class="row">
         <div class="card card-default">
-            <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
+            <div class="card-header bg_lg"><span class="icon"><i class="fa fa-th"></i></span>
                 <h5>@lang("Support questions")</h5>
                 <div class="buttons">
-                    <a href="/support" class="btn btn-default btn-mini">
-                        <i class="icon-chevron-left"></i> @lang("back")</a>
+                    <a href="/support" class="btn btn-default btn-sm">
+                        <i class="fa fa-chevron-left"></i> @lang("back")</a>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                                            placeholder="What can we help you with? Enter a search term.">
                                 </div>
                                 <div class="col-sm-1">
-                                    <span class="btn btn-inverse"><i class="icon-search"></i> </span>
+                                    <span class="btn btn-inverse"><i class="fa fa-search"></i> </span>
                                 </div>
                             </div>
                         </form>
@@ -50,7 +50,7 @@
                         @if(count($topics)>0)
                             @foreach($topics as $topic)
                                 <div class="callout callout-warning">
-                                    <h5 class="title"><i class="icon-question"></i>
+                                    <h5 class="title"><i class="fa fa-question"></i>
                                         {!! $topic->question !!}</h5>
                                     <p>
                                         <em>{!! $topic->question_desc !!}</em>
@@ -74,7 +74,7 @@
 
     <div class="row">
         <div class="card card-default">
-            <div class="card-header bg_lg"><span class="icon"><i class="icon-th"></i></span>
+            <div class="card-header bg_lg"><span class="icon"><i class="fa fa-th"></i></span>
                 <h5>@lang("Still can't find what you are looking for? Submit your question here")</h5>
             </div>
             <div class="card-body">

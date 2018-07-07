@@ -39,7 +39,7 @@
 									<div class="input-group">
 										{{Form::select('y',$years,date('Y'),['class'=>'form-control'])}}
 										<span class="input-group-btn">
-											<button class="btn btn-primary btn-flat"><i class="icon-print"></i> @lang("Print")</button>
+											<button class="btn btn-primary btn-flat"><i class="fa fa-print"></i> @lang("Print")</button>
 										</span>
 									</div>
 									{{Form::close()}}
@@ -130,7 +130,7 @@
 							<div id="card-element" class="field"></div>
 							<br/>
 							<button class="btn btn-success btn-xlg charge">
-								<i class="icon-credit-card"></i> @lang("Process Payment")
+								<i class="fa fa-credit-card"></i> @lang("Process Payment")
 							</button>
 						</div>
 						{!! Form::close() !!}

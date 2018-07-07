@@ -46,7 +46,7 @@
 		<div class="card card-flat">
 			<div class="card-header text-center bg-dark">
 				<a href="#">
-					<img class="block-center rounded" src="/img/admin-logo.png" alt="Image">
+					<img style="height:60px" class="block-center rounded" src="/img/logo.png" alt="Image">
 				</a>
 			</div>
 			<div class="card-body">

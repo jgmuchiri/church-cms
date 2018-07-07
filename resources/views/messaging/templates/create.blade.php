@@ -5,11 +5,11 @@
 
 @section('content')
 
-    <a href="/templates" class="btn btn-default"><i class="icon-chevron-circle-left"></i> @lang("Back")</a>
+    <a href="/templates" class="btn btn-default"><i class="fa fa-chevron-circle-left"></i> @lang("Back")</a>
 
     <div class="row">
         <div class="card card-default">
-            <div class="card-header bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+            <div class="card-header bg_lg"><span class="icon"><i class="fa fa-signal"></i></span>
                 <h5>@lang("Create a message template")</h5>
             </div>
             <div class="card-body">

@@ -8,13 +8,13 @@
 
 @section('content')
     <div class="card card-default">
-        <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+        <div class="card-header bg_lg"><span class="icon"><i class="fa fa-calendar"></i></span>
             <h5>@lang"(Edit event")</h5>
             <div class="buttons">
-                <a class="btn btn-default btn-mini" href="/events/admin"><i class="icon-chevron-left"></i>
+                <a class="btn btn-default btn-sm" href="/events/admin"><i class="fa fa-chevron-left"></i>
                     back to calendar</a>
 
-                <a class="btn btn-inverse btn-mini" href="/events/list"><i class="icon-list"></i>
+                <a class="btn btn-inverse btn-sm" href="/events/list"><i class="fa fa-list"></i>
                     events list</a>
             </div>
         </div>

@@ -10,14 +10,14 @@
 @section('content')
 
     <div class="card card-default">
-        <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+        <div class="card-header bg_lg"><span class="icon"><i class="fa fa-calendar"></i></span>
             <h5>@lang("Events list")</h5>
 
             <div class="buttons">
-                <a class="btn btn-info btn-mini" href="/events/admin"><i class="icon-chevron-left"></i>
+                <a class="btn btn-info btn-sm" href="/events/admin"><i class="fa fa-chevron-left"></i>
                     back to calendar</a>
-                <a class="btn btn-info btn-mini newEventBtn" data-toggle="modal" data-target="#new-event" href="#"><i
-                            class="icon-plus"></i>
+                <a class="btn btn-info btn-sm newEventBtn" data-toggle="modal" data-target="#new-event" href="#"><i
+                            class="fa fa-plus"></i>
                     create event</a>
             </div>
         </div>
@@ -27,12 +27,12 @@
                     <input name="s" placeholder="Search" class="form-control">
                     <span class="input-group-btn">
                                 <button class="btn btn-default">
-                                    <i class="icon-search"></i>
+                                    <i class="fa fa-search"></i>
                                 </button>
                             </span>
                     @if(isset($_GET['s']))
                         <span class="input-group-btn">
-                                <a class="btn btn-danger" href="/events/list"><i class="icon-times-circle"></i>
+                                <a class="btn btn-danger" href="/events/list"><i class="fa fa-times-circle"></i>
                                     close search</a></span>
                     @endif
                 </div>
@@ -44,13 +44,13 @@
                             <h4>{{$event->title}}</h4>
 
                             <a href="/events/{{$event->id}}" target="_blank">
-                                <i class="icon-external-link"></i>
+                                <i class="fa fa-external-link"></i>
                             </a>
                             <a href="/events/{{$event->id}}/edit">
-                                <i class="icon-pencil-square"></i>
+                                <i class="fa fa-pencil-square"></i>
                             </a>
                             <a href="/events/delete/{{$event->id}}">
-                                <i class="icon-trash-o"></i> </a>
+                                <i class="fa fa-trash-o"></i> </a>
                         </td>
                         <td>
                             <strong class="label label-info">@lang("Start"):</strong>

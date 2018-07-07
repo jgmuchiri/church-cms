@@ -1,4 +1,4 @@
-<table class="table table-striped table-full-width table-responsive" id="">
+<table class="table table-striped table-full-width " id="">
     <thead>
     <tr>
         <th>@lang("Name")</th>

@@ -5,11 +5,11 @@
 @section('content')
     <div class="row">
         <div class="card card-default">
-            <div class="card-header bg_lg"><span class="icon"><i class="icon-question-sign"></i></span>
+            <div class="card-header bg_lg"><span class="icon"><i class="fa fa-question-sign"></i></span>
                 <h5>@lang("New support topic")</h5>
                 <div class="buttons">
-                    <a href="/support/questions" class="btn btn-inverse btn-mini">
-                        <i class="icon-chevron-left"></i> @lang("back to questions")
+                    <a href="/support/questions" class="btn btn-inverse btn-sm">
+                        <i class="fa fa-chevron-left"></i> @lang("back to questions")
                     </a>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                                    placeholder="What can we help you with? Enter a search term.">
                         </div>
                         <div class="col-sm-1">
-                            <span class="btn btn-inverse"><i class="icon-search"></i> </span>
+                            <span class="btn btn-inverse"><i class="fa fa-search"></i> </span>
                         </div>
                     </div>
                 </form>

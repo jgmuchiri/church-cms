@@ -5,7 +5,7 @@
             type = 'danger';
         }
         $.notify({
-            icon: 'icon-check',
+            icon: 'fa fa-check',
             message: errorNote
 
         }, {

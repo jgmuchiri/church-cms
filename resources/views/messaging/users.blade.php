@@ -2,7 +2,7 @@
     <div class="controls">
         <div class="input-append">
             <input class="search col-sm-11" placeholder="Search"/>
-            <span class="sort add-on" data-sort="name"><span class="icon-search"></span> </span></div>
+            <span class="sort add-on" data-sort="name"><span class="fa fa-search"></span> </span></div>
     </div>
 
     <table id="table" class="display table" cellspacing="0" width="100%">

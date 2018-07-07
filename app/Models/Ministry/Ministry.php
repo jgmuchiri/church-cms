@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Ministry extends Model
 {
     protected $table = 'ministries';
-    protected $fillable =['name','cat','desc','active','slug'];
+    protected $fillable =['name','category_id','desc','active'];
     function category(){
-        return $this->hasOne(\App\Models\Ministry\MinistryCats::class,'id','cat');
+        return $this->belongsTo(MinistryCats::class,'category_id');
     }
 }

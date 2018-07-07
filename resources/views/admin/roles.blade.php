@@ -59,7 +59,7 @@
 							<div class="">
 								<strong>@lang("Roles")</strong>
 								<a href="#" data-toggle="tooltip" title="Add a role" class="pull-right create-role-btn"><i
-											class="icon-plus"></i></a>
+											class="fa fa-plus"></i></a>
 							</div>
 							<div id="roles">
 								<input class="search form-control input-sm" placeholder="Search"/><br/>
@@ -69,7 +69,7 @@
 										<li class="dd-item" id="{{$role->id}}" data-toggle="tooltip" title="{{$role->desc}}">
 											<a href="#" class="role" id="{{$role->id}}">
 												{{ucwords($role->display_name)}}
-												<span class="pull-right"><i class="icon-chevron-right"
+												<span class="pull-right"><i class="fa fa-chevron-right"
 																			style="opacity: 0.2;"></i> </span>
 											</a>
 										</li>
@@ -86,7 +86,7 @@
 							@lang("Modules")
 							<a href="#" data-toggle="tooltip" title="Register a module"
 							   class="pull-right register-module-btn"><i
-										class="icon-plus"></i></a>
+										class="fa fa-plus"></i></a>
 
 							<div id="modules">
 
@@ -122,7 +122,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel"><i class="icon-plus-circle"></i> @lang("New Role")
+					<h4 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle"></i> @lang("New Role")
 					</h4>
 				</div>
 				{!! Form::open(['url'=>'/roles']) !!}

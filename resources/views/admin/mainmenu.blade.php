@@ -47,7 +47,7 @@
 
 										<span class="addon col-sm-1">
                                             <i id="fa-icon"
-											   class="@if(!empty($menuItem->icon))icon-{{$menuItem->icon}} @endif"></i>
+											   class="@if(!empty($menuItem->icon))fa fa-{{$menuItem->icon}} @endif"></i>
                                         </span>
 									</div>
 								</div>
@@ -55,8 +55,8 @@
 								{{Form::select('active',['1'=>'active','0'=>'disabled'],null,['class'=>'form-control'])}}
 								<br/>
 
-								<button class="btn btn-default"><i class="icon-save"></i> @lang("Save")</button>
-								<a href="/menu" class="btn btn-danger right"><i class="icon-eye-close"></i>
+								<button class="btn btn-default"><i class="fa fa-save"></i> @lang("Save")</button>
+								<a href="/menu" class="btn btn-danger right"><i class="fa fa-eye-close"></i>
 									@lang("Close")</a>
 
 								{{Form::close()}}
@@ -133,7 +133,7 @@
 											<a href="?m={{$m->id}}">{{$m->title}}</a>
 										</td>
 										<td>{{$m->order}}</td>
-										<td><i class="icon-{{$m->icon}}"></i></td>
+										<td><i class="fa fa-{{$m->icon}}"></i></td>
 										<td>{!!($m->active==1)?'<span class="label label-success">active</span>':'<span class="label label-danger">disabled</span>'!!}</td>
 										<td>
 											<a href="/menu/delete/{{$m->id}}"></a>
@@ -147,7 +147,7 @@
 													<a href="?m={{$s->id}}">{{$s->title}}</a>
 												</td>
 												<td>{{$s->order}}</td>
-												<td><i class="icon-{{$s->icon}}"></i></td>
+												<td><i class="fa fa-{{$s->icon}}"></i></td>
 												<td>{!!($s->active==1)?'<span class="label label-success">active</span>':'<span class="label label-danger">disabled</span>'!!}</td>
 												<td>
 													<a href="/menu/delete/{{$s->id}}"></a>
@@ -177,7 +177,7 @@
 	<script>
         $('select[name=icon]').on('change', function () {
             var fa = $(this).val();
-            $('#fa-icon').attr('class', 'icon-' + fa);
+            $('#fa-icon').attr('class', 'fa fa-' + fa);
         })
         $(function () {
             $(".sortable-rows").sortable({

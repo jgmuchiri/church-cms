@@ -9,8 +9,8 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 
 @section('content')
 	@if(isset($_GET['s']))
-		<a href="/users" class="btn btn-default btn-mini">
-			<i class="icon-chevron-circle-left"></i>
+		<a href="/users" class="btn btn-default btn-sm">
+			<i class="fa fa-chevron-circle-left"></i>
 		</a>
 	@endif
 
@@ -53,13 +53,13 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 			</div>
 		</div>
 		<div class="col-sm-6">
-			<button class="btn btn-default newUser"><i class="icon-plus"></i>@lang("New User")</button>
+			<button class="btn btn-default newUser"><i class="fa fa-plus"></i>@lang("New User")</button>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card card-default">
-				<div class="card-header"><span class="icon"><i class="icon-th"></i></span>
+				<div class="card-header"><span class="icon"><i class="fa fa-th"></i></span>
 					<h5>@lang("Users")</h5>
 				</div>
 				<div class="card-body nopadding">
@@ -91,7 +91,7 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 	</div>
 @endsection
 @include('partials.datatables')
-@push('modals')
+@push('scripts')
 	<script type="text/javascript">
         $('document').ready(function () {
             $('.newUser').click(function () {
@@ -100,38 +100,10 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 			@if(count($errors))
             $('#newUser').modal('show');
 			@endif
-
-            $('#users').DataTable({
-                'paging': true, // Table pagination
-                'ordering': true, // Column ordering
-                'info': true, // Bottom left status text
-                responsive: true,
-                // Text translation options
-                // Note the required keywords between underscores (e.g _MENU_)
-                oLanguage: {
-                    sSearch: 'Search all columns:',
-                    sLengthMenu: '_MENU_ records per page',
-                    info: 'Showing page _PAGE_ of _PAGES_',
-                    zeroRecords: 'Nothing found - sorry',
-                    infoEmpty: 'No records available',
-                    infoFiltered: '(filtered from _MAX_ total records)',
-                    oPaginate: {
-                        sNext: '<em class="fa fa-caret-right"></em>',
-                        sPrevious: '<em class="fa fa-caret-left"></em>'
-                    }
-                },
-                // Datatable Buttons setup
-                dom: 'Bfrtip',
-                buttons: [
-                    { extend: 'copy', className: 'btn-info' },
-                    { extend: 'csv', className: 'btn-info' },
-                    { extend: 'excel', className: 'btn-info', title: 'XLS-File' },
-                    { extend: 'pdf', className: 'btn-info', title: $('title').text() },
-                    { extend: 'print', className: 'btn-info' }
-                ]
-            });
         });
 	</script>
+@endpush
+@push('modals')
 	<div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

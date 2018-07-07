@@ -8,11 +8,11 @@
 
 @section('content')
     <div class="card card-default">
-        <div class="card-header bg_lg"><span class="icon"><i class="icon-calendar"></i></span>
+        <div class="card-header bg_lg"><span class="icon"><i class="fa fa-calendar"></i></span>
             <h5>@lang("Regular service schedules")</h5>
 
             <div class="buttons">
-                <a class="btn btn-default btn-mini" href="/events/admin"><i class="icon-chevron-left"></i>
+                <a class="btn btn-default btn-sm" href="/events/admin"><i class="fa fa-chevron-left"></i>
                     back to calendar</a>
             </div>
         </div>
@@ -49,9 +49,9 @@
                         </td>
                         <td>
                         <span class="btn-group">
-                        <button class="btn btn-primary btn-mini"><i class="icon-save"></i></button>
-                        <a href="/events/church-schedule/{{$s->id}}/delete" class="btn btn-danger btn-mini"><i
-                                    class="icon-trash"></i> </a>
+                        <button class="btn btn-primary btn-sm"><i class="fa fa-save"></i></button>
+                        <a href="/events/church-schedule/{{$s->id}}/delete" class="btn btn-danger btn-sm"><i
+                                    class="fa fa-trash"></i> </a>
                             </span>
                         </td>
                     </tr>
@@ -78,7 +78,7 @@
                         {{Form::text('order',null,['class'=>'col-sm-12'])}}
                     </td>
                     <td>
-                        <button class="btn btn-success btn-mini"><i class="icon-save"></i></button>
+                        <button class="btn btn-success btn-sm"><i class="fa fa-save"></i></button>
                     </td>
                 </tr>
                 {{Form::close()}}

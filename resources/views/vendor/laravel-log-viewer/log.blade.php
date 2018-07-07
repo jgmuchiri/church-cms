@@ -1,6 +1,6 @@
 @extends('layouts.admin-template')
 @section('title')
-	@lang('Debug log')
+<i class="fa fa-bug"></i>	@lang('Debug log')
 @endsection
 @section('content')
 	<div class="card card-default">

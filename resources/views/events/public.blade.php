@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-9">
                 <br/>
-                <h3><i class="icon-calendar"></i> @lang("Events Calendar")</h3>
+                <h3><i class="fa fa-calendar"></i> @lang("Events Calendar")</h3>
 
                 <div id='calendar'></div>
             </div>
@@ -116,7 +116,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i
-                                    class="icon-times"></i> </span> <span class="sr-only">@lang("close")</span></button>
+                                    class="fa fa-times"></i> </span> <span class="sr-only">@lang("close")</span></button>
                     <h4 id="modalTitle" class="modal-title"></h4>
                     <span id="modalDate"></span>
                 </div>
