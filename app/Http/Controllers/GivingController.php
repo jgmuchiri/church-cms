@@ -85,7 +85,7 @@ class GivingController extends Controller
             $user = User::find($request->user_id);
         }
 
-        if (count($user) == 0) { //user does not exist so create one
+        if (empty($user)) { //user does not exist so create one
             $user = new User();
             $user->phone = '123456789';
             $user->email = $request->email;
@@ -248,7 +248,7 @@ class GivingController extends Controller
 
         //check if user exists if so, charge their account
         $myUser = User::whereEmail($request->email)->first();
-        if (count($myUser) > 0) { //user exists
+        if (!empty($myUser)) { //user exists
             $user = User::find($myUser->id);
         } else {
             //create new user
@@ -329,7 +329,7 @@ class GivingController extends Controller
 
         $subsc = Subscription::whereUserId(Auth::user()->id)->whereId($id)->first();
 
-        if (count($subsc) > 0) {
+        if (!empty($subsc)) {
             switch ($action) {
 
                 case "cancel":

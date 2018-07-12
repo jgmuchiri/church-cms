@@ -6,7 +6,7 @@
 
 	<div class="form-group">
 		<div class="input-group with-focus">
-			<input class="form-control border-right-0" id="exampleInputEmail1" type="email"
+			<input name="email" class="form-control border-right-0" id="exampleInputEmail1" type="email"
 				   placeholder="@lang('Enter email')" autocomplete="off" required>
 			<div class="input-group-append">
 				<span class="input-group-text fa fa-envelope text-muted bg-transparent border-left-0"></span>
@@ -15,6 +15,8 @@
 	</div>
 	<button class="btn btn-block btn-primary mt-3" type="submit">@lang('Submit')</button>
 
-	<a class="btn btn-block btn-secondary" href="{{route('register')}}">@lang('Login')</a>
 	{{Form::close()}}
+	<p class="text-center">
+		<a class="" href="{{route('register')}}">@lang('Login')</a>
+	</p>
 @endsection

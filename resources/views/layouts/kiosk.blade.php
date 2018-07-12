@@ -7,11 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{env('APP_NAME')}} - {{strtoupper(__("kiosk"))}}</title>
+    <title>{{config('app.name')}} - {{strtoupper(__("kiosk"))}}</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          type="text/css">
+    <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="/css/kiosk.css" rel="stylesheet">
     @stack('styles')
 </head>

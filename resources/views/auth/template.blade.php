@@ -64,14 +64,14 @@
 </div>
 
 <script src="{{ url('js/jquery.js')}}"></script>
-<script src="{{ url('js/modernizr.custom.js')}}"></script>
-<script src="{{ url('js/popper.js')}}"></script>
-<script src="{{ url('js/bootstrap.js')}}"></script>
-<script src="{{ url('js/js.storage.js')}}"></script>
-<script src="{{ url('js/jquery.easing.js')}}"></script>
-<script src="{{ url('js/plugins/parsley.min.js')}}"></script>
-<script src="{{ url('js/animo.js')}}"></script>
-<script src="{{ url('js/screenfull.js')}}"></script>
+<script src="{{ url('plugins/modernizr.custom.js')}}"></script>
+<script src="{{ url('plugins/popper.js')}}"></script>
+<script src="{{ url('plugins/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{ url('plugins/js.storage.js')}}"></script>
+<script src="{{ url('plugins/jquery.easing.min.js')}}"></script>
+<script src="{{ url('plugins/parsley.min.js')}}"></script>
+<script src="{{ url('plugins/animo.js')}}"></script>
+<script src="{{ url('plugins//screenfull.js')}}"></script>
 <script src="{{ url('js/tools.js')}}"></script>
 <script>
     $(document).ready(function () {

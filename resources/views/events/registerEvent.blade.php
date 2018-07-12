@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="header">
 
-                    <a class="btn btn-default btn-sm" href="/events"><i
+                    <a class="btn btn-inverse btn-sm" href="/events"><i
                                 class="fa fa-chevron-left"></i>
                         back to events</a>
 
@@ -21,15 +21,15 @@
 @endsection
 @push('scripts')
     <script>
-        var buffer = 20; //scroll bar buffer
-        var iframe = document.getElementById('ifm');
+        let buffer = 20; //scroll bar buffer
+        let iframe = document.getElementById('ifm');
 
         function pageY(elem) {
             return elem.offsetParent ? (elem.offsetTop + pageY(elem.offsetParent)) : elem.offsetTop;
         }
 
         function resizeIframe() {
-            var height = document.documentElement.clientHeight;
+            let height = document.documentElement.clientHeight;
             height -= pageY(document.getElementById('ifm'))+ buffer ;
             height = (height < 0) ? 0 : height;
             document.getElementById('ifm').style.height = height + 'px';

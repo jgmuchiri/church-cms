@@ -7,11 +7,12 @@
             @if(isset($_GET['cat']))
                 {{$_GET['cat']}}
             @else
-                Church Blog
+                @lang('Church Blog')
                 @endif
         </div>
 
         <div class="row">
+
             <div class="col-sm-8">
                 @foreach($blog as $b)
                     <div class="row">
@@ -30,6 +31,7 @@
                 @endforeach
                 {{$blog->render()}}
             </div>
+
             <div class="col-sm-4">
                 <h3 class="">@lang("Categories")</h3>
 
@@ -40,8 +42,9 @@
                         </li>
                     @endforeach
                 </ul>
-
             </div>
+
         </div>
+
     </div>
 @endsection

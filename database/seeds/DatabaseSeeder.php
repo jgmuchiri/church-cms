@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuSeeder::class);
         $this->call(ModuleSeeder::class);
         $this->call(DefaultThemeSeeder::class);
+        $this->call(BlogCatSeeder::class);
+        $this->call(GiftOptionsSeeder::class);
     }
 }

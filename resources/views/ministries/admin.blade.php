@@ -37,7 +37,7 @@
 									@endif
                                     </span>
 								<input type="text" name="s" placeholder="Search by name" class="form-control"/>
-								<button class="btn btn-default"><i class="fa fa-search"></i></button>
+								<button class="btn btn-inverse"><i class="fa fa-search"></i></button>
 
 							</div>
 						</div>
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 
-			@if(count($ministries)>0)
+			@if(!empty($ministries))
 				<table class="table table-striped">
 					<thead>
 					<tr>

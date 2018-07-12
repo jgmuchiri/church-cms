@@ -135,7 +135,7 @@
 					{!! Form::textarea('description',null,['rows'=>2,'class'=>'form-control']) !!}
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
 					<button class="btn btn-primary">@lang("Submit")</button>
 				</div>
 				{!! Form::close() !!}
@@ -159,7 +159,7 @@
 					{!! Form::text('name',null,['required'=>'required','class'=>'form-control']) !!}
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
 					<button class="btn btn-primary">@lang("Submit")</button>
 				</div>
 				{!! Form::close() !!}

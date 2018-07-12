@@ -62,7 +62,7 @@
 			<h5>@lang("Giving history")</h5>
 		</div>
 		<div class="card-body nopadding">
-			@if(count($txns)>0)
+			@if(!empty($txns))
 				<div class="buttons">
 					<a href="/reports/downloadGiftsToDate" class="btn btn-inverse btn-sm no-print">
 						<i class="fa fa-download-alt"></i>
@@ -167,7 +167,7 @@
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>

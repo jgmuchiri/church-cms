@@ -7,7 +7,7 @@
 <br/>
 <br/>
 
-<button class="btn btn-default">@lang($btn)</button>
+<button class="btn btn-inverse">@lang($btn)</button>
 
 @if(isset($close))
 	<a href="/ministries/categories" class="btn btn-danger pull-right">@lang("Close")</a>

@@ -5,7 +5,7 @@
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 $(document).ready(function () {
-    var d = moment(new Date());
+    let d = moment(new Date());
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -16,12 +16,12 @@ $(document).ready(function () {
         selectable: true,
         selectHelper: true,
         select: function (start, end) {
-            var eventData;
-            var modal = $('#new-event');
-            var cal = $('#calendar');
+            let eventData;
+            let modal = $('#new-event');
+            let cal = $('#calendar');
 
-            var s = moment(start);
-            var e = moment(end);
+            let s = moment(start);
+            let e = moment(end);
 
             modal.find('input[name=start]').val(s.format("YYYY-MM-DD"));
             modal.find('input[name=end]').val(e.subtract(1,"days").format("YYYY-MM-DD"));
@@ -31,13 +31,13 @@ $(document).ready(function () {
 
             modal.submit(function (e) {
                 e.preventDefault();
-                var data = modal.find('#new-event-form').serialize();
+                let data = modal.find('#new-event-form').serialize();
                 $.ajax({
                     url: '/events',
                     data: data,
                     type: 'POST',
                     success: function (response){
-                        var modal = $('#new-event');
+                        let modal = $('#new-event');
                         eventData = {
                             title: modal.find('input[name=title]').val(),
                             start: modal.find('input[name=start]').val(),
@@ -61,34 +61,34 @@ $(document).ready(function () {
         eventLimit: true, // allow "more" link when too many events
         events: '/api/events'
         , eventClick: function (event, jsEvent, view) {
-            var s = moment(event.start);
-            var startDate = s.format("D,MMMM YYYY, h:mmA");
+            let s = moment(event.start);
+            let startDate = s.format("D,MMMM YYYY, h:mmA");
 
-            var e = moment(event.ends);
-            var endDate = ' - ' + e.format("D,MMMM YYYY, h:mmA");
+            let e = moment(event.ends);
+            let endDate = ' - ' + e.format("D,MMMM YYYY, h:mmA");
 
             if (endDate === " - Invalid date") {
                 endDate = '';
             }
 
-            var eventUrl = '';
-            var registerUrl = '';
+            let eventUrl = '';
+            let registerUrl = '';
             if (event.url !== "") {
                 eventUrl = '<a class="btn btn-primary btn-mini" href="' + event.url + '" target="_blank" id="eventUrl" target="_blank">External event link</a>';
             }
-            var eventPage = '<a class="btn btn-primary btn-mini pull-left" href="/events/' + event.id + '" target="_blank" id="eventUrl" target="_blank">View event <i class="icon-external-link"></i></a>';
+            let eventPage = '<a class="btn btn-primary btn-mini pull-left" href="/events/' + event.id + '" target="_blank" id="eventUrl" target="_blank">View event <i class="fa fa-external-link"></i></a>';
             //registration
             if (event.registration === 1) {
                 registerUrl = '<a class="btn btn-primary" href="/event/' + event.id + '/register" id="eventReg" target="_blank">Register to Event</a>';
             }
-            var eventData = $('#eventData');
+            let eventData = $('#eventData');
             eventData.find('.modal-title').text(event.title);
             eventData.find('#start-date').text(endDate);
             eventData.find('#end-date').text(startDate);
             eventData.find('#desc').html(event.desc);
             eventData.find('#eventPage').html(eventPage);
-            eventData.find('#editEvent').html('<a href="/events/' + event.id + '/edit" class="btn btn-primary btn-mini"><i class="icon-pencil"></i> </a>');
-            eventData.find('#deleteEvent').html('<a href="/events/delete/' + event.id + '" class="btn btn-danger btn-mini delete"><i class="icon-trash"></i> </a>');
+            eventData.find('#editEvent').html('<a href="/events/' + event.id + '/edit" class="btn btn-primary btn-mini"><i class="fa fa-pencil"></i> </a>');
+            eventData.find('#deleteEvent').html('<a href="/events/delete/' + event.id + '" class="btn btn-danger btn-mini delete"><i class="fa fa-trash"></i> </a>');
             $('#eventUrl').html(eventUrl);
             eventData.find('#registerUrl').html(registerUrl);
             eventData.modal('show');
@@ -110,6 +110,6 @@ $(document).ready(function () {
         }
     });
     $('input[name=registration]').click(function () {
-        $('input[name=form_id]').toggle();
+        $('#external-link').toggle();
     })
 });

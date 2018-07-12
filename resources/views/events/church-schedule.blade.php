@@ -12,8 +12,8 @@
             <h5>@lang("Regular service schedules")</h5>
 
             <div class="buttons">
-                <a class="btn btn-default btn-sm" href="/events/admin"><i class="fa fa-chevron-left"></i>
-                    back to calendar</a>
+                <a class="btn btn-inverse btn-sm" href="/events/admin"><i class="fa fa-chevron-left"></i>
+                    @lang('back to calendar')</a>
             </div>
         </div>
         <div class="card-body nopadding">

@@ -24,7 +24,7 @@
 				<div class="list-group-item">
 					<div class="media">
 						<div class="align-self-start mr-2">
-							{{count($sermons->where('status','published'))}}
+							{{!empty($sermons->where('status','published'))}}
 						</div>
 						<div class="media-body text-truncate">
 							<p class="mb-1">
@@ -40,7 +40,7 @@
 				<div class="list-group-item">
 					<div class="media">
 						<div class="align-self-start mr-2">
-							{{count($sermons->where('status','draft'))}}
+							{{!empty($sermons->where('status','draft'))}}
 						</div>
 						<div class="media-body text-truncate">
 							<p class="mb-1">

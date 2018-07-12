@@ -164,7 +164,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url(/images/header.jpg?84f69daf998290c79af2fc3c96a6f41a);
+  background-image: url(../img/header.jpg);
   color: #fff;
 }
 header .header-content {
@@ -193,6 +193,7 @@ header .header-content .header-content-inner p {
   header .header-content {
     position: absolute;
     top: 27%;
+    -webkit-transform: translateY(-35%);
     transform: translateY(-35%);
     padding: 0px 50px;
   }
@@ -375,7 +376,7 @@ img::-moz-selection {
   border-bottom: solid 1px #ccc;
   background-color: white;
   width: 170px;
-  color: #2196F3;
+  color:#2196F3;
 }
 .modal input {
   border-radius: 0;

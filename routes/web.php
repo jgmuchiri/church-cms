@@ -1,4 +1,5 @@
 <?php
+
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,10 +17,10 @@ Route::group(['middleware' => 'web'], function () {
 //    Route::post('login', 'Auth\AuthController@login');
 //
 
-    if (Request()->segment(3) == "delete") {
+    if(Request()->segment(3) == "delete") {
         return view('errors.202');
     }
-    Route::get('password/forgot','Auth\ForgotPasswordController@index')->name('password.forgot');
+    Route::get('password/forgot', 'Auth\ForgotPasswordController@index')->name('password.forgot');
     Route::get('logout', 'Auth\LoginController@logout');
 
     Route::get('/', 'HomeController@index');
@@ -77,17 +78,17 @@ Route::group(['middleware' => 'web'], function () {
     //blog
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'BlogController@index');
-        Route::get('admin', ['middleware' => ['role:admin'], 'uses' => 'BlogController@admin']);
-        Route::get('/create', ['middleware' => ['permission:blog-create'], 'uses' => 'BlogController@create']);
-        Route::post('/create', ['middleware' => ['permission:blog-create'], 'uses' => 'BlogController@store']);
-        Route::get('{id}/edit', ['middleware' => ['permission:blog-update'], 'uses' => 'BlogController@edit']);
-        Route::post('{id}/update', ['middleware' => ['permission:blog-update'], 'uses' => 'BlogController@update']);
-        Route::get('{id}/delete', ['middleware' => ['permission:blog-detete'], 'uses' => 'BlogController@destroy']);
+        Route::get('admin', 'BlogController@admin');
+        Route::get('/create', 'BlogController@create');
+        Route::post('/create', 'BlogController@store');
+        Route::get('{id}/edit', 'BlogController@edit');
+        Route::post('{id}/update', 'BlogController@update');
+        Route::get('{id}/delete', 'BlogController@destroy');
         Route::post('{id}/postComment', 'BlogController@postComment');
-        Route::get('/comment/{id}/delete', ['middleware' => ['ability:admin|owner,blog.comments-delete', 'true'], 'uses' => 'BlogController@deleteComment']);
+        Route::get('/comment/{id}/delete', 'BlogController@deleteComment');
         Route::get('categories', 'BlogController@categories');
-        Route::post('categories', ['middleware' => ['role:admin'], 'uses' => 'BlogController@storeCat']);
-        Route::patch('categories/{id}', ['middleware' => ['role:admin'], 'uses' => 'BlogController@updateCat']);
+        Route::post('categories', 'BlogController@storeCat');
+        Route::patch('categories/{id}', 'BlogController@updateCat');
         Route::get('{slug}', 'BlogController@show');
     });
 
@@ -97,7 +98,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('findUser', 'UserController@findUser');
         Route::get('{id}', 'UserController@index');
     });
-    Route::group(['prefix'=>'birthdays'],function (){
+    Route::group(['prefix' => 'birthdays'], function () {
         Route::get('/', 'BirthdayController@index');
         Route::get('{id}', 'BirthdayController@index');
     });
@@ -119,15 +120,15 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/getRoles', 'Auth\AuthController@rolesJson');
         Route::post('/', 'Auth\AuthController@newRole');
     });
-    Route::post('role','Auth\AuthController@showRole');
-    Route::post('update-role/{id}','Auth\AuthController@updateRole');
+    Route::post('role', 'Auth\AuthController@showRole');
+    Route::post('update-role/{id}', 'Auth\AuthController@updateRole');
 
     //modules
-    Route::resource('modules','ModulesController');
-    Route::post('update-module/{id}','ModulesController@update');
-    Route::get('module-permissions/{role_id}/{module_id}','Auth\AuthController@permissions');
-    Route::post('role-permissions','Auth\AuthController@updateRolePermissions');
-    Route::get('perms','ModulesController@perms');
+    Route::resource('modules', 'ModulesController');
+    Route::post('update-module/{id}', 'ModulesController@update');
+    Route::get('module-permissions/{role_id}/{module_id}', 'Auth\AuthController@permissions');
+    Route::post('role-permissions', 'Auth\AuthController@updateRolePermissions');
+    Route::get('perms', 'ModulesController@perms');
 
     //settings
     Route::group(['prefix' => 'settings', 'middleware' => ['role:admin']], function () {
@@ -137,10 +138,10 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'AdminController@settings');
         Route::post('/logo', 'AdminController@uploadLogo');
     });
-    Route::get('debug-log','\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::get('debug-log', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
     //themes
-    Route::group(['prefix' => 'theme','middleware'=>'auth'], function () {
+    Route::group(['prefix' => 'theme', 'middleware' => 'auth'], function () {
         Route::get('/', 'ThemesController@index');
         Route::post('/', 'ThemesController@upload');
         Route::get('{id}/d', 'ThemesController@destroy');
@@ -152,8 +153,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'MenuController@mainMenu');
         Route::post('/', 'MenuController@storeMainMenu');
         Route::patch('/', 'MenuController@updateMainMenu');
-        Route::post('/sort','MenuController@sortMenu');
-        Route::get('/{id}/delete','MenuController@destroy');
+        Route::post('/sort', 'MenuController@sortMenu');
+        Route::get('/{id}/delete', 'MenuController@destroy');
     });
 
     Route::group(['prefix' => 'giving'], function () {
@@ -168,7 +169,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('recurring', 'GivingController@recurringGifts');
         Route::get('plan/{id}/{action}', 'GivingController@updateGiftPlan');
 
-        Route::get('option-info/{id}','GivingController@getOptionInfo');
+        Route::get('option-info/{id}', 'GivingController@getOptionInfo');
     });
     Route::post('guest-giving', 'GivingController@manualGift');
 
@@ -252,7 +253,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'KioskController@index');
     });
     Route::group(['prefix' => 'api'], function () {
-       Route::get('events','CalendarController@eventsJSON');
+        Route::get('events', 'CalendarController@eventsJSON');
     });
 });
 

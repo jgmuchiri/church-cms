@@ -3,7 +3,6 @@
 <head>
 	<meta name="viewport" content="width=device-width"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<title>DaycarePRO</title>
 	<style>
 		/* -------------------------------------
 			GLOBAL RESETS
@@ -351,10 +350,10 @@
 					@yield('header')
 				</span>
 
-				<table>
+				<table style="background-color: #1c1c1c">
 					<tr>
 						<td>
-							<img width="auto" border="0" alt="my account" class="img-max" style="height:25px;display: block; padding: 0; color: #3F3D33; text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px;" src="{{asset('/img/logo.png')}}">
+							<img width="auto" border="0" alt="my account" class="img-max" style="height:65px;display: block; padding: 0; color: #3F3D33; text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px;" src="{{asset('/img/logo.png')}}">
 						</td>
 					</tr>
 				</table>

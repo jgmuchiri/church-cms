@@ -9,7 +9,7 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 
 @section('content')
 	@if(isset($_GET['s']))
-		<a href="/users" class="btn btn-default btn-sm">
+		<a href="/users" class="btn btn-inverse btn-sm">
 			<i class="fa fa-chevron-circle-left"></i>
 		</a>
 	@endif
@@ -53,7 +53,7 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 			</div>
 		</div>
 		<div class="col-sm-6">
-			<button class="btn btn-default newUser"><i class="fa fa-plus"></i>@lang("New User")</button>
+			<button class="btn btn-inverse newUser"><i class="fa fa-plus"></i>@lang("New User")</button>
 		</div>
 	</div>
 	<div class="row">
@@ -97,7 +97,7 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
             $('.newUser').click(function () {
                 $('#newUser').modal('show');
             });
-			@if(count($errors))
+			@if(!empty($errors))
             $('#newUser').modal('show');
 			@endif
         });

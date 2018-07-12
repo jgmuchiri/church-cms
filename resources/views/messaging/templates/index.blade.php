@@ -5,8 +5,8 @@
 
 @section('content')
 
-    <a href="/messaging/admin" class="btn btn-default"><i class="fa fa-inbox"></i> @lang("Messaging")</a>
-    <a href="/templates/create" class="btn btn-default"><i class="fa fa-plus"></i> @lang("New template")</a>
+    <a href="/messaging/admin" class="btn btn-inverse"><i class="fa fa-inbox"></i> @lang("Messaging")</a>
+    <a href="/templates/create" class="btn btn-inverse"><i class="fa fa-plus"></i> @lang("New template")</a>
     <div class="card card-default">
         <div class="card-header"><span class="icon"><i class="fa fa-th"></i></span>
             <h5>@lang("Message templates")</h5>
@@ -27,7 +27,7 @@
                         <td>
                             <a class="btn btn-info btn-sm" data-toggle="tooltip" title="Copy to start new message"
                                href="/messaging/admin?tmp={{$temp->id}}"><i class="fa fa-copy"></i> </a>
-                            <a class="btn btn-default btn-sm" data-toggle="tooltip" title="Edit"
+                            <a class="btn btn-inverse btn-sm" data-toggle="tooltip" title="Edit"
                                href="/templates/{{$temp->id}}/edit"><i class="fa fa-pencil"></i> </a>
                             <a class="btn btn-danger btn-sm delete" data-toggle="tooltip" title="Delete"
                                href="/templates/delete/{{$temp->id}}"><i class="fa fa-trash"></i> </a>

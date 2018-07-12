@@ -1,83 +1,93 @@
 @extends('layouts.admin-template')
 @section('title')
-    Events Calendar
-@endsection
-@section('crumbs')
-    <a href="#">@lang("Calendar")</a>
+	@lang('Events Calendar')
 @endsection
 
 @section('content')
-    <div class="card card-default">
-        <div class="card-header bg_lg"><span class="icon"><i class="fa fa-calendar"></i></span>
-            <h5>@lang"(Edit event")</h5>
-            <div class="buttons">
-                <a class="btn btn-default btn-sm" href="/events/admin"><i class="fa fa-chevron-left"></i>
-                    back to calendar</a>
+	<div class="card card-default">
+		<div class="card-header bg_lg">
+			<div class="buttons">
+				<a class="btn btn-inverse btn-sm" href="/events/admin">
+					<i class="fa fa-chevron-left"></i>
+					@lang('back to calendar')
+				</a>
 
-                <a class="btn btn-inverse btn-sm" href="/events/list"><i class="fa fa-list"></i>
-                    events list</a>
-            </div>
-        </div>
-        <div class="card-body">
+				<a class="btn btn-inverse btn-sm" href="/events/list">
+					<i class="fa fa-list"></i>
+					@lang('events list')
+				</a>
+			</div>
+		</div>
+		<div class="card-body">
 
-            {{Form::model($event,['url'=>'events/'.$event->id.'/edit'])}}
-            {{Form::text('title',null,['placeholder'=>'Event Title','required'=>'required'])}}<br/>
+			{{Form::model($event,['url'=>'events/'.$event->id.'/edit'])}}
+			{{Form::text('title',null,['placeholder'=>'Event Title','required'=>'required','class'=>'form-control'])}}
 
-            <label>@lang("Start")</label>
-            {{Form::input('date','start',date('Y-m-d',strtotime($event->start)),['placeholder'=>'Start','required'=>'required'])}}
-            {{Form::input('time','startTime',date('H:i',strtotime($event->start)),['placeholder'=>'Start'])}}
+			<div class="row">
+				<div class="col-sm-6">
+					{{Form::label('status',__('Status'))}}
+					{{Form::select('status',['active'=>'Active','private'=>'Private'],null,['class'=>'form-control'])}}
+				</div>
+				<div class="col-sm-4">
+					{{Form::checkbox('allDay')}} <label>@lang("All day")?</label>
+				</div>
+			</div>
 
-            <br/>
+			<div class="row">
+				<div class="col-sm-6">
+					{{Form::label('start',__('Start'))}}
+					{{Form::input('date','start',date('Y-m-d',strtotime($event->start)),['class'=>'form-control','required'=>'required'])}}
+				</div>
+				<div class="col-sm-6" id="e-start-time">
+					{{Form::label('startTime',__('Start'))}}
+					{{Form::input('time','startTime',date('H:i',strtotime($event->start)),['class'=>'form-control'])}}
+				</div>
+			</div>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>@lang("Status")</label>
-                    {{Form::select('status',['active'=>'Active','private'=>'Private'])}}
+			<div class="row">
+				<div class="col-sm-6">
+					{{Form::label('end',__('End'))}}
+					{{Form::input('date','end',date('Y-m-d',strtotime($event->end)),['class'=>'form-control'])}}
+				</div>
+				<div class="col-sm-6">
+					{{Form::label('endTime',__('End'))}}
+					{{Form::input('time','endTime',date('H:i',strtotime($event->end)),['class'=>'form-control'])}}
+				</div>
+			</div>
 
-                </div>
-                <div class="col-sm-6">
-                    {{Form::checkbox('allDay')}} <label>@lang("All day")?</label>
-                </div>
-            </div>
+			{{Form::label('desc',__('Description'))}}
+			{{Form::textarea('desc',null,['rows'=>3,'class'=>'col-sm-12'])}}
 
+			{{Form::label('registration',__('This event requires registration?'))}}
+			{{Form::radio('registration',1,false)}} @lang("Yes")
+			{{Form::radio('registration',0,true)}} @lang("No")
+			<br/>
+			<em>(paste google form url below)</em>
+			{{Form::label('form_id',__('Google Form Link'))}}
+			{{Form::text('form_id',null,['class'=>'form-control'])}}
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>@lang("End")</label>
-                    {{Form::input('date','end',date('Y-m-d',strtotime($event->end)),['placeholder'=>'End'])}}
-                    {{Form::input('time','endTime',date('H:i',strtotime($event->end)),['placeholder'=>'End'])}}
-                </div>
-            </div>
+			{{Form::label('url',__('Event URL'))}}
+			{{Form::text('url',null,['class'=>'form-control'])}}<br/>
 
-            <br/>
-            {{Form::textarea('desc',null,['placeholder'=>'Description','rows'=>3,'class'=>'col-sm-12'])}}
-
-            <label>@lang("This event requires registration")?</label>
-            {{Form::radio('registration',1,false)}} Yes
-            {{Form::radio('registration',0,true)}} No
-            <br/>
-            <em>(paste google form url below)</em>
-            {{Form::text('form_id',null,['placeholder'=>'Google Form Link','class'=>'col-sm-12'])}}<br/>
-            {{Form::text('url',null,['placeholder'=>'Event URL','class'=>'col-sm-12'])}}<br/>
-            <button class="btn btn-default">@lang("Save")</button>
-            {{Form::close()}}
-        </div>
-    </div>
+			<button class="btn btn-inverse">@lang("Save")</button>
+			{{Form::close()}}
+		</div>
+	</div>
 
 @endsection
 @push('scripts')
-@include('partials.tinymce')
-<style>
-    #body_ifr {
-        height: 200px !important;
-    }
-</style>
-<script>
-    @if($event->allDay ==1)
-$('.end-date').hide();
-    @endif
-$('.all-day input[type=checkbox]').click(function () {
-        $('.end-date').toggle();
-    });
-</script>
+	@include('partials.tinymce')
+	<style>
+		#body_ifr {
+			height: 200px !important;
+		}
+	</style>
+	<script>
+		@if($event->allDay ==1)
+        $('.end-date').hide();
+		@endif
+        $('.all-day input[type=checkbox]').click(function () {
+            $('.end-date').toggle();
+        });
+	</script>
 @endpush

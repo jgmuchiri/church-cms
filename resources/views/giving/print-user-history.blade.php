@@ -76,7 +76,7 @@
             </td>
         </tr>
     </table>
-    @if(count($gifts)>0)
+    @if(!empty($gifts))
         <table class="table table-striped">
             <thead>
             <tr>

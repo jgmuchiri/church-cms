@@ -89,7 +89,7 @@ class MenuController extends Controller
     function sortMenu(Request $request){
         if ($request->ajax()) {
             $id_ary = explode(",", $request->sort_order);
-            for ($i = 0; $i < count($id_ary); $i++) {
+            for ($i = 0; $i < !empty($id_ary); $i++) {
                 $q = MainMenu::find($id_ary[$i]);
                 //get parent if any and move the sub menu over
 //                $c = $id_ary[$i]-1;

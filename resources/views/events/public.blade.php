@@ -123,7 +123,7 @@
                 <div id="modalBody" class="modal-body"></div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-primary link">@lang("Open")</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">@lang("Close")</button>
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">@lang("Close")</button>
                     <a class="btn btn-primary" id="eventUrl" target="_blank">@lang("Event Page")</a>
                     <a class="btn btn-primary" id="eventReg">@lang("Register to Event")</a>
                 </div>

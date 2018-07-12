@@ -14,5 +14,5 @@
 {{Form::textarea('desc',null,['required'=>'','class'=>'form-control'])}}
 
 <br/>
-<button class="btn btn-default">
+<button class="btn btn-inverse">
 	<i class="fa fa-save"></i> @lang($type)</button>

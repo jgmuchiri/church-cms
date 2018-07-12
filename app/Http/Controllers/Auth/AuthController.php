@@ -84,7 +84,7 @@ class AuthController extends Controller
             foreach ($levels as $level) {
                 $perm = Permission::where('name', $level . '-' . $module->name)->first();
                 $role = null;
-                if (count($perm) > 0)
+                if (!empty($perm))
                     $role = DB::table('permission_role')->where('role_id', $role_id)->where('permission_id', $perm->id)->first();
                 if ($role == null)
                     $selected = false;

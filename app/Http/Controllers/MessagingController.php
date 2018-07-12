@@ -70,7 +70,6 @@ class MessagingController extends Controller
             return redirect()->back();
         }
 
-
         if (!empty($request->group)) {
             //get users in the group
             switch ($request->group) {

@@ -18,6 +18,10 @@ class BlogController extends Controller
     public function __construct()
     {
         $this->middleware(['auth'], ['except' => ['index', 'show']]);
+        $this->middleware(['permission:create-blog'], ['only' => ['admin', 'create', 'store', 'createCat']]);
+        $this->middleware(['permission:update-blog'], ['only' => ['update', 'edit', 'updateCat']]);
+        $this->middleware(['permission:delete-blog'], ['only' => ['destroy', 'deleteComment']]);
+        $this->middleware(['ability:admin|owner'], ['only' => ['deleteComment']]);
     }
 
     /**
@@ -26,11 +30,11 @@ class BlogController extends Controller
     function index()
     {
 
-        if (isset($_GET['cat'])) {
+        if(isset($_GET['cat'])) {
 
             $cat = DB::table('blog_cats')->where('name', $_GET['cat'])->first();
 
-            if (!$cat)
+            if(!$cat)
                 $blog = Blog::whereStatus('published')
                     ->orderBy('created_at', 'DESC')
                     ->simplePaginate(25);
@@ -94,14 +98,14 @@ class BlogController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
+        if($validator->fails()) {
             flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
 
         $cats = Input::get('categories');
-        if (is_array($cats)) {
+        if(is_array($cats)) {
             $allCats = implode(',', $cats);
         } else {
             $allCats = $cats;
@@ -146,13 +150,13 @@ class BlogController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
+        if($validator->fails()) {
             flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $cats = Input::get('categories');
-        if (is_array($cats)) {
+        if(is_array($cats)) {
             $allCats = implode(',', $cats);
         } else {
             $allCats = $cats;
@@ -196,7 +200,7 @@ class BlogController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
+        if($validator->fails()) {
             flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -245,12 +249,12 @@ class BlogController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
+        if($validator->fails()) {
             flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $data = array(
-            'name' => str_replace(array('&','?'),'and',$request->name),
+            'name' => str_replace(array('&', '?'), 'and', $request->name),
             'desc' => $request->desc
         );
         DB::table('blog_cats')->insert($data);
@@ -266,17 +270,17 @@ class BlogController extends Controller
     function updateCat(Request $request, $id)
     {
         $rules = [
-            'name' => 'required|max:50|unique:blog_cats,name,' . $id
+            'name' => 'required|max:50|unique:blog_cats,name,'.$id
         ];
 
         $validator = Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
+        if($validator->fails()) {
             flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $data = array(
-            'name' =>  str_replace(array('&','?'),'and',$request->name),
+            'name' => str_replace(array('&', '?'), 'and', $request->name),
             'desc' => $request->desc
         );
         DB::table('blog_cats')->where('id', $id)->update($data);

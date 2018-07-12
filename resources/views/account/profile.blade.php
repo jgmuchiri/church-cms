@@ -56,7 +56,7 @@
 							{!! Form::input('password','current_password',null,['class'=>'form-control']) !!}
 							<br/>
 							{{Form::label(__('Password'))}}
-							{!! Form::input('password','new_password',null,['class'=>'form-control']) !!}
+							{!! Form::input('password','password',null,['class'=>'form-control']) !!}
 							{{Form::label(__('Confirm Password'))}}
 							{!! Form::input('password','password_confirmation',null,['class'=>'form-control']) !!}
 						</div>

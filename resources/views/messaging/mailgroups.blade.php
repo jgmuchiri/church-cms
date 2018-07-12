@@ -16,7 +16,7 @@
                     <h5>@lang("Message Groups")</h5>
                 </div>
                 <div class="card-body">
-                    @if(count($group))
+                    @if(!empty($group))
 
                         {{Form::model($group,['url'=>'messaging/mail-groups/'.$group->id,'method'=>'patch'])}}
 
@@ -27,7 +27,7 @@
                         @foreach($groups as $gp)
                             <div class="callout callout-{{$gp->active==1?'success':'danger'}}">
                                 <h4><a href="/messaging/mail-groups/{{$gp->id}}">{{$gp->name}}</a>
-                                    <span class="badge right">{{count(explode(',',DB::table('messaging_groups')->where('id',$gp->id)->first()->users))}}</span>
+                                    <span class="badge right">{{!empty(explode(',',DB::table('messaging_groups')->where('id',$gp->id)->first()->users))}}</span>
                                 </h4>
                                 <em>{{$gp->desc}}</em>
                             </div>
@@ -42,7 +42,7 @@
                     <h5>@lang("Create/Edit Groups")</h5>
                 </div>
                 <div class="card-body">
-                    @if(count($group))
+                    @if(!empty($group))
                         <h4 class="title">@lang("Edit Group")</h4>
                     @else
                         {{Form::open(['url'=>'/messaging/mail-groups'])}}
@@ -55,7 +55,7 @@
                     <label>@lang("Active?")</label>
                     {{Form::select('active',[1=>__("Yes"),0=>__("No")])}}
                     <br/>
-                    <button class="btn btn-default">@lang("Submit")</button>
+                    <button class="btn btn-inverse">@lang("Submit")</button>
                     {{Form::close()}}
                 </div>
             </div>

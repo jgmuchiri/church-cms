@@ -14,7 +14,7 @@
 							<div class="input-group">
 								{{Form::select('m',$months)}}
 								<span class="input-group-btn">
-                                        <button class="btn btn-default">
+                                        <button class="btn btn-inverse">
                                             <i class="fa fa-search"></i>
                                         </button>
 							</span>

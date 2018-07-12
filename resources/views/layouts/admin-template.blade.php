@@ -6,11 +6,11 @@
 	<meta name="description" content="Church content management system">
 	<meta name="keywords" content="church, content management system, cms">
 	<title>{{env('APP_NAME')}}</title>
-	<link rel="stylesheet" href="{{ url('css/font-awesome.css')}}">
-	<link rel="stylesheet" href="{{ url('css/animate.css')}}">
-	<link rel="stylesheet" href="{{ url('css/whirl.css')}}">
-	<link rel="stylesheet" href="{{ url('css/bootstrap.css')}}" id="bscss">
-	<link rel="stylesheet" href="{{ url('css/style.css')}}" id="maincss">
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/animate.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/whirl.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}" id="bscss">
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" id="maincss">
 	@stack('styles')
 	@if(env('APP_ENV')=='production')
 		<script type="text/javascript">
@@ -292,15 +292,15 @@
 		<span>&copy;{{date('Y').' '.env('APP_NAME')}} - <a href="https://amdtllc.com">A&M Digital Technologies</a></span>
 	</footer>
 </div>
-<script src="{{ url('js/jquery.js')}}"></script>
-<script src="{{ url('js/modernizr.custom.js')}}"></script>
-<script src="{{ url('js/popper.js')}}"></script>
-<script src="{{ url('js/bootstrap.js')}}"></script>
-<script src="{{ url('js/js.storage.js')}}"></script>
-<script src="{{ url('js/jquery.easing.js')}}"></script>
-<script src="{{ url('js/animo.js')}}"></script>
-<script src="{{ url('js/screenfull.js')}}"></script>
-<script src="{{ url('js/tools.js')}}"></script>
+<script src="{{ asset('js/jquery.js')}}"></script>
+<script src="{{ asset('plugins/modernizr.custom.js')}}"></script>
+<script src="{{ asset('plugins/popper.js')}}"></script>
+<script src="{{ asset('js/bootstrap.js')}}"></script>
+<script src="{{ asset('plugins/js.storage.js')}}"></script>
+<script src="{{ asset('plugins/jquery.easing.min.js')}}"></script>
+<script src="{{ asset('plugins/animo.js')}}"></script>
+<script src="{{ asset('plugins/screenfull.js')}}"></script>
+<script src="{{ asset('js/tools.js')}}"></script>
 {{--<script src="/js/global.js"></script>--}}
 @include('partials.flash')
 @stack('scripts')

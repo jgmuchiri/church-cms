@@ -39,6 +39,7 @@
                                 <a class="delete" href="/blog/comment/{{$cm->id}}/delete"><i
                                             class="fa fa-trash text-danger"></i> </a>
                                 @endrole
+
                             </div>
                             <span style="font-size: 16px;">{{$cm->comment}}</span>
                         </div>
@@ -53,7 +54,7 @@
                         {{Form::hidden('parent_id',0)}}
                         {{Form::textarea('comment',null,['required'=>'required','placeholder'=>'Enter you comments. use @to reply to specific user','rows'=>3])}}
                         <br/>
-                        <button class="btn btn-default">@lang("Post")</button>
+                        <button class="btn btn-inverse">@lang("Post")</button>
                         {{Form::close()}}
                     @else
                         <i>@lang("Login to comment")</i>

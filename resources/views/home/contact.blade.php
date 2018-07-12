@@ -69,7 +69,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <button class="btn btn-default"><i class="fa fa-paper-plane-o"></i> @lang("Send")</button>
+                                <button class="btn btn-inverse"><i class="fa fa-paper-plane-o"></i> @lang("Send")</button>
                             </td>
                         </tr>
                     </table>

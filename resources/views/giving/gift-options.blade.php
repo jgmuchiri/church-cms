@@ -65,13 +65,13 @@
 							{{Form::select('active',[1=>'Yes',0=>'No'],null,['class'=>'form-control'])}}
 							<br/>
 							@if(isset($_GET['option']) && $_GET['option'] !=="")
-								<button class="btn btn-default">@lang("Update")</button>
+								<button class="btn btn-inverse">@lang("Update")</button>
 								<a href="{{route('gift-options')}}" class="btn btn-danger pull-right">
 									@lang('Close')
 								</a>
 							@else
 
-								<button class="btn btn-default">@lang("Submit")</button>
+								<button class="btn btn-inverse">@lang("Submit")</button>
 							@endif
 
 							{{ Form::close() }}

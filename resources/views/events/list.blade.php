@@ -1,6 +1,6 @@
 @extends('layouts.admin-template')
 @section('title')
-    Events list
+    @lang("Events list")
 @endsection
 @section('crumbs')
     <a href="/events/admin">@lang("Events")</a>
@@ -10,15 +10,13 @@
 @section('content')
 
     <div class="card card-default">
-        <div class="card-header bg_lg"><span class="icon"><i class="fa fa-calendar"></i></span>
-            <h5>@lang("Events list")</h5>
-
+        <div class="card-header">
             <div class="buttons">
                 <a class="btn btn-info btn-sm" href="/events/admin"><i class="fa fa-chevron-left"></i>
-                    back to calendar</a>
+                    @lang('back to calendar')</a>
                 <a class="btn btn-info btn-sm newEventBtn" data-toggle="modal" data-target="#new-event" href="#"><i
                             class="fa fa-plus"></i>
-                    create event</a>
+                    @lang('New event')</a>
             </div>
         </div>
         <div class="card-body">
@@ -26,7 +24,7 @@
                 <div class="input-group">
                     <input name="s" placeholder="Search" class="form-control">
                     <span class="input-group-btn">
-                                <button class="btn btn-default">
+                                <button class="btn btn-inverse">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>

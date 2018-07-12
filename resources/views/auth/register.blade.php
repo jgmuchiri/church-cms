@@ -58,8 +58,9 @@
 		</div>
 		<button class="btn btn-block btn-primary mt-3" type="submit">@lang('Register')</button>
 		{{Form::close()}}
-		<p class="pt-3 text-center"></p>
-		<a class="btn btn-block btn-secondary" href="{{route('login')}}">@lang('Login')</a>
+		<p class="pt-3 text-center">
+			<a class="" href="{{route('login')}}">@lang('Login')</a>
+		</p>
 	@else
 		<div class="alert alert-danger">@lang("Registration is not allowed at this time.")</div>
 	@endif

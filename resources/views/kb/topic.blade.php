@@ -13,7 +13,7 @@
             <div class="card-header bg_lg"><span class="icon"><i class="fa fa-th"></i></span>
                 <h5>@lang("Support questions")</h5>
                 <div class="buttons">
-                    <a href="/support" class="btn btn-default btn-sm">
+                    <a href="/support" class="btn btn-inverse btn-sm">
                         <i class="fa fa-chevron-left"></i> @lang("back")</a>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         </form>
 
                         <br/>
-                        @if(count($topics)>0)
+                        @if(!empty($topics))
                             @foreach($topics as $topic)
                                 <div class="callout callout-warning">
                                     <h5 class="title"><i class="fa fa-question"></i>
@@ -84,7 +84,7 @@
                 <br/>
                 {{Form::textarea('desc',null,['rows'=>3,'Placeholder'=>__("Enter a detailed problem here"),'class'=>'col-sm-12'])}}
                 <br/>
-                <button class="btn btn-default btn-flat">@lang("Submit")</button>
+                <button class="btn btn-inverse btn-flat">@lang("Submit")</button>
                 {{Form::close()}}
             </div>
         </div>

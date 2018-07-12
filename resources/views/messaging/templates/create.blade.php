@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <a href="/templates" class="btn btn-default"><i class="fa fa-chevron-circle-left"></i> @lang("Back")</a>
+    <a href="/templates" class="btn btn-inverse"><i class="fa fa-chevron-circle-left"></i> @lang("Back")</a>
 
     <div class="row">
         <div class="card card-default">
@@ -35,7 +35,7 @@
                     <label>@lang("Content")</label>
                     {{Form::textarea('body',null,['class'=>'editor'])}}
                     <br/>
-                    <button class="btn btn-default">@lang("Submit")</button>
+                    <button class="btn btn-inverse">@lang("Submit")</button>
                     {{Form::close()}}
                 </div>
             </div>

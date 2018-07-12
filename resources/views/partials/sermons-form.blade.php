@@ -17,8 +17,6 @@
 				{{Form::textarea('desc',null,['placeholder'=>__("Short Description"),'rows'=>3,'class'=>'form-control'])}}
 				{{Form::label('message',__('Message'))}}
 				{{Form::textarea('message',null,['placeholder'=>__("Message"),'class'=>'editor form-control'])}}
-
-
 				{{Form::label('video',__('Video'))}}
 				{{Form::text('video',null,['class'=>'form-control','placeholder'=>__("Video URL").' (Youtube or Vimeo)'])}}
 
@@ -50,7 +48,7 @@
 
 				<hr/>
 				{{Form::label('audio',__('Upload audio'))}}<em>mp3</em>
-				{{Form::file('audio',['class'=>'btn btn-default form-control'])}}
+				{{Form::file('audio',['class'=>'btn btn-inverse form-control'])}}
 
 
 				@if(isset($sermon) && !empty($sermon->audio))
@@ -60,7 +58,7 @@
 				<hr/>
 
 				{{Form::label('cover',__('Cover Image'))}}
-				{{Form::file('cover',['class'=>'btn btn-default, form-control'])}}
+				{{Form::file('cover',['class'=>'btn btn-inverse, form-control'])}}
 				@if(isset($sermon) && !empty($sermon->cover))
 					<img src="{{Storage::url($sermon->cover)}}"
 						 style="width:100px"/>
@@ -68,7 +66,7 @@
 
 
 				<hr/>
-				<button class="btn btn-default">@lang($btn)</button>
+				<button class="btn btn-inverse">@lang($btn)</button>
 			</div>
 		</div>
 	</div>

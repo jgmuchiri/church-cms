@@ -85,7 +85,7 @@
                     @if(isset($myCat))
                         <a href="/support/categories" class="btn btn-danger">Cancel</a>
                     @endif
-                    <button class="btn btn-default">{{$button}}</button>
+                    <button class="btn btn-inverse">{{$button}}</button>
                     {{Form::close()}}
 
                 </div>

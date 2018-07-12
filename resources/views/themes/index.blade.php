@@ -12,7 +12,7 @@
 						@lang("Current theme"):
 						<strong class="text-info">{{App\Models\Themes::currentTheme()}}</strong>
 					</strong>
-					<a class="pull-right btn btn-primary btn-xs" href="/" target="_blank">
+					<a class="pull-right btn btn-primary btn-sm" href="/" target="_blank">
 						 @lang('Preview') <i class="fa fa-external-link"></i>
 					</a>
 				</div>
@@ -27,9 +27,6 @@
 							<i class="fa fa-plus"></i>
 							@lang("Upload theme")
 						</a>
-						<a href="/theme/0/select" class="btn btn-info btn-sm"><i class="fa fa-check"></i>
-							@lang("Set default theme")
-						</a>
 					</div>
 				</div>
 			</div>
@@ -38,6 +35,29 @@
 	<div class="card card-default">
 		<div class="card-body">
 			<div class="row">
+				<div class="col-sm-4">
+					<div style="max-height: 360px;background:#f2f2f6;padding:10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
+						<h3>@lang('Default theme')</h3>
+
+						<div class="thumbnail">
+							<img style="width:100%;height:100%;height: 150px;"
+								 src="/themes/default/screenshot.png"/>
+						</div>
+						<div class="caption">
+							@lang('Default CRM theme')
+						</div>
+						<hr/>
+						{{get_option('active_theme')}}
+						@if(empty(get_option('site_theme')) || get_option('site_theme')==0)
+							<button class="btn btn-success active"><i class="fa fa-check"></i> @lang('Active theme')</button>
+						@else
+							<a href="/theme/0/select" class="btn btn-info btn-sm"><i
+										class="fa fa-check"></i>
+								@lang("Select theme")
+							</a>
+						@endif
+					</div>
+				</div>
 				@foreach($themes as $theme)
 					<div class="col-sm-4">
 						<div style="max-height: 360px;background:#f2f2f6;padding:10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
@@ -51,11 +71,11 @@
 								{{$theme->desc}}
 							</div>
 							<hr/>
-							@if(App\Models\Settings::get_option('active_theme') ==$theme->id)
-								<a class="btn btn-primary active"><i class="fa fa-check"></i></a>
+							@if(get_option('site_theme') ==$theme->id)
+								<a class="btn btn-success active"><i class="fa fa-check"></i></a>
 							@else
 								{{--<a href="/themes/{{$theme->id}}/preview" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Preview</a>--}}
-								@if(App\Models\Settings::get_option('site_theme')==$theme->id)
+								@if(get_option('site_theme')==$theme->id)
 									<button class="btn btn-success btn-sm"><i class="fa fa-check"></i>
 										@lang("Active theme")
 									</button>
@@ -103,7 +123,7 @@
 					{!! Form::file('theme') !!}
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">@lang("Cancel")</button>
+					<button type="button" class="btn btn-inverse" data-dismiss="modal">@lang("Cancel")</button>
 					<button class="btn btn-primary">@lang("Upload")</button>
 				</div>
 				<div class="callout callout-warning">@lang("Theme files must contain ",['opts'=>"index.blade.php and screenshot.png"]) </div>

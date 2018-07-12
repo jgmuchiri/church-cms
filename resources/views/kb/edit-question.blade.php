@@ -50,7 +50,7 @@
                 <lable>@lang("Publish?")</lable>
                 {{Form::select('active',[1=>'Yes',0=>'No'])}}
                 <br/>
-                <button class="btn btn-default btn-flat">@lang("Submit")</button>
+                <button class="btn btn-inverse btn-flat">@lang("Submit")</button>
                 {{Form::close()}}
             </div>
         </div>

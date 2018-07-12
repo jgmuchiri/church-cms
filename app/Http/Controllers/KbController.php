@@ -33,7 +33,7 @@ class KbController extends Controller
     function topic($id)
     {
         $cat = DB::table('kb_cats')->where('name', 'like', $id)->first();
-        if (count($cat) > 0)
+        if (!empty($cat))
             $topics = Kb::whereCategory($cat->id)->whereActive(1)->simplePaginate(25);
         else
             $topics = array();
@@ -81,7 +81,7 @@ class KbController extends Controller
 
         if ($request->cat !== "") {
             $cat = DB::table('kb_cats')->where('name', $request->cat)->first();
-            if (count($cat)) {
+            if (!empty($cat)) {
                 $cat = $cat->id;
             } else {
                 $cat = 1;
@@ -129,7 +129,7 @@ class KbController extends Controller
 
         $cat = DB::table('kb_cats')->where('name', $request->cat)->first();
 
-        if (count($cat) > 0) {
+        if (!empty($cat)) {
             $cat = $cat->id;
         } else {
             $cat = 1;

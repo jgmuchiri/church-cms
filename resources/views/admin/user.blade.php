@@ -37,7 +37,7 @@
 
 							</div>
 							<div class="card-footer">
-								<button class="btn btn-default">@lang('Update')</button>
+								<button class="btn btn-inverse">@lang('Update')</button>
 							</div>
 							{!! Form::close() !!}
 						</div>

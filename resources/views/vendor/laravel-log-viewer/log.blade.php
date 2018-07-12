@@ -78,7 +78,7 @@
 				<a id="delete-log" class="btn btn-warning"
 				   href="?del={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}"><span
 							class="fa fa-trash"></span> @lang('Delete file')</a>
-				@if(count($files) > 1)
+				@if(!empty($files))
 
 					<a class="btn btn-danger" id="delete-all-log" href="?delall=true"><span class="fa fa-trash"></span>
 						@lang('Delete all files') </a>

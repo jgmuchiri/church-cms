@@ -5,5 +5,5 @@
            value="{{$rp['level']}}"> {{ucwords($rp['level'])}} <br/>
 @endforeach
 <br/>
-<button class="btn btn-default btn-sm">@lang("Update")</button>
+<button class="btn btn-inverse btn-sm">@lang("Update")</button>
 {!! Form::close() !!}

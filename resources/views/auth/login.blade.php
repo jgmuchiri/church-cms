@@ -31,7 +31,8 @@
 	</div>
 	<button class="btn btn-block btn-primary mt-3" type="submit">@lang('Login')</button>
 
-	<p class="pt-3 text-center">@lang('No account?')</p>
-	<a class="btn btn-block btn-secondary" href="{{route('register')}}">@lang('Register')</a>
+	<p class="pt-3 text-center">@lang('No account?')
+		<a href="{{route('register')}}">@lang('Register')</a>
+	</p>
 	{{Form::close()}}
 @endsection

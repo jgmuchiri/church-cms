@@ -22,7 +22,7 @@
 
 					<div class="row">
 						<div class="col-sm-4">
-							@if(count($menuItem))
+							@if(!empty($menuItem))
 								<h4>@lang("Edit Menu Item")</h4>
 								{{Form::model($menuItem,['url'=>'menu/','method'=>'patch'])}}
 								{{Form::hidden('id',$menuItem->id)}}
@@ -55,7 +55,7 @@
 								{{Form::select('active',['1'=>'active','0'=>'disabled'],null,['class'=>'form-control'])}}
 								<br/>
 
-								<button class="btn btn-default"><i class="fa fa-save"></i> @lang("Save")</button>
+								<button class="btn btn-inverse"><i class="fa fa-save"></i> @lang("Save")</button>
 								<a href="/menu" class="btn btn-danger right"><i class="fa fa-eye-close"></i>
 									@lang("Close")</a>
 
@@ -98,7 +98,7 @@
 								{{Form::select('active',['1'=>__('Active'),'0'=>__('Disabled')],null,['class'=>'form-control'])}}
 
 								<br/>
-								<button class="btn btn-default">@lang("Save")</button>
+								<button class="btn btn-inverse">@lang("Save")</button>
 
 								{{Form::close()}}
 							@endif

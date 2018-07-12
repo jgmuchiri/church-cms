@@ -124,7 +124,7 @@ class ThemesController extends Controller
 
             //check whether this name is used and over
             $installedTheme = Themes::whereLocation($dir)->first();
-            if (count($installedTheme) > 0)
+            if (!empty($installedTheme))
                 $installedTheme->delete();
 
             //update db
@@ -153,12 +153,7 @@ class ThemesController extends Controller
      */
     function selectTheme($id)
     {
-        $theme = Settings::get_option('site_theme');
-        if ($theme == $id) {
-            Settings::update_option('site_theme', $id);
-        } else {
-            Settings::set_option('site_theme', $id);
-        }
+        set_option('site_theme', $id);
 
         flash()->success(__("Theme updated"));
         return redirect()->back();

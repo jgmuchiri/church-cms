@@ -31,7 +31,7 @@
                         <td>{{$msg->subject}}</td>
                         <td>
                             <?php $u = \App\User::find($msg->sender);
-                            if (count($u)) {
+                            if (!empty($u)) {
                                 $user = $u->first_name . ' ' . $u->last_name;
                             } else {
                                 $user = "system";
@@ -40,7 +40,7 @@
                             {{$user}}
                         </td>
                         <td>
-                            <a class="btn btn-default btn-sm" data-toggle="tooltip" title="@lang("Copy to start a new message")"
+                            <a class="btn btn-inverse btn-sm" data-toggle="tooltip" title="@lang("Copy to start a new message")"
                                href="/messaging/admin?msg={{$msg->id}}"><i class="fa fa-copy"></i> </a>
                             <a class="btn btn-danger btn-sm  delete" data-toggle="tooltip" title="@lang("Delete")"
                                href="/messaging/delete/{{$msg->id}}"><i class="fa fa-trash"></i> </a>

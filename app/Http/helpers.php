@@ -6,16 +6,18 @@
  * @link        https://amdtllc.com
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Theme
 {
-    protected $icons=0;
+    protected $icons = 0;
 
     function __construct()
     {
-        $theme_id = App\Models\Settings::get_option('site_theme');
-        if ($theme_id !== '') {
+        $theme_id =get_option('site_theme');
+        if($theme_id !== '') {
             $this->theme = \App\Models\Themes::whereId($theme_id)->first();
         } else {
             $this->theme = 'default';
@@ -29,7 +31,7 @@ class Theme
     function themeOpts($opt)
     {
         $theme = $this->theme;
-        if ($theme == 'default' || $theme ==null)
+        if($theme == 'default' || $theme == null)
             return null;
         return $theme->$opt;
     }
@@ -38,31 +40,31 @@ class Theme
      * @param string|array $options
      * @return string
      */
-    function menu($options=null)
+    function menu($options = null)
     {
-        if(is_array($options) && in_array('icons',$options)){
-            $this->icons  = 1;
+        if(is_array($options) && in_array('icons', $options)) {
+            $this->icons = 1;
         }
         $html = '';
         $mainMenu = App\Models\MainMenu::whereActive(1)->whereParent(0)->orderBy('order', 'ASC')->get();
 
         foreach ($mainMenu as $m):
-            if($this->icons ==1){
+            if($this->icons == 1) {
                 $icon = self::fa($m->icon);
-            }else{
-                $icon ="";
+            } else {
+                $icon = "";
             }
-            if (Auth::check() && $m->path == '/login') {
+            if(Auth::check() && $m->path == '/login') {
                 $m->path = '/logout';
                 $m->title = 'Logout';
             }
-            if (is_array($options) && in_array('no-submenu', $options)):
-                $html .= '<li><a class="nav-item" href="' . url($m->path) . '">' .$icon. $m->title . '</a></li>';
+            if(is_array($options) && in_array('no-submenu', $options)):
+                $html .= '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="'.url($m->path).'">'.$icon.$m->title.'</a></li>';
             else:
-                if (self::subMenu($m->id) !== '') {
+                if(self::subMenu($m->id) !== '') {
                     $html .= self::subMenu($m->id);
                 } else { //list only main items
-                    $html .= '<li><a class="nav-item" href="' . url($m->path) . '">' .$icon. $m->title . '</a></li>';
+                    $html .= '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="'.url($m->path).'">'.$icon.$m->title.'</a></li>';
                 }
             endif;
         endforeach;
@@ -82,30 +84,30 @@ class Theme
 
         $html = '';
 
-        if (count($sub_menu)):
+        if(!empty($sub_menu)):
             $html .= '<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">' . $menu->title . '<span class="caret"></span></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">'.$menu->title.'<span class="caret"></span></a>
     <ul class="dropdown-menu">';
-            $html .= '<li><a class="nav-item" href="' . url($menu->path) . '">' . $menu->title . '</a></li>';
+            $html .= '<li><a class="nav-item" href="'.url($menu->path).'">'.$menu->title.'</a></li>';
 
             foreach ($sub_menu as $s) {
-                if($this->icons ==1){
+                if($this->icons == 1) {
                     $icon = self::fa($s->icon);
-                }else{
-                    $icon ="";
+                } else {
+                    $icon = "";
                 }
-                if (Auth::check() && $s->path == '/login') {
+                if(Auth::check() && $s->path == '/login') {
                     $s->path = '/logout';
                     $s->title = ' Logout';
                 }
-                $html .= '<li><a class="nav-item" href="' . url($s->path) . '">'.$icon . $s->title . '</a></li>';
+                $html .= '<li><a class="nav-item" href="'.url($s->path).'">'.$icon.$s->title.'</a></li>';
             }
             $html .= '</ul></li>';
         endif;
         return $html;
     }
 
-    function fa($icon="")
+    function fa($icon = "")
     {
         return '<i class="fa fa-'.$icon.'"></i> ';
     }
@@ -118,7 +120,7 @@ class Theme
 function theme($opt = '')
 {
     $theme = new Theme();
-    if ($opt == '') {
+    if($opt == '') {
         return $theme;
     } else {
         return $theme->themeOpts($opt);
@@ -126,7 +128,7 @@ function theme($opt = '')
 
 }
 
-if (!function_exists('str_clean')) {
+if(!function_exists('str_clean')) {
     function str_clean($string)
     {
         $string = str_replace(array('[\',\']'), '', $string);
@@ -138,4 +140,101 @@ if (!function_exists('str_clean')) {
         $string = strip_tags($string);
         return strtolower(trim($string, '-'));
     }
+}
+
+
+/**
+ * @param $option
+ * @param $value
+ * @return bool
+ */
+function set_option($option_name, $value)
+{
+    $option = DB::table('sys_options')
+        ->where('option_name', $option_name)
+        ->first();
+
+    if(!empty($option)) {//option exists, update
+
+        update_option($option_name, $value);
+
+    } else {
+        DB::table('sys_options')
+            ->insert(
+                [
+                    'option_name' => $option_name,
+                    'option_value' => $value
+                ]
+            );
+        return true;
+    }
+    return false;
+}
+
+
+/**
+ * @param $option_name
+ * @param $value
+ * @return bool
+ */
+function update_option($option_name, $value)
+{
+    $option = DB::table('sys_options')
+        ->where('option_name', $option_name)
+        ->update(
+            [
+                'option_name' => $option_name,
+                'option_value' => $value
+            ]
+        );
+
+    if($option) return true;
+
+    return false;
+}
+
+/**
+ * @param $option_name
+ * @return string
+ */
+function get_option($option_name)
+{
+    $option = DB::table('sys_options')
+        ->where('option_name', $option_name)
+        ->first();
+
+    if(!empty($option)) return $option->option_value;
+
+    return '';
+}
+
+/**
+ * @return array
+ */
+function get_options()
+{
+    $options = DB::table('sys_options')
+        ->where('autoload', 'yes')
+        ->get();
+
+    if(!empty($options))
+        return $options;
+
+    return array();
+
+}
+
+/**
+ * @param $option
+ * @return bool
+ */
+function remove_option($option)
+{
+    $option = DB::table('sys_options')
+        ->where('option_name', $option)
+        ->delete();
+
+    if($option) return true;
+
+    return false;
 }

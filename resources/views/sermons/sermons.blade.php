@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-9">
                 <h3 class="method-title">@lang("Sermons")</h3>
-                @if(count($sermons) ==0)
+                @if(!empty($sermons) ==0)
                     <div class="alert alert-danger">@lang("No results found")</div>
                 @else
                     @include('sermons.sermon-slider')
@@ -16,7 +16,7 @@
                 <form action="" method="get">
                     <div class="input-group">
                         <input name="s" placeholder="Search" class="form-control">
-                        <span class="input-group-btn"><button class="btn btn-default"><i
+                        <span class="input-group-btn"><button class="btn btn-inverse"><i
                                         class="fa fa-search"></i> @lang("Search")
                                 </button>
                             </span>
