@@ -15,10 +15,12 @@ class Membership extends Model
      */
     public static function newUserTrialPlan($data)
     {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        \Stripe\Stripe::setApiKey(config('app.env') == "local" ? config('app.stripe.test.secret') : config('app.stripe.live.secret'));
+
 
         $customer = \Stripe\Customer::create(array(
-                "plan" => env('DEFAULT_STRIPE_PLAN'),
+                "plan" => config('stripe.plans.default.name'),
                 "email" => $data['email'])
         );
         return $customer;
@@ -27,14 +29,14 @@ class Membership extends Model
     //todo
     public static function allCustomers()
     {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        \Stripe\Stripe::setApiKey(config('app.env') == "local" ? config('app.stripe.test.secret') : config('app.stripe.live.secret'));
 
         $data = array();
 
         $users = User::all();
         foreach ($users as $user) { //each user
 
-            if ($user->stripe_id == "")//get stripe id
+            if($user->stripe_id == "")//get stripe id
                 continue;
 
             $cu = \Stripe\Customer::retrieve($user->stripe_id);
@@ -49,7 +51,7 @@ class Membership extends Model
      * @param $request
      * @return \Stripe\Customer
      */
-    public static function registerUserStripe($request,$stripe_secret)
+    public static function registerUserStripe($request, $stripe_secret)
     {
         \Stripe\Stripe::setApiKey($stripe_secret);
 

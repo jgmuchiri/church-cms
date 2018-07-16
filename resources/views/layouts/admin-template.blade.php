@@ -5,14 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="Church content management system">
 	<meta name="keywords" content="church, content management system, cms">
-	<title>{{env('APP_NAME')}}</title>
+
+	<title>{{config('app.name')}}</title>
+
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/animate.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/whirl.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}" id="bscss">
 	<link rel="stylesheet" href="{{ asset('css/style.css')}}" id="maincss">
+
 	@stack('styles')
-	@if(env('APP_ENV')=='production')
+
+	@if(config('app.env')=='production')
 		<script type="text/javascript">
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -26,14 +30,16 @@
                 m.parentNode.insertBefore(a, m)
             })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-            ga('create', '{{env('GOOGLE_ANALYTICS')}}', 'auto');
+            ga('create', '{{config('google.analytics')}}', 'auto');
             ga('send', 'pageview');
 		</script>
 	@endif
+
 	<script>
-        var curPage = "{{request()->segment(1)}}";
-        var CRSF_TOKEN = '{{csrf_token()}}';
+        let curPage = "{{request()->segment(1)}}";
+        let CRSF_TOKEN = '{{csrf_token()}}';
 	</script>
+
 </head>
 
 <body>
@@ -83,61 +89,6 @@
 					<a class="nav-link" href="#" data-toggle-fullscreen="">
 						<em class="fa fa-expand"></em>
 					</a>
-				</li>
-				<li class="nav-item dropdown dropdown-list">
-					<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
-						<em class="fa fa-bell"></em>
-						<span class="badge badge-danger">11</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right animated flipInX">
-						<div class="dropdown-item">
-							<div class="list-group">
-								<div class="list-group-item list-group-item-action">
-									<div class="media">
-										<div class="align-self-start mr-2">
-											<em class="fa fa-twitter fa-2x text-info"></em>
-										</div>
-										<div class="media-body">
-											<p class="m-0">New followers</p>
-											<p class="m-0 text-muted text-sm">1 new follower</p>
-										</div>
-									</div>
-								</div>
-								@permission('messages-read')
-								<div class="list-group-item list-group-item-action">
-									<div class="media">
-										<div class="align-self-start mr-2">
-											<em class="fa fa-envelope fa-2x text-warning"></em>
-										</div>
-										<div class="media-body">
-											<p class="m-0">New e-mails</p>
-											<p class="m-0 text-muted text-sm">You
-												have {!! \App\Models\Messaging::whereSender(Auth::user()->id)->count() !!}
-												new messages</p>
-										</div>
-									</div>
-								</div>
-								@endpermission
-								<div class="list-group-item list-group-item-action">
-									<div class="media">
-										<div class="align-self-start mr-2">
-											<em class="fa fa-tasks fa-2x text-success"></em>
-										</div>
-										<div class="media-body">
-											<p class="m-0">Pending Tasks</p>
-											<p class="m-0 text-muted text-sm">11 pending task</p>
-										</div>
-									</div>
-								</div>
-								<div class="list-group-item list-group-item-action">
-										<span class="d-flex align-items-center">
-											<span class="text-sm">More notifications</span>
-											<span class="badge badge-danger ml-auto">14</span>
-										</span>
-								</div>
-							</div>
-						</div>
-					</div>
 				</li>
 				@role('admin')
 				<li class="nav-item">
@@ -190,10 +141,12 @@
 					<li><a href="/account"><em class="fa fa-user"></em>
 							<span>@lang("My Account")</span></a>
 					</li>
+
 					@permission('read-gifts')
 					<li><a href="/giving/gifts"><em class="fa fa-money"></em>
 							<span>@lang("Gifts")</span></a></li>
 					@endpermission
+
 					@permission('read-mail')
 					<li><a href="/messaging/admin">
 							<div class="float-right badge badge-success">
@@ -201,21 +154,26 @@
 							</div>
 							<em class="fa fa-envelope"></em><span>@lang("Messaging")</span></a></li>
 					@endpermission
+
 					@permission('read-ministries')
 					<li><a href="/ministries/admin"><em class="fa fa-list"></em>
 							<span>@lang("Ministries")</span></a></li>
 					@endpermission
+
 					@permission('read-sermons')
 					<li><a href="/sermons/admin"><em class="fa fa-th"></em>
 							<span>@lang("Sermons")</span></a></li>
 					@endpermission
+
 					@permission('read-events')
 					<li><a href="/events/admin"><em class="fa fa-calendar"></em>
 							<span>@lang("Events")</span></a></li>
 					@endpermission
+
 					@permission('read-blog')
 					<li><a href="/blog/admin"><em class="fa fa-leaf"></em> <span>@lang("Blog")</span></a></li>
 					@endpermission
+
 					@permission('read-users')
 					<li><a href="/users"><em class="fa fa-user"></em>
 							<div class="float-right badge badge-success">
@@ -223,6 +181,7 @@
 							</div>
 							<span>@lang("Users")</span></a></li>
 					@endpermission
+
 					@role('admin')
 					<li class="">
 						<a href="#settings" title="Pages" data-toggle="collapse">
@@ -289,7 +248,7 @@
 		</div>
 	</section>
 	<footer class="footer-container">
-		<span>&copy;{{date('Y').' '.env('APP_NAME')}} - <a href="https://amdtllc.com">A&M Digital Technologies</a></span>
+		<span>&copy;{{date('Y').' '.config('app.name')}} - <a href="https://amdtllc.com">A&M Digital Technologies</a></span>
 	</footer>
 </div>
 <script src="{{ asset('js/jquery.js')}}"></script>

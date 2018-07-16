@@ -7,7 +7,7 @@
 <br/>
 
 {{Form::label('status',__('Status'))}}
-{{Form::select(' ',['1'=>__("Posted"),'0'=>__("Draft")],null,['class'=>'form-control'])}}
+{{Form::select('active',['1'=>__("Posted"),'0'=>__("Draft")],null,['class'=>'form-control'])}}
 <br/>
 
 {{Form::label('desc',__('Description'))}}

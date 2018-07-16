@@ -22,7 +22,7 @@
 
 					<div class="row">
 						<div class="col-sm-4">
-							@if(!empty($menuItem))
+							@if(sizeof($menuItem)>0)
 								<h4>@lang("Edit Menu Item")</h4>
 								{{Form::model($menuItem,['url'=>'menu/','method'=>'patch'])}}
 								{{Form::hidden('id',$menuItem->id)}}

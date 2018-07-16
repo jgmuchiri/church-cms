@@ -83,9 +83,9 @@
                     </div>
                     <br/>
                     <button class="btn btn-success btn-xlg charge"
-                            data-key="{{env('APP_ENV')=='local'?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}"
+                            data-key="{{config('app.env')=='local'?config('app.stripe.test.public'):config('app.stripe.live.public')}}"
                             data-image="/img/checkout.png"
-                            data-currency="{{env('CURRENCY')}}"
+                            data-currency="{{config('app.currency.abbr')}}"
                             data-name="Online Contribution"
                             data-description="Online Contribution"
                             data-label="Give online"><i class="fa fa-credit-card"></i>

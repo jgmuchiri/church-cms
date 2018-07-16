@@ -35,7 +35,7 @@ class ReportsController extends Controller
                 $row->customer_id,
                 $row->item,
                 $row->desc,
-                env('CURRENCY_SYMBOL').$row->amount
+                config('app.currency.symbol').$row->amount
             ));
             $output .= "\n";
         }

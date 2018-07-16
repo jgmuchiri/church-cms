@@ -1,6 +1,6 @@
 @extends('auth.template')
 @section('content')
-	@if(env('ALLOW_REGISTRATION')==true)
+	@if(config('auth.registration')==true)
 		<p class="text-center py-2">@lang('REGISTER')</p>
 		{{Form::open(['url'=>route('register'),'class'=>'mb-3','id'=>'registerForm', 'novalidate'=>''])}}
 		<div class="form-group">

@@ -10,8 +10,8 @@
             <?php $count = 0; ?>
             @foreach(App\Models\Sermons::latestSermon(0,8) as $sermon)
                 <div class="item {{$count==0?'active':''}}">
-                    <img style="width:100%;height:400px" data-src="/uploads/sermons/cover/{{$sermon->cover}}"
-                         src="/uploads/sermons/cover/{{$sermon->cover}}">
+                    <img style="width:100%;height:400px" data-src="{{Storage::url($sermon->cover)}}"
+                         src="{{Storage::url($sermon->cover)}}">
                     <div class="carousel-caption">
                         <h3><a href="/sermons/{{$sermon->slug}}">{{$sermon->title}}</a></h3>
                         <p>{{str_limit($sermon->desc,100)}}</p>

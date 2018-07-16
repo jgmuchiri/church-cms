@@ -107,7 +107,7 @@ class UserController extends Controller
         $request['stripe_id'] = $customer->id;
 
         $user = User::create($request->all());
-        $user->attachRole(env('DEFAULT_ROLE'));
+        $user->attachRole(config('auth.default-role'));
 
         //notify user to activate account
         Mail::send('emails.accounts-verify',
@@ -118,7 +118,7 @@ class UserController extends Controller
             ],
             function ($m) use ($request) {
 
-                $m->from(env('EMAIL_FROM_ADDRESS'), env('EMAIL_FROM_NAME'));
+                $m->from(config('mail.from.address'), config('mail.from.name'));
                 $m->to($request['email'], $request['first_name'])->subject('Your new account');
             });
 
@@ -228,7 +228,7 @@ class UserController extends Controller
      */
     function account()
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(config('app.env')=='local'?config('app.stripe.test.secret'):config('app.stripe.live.secret'));
 
         $user = User::whereId(Auth::user()->id)->first();
 

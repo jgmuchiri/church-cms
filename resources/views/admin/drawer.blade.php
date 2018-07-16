@@ -5,11 +5,6 @@
 			<em class="fa fa-cogs fa-lg"></em>
 		</a>
 	</li>
-	<li class="nav-item" role="presentation">
-		<a class="nav-link" href="#app-chat" aria-controls="app-chat" role="tab" data-toggle="tab">
-			<em class="fa fa-user fa-lg"></em>
-		</a>
-	</li>
 </ul>
 <div class="tab-content">
 	<div class="tab-pane fade active show" id="app-settings" role="tabpanel">
@@ -204,51 +199,6 @@
 					</label>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="app-chat" role="tabpanel">
-		<h3 class="text-center text-thin mt-4">Connections</h3>
-		<div class="list-group">
-			<div class="list-group-item border-0">
-				<small class="text-muted">ONLINE</small>
-			</div>
-			<div class="list-group-item list-group-item-action border-0">
-				<div class="media">
-					<img class="align-self-center mr-3 rounded-circle thumb48" src="/img/content/05.jpg"
-						 alt="Image">
-					<div class="media-body text-truncate">
-						<a href="#">
-							<strong>Juan Sims</strong>
-						</a>
-						<br>
-						<small class="text-muted">Designeer</small>
-					</div>
-					<div class="ml-auto">
-						<span class="circle bg-success circle-lg"></span>
-					</div>
-				</div>
-			</div>
-			<div class="list-group-item list-group-item-action border-0">
-				<div class="media">
-					<img class="align-self-center mr-3 rounded-circle thumb48" src="/img/content/10.jpg"
-						 alt="Image">
-					<div class="media-body text-truncate">
-						<a href="#">
-							<strong>Tyrone Owens</strong>
-						</a>
-						<br>
-						<small class="text-muted">Designeer</small>
-					</div>
-					<div class="ml-auto">
-						<span class="circle bg-warning circle-lg"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="px-3 py-4 text-center">
-			<a class="btn btn-purple btn-sm" href="#" title="See more contacts">
-				<strong>Load more..</strong>
-			</a>
 		</div>
 	</div>
 </div>

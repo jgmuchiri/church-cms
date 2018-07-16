@@ -49,17 +49,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <h1 class="logo">
-                        <a href="/">{{env('APP_NAME')}}
+                        <a href="/">{{config('app.name')}}
                         </a>
                     </h1>
                 </div>
                 <div class="col-md-4">
                     <div class="socials">
-                        <a href="{{env('TWITTER_URL')}}" class="fa fa-twitter"></a>
-                        <a href="{{env('FB_URL')}}" class="fa fa-facebook"></a>
-                        <a href="{{env('GOOGLE_PLUS_URL')}}" class="fa fa-google-plus"></a>
-                        <a href="{{env('PINTREST_URL')}}" class="fa fa-pinterest"></a>
-                        <a href="{{env('LINKEDIN_URL')}}" class="fa fa-linkedin"></a>
+                        <a href="{{config('app.social.twitter')}}" class="fa fa-twitter"></a>
+                        <a href="{{config('app.social.facebook')}}" class="fa fa-facebook"></a>
+                        <a href="{{config('app.social.google')}}" class="fa fa-google-plus"></a>
+                        <a href="{{config('app.social.pinterest')}}" class="fa fa-pinterest"></a>
+                        <a href="{{config('app.social.linkedin')}}" class="fa fa-linkedin"></a>
                     </div>
                 </div>
                 <div class="col-md-4">

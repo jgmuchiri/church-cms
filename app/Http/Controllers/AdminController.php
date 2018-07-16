@@ -58,7 +58,7 @@ class AdminController extends Controller
     function backupEnv(Request $request)
     {
         $envFile = "../.env";
-        return response()->download($envFile, env('APP_NAME') . '-ENV-' . date('Y-m-d_H-i') . '.txt');
+        return response()->download($envFile, config('app.name') . '-ENV-' . date('Y-m-d_H-i') . '.txt');
     }
 
     /**

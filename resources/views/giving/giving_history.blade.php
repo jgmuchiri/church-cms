@@ -1,4 +1,4 @@
-@if(!empty($gifts))
+@if(sizeof($gifts)>0)
     <table class="table table-bordered data-table" id="table">
         <thead>
         <tr>

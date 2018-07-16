@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{config('app.name')}}</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
@@ -58,25 +58,25 @@
             </td>
             <td>
                 <img class="thumbnail" src="/img/admin-logo.png" style="background:#333;padding:10px;"/>
-                <h4 class="title">{{env('APP_NAME')}}</h4>
+                <h4 class="title">{{config('app.name')}}</h4>
                 <table class="no-border">
                     <tr>
                         <td><span class="fa fa-inbox"></span></td>
-                        <td valign="top">{!!env('ADDRESS') !!}</td>
+                        <td valign="top">{!!config('app.company.address') !!}</td>
                     </tr>
                     <tr>
                         <td><span class="fa fa-envelope"></span></td>
-                        <td>{{env('EMAIL_FROM_ADDRESS')}}</td>
+                        <td>{{config('mail.from.address')}}</td>
                     </tr>
                     <tr>
                         <td><span class="fa fa-phone"></span></td>
-                        <td>{{env('PHONE')}}</td>
+                        <td>{{config('app.company.email')}}</td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
-    @if(!empty($gifts))
+    @if(sizeof($gifts)>0)
         <table class="table table-striped">
             <thead>
             <tr>

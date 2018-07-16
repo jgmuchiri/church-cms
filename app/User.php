@@ -113,8 +113,8 @@ class User extends Authenticatable
         $user = self::find($id);
 
         Mail::send('emails.accounts-verify', ['confirmation_code' => $user->confirmation_code], function ($m) use ($user) {
-            $m->from(env('EMAIL', env('APP_NAME')));
-            $m->to($user->email, $user->name)->subject('Verify your email address');
+            $m->from(config('mail.from.address'), config('app.name'));
+            $m->to($user->email, $user->name)->subject(__('Verify your email address'));
         });
     }
     /**
@@ -123,7 +123,7 @@ class User extends Authenticatable
     public static function registrationNotice($request)
     {
         Mail::send('emails.accounts-registration', ['name' => $request['name']], function ($m) use ($request) {
-            $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $m->from(config('mail.from.address'), config('app.name'));
             $m->to($request['email'], $request['name'])->subject('Your account is active!');
         });
     }

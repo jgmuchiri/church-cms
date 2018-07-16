@@ -135,7 +135,7 @@ class RegisterController extends Controller
             $user->save();
         }
         Mail::send('emails.accounts-verify', ['confirmation_code' => $user->confirmation_code], function ($m) use ($request, $user) {
-            $m->from(env('EMAIL_FROM_ADDRESS'), env('EMAIL_FROM_NAME'));
+            $m->from(config('mail.from.address'), config('mail.from.name'));
             $m->to($user->email, $user->name)->subject(__("Verify your email address"));
         });
         flash()->success(__("Please check  email to verify your account"));

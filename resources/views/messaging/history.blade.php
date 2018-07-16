@@ -31,7 +31,7 @@
                         <td>{{$msg->subject}}</td>
                         <td>
                             <?php $u = \App\User::find($msg->sender);
-                            if (!empty($u)) {
+                            if (sizeof($u)>0) {
                                 $user = $u->first_name . ' ' . $u->last_name;
                             } else {
                                 $user = "system";

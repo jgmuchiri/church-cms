@@ -310,7 +310,7 @@
   "back to calendar": "back to calendar",
   "Upcoming events": "Upcoming events",
   "Event Page": "Event Page",
-  "Register to Event": "Register to Event",
+  "Event registration":"Event registration",
   "Events list": "Events list",
   "Recurring Gifts": "Recurring Gifts",
   "From": "From",
@@ -523,5 +523,10 @@
   "No events found":"No events found",
   "No sermon found":"No sermon found",
   "New event":"New event",
-  "Church Blog":"Church Blog"
+  "Church Blog":"Church Blog",
+  "Receipt - Thank you!":"Receipt - Thank you!",
+  "Verify your email address":"Verify your email address",
+  "Enter your comments. use @to reply to specific user":"Enter your comments. use @to reply to specific user",
+  "Login to comment":"Login to comment",
+  "Are you sure?":"Are you sure?"
 }

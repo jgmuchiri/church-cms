@@ -1,10 +1,7 @@
 @extends('layouts.admin-template')
+
 @section('title')
 	@lang("New Ministry")
-@endsection
-@section('crumbs')
-	<a href="/ministries/admin">@lang("Ministries")</a>
-	<a href="#">@lang("New ministry")</a>
 @endsection
 
 @section('content')
@@ -27,4 +24,5 @@
 		</div>
 	</div>
 @endsection
+
 @include('partials.editor')

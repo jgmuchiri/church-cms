@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Cashier\Subscription;
 use Mockery\CountValidator\Exception;
+
 class GivingController extends Controller
 {
     function __construct()
     {
-        $this->middleware('auth',['except' => ['manualGift','getOptionInfo']]);
+        $this->middleware('auth', ['except' => ['manualGift', 'getOptionInfo']]);
 
-        \Stripe\Stripe::setApiKey(env('APP_ENV')=='local'?env('STRIPE_TEST_SECRET'):env('STRIPE_SECRET'));
+        \Stripe\Stripe::setApiKey(config('app.env') == 'local' ? config('app.stripe.test.secret') : config('app.stripe.live.secret'));
     }
 
     /**
@@ -48,14 +49,15 @@ class GivingController extends Controller
      */
     function showGift(Request $request)
     {
-        if($request->ajax()){
+        if($request->ajax()) {
             $txn = Transactions::whereTxnId($request->id)->first();
             echo json_encode($txn);
         }
     }
 
-    function give(Request $request){
-        $request['email']=Auth::user()->email;
+    function give(Request $request)
+    {
+        $request['email'] = Auth::user()->email;
         $request['user_id'] = Auth::user()->id;
         return self::manualGift($request);
     }
@@ -72,20 +74,20 @@ class GivingController extends Controller
             'amount' => 'required|max:50'
         ];
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
+        if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $opt = GiftOptions::find($request->gift_options_id);
         $desc = $opt->desc;
 
         //find user
-        if ($request->has(__("email"))) { //guest giving
+        if($request->has(__("email"))) { //guest giving
             $user = User::whereEmail($request->email)->first();
         } else {
             $user = User::find($request->user_id);
         }
 
-        if (empty($user)) { //user does not exist so create one
+        if(empty($user)) { //user does not exist so create one
             $user = new User();
             $user->phone = '123456789';
             $user->email = $request->email;
@@ -104,7 +106,7 @@ class GivingController extends Controller
 
         // Create a Customer if not exists
         $stripe_id = $user->stripe_id;
-        if ($stripe_id == null) {
+        if($stripe_id == null) {
             //just in case...
             try {
                 $customer = \Stripe\Customer::create(array(
@@ -132,8 +134,8 @@ class GivingController extends Controller
             //create customer if not exist.
             //e.g. They have stripe id on local database but not in stripe account
             $error = $e->jsonBody['error'];
-            if ($error['type'] == "invalid_request_error") {
-                if (strpos($error['message'], 'No such customer') !== false) {
+            if($error['type'] == "invalid_request_error") {
+                if(strpos($error['message'], 'No such customer') !== false) {
                     $request['email'] = $user->email;
                     $request['first_name'] = $user->first_name;
                     $customer = Transactions::createCustomer($request);
@@ -150,13 +152,13 @@ class GivingController extends Controller
 
         //process card payment
         try {
-            if ($request->interval == "once") {
+            if($request->interval == "once") {
                 //one time payment
                 $charge = \Stripe\Charge::create(array(
                     "amount" => Transactions::convertToCents($request->amount),
                     "currency" => env(__("CURRENCY")),
                     "customer" => $stripe_id,
-                    "description" =>$desc
+                    "description" => $desc
                 ));
             } else {
                 $request->email = $user->email;
@@ -205,7 +207,7 @@ class GivingController extends Controller
         $customer_plan = \Stripe\Plan::create(array(
                 "amount" => Transactions::convertToCents($request->amount),
                 "interval" => $request->interval,
-                "name" => " $request->desc " . $user->email . '_' . rand(1111, 9999),
+                "name" => " $request->desc ".$user->email.'_'.rand(1111, 9999),
                 "currency" => env(__("CURRENCY")),
                 "id" => $plan_name
             )
@@ -241,14 +243,14 @@ class GivingController extends Controller
             'amount' => 'required|max:50'
         ];
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
+        if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
 
         //check if user exists if so, charge their account
         $myUser = User::whereEmail($request->email)->first();
-        if (!empty($myUser)) { //user exists
+        if(!empty($myUser)) { //user exists
             $user = User::find($myUser->id);
         } else {
             //create new user
@@ -268,7 +270,7 @@ class GivingController extends Controller
             $user->save();
         }
         //charge user
-        if ($request->interval == "once") {
+        if($request->interval == "once") {
             $charge = Transactions::charge($request, $user->stripe_id);
 
         } else { //for recurring request
@@ -300,9 +302,9 @@ class GivingController extends Controller
      */
     function givingHistory()
     {
-        if (isset($_GET['y']) && $_GET['y'] !== "") {
-            $start = $_GET['y'] . '-01-01 00:00:00';
-            $end = $_GET['y'] . '-12-31 00:00:00';
+        if(isset($_GET['y']) && $_GET['y'] !== "") {
+            $start = $_GET['y'].'-01-01 00:00:00';
+            $end = $_GET['y'].'-12-31 00:00:00';
             $gifts = Transactions::whereBetween('created_at', array($start, $end))
                 ->where('user_id', Auth::user()->id)
                 ->get();
@@ -329,7 +331,7 @@ class GivingController extends Controller
 
         $subsc = Subscription::whereUserId(Auth::user()->id)->whereId($id)->first();
 
-        if (!empty($subsc)) {
+        if(!empty($subsc)) {
             switch ($action) {
 
                 case "cancel":
@@ -379,7 +381,7 @@ class GivingController extends Controller
     {
         $gOptions = DB::table(__("gift_options"))->get();
         $gOption = array();
-        if (isset($_GET['option'])) {
+        if(isset($_GET['option'])) {
             $gOption = DB::table(__("gift_options"))->where('id', $_GET['option'])->first();
         }
         return view('giving.gift-options', compact('gOptions', 'gOption'));
@@ -395,7 +397,7 @@ class GivingController extends Controller
             'name' => 'required|max:50',
         ];
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
+        if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
         GiftOptions::create($request->all());
@@ -413,7 +415,7 @@ class GivingController extends Controller
             'name' => 'required|max:50',
         ];
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
+        if($validator->fails()) {
             flash()->error(__("Error! Check fields and try again"));
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -428,7 +430,8 @@ class GivingController extends Controller
      * @param $id
      * @return string
      */
-    function getOptionInfo($id){
+    function getOptionInfo($id)
+    {
         if(request()->ajax()) {
             $option = GiftOptions::find($id);
             return json_encode($option);

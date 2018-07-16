@@ -1,4 +1,5 @@
 @extends('layouts.admin-template')
+
 @section('title')
 	@lang("Sermons")
 @endsection
@@ -69,18 +70,17 @@
 				@foreach($sermons as $s)
 					<tr>
 						<td>
-							@if($s->audio !==null)
+							@if(!empty($s->audio))
 								<i class="fa fa-volume-up"></i>
 							@endif
-							@if($s->video !==null)
+							@if(!empty($s->video))
 								<i class="fa fa-camera"></i>
 							@endif
 						</td>
 
 						<td>{{date('d M y',strtotime($s->created_at))}}</td>
 
-						<td><a target="_blank"
-							   href="/sermons/{{$s->slug}}">{{$s->title}}</a></td>
+						<td><a target="_blank" href="/sermons/{{$s->slug}}">{{$s->title}}</a></td>
 						<td>{{$s->speaker}}</td>
 						<td>
 							<a href="/sermons/{{$s->id}}/edit" class="btn btn-info btn-xs"><i

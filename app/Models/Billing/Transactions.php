@@ -118,22 +118,15 @@ class Transactions extends Model
      */
     public static function createCustomer($request)
     {
-        if(env('APP_ENV') == "production" && env('STRIPE_SECRET') == null) {
-            die("Stripe is not setup for this account");
-        }
-        if(env('APP_ENV') == "local" && env('STRIPE_TEST_SECRET') == null) {
+        if(config('app.env') == 'production' && !empty(config('app.stripe.test.secret'))) {
             die("Stripe is not setup for this account");
         }
 
-        if(env('APP_ENV') == "production") {
-            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        } else {
-            \Stripe\Stripe::setApiKey(env('STRIPE_TEST_SECRET'));
-        }
+        \Stripe\Stripe::setApiKey(config('app.env') == "local" ? config('app.stripe.test.secret') : config('app.stripe.live.secret'));
 
         $customer = \Stripe\Customer::create(array(
             "email" => $request->email,
-            "description" => "Customer for ".env('APP_NAME'),
+            "description" => "Customer for ".config('app.name'),
             "source" => $request->stripeToken
         ));
 
@@ -143,8 +136,8 @@ class Transactions extends Model
                 'email' => $request->email,
                 'first_name' => $request->first_name
             ], function ($m) use ($request) {
-                $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-                $m->to(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'))->subject('Notice: New user');
+                $m->from(config('mail.from.address'), config('mail.from.name'));
+                $m->to(config('mail.from.address'), config('mail.from.name'))->subject('Notice: New user');
             });
         }
 
@@ -157,7 +150,7 @@ class Transactions extends Model
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount" => self::convertToCents($request->amount),
-                "currency" => env('CURRENCY'),
+                "currency" => config('app.currency.abbr'),
                 "customer" => $stripe_id,
                 "description" => $request->desc
             ));
@@ -183,8 +176,8 @@ class Transactions extends Model
             'desc' => $desc
         ],
             function ($m) use ($user, $desc) {
-                $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-                $m->to($user->email, $user->first_name)->subject(env('APP_NAME').' Receipt- Thank you!');
+                $m->from(config('mail.from.address'), config('mail.from.name'));
+                $m->to($user->email, $user->first_name)->subject(config('app.name').__('Receipt - Thank you!'));
             });
 
     }

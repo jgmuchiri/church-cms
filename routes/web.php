@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::auth();
+
 Route::group(['middleware' => 'web'], function () {
 
 //    Route::get('/login', function () {

@@ -1,79 +1,71 @@
 @extends('layouts.public')
 
+@section('title')
+	@lang('sermons')
+@endsection
+
 @section('content')
-	<div class="container">
-		@if(empty($sermon))
-			<h3>@lang('No sermon found')</h3>
-		@else
 
-			<div class="row">
-				<div class="col-sm-9">
+	<div class="row">
+		<div class="col-sm-9">
+			@if(empty($sermon))
+				@lang('No sermon found')
+			@else
+				<div class="row">
+					<div class="col-sm-3">
 
-					<a href="/sermons"><i class="fa fa-chevron-left"></i>
-						@lang("back to sermons")
-					</a>
+						@if(Storage::exists($sermon->cover))
 
-					<div class="row">
-						<div class="col-sm-6">
+							<img class="thumbnail" style="heigth:100%;width:100%;"
+								 src="{{Storage::url($sermon->cover)}}"/>
+						@else
 
-							@if(Storage::exists($sermon->cover))
+							{!! App\Tools::postThumb('none','100%','100%') !!}
 
-								<img class="thumbnail" style="heigth:100%;width:400px;"
-									 src="{{Storage::url($sermon->cover)}}"/>
-							@else
+						@endif
+					</div>
+					<div class="col-sm-8">
+						<h3 class="method-title">{{$sermon->title}}</h3>
+						{{date('d M, Y',strtotime($sermon->created_at))}}
+						&nbsp;&nbsp;|&nbsp;&nbsp;
+						@lang("Speaker"): {{$sermon->speaker}}
+						&nbsp;&nbsp;|&nbsp;&nbsp;
+						@lang("Scripture"): {{$sermon->scriptures}}
 
-								{!! App\Tools::postThumb('none','85px','85px') !!}
+						<p><br/>
+							@lang("Description"): {{$sermon->desc}}
+						</p>
 
-							@endif
-						</div>
-						<div class="col-sm-6">
-							<h3 class="method-title">{{$sermon->title}}</h3>
-							{{date('d M, Y',strtotime($sermon->created_at))}}
+						<p>
+							@lang("Topic"): {{$sermon->topic}}
 							&nbsp;&nbsp;|&nbsp;&nbsp;
-							@lang("Speaker"): {{$sermon->speaker}}
-							&nbsp;&nbsp;|&nbsp;&nbsp;
-							@lang("Scripture"): {{$sermon->scriptures}}
+							@lang("Sub Topic"): {{$sermon->sub_topic}}
+						</p>
 
-							<p><br/>
-								@lang("Description"): {{$sermon->desc}}
-							</p>
-
-							<p>
-								@lang("Topic"): {{$sermon->topic}}
-								&nbsp;&nbsp;|&nbsp;&nbsp;
-								@lang("Sub Topic"): {{$sermon->sub_topic}}
-							</p>
-
-							@if($sermon->audio =="")
-								<button class="btn btn-primary disabled"><i class="fa fa-file-audio-o"></i>
-									@lang("Play Audio")
-								</button>
-							@else
-								<button class="btn btn-primary play-audio"><i class="fa fa-file-audio-o"></i>
-									@lang("Play Audio")
-								</button>
-							@endif
-							@if($sermon->video =="")
-								<button class="btn btn-danger disabled"><i class="fa fa-video-camera"></i>
-									@lang("Play Video")
-								</button>
-							@else
-								<button class="btn btn-danger play-video"><i class="fa fa-video-camera"></i>
-									@lang("Play Video")
-								</button>
-							@endif
-							<button class="btn btn-success sermon-message"><i class="fa fa-eye-open"></i>
-								@lang("Read Message")
+						@if(!empty($sermon->audio))
+							<button class="btn btn-primary btn-sm play-audio"><i class="fa fa-file-audio-o"></i>
+								@lang("Play Audio")
 							</button>
+						@endif
 
-						</div>
+						@if(!empty($sermon->video))
+							<button class="btn btn-danger btn-sm play-video"><i class="fa fa-video-camera"></i>
+								@lang("Play Video")
+							</button>
+						@endif
+
+						<button class="btn btn-success btn-sm sermon-message"><i class="fa fa-eye-open"></i>
+							<i class="fa fa-clipboard"></i> @lang("Read Message")
+						</button>
+
 					</div>
 				</div>
-				<div class="col-sm-3">
-					@include('sermons.recent_sidebar')
-				</div>
-			</div>
-		@endif
+			@endif
+
+		</div>
+		<div class="col-sm-3 hidden-xs">
+			@include('sermons.recent_sidebar')
+		</div>
 	</div>
 @endsection
 

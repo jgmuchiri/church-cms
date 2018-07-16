@@ -23,7 +23,7 @@
              * Themes should conform to the standards indicated
              */
             //url where the themes are located.
-            $URL = env('THEMES_LOCATION');
+            $URL = config('app.theme.location');
             $base = '<base href="' . $URL . '">';
             $host = preg_replace('/^[^\/]+\/\//', '', $URL);
             $tarray = explode('/', $host);

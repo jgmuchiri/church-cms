@@ -80,7 +80,7 @@
 										<tr>
 											<td>{{date('d M y',strtotime($tx->created_at))}}</td>
 											<td>{{$tx->txn_id}}</td>
-											<td>{{env('CURRENCY_SYMBOL').$tx->amount}}</td>
+											<td>{{config('app.currency.symbol').$tx->amount}}</td>
 											<td>{{$tx->item}}</td>
 											<td>{{$tx->desc}}</td>
 										</tr>
@@ -156,7 +156,7 @@
                 var am = numeral(cur).format('0.00');
                 $(this).val(am);
             });
-            var stripe = Stripe('{{env('APP_ENV')=="local"?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}');
+            var stripe = Stripe('{{config('app.env')=="local"?config('app.stripe.test.public'):config('app.stripe.live.public')}}');
             var elements = stripe.elements();
             var style = {
                 base: {

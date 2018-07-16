@@ -5,22 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="Church content management system">
 	<meta name="keywords" content="church, content management system, cms">
-	<title>{{env('APP_NAME')}}</title>
+	<title>{{config('app.name')}}</title>
 	<link rel="stylesheet" href="{{ url('css/font-awesome.css')}}">
-	<link rel="stylesheet" href="{{ url('css/simple-line-icons.css')}}">
 	<link rel="stylesheet" href="{{ url('css/animate.css')}}">
 	<link rel="stylesheet" href="{{ url('css/whirl.css')}}">
 	<link rel="stylesheet" href="{{ url('css/bootstrap.css')}}" id="bscss">
 	<link rel="stylesheet" href="{{ url('css/style.css')}}" id="maincss">
 
 	<meta name="csrf-token" content="{{ csrf_token() }}"/>
-	<script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-	</script>
 	<script type="text/javascript">
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -34,7 +26,7 @@
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', '{{env('GOOGLE_ANALYTICS')}}', 'auto');
+        ga('create', '{{config('app.google-analytics')}}', 'auto');
         ga('send', 'pageview');
 	</script>
 </head>

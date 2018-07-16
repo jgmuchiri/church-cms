@@ -14,7 +14,7 @@
                     <script type='text/javascript'>function init_map() {
                             var places = [];
                             var geocoder = new google.maps.Geocoder();
-                            var address= "{{str_replace(array("\n", "\t", "\r"), ' ',env('ADDRESS'))}}";
+                            var address= "{{str_replace(array("\n", "\t", "\r"), ' ',config('app.company.address'))}}";
 
                             geocoder.geocode({'address': address}, function (results, status) {
                                 if (status == google.maps.GeocoderStatus.OK) {
@@ -41,11 +41,11 @@
                 </div>
                 <div class="col-md-5">
 
-                    <p><i class="fa fa-inbox"></i>{!! env('ADDRESS') !!}</p>
+                    <p><i class="fa fa-inbox"></i>{!! config('app.company.address') !!}</p>
 
-                    <p><i class="fa fa-phone"></i>{!! env('PHONE')!!}</p>
+                    <p><i class="fa fa-phone"></i>{!! config('app.company.phone')!!}</p>
 
-                    <p><i class="fa fa-envelope"></i>{!! env('EMAIL_FROM_ADDRESS')!!}</p>
+                    <p><i class="fa fa-envelope"></i>{!! config('mail.from.address')!!}</p>
                     <hr/>
 
                     {!! Form::open(['url'=>"contact"]) !!}

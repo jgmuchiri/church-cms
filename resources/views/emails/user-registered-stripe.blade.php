@@ -11,6 +11,6 @@
         <br/>
         @lang("System generated email"). @lang("Do not reply").
         <br/>
-        <strong>{{env('APP_NAME')}}</strong>
+        <strong>{{config('app.name')}}</strong>
     </p>
 @endsection

@@ -76,8 +76,8 @@ class Handler extends ExceptionHandler
 
             try{
                 Mail::send('emails.exceptions', ['content'=>$lc2], function ($m) {
-                    $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
-                    $m->to(env('DEBUG_EMAIL'), 'ERROR HANDLER')->subject('ERROR HANDLER - ' . env('APP_NAME'));
+                    $m->from(config('mail.from.address'), config('app.name'));
+                    $m->to(env('DEBUG_EMAIL'), 'ERROR HANDLER')->subject('ERROR HANDLER - ' . config('app.name'));
                 });
             }catch (Exception $e){
 

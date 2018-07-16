@@ -1,4 +1,5 @@
 @extends('layouts.admin-template')
+
 @section('title')
 	<i class="fa fa-calendar"></i> @lang("Events Calendar")
 @endsection
@@ -23,6 +24,7 @@
 		</div>
 
 	</div>
+
 	<div class="card card-default">
 		<div class="card-body">
 			@if(Request()->segment(2)=="list")
@@ -51,7 +53,6 @@
 @endpush
 
 @push('modals')
-
 
 	<div class="modal fade" id="eventData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

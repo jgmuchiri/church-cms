@@ -16,7 +16,7 @@
                     <h5>@lang("Message Groups")</h5>
                 </div>
                 <div class="card-body">
-                    @if(!empty($group))
+                    @if(sizeof($group)>0)
 
                         {{Form::model($group,['url'=>'messaging/mail-groups/'.$group->id,'method'=>'patch'])}}
 

@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{config('app.name')}}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">

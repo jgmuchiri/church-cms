@@ -47,7 +47,7 @@
                         </form>
 
                         <br/>
-                        @if(!empty($topics))
+                        @if(sizeof($topics)>0)
                             @foreach($topics as $topic)
                                 <div class="callout callout-warning">
                                     <h5 class="title"><i class="fa fa-question"></i>

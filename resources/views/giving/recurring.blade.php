@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{date('d M, Y',strtotime($gift->created_at))}}</td>
                         <td>{{$gift->subscription_id}}</td>
-                        <td>{{env('CURRENCY_SYMBOL').$gift->amount}}</td>
+                        <td>{{config('app.currency.symbol').$gift->amount}}</td>
                         <td>{{ucwords($gift->interval)}}</td>
                         <td>{{$gift->ends_at}}</td>
                         <td>{{ucwords($gift->status)}}</td>

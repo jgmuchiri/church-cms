@@ -1,7 +1,7 @@
 @extends('auth.template')
 @section('content')
 	<p class="text-center py-2">@lang('LOGIN')</p>
-	{{Form::open(['url'=>route('login'),'id'=>'loginForm', 'novalidate'=>'', 'class'=>'mb-3'])}}
+	{{Form::open(['url'=>'login','id'=>'loginForm', 'novalidate'=>'', 'class'=>'mb-3'])}}
 	<div class="form-group">
 		<div class="input-group with-focus">
 			{{Form::input('email','email',null,['class'=>'form-control border-right-0','placeholder'=>__('Enter email'),'required'=>''])}}

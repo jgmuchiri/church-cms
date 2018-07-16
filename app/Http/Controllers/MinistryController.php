@@ -23,17 +23,22 @@ class MinistryController extends Controller
     function index()
     {
         if(isset($_GET['cat'])) {
-            $cat = MinistryCats::where('name', $_GET['cat'])->first();
-            if(!$cat) return view('errors.404');
 
-            $ministries = Ministry::whereCat($cat->id)->whereActive(1)->get();
+            $cat = MinistryCats::findOrFail($_GET['cat']);
+            $ministries = Ministry::where('category_id',$_GET['cat'])->whereActive(1)->get();
+
         } else {
+
             $cat = array();
             $ministries = Ministry::whereActive(1)->get();
+
         }
+
         $title = (__("Ministries"));
+
         $categories = MinistryCats::get();
-        return view('ministries.index', compact('ministries', 'cat', 'title', 'categories'));
+
+        return view('ministries.public', compact('ministries', 'cat', 'title', 'categories'));
     }
 
     /**
@@ -80,7 +85,6 @@ class MinistryController extends Controller
      */
     function store(MinistryRequest $request)
     {
-
         Ministry::create($request->all());
 
         flash()->success(__("Ministry added"));
@@ -134,11 +138,11 @@ class MinistryController extends Controller
 
     function admin()
     {
-        if(isset($_GET['s'])) {
+        if(isset($_GET['s']))
             $ministries = Ministry::where('name', 'like', '%'.$_GET['s'].'%')->paginate(10);
-        } else {
+
+        else
             $ministries = Ministry::paginate(10);
-        }
 
         $title = (__("Ministries"));
 
@@ -151,11 +155,14 @@ class MinistryController extends Controller
     function categories()
     {
         $cats = MinistryCats::get();
+
         $title = (__("Ministry Categories"));
+
         $myCat = array();
-        if(isset($_GET['cat'])) {
+
+        if(isset($_GET['cat']))
             $myCat = MinistryCats::findOrFail($_GET['cat']);
-        }
+
         return view('ministries.categories', compact('cats', 'title', 'myCat'));
     }
 
@@ -166,7 +173,9 @@ class MinistryController extends Controller
     function storeCat(Request $request)
     {
         MinistryCats::create($request->all());
+
         flash()->success(__("Category created"));
+
         return redirect()->back();
     }
 
@@ -182,6 +191,7 @@ class MinistryController extends Controller
         $mc->update($request->all());
 
         flash()->success(__("Category updated"));
+
         return redirect()->back();
 
     }

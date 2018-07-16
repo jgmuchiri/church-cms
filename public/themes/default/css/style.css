@@ -8,9 +8,9 @@ body {
 }
 
 hr {
-  max-width: 50px;
-  border-width: 3px;
-  border-color: #f05f40
+  /* max-width: 50px; */
+  /* border-width: 3px; */
+  border-color: #b9b9b9;
 }
 
 hr.light {
@@ -45,7 +45,10 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 section {
-  padding: 8rem 0
+  padding: 5rem 0;
+}
+.page-title h4{
+	padding-bottom:15px
 }
 
 .section-heading {
@@ -137,7 +140,7 @@ img::-moz-selection {
   }
 
   #mainNav .navbar-nav>li.nav-item>a.nav-link:focus:hover,#mainNav .navbar-nav>li.nav-item>a.nav-link:hover {
-    color: #fff
+    color: #03A9F4
   }
 
   #mainNav.navbar-shrink {
@@ -283,11 +286,11 @@ header.masthead p {
 }
 
 .btn {
-  font-weight: 700;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 300px;
-  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif
+  /* font-weight: 700; */
+  /* text-transform: uppercase; */
+  /* border: none; */
+  /* border-radius: 10px; */
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 
 .btn-xl {
@@ -306,4 +309,68 @@ header.masthead p {
 
 .btn-primary:active,.btn-primary:focus {
   box-shadow: 0 0 0 .2rem rgba(240,95,64,.5)!important
+}
+.callout{
+  border:solid 1px #ccc;
+  padding:5px;
+  margin-bottom:5px;
+}
+
+
+div.callout {
+	background-color:transparent
+	background-image: -moz-linear-gradient(top, #FF9800, #FF5722);
+	position: relative;
+	padding: 5px;
+	border-radius:0;
+	box-shadow: 0px 0px 20px #999;
+	margin-bottom: 5px;
+	min-height: 50px;
+	border: 1px solid #afa5a5;
+	
+	/*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
+}
+
+.callout::before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border: 0.9em solid transparent;
+	position: absolute;
+}
+
+.callout.top::before {
+	left: 45%;
+	bottom: -20px;
+	border-top: 10px solid #444;
+}
+
+.callout.bottom::before {
+	left: 45%;
+	top: -20px;
+	border-bottom: 10px solid #444;
+}
+
+.callout.left::before {
+	right: -20px;
+	top: 40%;
+	border-left: 10px solid #444;
+}
+
+.callout.right::before {
+	left: -25px;
+	top: 40%;
+	border-right: 10px solid #b9b9b9;
+}
+
+.callout.top-left::before {
+	left: 7px;
+	bottom: -20px;
+	border-top: 10px solid #444;
+}
+
+.callout.top-right::before {
+	right: 7px;
+	bottom: -20px;
+	border-top: 10px solid #444;
 }

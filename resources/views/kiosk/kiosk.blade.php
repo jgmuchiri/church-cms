@@ -86,8 +86,8 @@
 
 				<div class="modal-footer" style="border:none">
 					<button class="btn btn-success btn-xlg charge"
-							data-key="{{env('APP_ENV')=='local'?env('STRIPE_TEST_PUBLIC'):env('STRIPE_PUBLIC')}}"
-							data-currency="{{env('CURRENCY')}}"
+							data-key="{{config('app.env')=='local'?config('app.stripe.test.public'):config('app.stripe.live.public')}}"
+							data-currency="{{config('app.currency.abbr')}}"
 							data-name="@lang("Online Contribution")"
 							data-description="@lang("Online Contribution")"
 							data-label="Give online"><i class="fa fa-credit-card"></i>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-8">
-                @if(!empty($slides))
+                @if(sizeof($slides)>0)
                     @include('home.home-slider')
                 @else
                     @include('sermons.sermon-slider')

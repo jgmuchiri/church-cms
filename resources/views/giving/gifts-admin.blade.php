@@ -10,7 +10,7 @@
 				<div class="list-group-item">
 					<div class="media">
 						<div class="align-self-start mr-2">
-							{{env('CURRENCY_SYBMBOL').App\Models\Billing\Transactions::sum('amount')}}
+							{{config('app.currency.symbol').App\Models\Billing\Transactions::sum('amount')}}
 						</div>
 						<div class="media-body text-truncate">
 							<p class="mb-1">
@@ -90,7 +90,7 @@
 								<a href="#" class="gift-details" id="{{$txn->txn_id}}">{{$txn->txn_id}}</a>
 							</td>
 							<td>{{$txn->item}}</td>
-							<td>{{env('CURRENCY_SYMBOL').$txn->amount}}</td>
+							<td>{{config('app.currency.symbol').$txn->amount}}</td>
 							<td>{{$txn->desc}}</td>
 						</tr>
 					@endforeach

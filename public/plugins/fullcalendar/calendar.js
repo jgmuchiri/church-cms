@@ -74,22 +74,21 @@ $(document).ready(function () {
             let eventUrl = '';
             let registerUrl = '';
             if (event.url !== "") {
-                eventUrl = '<a class="btn btn-primary btn-mini" href="' + event.url + '" target="_blank" id="eventUrl" target="_blank">External event link</a>';
+                eventUrl = event.url;
             }
-            let eventPage = '<a class="btn btn-primary btn-mini pull-left" href="/events/' + event.id + '" target="_blank" id="eventUrl" target="_blank">View event <i class="fa fa-external-link"></i></a>';
             //registration
             if (event.registration === 1) {
-                registerUrl = '<a class="btn btn-primary" href="/event/' + event.id + '/register" id="eventReg" target="_blank">Register to Event</a>';
+                registerUrl.attr('href','/event/' + event.id + '/register');
             }
             let eventData = $('#eventData');
             eventData.find('.modal-title').text(event.title);
             eventData.find('#start-date').text(endDate);
             eventData.find('#end-date').text(startDate);
             eventData.find('#desc').html(event.desc);
-            eventData.find('#eventPage').html(eventPage);
-            eventData.find('#editEvent').html('<a href="/events/' + event.id + '/edit" class="btn btn-primary btn-mini"><i class="fa fa-pencil"></i> </a>');
-            eventData.find('#deleteEvent').html('<a href="/events/delete/' + event.id + '" class="btn btn-danger btn-mini delete"><i class="fa fa-trash"></i> </a>');
-            $('#eventUrl').html(eventUrl);
+            eventData.find('#eventPage').attr('href','/events/'+event.id);
+            eventData.find('#editEvent').attr('href','/events/' + event.id + '/edit');
+            eventData.find('#deleteEvent').attr('href','/events/delete/' + event.id);
+            $('#eventUrl').attr('href',eventUrl);
             eventData.find('#registerUrl').html(registerUrl);
             eventData.modal('show');
             return false;

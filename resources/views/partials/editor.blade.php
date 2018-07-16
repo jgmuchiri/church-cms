@@ -1,5 +1,5 @@
 @push('styles')
-@if(env('APP_ENV')=='local')
+@if(config('app.env')=='local')
     <link rel="stylesheet" href="/plugins/trumbowyg/trumbowyg.min.css">
     <link rel="stylesheet"
           href="/plugins/trumbowyg/trumbowyg.colors.min.css">

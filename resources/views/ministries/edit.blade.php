@@ -1,4 +1,5 @@
 @extends('layouts.admin-template')
+
 @section('title')
 	@lang("Update Ministry")
 @endsection
@@ -13,6 +14,7 @@
 					<i class="fa fa-list-alt"></i> @lang("Categories")
 				</a>
 		</div>
+
 		<div class="card-body">
 			{{Form::model($ministry,['url'=>route('update-ministry'),'method'=>'PATCH'])}}
 			{{Form::hidden('id',$ministry->id)}}
@@ -21,7 +23,5 @@
 		</div>
 	</div>
 @endsection
-@push('scripts')
 
-@endpush
 @include('partials.tinymce')

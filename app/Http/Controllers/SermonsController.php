@@ -107,19 +107,12 @@ class SermonsController extends Controller
 
         $s = new Sermons();
 
-        $path = 'uploads/sermons';
-
-        $file = Input::file('audio');
-
-        if(($file !== null)) {
-
-            $s->audio = Tools::uploadImage($request->audio, $path.'/audio/', time(), 716, 600);
+        if($request->hasFile('audio')) {
+            $s->audio = $request->audio->store('sermons/audio');
         }
 
-        $cover = Input::file('cover');
-
-        if($cover !== null) {
-            $s->cover = Tools::uploadImage($request->cover, $path.'/cover/', time(), 716, 600);
+        if($request->hasFile('cover')) {
+            $s->cover = $request->cover->store('sermons/cover');
         }
 
         //keep slugs unique

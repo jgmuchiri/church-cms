@@ -21,7 +21,7 @@
 <header class="">
     <div class="header-content ">
         <div class="header-content-inner">
-            <h1 id="homeHeading">{{env('APP_NAME')}} - {{strtoupper(__("kiosk"))}}</h1>
+            <h1 id="homeHeading">{{config('app.name')}} - {{strtoupper(__("kiosk"))}}</h1>
             <hr>
             <p>@lang("Thank you for your support!")</p>
             @yield('content')

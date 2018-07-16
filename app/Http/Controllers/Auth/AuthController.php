@@ -281,8 +281,8 @@ class AuthController extends Controller
 
         //notify user to activate account
         Mail::send('emails.accounts-verify', ['confirmation_code' => $confirmation_code], function ($m) use ($request) {
-            $m->from(env('EMAIL_FROM_ADDRESS'),
-                env('APP_NAME'));
+            $m->from(config('mail.from.address'),
+                config('app.name'));
 
             $m->to($request['email'], $request['first_name'])->subject('Verify your email address');
         });
@@ -321,7 +321,7 @@ class AuthController extends Controller
             $user->save();
         }
         Mail::send('emails.accounts-verify', ['confirmation_code' => $user->confirmation_code], function ($m) use ($request, $user) {
-            $m->from(env('EMAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $m->from(config('mail.from.address'), config('app.name'));
             $m->to($user->email, $user->first_name)->subject(__("Verify your email address"));
         });
         flash()->success(__("Please check  email to verify your account"));

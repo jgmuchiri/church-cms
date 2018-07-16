@@ -45,7 +45,7 @@
 				</div>
 			</div>
 
-			@if(!empty($ministries))
+			@if(sizeof($ministries)>0)
 				<table class="table table-striped">
 					<thead>
 					<tr>

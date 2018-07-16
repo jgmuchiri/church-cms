@@ -2,9 +2,6 @@
 @section('title')
 	@lang("Blog admin")
 @endsection
-@section('crumbs')
-	<a href="#" class="current" xmlns="http://www.w3.org/1999/html">@lang("Blog")</a>
-@endsection
 
 @section('content')
 	<div class="card card-default">
@@ -39,7 +36,7 @@
 				<button class="btn btn-inverse"><i class="fa fa-search"></i></button>
 			</form>
 
-			@if(!empty($blog))
+			@if(sizeof($blog)>0)
 				<table class="table table-striped">
 					<thead>
 					<tr>
@@ -66,7 +63,7 @@
 							<td>{!! str_limit(strip_tags($n->body),20,'...') !!}</td>
 							<td>
                                 <?php $user = App\User::find($n->user_id); ?>
-								@if(!empty($user))
+								@if(sizeof($user)>0)
 									{{$user->last_name}}
 								@endif
 							</td>
