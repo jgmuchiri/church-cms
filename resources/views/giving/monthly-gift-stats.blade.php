@@ -40,11 +40,11 @@
             series: [
 
                 {
-                    name: '@lang("Members")',
+                    name: ' ',
                     data: [{{App\Models\Reports::usersByMonth()}}]
                 },
                 {
-                    name: '@lang("Contributions")',
+                    name: ' ',
                     data: [{{App\Models\Reports::montlyGiving()}}]
                 }
 
