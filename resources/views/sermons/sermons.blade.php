@@ -53,7 +53,7 @@
 					</div>
 
 				</div>
-				<hr/>
+				<br/>
 			@endforeach
 			<div class="text-center">{{$sermons->render()}}</div>
 		</div>
