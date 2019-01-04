@@ -18,7 +18,7 @@ or open a ticket https://amdtllc.com/support.
 
 ##Installation
 
-See instructions at https://github.com/amdtllc/ccms/wiki
+See instructions at https://gitlab.com/jgmuchiri/church-cms/wikis/Installation
 
 ## Official Documentation
 
