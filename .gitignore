@@ -9,7 +9,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
-.env.example2
 bash.exe.stackdump
 deploy-zip.bash
 deploy.bat
