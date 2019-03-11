@@ -14,7 +14,7 @@ class ModulesController extends Controller
 {
     function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['role:admin','auth']);
     }
 
     /**

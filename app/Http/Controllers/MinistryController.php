@@ -15,6 +15,10 @@ class MinistryController extends Controller
     public function __construct()
     {
         $this->middleware(['auth'], ['except' => ['index', 'show']]);
+
+        $this->middleware('permission:create-ministry', ['only' => ['create','store','storeCat','updateCat']]);
+        $this->middleware('permission:update-ministry', ['only' => ['edit','update','storeCat','updateCat']]);
+        $this->middleware('permission:delete-ministry', ['only' => ['destroy']]);
     }
 
     /**

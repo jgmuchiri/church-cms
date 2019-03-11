@@ -16,6 +16,10 @@ class SermonsController extends Controller
     public function __construct()
     {
         $this->middleware(['auth'], ['except' => ['show', 'index', 'publicSermons']]);
+        
+        $this->middleware('permission:create-sermons', ['only' => ['create','store']]);
+        $this->middleware('permission:update-sermons', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-sermons', ['only' => ['destroy']]);
     }
 
     /**
