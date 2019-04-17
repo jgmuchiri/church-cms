@@ -256,7 +256,10 @@ class AuthController extends Controller
         $confirmation_code = str_random(30);
 
         //subscribe to trial plan
-        $customer = Membership::newUserTrialPlan(['email' => $request['email']]);
+        $customer = Membership::newUserTrialPlan([
+            'email' => $request['email'],
+            'plan'=>$request->plan
+        ]);
         $subscription = $customer['subscriptions']->data[0];
         //log transaction
         //$subscription->id;

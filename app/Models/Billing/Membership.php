@@ -18,11 +18,11 @@ class Membership extends Model
 
         \Stripe\Stripe::setApiKey(config('app.env') == "local" ? config('app.stripe.test.secret') : config('app.stripe.live.secret'));
 
-
         $customer = \Stripe\Customer::create(array(
-                "plan" => config('stripe.plans.default.name'),
+                "plan" => $data['plan'],
                 "email" => $data['email'])
         );
+
         return $customer;
     }
 
