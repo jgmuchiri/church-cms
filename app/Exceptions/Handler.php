@@ -33,57 +33,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-
-        if ($exception instanceof \Exception && env('SEND_DEBUG_EMAIL') == true) {
-
-            //send email for any errors
-
-            if (ExceptionHandler::isHttpException($exception)) {
-                $content = ExceptionHandler::toIlluminateResponse(ExceptionHandler::renderHttpException($exception), $exception);
-            } else {
-                $content = ExceptionHandler::toIlluminateResponse(ExceptionHandler::convertExceptionToResponse($exception), $exception);
-            }
-            $lc2 = (isset($content->original)) ? $content->original : $exception->getMessage();
-
-
-            $lc1 = "";
-            try {
-                $request = request();
-                $lc1 =
-                    "<div>" .
-                    "<p><h5>Message:</h5></p>" . $exception->getMessage() .
-                    "<p><strong>File:</strong></p>" . $exception->getFile() .
-                    "<p><strong>-- Request --</strong></p><br>" .
-                    "<br>Method: " . $request->getMethod() .
-                    "<br>Uri: " . $request->getUri() .
-                    "<br>Ip: " . $request->getClientIp() .
-                    "<br>Referrer: " . $request->server('HTTP_REFERER') .
-                    "<br>Is secure: " . $request->isSecure() .
-                    "<br>Is ajax: " . $request->ajax() .
-                    "<br>User agent: " . $request->server('HTTP_USER_AGENT') .
-                    "<br>Content:<br>" . nl2br(htmlentities($request->getContent())) .
-                    "<p><h5>Trace:</h5></p><code>" . $exception->getTraceAsString() ."</code>".
-                    "</div>";
-            } catch (Exception $e2) {
-
-            }
-
-            if (strpos($lc2, '</body>') !== false) {
-                $lc2 = str_replace('</body>', $lc1 . '</body>', $lc2);
-            } else {
-                $lc2 .= $lc1;
-            }
-
-            try{
-                Mail::send('emails.exceptions', ['content'=>$lc2], function ($m) {
-                    $m->from(config('mail.from.address'), config('app.name'));
-                    $m->to(env('DEBUG_EMAIL'), 'ERROR HANDLER')->subject('ERROR HANDLER - ' . config('app.name'));
-                });
-            }catch (Exception $e){
-
-            }
-
-        }
         parent::report($exception);
     }
 

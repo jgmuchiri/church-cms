@@ -116,17 +116,17 @@ $nextMonth = date('m', strtotime(\Carbon\Carbon::now()->addMonths(1)));
 				{!! Form::open(['url'=>'registerUser']) !!}
 				<div class="modal-body">
 					{{Form::label('email',__('Email'))}}
-					{{Form::input('email','email',null,['class'=>'form-control','required'=>'required'])}}
+					{{Form::input('email','email',NULL,['class'=>'form-control','required'=>'required'])}}
 					{{Form::label('first_name',__('First name'))}}
-					{{Form::text('first_name',null,['class'=>'form-control'])}}
+					{{Form::text('first_name',NULL,['class'=>'form-control'])}}
 					{{Form::label('last_name',__('Last name'))}}
-					{{Form::text('last_name',null,['class'=>'form-control'])}}
+					{{Form::text('last_name',NULL,['class'=>'form-control'])}}
 					{{Form::label('phone',__('Phone'))}}
-					{{Form::text('phone',null,['class'=>'form-control'])}}
+					{{Form::text('phone',NULL,['class'=>'form-control'])}}
 					{{Form::label('address',__('Address'))}}
-					{{Form::textarea('address',null,['rows'=>3,'class'=>'form-control'])}}
+					{{Form::textarea('address',NULL,['rows'=>3,'class'=>'form-control'])}}
 					{{Form::label('date',__('Date'))}}
-					{{Form::input('date','dob',null,['class'=>'form-control'])}}
+					{{Form::input('date','dob',NULL,['class'=>'form-control'])}}
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button" data-dismiss="modal">@lang('Close')</button>
