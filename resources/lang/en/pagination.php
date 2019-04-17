@@ -1,4 +1,14 @@
 <?php
+/**
+ * @package     church-cms
+ * @file        pagination.php
+ * @copyright   2019 A&M Digital Technologies, LLC
+ * @author      John Muchiri <hello[at]johnmuchiri.com>
+ * @link        https://amdtllc.com
+ * @modified    12/25/18 9:37 PM
+ * @license     MIT
+ *
+ */
 
 return [
 
