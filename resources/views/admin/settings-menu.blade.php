@@ -36,7 +36,7 @@
 					</p>
 					<p class="m-0">
 						<small>
-							<span>@lang('gifts designation list')</span>
+							<span>@lang('Gifts designation list')</span>
 						</small>
 					</p>
 				</div>

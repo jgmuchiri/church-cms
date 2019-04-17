@@ -76,15 +76,10 @@
 							@foreach($roles as $role)
 								<tr>
 									<td>
-										{{Form::radio('role',$role->id,(int)$currentRole==(int)$role->id)}}
+										{{Form::radio('role',$role->id,(int)$user->role_id ==(int)$role->id)}}
 									</td>
 									<td valign="middle">{{ucwords($role->name)}}</td>
 									<td> {{$role->description}}</td>
-									<td>
-										@foreach($role->permissions as $rp)
-											<span class="label label-default"> {{$rp->name}}</span>
-										@endforeach
-									</td>
 								</tr>
 
 							@endforeach

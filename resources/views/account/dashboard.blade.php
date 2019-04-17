@@ -25,7 +25,7 @@
 				<div class="col-xl-4">
 					<div class="card card-default card-demo" id="cardChart9">
 						<div class="card-wrapper collapse show">
-							<div class="card-body"><h5> @lang("Print history")</h5>
+							<div class="card-body"><h5> @lang("Print giving history")</h5>
 								<div id="gift-history">
                                     <?php
                                     $created = date('Y', strtotime(Auth::user()->created_at));

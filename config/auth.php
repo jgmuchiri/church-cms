@@ -3,7 +3,6 @@
 return [
 
     'registration'=>env('ALLOW_REGISTRATION',false),
-    'default-role'=>env('DEFAULT_ROLE','user'),
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -18,6 +17,7 @@ return [
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
+        'role'=>env('DEFAULT_ROLE','user')
     ],
 
     /*

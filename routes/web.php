@@ -1,37 +1,33 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::auth();
+Auth::routes(['verify' => TRUE]);
 
 Route::group(['middleware' => 'web'], function () {
 
-//    Route::get('/login', function () {
-//        if (Auth::check()) {
-//            return redirect('/dashboard');
-//        }
-//        return view('auth.auth');
-//    });
-//
-//    Route::post('login', 'Auth\AuthController@login');
-//
+    Route::get('dashboard', ['uses' => function () {
+        if(auth()->user()->role == 'admin')
+            return view('admin.dashboard');
+        return redirect('account');
+    }]);
 
-    if(Request()->segment(3) == "delete") {
-        return view('errors.202');
-    }
     Route::get('password/forgot', 'Auth\ForgotPasswordController@index')->name('password.forgot');
+
     Route::get('logout', 'Auth\LoginController@logout');
 
     Route::get('/', 'HomeController@index');
+
     Route::get('/home', 'HomeController@index');
 
     Route::get('register/confirm', 'Auth\AuthController@resendConfirmation');
+
     Route::get('register/verify/{confirmationCode}', [
         'as' => 'confirmation_path',
-        'uses' => 'Auth\AuthController@confirmAccount'
+        'uses' => 'Auth\AuthController@confirmAccount',
     ]);
+
     Route::post('registerUser', 'UserController@registerUser');
 
     //public routes//
@@ -39,6 +35,7 @@ Route::group(['middleware' => 'web'], function () {
 
     //contact
     Route::get('contact', 'HomeController@contact');
+
     Route::post('contact', 'HomeController@sendMessage');
 
     //events
@@ -107,29 +104,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('{id}', 'UserController@user');
         Route::post('{id}', 'UserController@updateUser');
-        Route::post('{id}/roles', 'UserController@updateUserRoles');
     });
-
-    //admin routes
-
-    Route::get('dashboard', 'AdminController@index');
-    //ADMIN
 
     //Roles
-    Route::group(['prefix' => 'roles', 'middleware' => ['role:admin']], function () {
-        Route::get('/', 'Auth\AuthController@roles');
-        Route::get('/getRoles', 'Auth\AuthController@rolesJson');
-        Route::post('/', 'Auth\AuthController@newRole');
+    Route::group(['prefix' => 'roles', 'middleware' => ['role:admin'], 'namespace' => 'Admin'], function () {
+        Route::get('/', 'RolesController@index');
+        Route::post('/', 'AuthController@store');
+        Route::put('{id}', 'AuthController@update');
     });
-    Route::post('role', 'Auth\AuthController@showRole');
-    Route::post('update-role/{id}', 'Auth\AuthController@updateRole');
-
-    //modules
-    Route::resource('modules', 'ModulesController');
-    Route::post('update-module/{id}', 'ModulesController@update');
-    Route::get('module-permissions/{role_id}/{module_id}', 'Auth\AuthController@permissions');
-    Route::post('role-permissions', 'Auth\AuthController@updateRolePermissions');
-    Route::get('perms', 'ModulesController@perms');
 
     //settings
     Route::group(['prefix' => 'settings', 'middleware' => ['role:admin']], function () {
@@ -139,6 +121,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'AdminController@settings');
         Route::post('/logo', 'AdminController@uploadLogo');
     });
+
     Route::get('debug-log', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
     //themes
@@ -244,7 +227,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('question/{id}/delete', 'KbController@destroy');
         Route::post('question/{id}', 'KbController@updateQuestion');
     });
-
 
     Route::group(['prefix' => 'reports'], function () {
         Route::get('downloadGiftsToDate', 'ReportsController@downloadGiftsToDate');

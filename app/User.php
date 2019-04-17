@@ -19,7 +19,8 @@ class User extends Authenticatable
         'name','first_name','last_name','email',
         'address','phone','photo','dob',
         'password','confirmed','status','remember_token',
-        'stripe_id', 'card_brand','card_last_four','trial_ends_at'
+        'stripe_id', 'card_brand','card_last_four','trial_ends_at',
+        'role'
     ];
  
     /**
@@ -45,7 +46,7 @@ class User extends Authenticatable
         for ($i = 1; $i <= 12; $i++) {
             $stats[] = self::stats($i);
         }
-        return json_encode($stats);
+        return response()->json($stats);
     }
     /**
      * @param $month

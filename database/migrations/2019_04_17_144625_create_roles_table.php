@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class CreateModulesTable extends Migration
+
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +13,10 @@ class CreateModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',50)->unique();
+            $table->string('name',50);
+            $table->string('description',100);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('roles');
     }
 }

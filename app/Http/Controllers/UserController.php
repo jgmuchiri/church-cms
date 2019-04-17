@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Billing\Subscriptions;
 use App\Models\Billing\Transactions;
-use App\Role;
+use App\Models\Roles;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Customer;
@@ -20,21 +20,18 @@ use Stripe\Stripe;
 
 class UserController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:read-users', ['only' => ['users', 'user', 'findUser']]);
-        $this->middleware('permission:create-users', ['only' => ['registerUser']]);
-        $this->middleware('permission:update-users', ['only' => ['updateUser', 'updateUserRoles']]);
 
-        $this->middleware('permission:read-profile', ['only' => ['profile']]);
-        $this->middleware('permission:update-profile', ['only' => ['updateProfile']]);
-        $this->middleware('permission:read-birthdays', ['only' => ['birthdays']]);
+        $this->middleware('role:admin', ['only' => ['updateUser','findUser','registerUser']]);
 
     }
 
     /**
      * list all users
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     function users()
@@ -47,6 +44,7 @@ class UserController extends Controller
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     function user($id)
@@ -54,26 +52,19 @@ class UserController extends Controller
 
         $user = User::whereId($id)->first();
 
-        $roles = Role::all();
-
-        $currentRole = $user->roles->first();
-
-        if($currentRole == null)
-
-            $currentRole = 0;
-        else
-
-            $currentRole = $currentRole->id;
+        $roles = Roles::all();
 
         $gifts = Transactions::whereUserId($user->id)->get();
 
-        return view('admin.user', compact('user', 'gifts', 'roles', 'currentRole'));
+        return view('admin.user', compact('user', 'gifts', 'roles'));
 
     }
 
     /**
      * register new user
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     function registerUser(Request $request)
@@ -84,7 +75,7 @@ class UserController extends Controller
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'phone' => 'required',
-                'dob' => 'required'
+                'dob' => 'required',
             ]);
 
         if($validator->fails()) {
@@ -95,26 +86,25 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        $confirmation_code = str_random(30);
+        $confirmation_code = Str::random(32);
 
         //create stripe customer
         $customer = Transactions::createCustomer($request);
-        $password = str_random(6);
+        $password = Str::random(6);
 
-        //create customer
+        //create stripe customer
         $request['confirmation_code'] = $confirmation_code;
         $request['password'] = bcrypt($password);
         $request['stripe_id'] = $customer->id;
 
-        $user = User::create($request->all());
-        $user->attachRole(config('auth.default-role'));
+        User::create($request->all());
 
         //notify user to activate account
         Mail::send('emails.accounts-verify',
             [
                 'email' => $request->email,
                 'password' => $password,
-                'confirmation_code' => $confirmation_code
+                'confirmation_code' => $confirmation_code,
             ],
             function ($m) use ($request) {
 
@@ -129,7 +119,8 @@ class UserController extends Controller
 
     /**
      * @param Request $request
-     * @param $id
+     * @param         $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     function updateUser(Request $request, $id)
@@ -139,7 +130,7 @@ class UserController extends Controller
                 'first_name' => 'required|max:50',
                 'last_name' => 'required|max:50',
                 'email' => 'required|email|unique:users,email,'.$id,
-                'dob' => 'required'
+                'dob' => 'required',
             ]
         );
 
@@ -173,7 +164,7 @@ class UserController extends Controller
         Mail::send('emails.profile-update-notice',
             [
                 'email' => $request->email,
-                'first_name' => $request->first_name
+                'first_name' => $request->first_name,
 
             ], function ($m) use ($request, $user) {
 
@@ -184,32 +175,6 @@ class UserController extends Controller
         flash()->success(__("Profile updated!"));
 
         return redirect()->back();
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    function updateUserRoles(Request $request)
-    {
-        $user = User::find($request->id);
-        //admin cant take away their rights
-        $me = User::find(Auth::user()->id);
-
-        if($me->hasRole('admin') && Auth::user()->id == $request->id) {
-
-            flash()->error('You cannot change your own rights. Another admin should.');
-
-        } else {
-
-            //remove all
-            $user->detachRoles();
-
-            $user->attachRole($request->role);
-
-            flash()->success(__("Roles updated"));
-        }
-        return redirect('user/'.$request->id.'#roles');
     }
 
 
@@ -228,7 +193,7 @@ class UserController extends Controller
      */
     function account()
     {
-        Stripe::setApiKey(config('app.env')=='local'?config('app.stripe.test.secret'):config('app.stripe.live.secret'));
+        Stripe::setApiKey(config('app.env') == 'local' ? config('app.stripe.test.secret') : config('app.stripe.live.secret'));
 
         $user = User::whereId(Auth::user()->id)->first();
 
@@ -242,13 +207,13 @@ class UserController extends Controller
 
             } else {
 
-                $subscription = null;
+                $subscription = NULL;
 
             }
 
         } catch (InvalidRequest $e) {
 
-            $cu = null;
+            $cu = NULL;
         }
 
         $transactions = Subscriptions::whereUserId($user->id)->get();
@@ -260,6 +225,7 @@ class UserController extends Controller
 
     /**
      * get current  user profile
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     function profile()
@@ -271,6 +237,7 @@ class UserController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     function updateProfile(Request $request)
@@ -281,7 +248,7 @@ class UserController extends Controller
             'first_name' => 'required|max:50',
             'last_name' => 'required|max:50',
             'email' => 'required|email|unique:users,email,'.$id,
-            'dob' => 'required'
+            'dob' => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -294,7 +261,7 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        if($user->stripe_id == null || $user->stripe_id == "") {//create stripe customer
+        if($user->stripe_id == NULL || $user->stripe_id == "") {//create stripe customer
 
             $customer = Transactions::createCustomer($request);
 
@@ -308,7 +275,7 @@ class UserController extends Controller
         Mail::send('emails.profile-update-notice',
             [
                 'email' => $request->email,
-                'first_name' => $request->first_name
+                'first_name' => $request->first_name,
 
             ], function ($m) use ($request, $user) {
 
@@ -324,6 +291,7 @@ class UserController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
     function updatePassword(Request $request)
@@ -366,14 +334,14 @@ class UserController extends Controller
             ->where('first_name', 'like', "%$q%")->orwhere('last_name', 'like', "%$q%")
             ->get();
 
-        $json = array();
+        $json = [];
 
         foreach ($users as $user) {
 
             array_push($json,
                 [
                     'id' => $user->id,
-                    'name' => $user->first_name.' '.$user->last_name.' ('.$user->email.')'
+                    'name' => $user->first_name.' '.$user->last_name.' ('.$user->email.')',
                 ]
             );
         }

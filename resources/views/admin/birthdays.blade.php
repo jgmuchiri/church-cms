@@ -19,11 +19,11 @@
                                         </button>
 							</span>
 
-								@role('admin')
+								@if(has_role('admin'))
 								<a href="/messaging/admin" class="input-group-btn btn btn-warning pull-right"><i
 											class="fa fa-envelope-alt"></i> @lang("Send birthday
         message")</a>
-								@endrole
+								@endif
 							</div>
 
 						</form>

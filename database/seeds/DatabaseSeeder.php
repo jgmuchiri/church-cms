@@ -12,9 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(LaratrustSeeder::class);
+        $this->call(RolesSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(MenuSeeder::class);
-        $this->call(ModuleSeeder::class);
         $this->call(DefaultThemeSeeder::class);
         $this->call(BlogCatSeeder::class);
         $this->call(GiftOptionsSeeder::class);

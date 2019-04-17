@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveUsernameUsers extends Migration
+class AddRoleToUser extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class RemoveUsernameUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['username']);
+            $table->string('role');
         });
     }
 
@@ -26,7 +26,7 @@ class RemoveUsernameUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->unique();
+            $table->dropColumn(['role']);
         });
     }
 }

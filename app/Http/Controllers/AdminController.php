@@ -1,34 +1,28 @@
 <?php
+/**
+ * @package     church-cms
+ * @file        AdminController.php
+ * @copyright   2019 A&M Digital Technologies, LLC
+ * @author      John Muchiri <hello[at]johnmuchiri.com>
+ * @link        https://amdtllc.com
+ * @modified    4/17/19 7:01 PM
+ * @license     MIT
+ *
+ */
 
 namespace App\Http\Controllers;
 
 use App\Tools;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin',['only'=>['settings','backupEnv','updateEnv','uploadLogo']]);
-        $this->middleware('permission:read-logs',['only'=>['debug']]);
-        $this->middleware('permission:delete-logs',['only'=>['emptyDebug']]);
-    }
-
-    /**
-     * @return mixed
-     */
-    function index()
-    {
-        $user = Auth::user();
-        if ($user->hasRole('admin')) {
-            return view('admin.dashboard');
-        } else {
-            return redirect('account');
-        }
-
+        $this->middleware('role:admin');
     }
 
     /**
@@ -40,7 +34,7 @@ class AdminController extends Controller
         $fhandle = fopen($envFile, "rw");
         $size = filesize($envFile);
         $envContent = "";
-        if ($size == 0) {
+        if($size == 0) {
             flash()->error('Your .env file is empty');
         } else {
             $envContent = fread($fhandle, $size);
@@ -48,21 +42,22 @@ class AdminController extends Controller
         }
         return view('admin.settings', compact('envContent'));
 
-
     }
 
     /**
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     function backupEnv(Request $request)
     {
         $envFile = "../.env";
-        return response()->download($envFile, config('app.name') . '-ENV-' . date('Y-m-d_H-i') . '.txt');
+        return response()->download($envFile, config('app.name').'-ENV-'.date('Y-m-d_H-i').'.txt');
     }
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     function updateEnv(Request $request)
@@ -77,14 +72,16 @@ class AdminController extends Controller
 
     /**
      * upload logo
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function uploadLogo(Request $request)
     {
-        if ($request->logo !== null) {
+        if($request->logo !== NULL) {
             $path = 'images/';
-           Tools::uploadImage(Input::file('logo'), $path, 'logo');
+            Tools::uploadImage(Input::file('logo'), $path, 'logo');
         }
 
         flash()->success(__("Logo uploaded updated!"));

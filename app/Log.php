@@ -17,7 +17,7 @@ class Log extends Model
         if($data !==null){
             $data = serialize($data);
         }
-        $fp = fopen('../logs.csv', 'w');
+        $fp = fopen(storage_path().'/logs/logs.csv', 'w');
         fputcsv($fp, array(date('Y-m-d H:i:s'),Auth::user()->id.': '.Auth::user()->name, $event,$data));
         fclose($fp);
     }

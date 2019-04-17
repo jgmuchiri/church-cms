@@ -19,10 +19,10 @@
 						on
 						<span style="font-size:10px;"> {{date('d, M Y',strtotime($cm->created_at))}}</span>
 
-						@role('admin')
+						@if(has_role('admin'))
 						<a class="delete" href="/blog/comment/{{$cm->id}}/delete"><i
 									class="fa fa-trash text-danger"></i> </a>
-						@endrole
+						@endif
 
 					</div>
 					<span style="font-size: 16px;">{{$cm->comment}}</span>

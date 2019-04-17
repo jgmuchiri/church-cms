@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Billing\Membership;
 use App\Models\Modules;
-use App\Permission;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -253,7 +253,7 @@ class AuthController extends Controller
             return redirect('/login')->withErrors($validator)->withInput();
         }
 
-        $confirmation_code = str_random(30);
+        $confirmation_code = Str::random(30);
 
         //subscribe to trial plan
         $customer = Membership::newUserTrialPlan([

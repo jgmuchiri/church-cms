@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Giving\GiftOptions;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 use App\Models\Billing\Transactions;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -92,11 +92,11 @@ class GivingController extends Controller
             $user = new User();
             $user->phone = '123456789';
             $user->email = $request->email;
-            $user->password = bcrypt(str_random(6));
+            $user->password = bcrypt(Str::random(6));
             $user->first_name = 'guest';
             $user->last_name = 'guest';
             $user->created_at = date('Y-m-d H:i:s');
-            $user->confirmation_code = str_random(30);
+            $user->confirmation_code = Str::random(30);
 
             //create stripe customer
             $customer = Transactions::createCustomer($request);
@@ -258,11 +258,11 @@ class GivingController extends Controller
             $user = new User();
             $user->phone = '123456789';
             $user->email = $request->email;
-            $user->password = bcrypt(str_random(6));
+            $user->password = bcrypt(Str::random(6));
             $user->first_name = 'guest';
             $user->last_name = 'guest';
             $user->created_at = date('Y-m-d H:i:s');
-            $user->confirmation_code = str_random(30);
+            $user->confirmation_code = Str::random(32);
             $user->company = env(__("name"));
             //create stripe customer
             $customer = Transactions::createCustomer($request);

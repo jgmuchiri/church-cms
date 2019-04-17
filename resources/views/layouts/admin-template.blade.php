@@ -90,13 +90,13 @@
 						<em class="fa fa-expand"></em>
 					</a>
 				</li>
-				@role('admin')
-				<li class="nav-item">
-					<a class="nav-link" href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
-						<em class="fa fa-cogs"></em>
-					</a>
-				</li>
-				@endrole
+				@if(has_role('admin'))
+					<li class="nav-item">
+						<a class="nav-link" href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
+							<em class="fa fa-cogs"></em>
+						</a>
+					</li>
+				@endif
 			</ul>
 			<form class="navbar-form" role="search" action="{{URL()->to('search')}}">
 				<div class="form-group">
@@ -124,7 +124,7 @@
 								<div class="user-block-info">
 									<span class="user-block-name">
 										@lang("Welcome")
-										{{Auth::user()->name()}}
+										{{auth()->user()->first_name}}
 									</span>
 									<span class="user-block-role">
 										<a href="/profile"><i class="fa fa-user"></i>
@@ -142,66 +142,56 @@
 							<span>@lang("My Account")</span></a>
 					</li>
 
-					@permission('read-gifts')
-					<li><a href="/giving/gifts"><em class="fa fa-money"></em>
-							<span>@lang("Gifts")</span></a></li>
-					@endpermission
+					@if(has_role('admin'))
 
-					@permission('read-mail')
-					<li><a href="/messaging/admin">
-							<div class="float-right badge badge-success">
-								{!! \App\Models\Messaging::whereSender(Auth::user()->id)->count() !!}
-							</div>
-							<em class="fa fa-envelope"></em><span>@lang("Messaging")</span></a></li>
-					@endpermission
+						<li><a href="/giving/gifts"><em class="fa fa-money"></em>
+								<span>@lang("Gifts")</span></a></li>
 
-					@permission('read-ministries')
-					<li><a href="/ministries/admin"><em class="fa fa-list"></em>
-							<span>@lang("Ministries")</span></a></li>
-					@endpermission
+						<li><a href="/messaging/admin">
+								<div class="float-right badge badge-success">
 
-					@permission('read-sermons')
-					<li><a href="/sermons/admin"><em class="fa fa-th"></em>
-							<span>@lang("Sermons")</span></a></li>
-					@endpermission
+								</div>
+								<em class="fa fa-envelope"></em><span>@lang("Messaging")</span></a></li>
 
-					@permission('read-events')
-					<li><a href="/events/admin"><em class="fa fa-calendar"></em>
-							<span>@lang("Events")</span></a></li>
-					@endpermission
+						<li><a href="/ministries/admin"><em class="fa fa-list"></em>
+								<span>@lang("Ministries")</span></a></li>
 
-					@permission('read-blog')
-					<li><a href="/blog/admin"><em class="fa fa-leaf"></em> <span>@lang("Blog")</span></a></li>
-					@endpermission
+						<li><a href="/sermons/admin"><em class="fa fa-th"></em>
+								<span>@lang("Sermons")</span></a></li>
 
-					@permission('read-users')
-					<li><a href="/users"><em class="fa fa-user"></em>
-							<div class="float-right badge badge-success">
-								{{\App\User::count()}}
-							</div>
-							<span>@lang("Users")</span></a></li>
-					@endpermission
+						<li><a href="/events/admin"><em class="fa fa-calendar"></em>
+								<span>@lang("Events")</span></a></li>
 
-					@role('admin')
-					<li class="">
-						<a href="#settings" title="Pages" data-toggle="collapse">
-							<em class="fa fa-cogs"></em>
-							<span data-localize="sidebar.nav.pages.PAGES">@lang('Admin')</span>
-						</a>
-						<ul class="sidebar-nav sidebar-subnav collapse" id="settings">
-							<li class="sidebar-subnav-header">@lang('Admin')</li>
-							<li><a href="/settings"><em class="fa fa-wrench"></em> @lang("Settings")</a></li>
-							<li><a href="/roles"><em class="fa fa-key"></em><span> @lang("Roles")</span></a></li>
-							<li><a href="/menu"><em class="fa fa-list-alt"></em> <span>@lang("Menu")</span></a></li>
-							<li><a href="/theme"><em class="fa fa-th-list"></em> <span>@lang("Change themes")</span></a>
-							</li>
-							<li><a href="/giving/gift-options"><em class="fa fa-money"></em>
-									<span>@lang("Gift Options")</span></a></li>
-							<li><a href="/debug-log"><em class="fa fa-bug"></em>
-									<span>@lang("Debug logs")</span></a></li>
-						</ul>
-					</li>
-					@endrole
+						<li><a href="/blog/admin"><em class="fa fa-leaf"></em> <span>@lang("Blog")</span></a></li>
+
+						<li>
+							<a href="/users">
+								<em class="fa fa-user"></em>
+								<div class="float-right badge badge-success">{{\App\User::count()}}</div>
+								<span>@lang("Users")</span>
+							</a>
+						</li>
+
+						<li class="">
+							<a href="#settings" title="Pages" data-toggle="collapse">
+								<em class="fa fa-cogs"></em>
+								<span data-localize="sidebar.nav.pages.PAGES">@lang('Admin')</span>
+							</a>
+							<ul class="sidebar-nav sidebar-subnav collapse" id="settings">
+								<li class="sidebar-subnav-header">@lang('Admin')</li>
+								<li><a href="/settings"><em class="fa fa-wrench"></em> @lang('Settings')</a></li>
+								<li><a href="/roles"><em class="fa fa-key"></em> @lang('Roles')</a></li>
+								<li><a href="/menu"><em class="fa fa-list-alt"></em> <span>@lang("Menu")</span></a></li>
+								<li><a href="/theme"><em class="fa fa-th-list"></em> <span>@lang('Change themes')</span></a>
+								</li>
+								<li><a href="/giving/gift-options"><em class="fa fa-money"></em>
+										<span>@lang("Gift Options")</span></a></li>
+								<li><a href="/debug-log"><em class="fa fa-bug"></em>
+										<span>@lang("Debug logs")</span></a></li>
+							</ul>
+						</li>
+
+					@endif
 
 					<li class="nav-item kiosk">
 						<a class="nav-link" href="/kiosk">
@@ -231,24 +221,13 @@
 			<div class="content-heading">
 				@hasSection('title') <h1>@yield('title')</h1> @endif
 			</div>
-
-			@if(Auth::check() && Auth::user()->confirmed ==0)
-				<div class="callout callout-danger text-center text-danger">
-					<i style="font-size:60px;" class="fa fa-exclamation-triangle"></i>
-					<h5 class="">
-						@lang("Your account is not confirmed yet")
-						@lang("Please follow instructions received on the email").
-					</h5>
-					<a href="/register/confirm">@lang("Click here to resend confirmation email")</a>
-				</div>
-			@else
-				@yield('content')
-			@endif
+			@yield('content')
 
 		</div>
 	</section>
 	<footer class="footer-container">
-		<span>&copy;{{date('Y').' '.config('app.name')}} - <a href="https://amdtllc.com">A&M Digital Technologies</a></span>
+		<span>&copy;{{date('Y').' '.config('app.name')}} - <a
+					href="https://amdtllc.com">A&M Digital Technologies</a></span>
 	</footer>
 </div>
 <script src="{{ asset('js/jquery.js')}}"></script>
