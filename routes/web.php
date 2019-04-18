@@ -109,8 +109,8 @@ Route::group(['middleware' => 'web'], function () {
     //Roles
     Route::group(['prefix' => 'roles', 'middleware' => ['role:admin'], 'namespace' => 'Admin'], function () {
         Route::get('/', 'RolesController@index');
-        Route::post('/', 'AuthController@store');
-        Route::put('{id}', 'AuthController@update');
+        Route::post('/', 'RolesController@store')->name('create.role');
+        Route::put('{id}', 'RolesController@update');
     });
 
     //settings

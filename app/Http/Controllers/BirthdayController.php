@@ -10,7 +10,7 @@ class BirthdayController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:read-birthdays', ['only' => ['birthdays']]);
+        $this->middleware('role:admin,manager');
     }
 
     /**

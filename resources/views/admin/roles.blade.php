@@ -8,16 +8,46 @@
 		@include('admin.settings-menu')
 
 		<div class="col-sm-9">
-			<div class="row">
-				@foreach($roles as $role)
-					<div class="col-sm-6">
-						{{$role->name}}
+
+			<h3>@lang('Roles')
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#roleModal">
+					<i class="fa fa-plus"></i> @lang('New role')
+				</button>
+			</h3>
+
+
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+										aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Submit</button>
+						</div>
 					</div>
-					<div class="col-sm-6 text-muted">
-						{{$role->description}}
-					</div>
-				@endforeach
+				</div>
 			</div>
+			@foreach($roles as $role)
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-6">
+								{{strtoupper($role->name)}}
+							</div>
+							<div class="col-sm-6 text-muted">
+								{{$role->description}}
+							</div>
+						</div>
+					</div>
+				</div>
+			@endforeach
 		</div>
 	</div>
 @endsection
@@ -36,7 +66,7 @@
 
 				</div>
 
-				<form method="post" action="{{url('/roles')}}">
+				<form method="post" action="{{route('create.role')}}">
 					@csrf
 
 					<div class="modal-body">
@@ -61,28 +91,4 @@
 		</div>
 	</div>
 
-
-	<div class="modal fade" id="modulesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">@lang("New Module")</h4>
-
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-								aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				{!! Form::open(['url'=>route('modules.store'),'method'=>'post']) !!}
-				<div class="modal-body">
-					<label>Name<i class="small">(no spaces or special characters)</i></label>
-					{!! Form::text('name',NULL,['required'=>'required','class'=>'form-control']) !!}
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
-					<button class="btn btn-primary">@lang("Submit")</button>
-				</div>
-				{!! Form::close() !!}
-			</div>
-		</div>
-	</div>
 @endpush

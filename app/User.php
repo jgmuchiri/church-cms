@@ -5,24 +5,36 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
-use Laratrust\Traits\LaratrustUserTrait;
 use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
+
     use  Billable;
 
-    use LaratrustUserTrait;
     use Notifiable;
+
     protected $dates = ['trial_ends_at', 'subscription_ends_at'];
-    protected $fillable =[
-        'name','first_name','last_name','email',
-        'address','phone','photo','dob',
-        'password','confirmed','status','remember_token',
-        'stripe_id', 'card_brand','card_last_four','trial_ends_at',
-        'role'
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'address',
+        'phone',
+        'photo',
+        'dob',
+        'password',
+        'confirmed',
+        'status',
+        'remember_token',
+        'stripe_id',
+        'card_brand',
+        'card_last_four',
+        'trial_ends_at',
+        'role',
     ];
- 
+
     /**
      * The database table used by the model.
      *
@@ -42,54 +54,56 @@ class User extends Authenticatable
      */
     public static function userStats()
     {
-        $stats = array();
+        $stats = [];
         for ($i = 1; $i <= 12; $i++) {
             $stats[] = self::stats($i);
         }
         return response()->json($stats);
     }
+
     /**
      * @param $month
+     *
      * @return int
      */
-    public static function  usersByMonth()
+    public static function usersByMonth()
     {
         //$stats = self::whereUserId(Auth::user()->id)->get();
 
         $stats = self::stats('01')
-            . ',' . self::stats('02')
-            . ',' . self::stats('03')
-            . ',' . self::stats('04')
-            . ',' . self::stats('05')
-            . ',' . self::stats('06')
-            . ',' . self::stats('07')
-            . ',' . self::stats('08')
-            . ',' . self::stats('09')
-            . ',' . self::stats('10')
-            . ',' . self::stats('11')
-            . ',' . self::stats('12');
+            .','.self::stats('02')
+            .','.self::stats('03')
+            .','.self::stats('04')
+            .','.self::stats('05')
+            .','.self::stats('06')
+            .','.self::stats('07')
+            .','.self::stats('08')
+            .','.self::stats('09')
+            .','.self::stats('10')
+            .','.self::stats('11')
+            .','.self::stats('12');
         return $stats;
     }
 
     static function stats($m)
     {
         $year = date('Y');
-        $dayFirst = date('Y') . '-' . $m . '-01';
+        $dayFirst = date('Y').'-'.$m.'-01';
         switch ($m) {
             case (01 || 03 || 05 || 07 || '08' || 10 || 12):
-                $dayLast = $year . '-' . $m . '-31';
+                $dayLast = $year.'-'.$m.'-31';
                 break;
             case '02' && ($year % 29 == 0):
-                $dayLast = $year . '-' . $m . '-29';
+                $dayLast = $year.'-'.$m.'-29';
                 break;
             case '02' && ($year % 28 == 0):
-                $dayLast = $year . '-' . $m . '-28';
+                $dayLast = $year.'-'.$m.'-28';
                 break;
             case '04' || '06' || '09' || '11':
-                $dayLast = $year . '-' . $m . '-31';
+                $dayLast = $year.'-'.$m.'-31';
                 break;
             default:
-                $dayLast = $year . '-' . $m . '-30';
+                $dayLast = $year.'-'.$m.'-30';
                 break;
         }
         return self::where('created_at', '>=', $dayFirst)
@@ -99,14 +113,17 @@ class User extends Authenticatable
 
     /**
      * user activities
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     function logs()
     {
         return $this->hasMany(\App\Log::class);
     }
+
     /**
      * resend user account confirmation code
+     *
      * @param $id
      */
     public static function resendConfirmation($id)
@@ -118,6 +135,7 @@ class User extends Authenticatable
             $m->to($user->email, $user->name)->subject(__('Verify your email address'));
         });
     }
+
     /**
      * @param $request
      */
@@ -128,7 +146,9 @@ class User extends Authenticatable
             $m->to($request['email'], $request['name'])->subject('Your account is active!');
         });
     }
-    function name(){
+
+    function name()
+    {
         return $this->getAttribute('first_name').' '.$this->getAttribute('last_name');
     }
 }
