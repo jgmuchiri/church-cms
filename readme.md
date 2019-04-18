@@ -2,23 +2,20 @@
 
 This is a church content management with online giving system build on Lavarel Framework. Please see attached installation guide.
 
-or open a ticket https://amdtllc.com/support.
-
-
 > **Note:**
 > We aim to provide this application for free and provision a marketplace for developers to create their themes and plugins that can be added to the platform.
 
 ##Requirements
 
-* PHP >5.6
+* PHP >7.1.3
 * SSH access
 * MySQL database
 * composer
-* npm
+* npm (optional)
 
 ##Installation
 
-See instructions at https://gitlab.com/jgmuchiri/church-cms/wikis/Installation
+See the wiki for instructions
 
 ## Official Documentation
 
