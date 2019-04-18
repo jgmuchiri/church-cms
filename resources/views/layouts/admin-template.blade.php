@@ -86,8 +86,13 @@
 					</a>
 				</li>
 				<li class="nav-item d-none d-md-block">
-					<a class="nav-link" href="#" data-toggle-fullscreen="">
+					<a class="nav-link" href="#" data-toggle-fullscreen="true">
 						<em class="fa fa-expand"></em>
+					</a>
+				</li>
+				<li class="nav-item d-none d-md-block">
+					<a class="nav-link" href="/support">
+						<em class="fa fa-question-circle"></em>
 					</a>
 				</li>
 				@if(has_role('admin'))
