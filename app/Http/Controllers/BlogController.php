@@ -18,10 +18,7 @@ class BlogController extends Controller
     public function __construct()
     {
         $this->middleware(['auth'], ['except' => ['index', 'show']]);
-        $this->middleware(['permission:create-blog'], ['only' => ['admin', 'create', 'store', 'createCat']]);
-        $this->middleware(['permission:update-blog'], ['only' => ['update', 'edit', 'updateCat']]);
-        $this->middleware(['permission:delete-blog'], ['only' => ['destroy', 'deleteComment']]);
-        $this->middleware(['ability:admin|owner'], ['only' => ['deleteComment']]);
+        $this->middleware('role:admin,manager', ['except' => ['postComment','show']]);
     }
 
     /**

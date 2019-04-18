@@ -15,6 +15,7 @@ class CalendarController extends Controller
     public function __construct()
     {
         $this->middleware(['auth'], ['except' => ['index', 'show','eventsJSON']]);
+        $this->middleware('role:admin,manager',['except'=>'eventsJSON','index','show','churcSchedule']);
     }
 
     /**

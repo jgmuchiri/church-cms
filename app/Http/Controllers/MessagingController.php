@@ -18,8 +18,7 @@ class MessagingController extends Controller
     public function __construct()
     {
         $this->middleware(['auth'], ['except' => ['showPublic']]);
-        
-        $this->middleware('permission:create-messaging', ['only' => ['send']]);
+
         $this->middleware('role:admin', ['only' => ['createTemplate','storeTemplate','updateTemplate']]);
     }
 

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MinistryRequest;
-use App\Http\Requests\UpdateMinistryRequest;
 use App\Models\Ministry\Ministry;
 use App\Models\Ministry\MinistryCats;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class MinistryController extends Controller
 {
@@ -16,9 +13,7 @@ class MinistryController extends Controller
     {
         $this->middleware(['auth'], ['except' => ['index', 'show']]);
 
-        $this->middleware('permission:create-ministry', ['only' => ['create','store','storeCat','updateCat']]);
-        $this->middleware('permission:update-ministry', ['only' => ['edit','update','storeCat','updateCat']]);
-        $this->middleware('permission:delete-ministry', ['only' => ['destroy']]);
+        $this->middleware('role:admin,manager',['only'=>'create','store','storeCat','updateCat','destroy']);
     }
 
     /**

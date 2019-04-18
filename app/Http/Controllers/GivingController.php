@@ -18,7 +18,8 @@ class GivingController extends Controller
     function __construct()
     {
         $this->middleware('auth', ['except' => ['manualGift', 'getOptionInfo']]);
-        
+
+        $this->middleware('role:admin',['except'=>'manualGift','getOptionalInfo','give']);
 
         \Stripe\Stripe::setApiKey(config('app.env') == 'local' ? config('app.stripe.test.secret') : config('app.stripe.live.secret'));
     }

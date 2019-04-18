@@ -14,6 +14,7 @@ class KbController extends Controller
     public function __construct()
     {
         $this->middleware(['auth'], ['except' => ['index', 'topic', 'search']]);
+        $this->middleware('role:admin,manager',['only'=>'updateQuestion','destory','storeCategory','updateCategory']);
     }
 
     /**

@@ -42,7 +42,9 @@ class BirthdayController extends Controller
             $timestamp = mktime(0, 0, 0, date('n') - $i, 1);
             $months[date('n', $timestamp)] = date('F', $timestamp);
         }
+
         ksort($months);
+
         return view('admin.birthdays', compact('users', 'months'));
     }
 }
